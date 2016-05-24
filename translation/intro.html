@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>CSS&nbsp;2.1简介</TITLE>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="about.html">
+<link rel="next" href="conform.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+</HEAD>
+<BODY>
+<div class="navbar">
+<p><a href="about.html">上一章</a> &nbsp;
+<a href="conform.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<H1><a name="q0">2 CSS&nbsp;2.1简介</a></H1> 
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="intro.html#html-tutorial" class="tocxref">2.1 CSS&nbsp;2.1 HTML简单教程</a>
+    <li class="tocline2"><a href="intro.html#xml-tutorial" class="tocxref">2.2 CSS&nbsp;2.1 XML简单教程</a>
+    <li class="tocline2"><a href="intro.html#processing-model" class="tocxref">2.3 CSS&nbsp;2.1 处理模型</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="intro.html#the-canvas" class="tocxref">2.3.1 canvas</a>
+      <li class="tocline3"><a href="intro.html#addressing" class="tocxref">2.3.2 CSS&nbsp;2.1 元素查找（addressing）模型</a>
+    </ul>
+    <li class="tocline2"><a href="intro.html#design-principles" class="tocxref">2.4 CSS设计原则</a>
+  </ul>
+</div>
+
+<H2>2.1 <a name="html-tutorial">CSS&nbsp;2.1 HTML简单教程</a></H2>
+
+<p>本节内容是非规范的
+
+<P>本教程中，我们展示了设计简单样式表是多么容易。为了（阅读）本教程，你需要知道一点HTML（见<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="informref">[HTML4]</span></a>）和一些基本的桌面排版术语（desktop publishing terminology）
+
+<P>我们从一个短小的HTML开始：</p>
+
+<PRE class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Bach's home page&lt;/TITLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;Bach's home page&lt;/H1&gt;
+    &lt;P&gt;Johann Sebastian Bach was a prolific composer.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+
+<P>为了把H1元素的文本颜色设置为红色，可以编写如下CSS规则：</P>
+
+<PRE class="example">
+  h1 { color: red }
+</PRE>
+
+<P>一条CSS规则主要由两部分组成：<a
+href="selector.html">选择器</a>('h1')和声明('color:&nbsp;red')。HTML中，元素名是非大小写敏感的，所以'h1'和'H1'效果一样。声明有两部分：属性名('color')和属性值('red')。因为上例试图影响渲染一份HTML文档所需的一个属性，也被称为该文档的样式表，结合其他样式表（CSS的一个基本特性就是样式表可以结合）后，样式规则将决定文档最终的表现
+
+<P>HTML 4规范定义了怎样为HTML文档指定样式表规则：既可以在HTML里，也可以通过外部样式表（指定）。可以通过STYLE元素把样式表放进文档里：</p>
+
+<PRE class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Bach's home page&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    h1 { color: red }
+  &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;Bach's home page&lt;/H1&gt;
+    &lt;P&gt;Johann Sebastian Bach was a prolific composer.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+
+<P>为了更大的灵活性，我们推荐编写者指定外部样式表，不修改HTML文档源码就可以改变样式，并且可以在几个文档间共享。可以通过LINK元素应用外部样式表：</p>
+
+<PRE class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Bach's home page&lt;/TITLE&gt;
+  &lt;LINK rel="stylesheet" href="bach.css" type="text/css"&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;Bach's home page&lt;/H1&gt;
+    &lt;P&gt;Johann Sebastian Bach was a prolific composer.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+
+<P>LINK元素说明：</p>
+
+<ul>
+<li>link的类型：指向一个"stylesheet"
+<li>样式表的位置通过"href"指定
+<li>被link的样式表类型："text/css"
+</ul>
+
+<P>为了展示样式表与结构化标记的密切联系，我们在教程中继续使用STYLE元素，来添加更多颜色：
+
+<PRE class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Bach's home page&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    body { color: black; background: white }
+    h1 { color: red; background: white }
+  &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;Bach's home page&lt;/H1&gt;
+    &lt;P&gt;Johann Sebastian Bach was a prolific composer.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+
+<P>现在样式表有了4条规则：前2条设置BODY元素的颜色和背景（同时设置颜色和背景色是个不错的选择），而后2条设置H1元素的颜色和背景。因为没有给P元素指定颜色，它将从父元素继承，也就是BODY。H1元素也是BODY元素的子元素，但第二条规则重写了继承来的值。CSS中不同值之间经常有这样的冲突，本规范描述了怎样处理它们
+
+<P>CSS&nbsp;2.1有超过90个属性，包括<a href="colors.html#propdef-color" class="noxref"><span
+class="propinst-color">'color'</span></a>。我们看看别的：
+
+<PRE class="example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Bach's home page&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    body { 
+      font-family: "Gill Sans", sans-serif;
+      font-size: 12pt;
+      margin: 3em; 
+    }
+  &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;Bach's home page&lt;/H1&gt;
+    &lt;P&gt;Johann Sebastian Bach was a prolific composer.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+
+<P>首先需要注意的是几个声明被组织在一对花括号({...})形成的封闭块里，并且由分号隔开，最后一条声明后面也跟着一个分号。
+
+<P>BODY元素上的第一条声明把字体族设置为"Gill Sans"，如果这种字体不可用，用户代理（经常被认为是“浏览器”）将使用'sans-serif'字体族（所有用户代理都应该提供的5个一般字体族之一）。BODY的子元素将继承<a href="fonts.html#propdef-font-family" class="noxref"><span
+class="propinst-font-family">'font-family'</span></a>属性的值
+
+<P>第二条声明把BODY元素的字体大小设置为12磅（point）。"磅"这个单位一般用在印刷字体中来描述字体大小和其它长度值，是一个不会根据环境缩放的绝对单位
+
+<P>第三条声明用了相对单位，会根据环境缩放。"em"这个单位指的是元素的字体大小。这种情况下，BODY元素的margin是字体大小的3倍
+
+<H2>2.2 <a name="xml-tutorial">CSS&nbsp;2.1 XML简单教程</a></H2>
+
+<p>本节内容是非规范的
+
+<P>CSS可以用在任何结构化文档格式中，例如可扩展标记语言（eXtensible Markup Language）<a href="refs.html#ref-XML10" rel="biblioentry" class="noxref"><span class="informref">[XML10]</span></a>应用程序。实际上，XML比HTML更依赖样式表，因为编写者可以创作他们自己的元素，用户代理不知道该怎样显示（这些元素）
+
+<P>这是一个简单的XML片段：
+
+<PRE class="xml-example">
+&lt;ARTICLE&gt;
+  &lt;HEADLINE&gt;Fredrick the Great meets Bach&lt;/HEADLINE&gt;
+  &lt;AUTHOR&gt;Johann Nikolaus Forkel&lt;/AUTHOR&gt;
+  &lt;PARA&gt;
+    One evening, just as he was getting his 
+    &lt;INSTRUMENT&gt;flute&lt;/INSTRUMENT&gt; ready and his
+    musicians were assembled, an officer brought him a list of
+    the strangers who had arrived.
+  &lt;/PARA&gt;
+&lt;/ARTICLE&gt;
+</PRE>
+
+<P>为了用一种类文档的风格（fashion）显示这段内容，我们必须先声明哪些元素是内联的（也就是说，不会造成换行），哪些是块级的（也就是说，会造成换行）
+
+<PRE class="example">
+INSTRUMENT { display: inline }
+ARTICLE, HEADLINE, AUTHOR, PARA { display: block }
+</PRE>
+
+<P>第一条规则声明了INSTRUMENT是内联的，第二条规则中用逗号分隔的选择器列表声明了所有其它元素都是块级的。XML中的元素名是大小写敏感的，所以小写的选择器（例如，'instrument'）与大写形式（例如，'INSTRUMENT'）不同
+
+<P>一种连接样式表和XML文档的方式是用一条处理指令：
+
+<PRE class="xml-example">
+&lt;?xml-stylesheet type="text/css" href="bach.css"?&gt;
+&lt;ARTICLE&gt;
+  &lt;HEADLINE&gt;Fredrick the Great meets Bach&lt;/HEADLINE&gt;
+  &lt;AUTHOR&gt;Johann Nikolaus Forkel&lt;/AUTHOR&gt;
+  &lt;PARA&gt;
+    One evening, just as he was getting his 
+    &lt;INSTRUMENT&gt;flute&lt;/INSTRUMENT&gt; ready and his
+    musicians were assembled, an officer brought him a list of
+    the strangers who had arrived.
+  &lt;/PARA&gt;
+&lt;/ARTICLE&gt;
+</PRE>
+
+<P>一个可视化用户代理能够把上面的示例格式化为：
+
+<div class="figure">
+<p><img src="images/bach1.png" alt="Example rendering"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-bach1" href="images/longdesc/bach1-desc.html" title="Long description for the first Bach/XML formatting example">[D]</A></SPAN>
+</div>
+
+<P>注意：段落中出现的单词"flute"就是内联元素INSTRUMENT的内容
+
+<P>文本并没有被格式化成我们预期看到的那样，例如，标题的字体大小应该比其余文本大，可能还想把作者名字显示为斜体：</P>
+
+<PRE class="example">
+INSTRUMENT { display: inline }
+ARTICLE, HEADLINE, AUTHOR, PARA { display: block }
+HEADLINE { font-size: 1.3em }
+AUTHOR { font-style: italic }
+ARTICLE, HEADLINE, AUTHOR, PARA { margin: 0.5em }
+</PRE>
+
+<P>一个可视化用户代理能够把上例格式化为：
+
+<div class="figure">
+<p><img src="images/bach2.png" alt="Example rendering"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-bach2" href="images/longdesc/bach2-desc.html" title="Long description for the second Bach/XML formatting example">[D]</A></SPAN>
+</div>
+
+<P>给样式表添加更多规则将进一步描述文档的表现
+
+
+<H2>2.3 <a name="processing-model">CSS&nbsp;2.1 处理模型</a></H2>
+
+<p>本节内容（不包含子节）是非规范的
+
+<P>本节展示了一种可能的用户代理支持CSS的工作模型，这只是一种概念模型，实际实现可能不同
+
+<P>在这种模型中，用户代理通过下列步骤来处理源码：</P>
+
+<ol>
+<li>解析源文档并创建<a href="conform.html#doctree">文档树</a>.</li>
+
+<li>识别目标<a href="media.html">媒体类型</a>.
+
+<li>检索文档相关特定目标<a href="media.html">媒体类型</a>的所有样式表
+
+<li>通过给每个适用于目标<a href="media.html">媒体类型</a>的<a href="syndata.html#properties">属性</a>赋值来为文档树中的元素做注解。根据<a href="cascade.html">层叠与继承</a>中描述的机制来对属性赋值
+
+<P>值的计算部分取决于适用于目标<a href="media.html">媒体类型</a>的格式化算法。例如，如果目标媒体是screen，用户代理会应用<a href="visuren.html">可视化格式模型</a> 
+
+<li>根据有注解的文档树，生成<span class="index-def" title="formatting structure"><a name="formatting-structure"><dfn>格式化结构</dfn></a></span>。通常，格式化结构与文档树很像，但也可能大不一样，尤其是编写者使用伪元素和生成的内容时。首先，格式化结构根本没必要是“树形的”——结构的类型取决于实现。其次，与文档树相比，格式化结构包含的信息可能更多也可能更少。例如，如果文档树中的一个元素有一个值为'none'的<a href="visuren.html#propdef-display" class="noxref"><span
+class="propinst-display">'display'</span></a>属性，这个元素将不会在格式化结构中生成任何东西。而一个列表元素可能在格式化结构中生成更多信息：列表元素的内容和列表样式信息（例如，黑点图片）
+
+<P>注意CSS用户代理不会在这个阶段改变文档树，特别的，由样式表完成的内容生成不会被反馈给文档语言处理器（例如，重新解析）
+
+<li>把格式化结构传递给目标媒体（例如，打印结果，在屏幕上显示，渲染为声音等等）
+</ol>
+
+<h3>2.3.1 <a name="the-canvas">canvas</a></h3>
+
+<P>对于所有媒体而言，术语<span class="index-def" title="canvas"> <a
+name="canvas"><dfn>canvas</dfn></a></span>都表示“格式化结构将被渲染的地方”。canvas对每个维度的空间来说都是无限的，但渲染通常出现在canvas上一块有限的区域中，由用户代理根据目标媒体建立。例如，用户代理渲染到屏幕通常限定一个最小宽度并根据<a href="visuren.html#viewport">视口</a>的尺寸选择初始宽度。用户代理渲染页面时通常强制加上宽度和高度约束。听觉用户代理可能在音频空间加以限制，但并不及时（Aural user agents may impose limits in audio space, but not in time.）
+
+<h3>2.3.2 <a name="addressing">CSS&nbsp;2.1 元素查找（addressing）模型</a></h3>
+
+<P> CSS&nbsp;2.1 <a href="selector.html">选择器</a>和属性允许样式表引用文档或用户代理的以下部分：</p>
+
+<ul>
+<li>文档树中的元素和它们之间的某些关系（见<a href="selector.html">选择器</a>）
+
+<li>文档树中的元素属性和它们的属性值（见<a href="selector.html#attribute-selectors">属性选择器</a>）
+
+<li>元素内容的某些部分（见<a href="selector.html#first-line">:first-line</a>和<a href="selector.html#first-letter">:first-letter</a>伪元素）
+
+<li>文档树中的特定状态的元素（见<a href="selector.html#pseudo-classes">伪类</a>）
+
+<li>将渲染文档的<a href="#canvas">canvas</a>的某些部分（aspect）
+
+<li>某些系统信息（见<a href="ui.html">用户界面</a>）
+</ul>
+
+<H2>2.4 <a name="design-principles">CSS设计原则</a></H2>
+
+<p>本节内容是非规范的
+
+<P>CSS&nbsp;2.1, as CSS2 and CSS1 before it, is based on a set of design principles:</p>
+
+<UL>
+
+<LI>
+<P><STRONG>向前与向后兼容</STRONG> CSS&nbsp;2.1用户代理能够理解CSS1样式表。CSS1用户代理能够读取CSS&nbsp;2.1样式表并且抛弃那部分无法理解的。而不支持CSS的用户代理将无法显示样式增强的（style-enhanced）文档。当然，通过CSS实现的样式增强将不会被渲染，但所有内容仍然会被显示。</P>
+</LI>
+
+<LI>
+<P><STRONG>对结构化文档的补充</STRONG> 样式表补充了结构化文档（例如，HTML和XML应用程序），为标记文本提供样式信息。它应该能够轻易改变样式，在对标记产生较少或者零影响的前提下。</P>
+</LI>
+
+<LI>
+<P><STRONG>供应商，平台和设备的独立性</STRONG> 样式表让文档对供应商，平台和设备保持独立性。样式表本身也是供应商和平台独立的，但CSS&nbsp;2.1允许为一组设备（例如，打印机）设定样式表</P>
+</LI>
+
+<LI>
+<P><STRONG>可维护性</STRONG> 通过从文档指向样式表，网站管理员可以简化站点维护工作并让整个站点保持一致的外观和感觉。例如，如果机构的背景色变了，只需要修改一个文件</P>
+</LI>
+
+<LI>
+<P><STRONG>简洁</STRONG> CSS是一种简单的样式语言，有良好的可读可写性，CSS属性彼此之间很大程度上保持独立，并且一般只有一种方式去实现一种特定效果</P>
+</LI>
+
+<LI> 
+<P><STRONG>网络性能</STRONG> CSS为如何展现内容提供了紧凑编码。比起图片或者音频这些经常被编写者用来实现特定渲染效果的文件，样式表大大减小了内容大小。而且，为了进一步提高网络性能，减少了打开的网络连接数量</P> </LI>
+
+<LI>
+<P><STRONG>灵活性</STRONG> CSS可以以几种方式应用于内容，关键特性是层叠默认（用户代理）样式表、用户样式表、link样式表、文档head以及构成文档body的元素的属性中的样式信息的能力</P>
+</LI>
+
+<LI>
+<P><STRONG>丰富性</STRONG> 为编写者提供一堆丰富的渲染效果，增加了Web作为一种媒介表达的的丰富性。设计者渴望已久的功能通常已经在桌面排版和幻灯片中出现了。一些需要的渲染效果与设备独立性有冲突，但CSS&nbsp;2.1给予了充分的空间让设计师们提出他们的要求（goes a long way toward granting designers their requests）</P>
+</LI>
+
+<LI>
+<P><STRONG>可选的语言绑定</STRONG> 规范中描述的CSS属性集来自视觉和听觉表现一致的格式化模型，该格式化模型可以通过CSS语言来访问，但也能绑定到其他语言。例如，一个JavaScript程序可能动态改变某些元素的<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>属性的值</P>
+</LI>
+
+<LI>
+<P><STRONG>可访问性</STRONG> 以下几个CSS特性将会让Web对有残疾的用户来说可读性更好：</p>
+
+<UL>
+
+<LI>控制字体外观的属性，允许编写者消除难以访问的位图文本图像
+
+<li>定位属性，允许编写者消除用于实现布局效果的标记技巧（mark-up tricks）（例如，不可见的图片）
+
+<LI><tt>!important</tt>规则的语义，意味着有特殊表现去求的用户可以重写（网页）编写者的样式表
+
+<li>所有属性的继承值提高了层叠的通用性，并且允许更容易地调整一贯风格
+
+<li>增强了媒体支持，包括媒体组和盲文，凸印（embossed）以及tty等媒体类型，允许用户和编写者为这些设备特别定制页面
+
+</UL>
+
+<div class="note"><P> <em><strong>注释 </strong>关于用CSS和HTML设计易访问文档的更多信息请查看[[-WCAG20]]</em>
+</div>
+</UL>
+
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="about.html">上一章</a> &nbsp;
+<a href="conform.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</BODY>
+</HTML>
+

@@ -1,0 +1,678 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>字体</title>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="colors.html">
+<link rel="next" href="text.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+<style type="text/css">
+#AutoNumber2 td { text-align:center }
+</style>
+<style type="text/css">
+.current,.proposed,span.delcurrent { background:#feb }
+ins.proposed,span.insproposed { background:#bfb }
+del.proposed,span.delproposed { background:#fbb }
+span.insproposed { text-decoration:underline }
+span.delproposed,span.delcurrent { text-decoration:line-through }
+body>del,body>ins {display:block}
+</style>
+</head>
+<body>
+<div class="navbar">
+<p><a href="colors.html">上一章</a> &nbsp;
+<a href="text.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+
+<h1><a name="q0">15 字体</a></h1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="fonts.html#fonts-intro" class="tocxref">15.1 简介</a>
+    <li class="tocline2"><a href="fonts.html#algorithm" class="tocxref">15.2 字体匹配策略</a>
+    <li class="tocline2"><a href="fonts.html#font-family-prop" class="tocxref">15.3 字体族：<span class="propinst-font-family">'font-family'</span>属性</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="fonts.html#generic-font-families" class="tocxref">15.3.1 一般字体族</a>
+      <ul class="toc">
+        <li class="tocline4"><a href="fonts.html#serif-def" class="tocxref">15.3.1.1 <span class="index-def" title="serif, definition of"><dfn>serif</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#sans-serif-def" class="tocxref">15.3.1.2 <span class="index-def" title="sans-serif, definition of"> <dfn>sans-serif</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#cursive-def" class="tocxref">15.3.1.3 <span class="index-def" title="cursive, definition of"> <dfn>cursive</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#fantasy-def" class="tocxref">15.3.1.4 <span class="index-def" title="fantasy, definition of"> <dfn>fantasy</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#monospace-def" class="tocxref">15.3.1.5 <span class="index-def" title="monospace, definition of"> <dfn>monospace</dfn></span></a>
+      </ul>
+    </ul>
+    <li class="tocline2"><a href="fonts.html#font-styling" class="tocxref">15.4 字体样式：<span class="propinst-font-style">'font-style'</span>属性</a>
+    <li class="tocline2"><a href="fonts.html#small-caps" class="tocxref">15.5 小型大写字母：<span class="propinst-font-variant">'font-variant'</span>属性</a>
+    <li class="tocline2"><a href="fonts.html#font-boldness" class="tocxref">15.6 字体粗细：<span class="propinst-font-weight">'font-weight'</span>属性</a>
+    <li class="tocline2"><a href="fonts.html#font-size-props" class="tocxref">15.7 字体大小：<span class="propinst-font-size">'font-size'</span>属性</a>
+    <li class="tocline2"><a href="fonts.html#font-shorthand" class="tocxref">15.8 简写的字体属性：<span class="propinst-font">'font'</span>属性</a>
+  </ul>
+</div>
+
+<h2>15.1 <a name="fonts-intro">简介</a></h2>
+
+<p>设置字体属性是样式表最常见的用法之一。不幸的是，没有明确的（well-defined）可以用来分类字体的通用分类，而且术语可能适用于一个字体族而不适合其它的。例如，'italic'通常用来标记倾斜的字体，但倾斜字体也可能被标记为<em>Oblique, Slanted, Incline, Cursive</em>或者<em>Kursiv</em>。因此这不是一个简单的把典型字体选择属性映射到特定字体的问题
+</p>
+
+<h2>15.2 <a name="algorithm">字体匹配策略</a></h2>
+
+<p>因为字体属性不存在可接受的，通用的分类，匹配字体属性时必须谨慎。为了确保匹配处理的结果尽可能跨UA一致（假设它们提出了相同的字体库），属性按照明确的顺序进行匹配
+</p>
+
+<ol>
+
+<li>用户代理创建（或者访问）一个含有所有支持的字体的相关CSS&nbsp;2.1属性的数据库。如果存在两个完全相同的属性，用户代理就选择其中一个
+</li>
+<li>对于一个给定的元素和该元素中的每个字符，UA给该元素装配可用的字体属性。使用完整的属性集，UA用'font-family'属性来选择一种暂定的字体族。其余属性根据每个属性的匹配标准来尝试。如果能够匹配剩余的所有属性，那么这就是给定元素或字符的匹配字体
+</li>
+<li>如果经过第2步处理后，该'font-family'里没有匹配的字体，如果字体集里存在下一个可选的'font-family'，那么就对下一个可选'font-family'重复步骤2
+</li>
+<li>如果存在一种匹配字体，但它不包含当前字符的字形，如果字体集里存在下一个可选的'font-family'，那么就对下一个可选的'font-family'重复步骤2
+</li>
+<li>如果第2步中没有选出字体，那么就用依赖UA的默认'font-family'并重复第2步，使用默认字体中的最佳匹配。如果一个特殊字符无法用这种字体显示，那么UA可以用其它方式来为该字符确定一个合适的的字体。UA应该把每个不含特殊字体的字符映射到一个由UA选择的可见符号
+</li>
+</ol>
+
+<p>（上面的策略可以优化，避免对每个字符重复访问其CSS&nbsp;2.1属性）
+</p>
+<p>上面第2步中各个属性的匹配规则如下：
+</p>
+<ol>
+
+<li>最先尝试<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>。如果UA的字体数据库中存在一种被标记为CSS关键字'italic'（优先）或'oblique'的字体。否则该值要么必须完全匹配，要么font-style匹配失败
+</li>
+<li>接下来尝试<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>。“小型大写字母”会匹配(1)一个被标记为'small-caps'的字体，(2)一个形成了小型大写字母的字体，或者(3)一个所有小写字母都被替换为大写字母的字体。一个小型大写字母字体可以通过对一个常规字体的大写字母进行电子缩放来形成。'normal'匹配一个字体的常规（非小型大写字母）变体。一个字体一定具有一种常规变体。一个只有小型大写字母可用的字体应该既可以作为'normal'字体，也可以作为'small-caps'来选择
+</li>
+<li>接下来匹配<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>，一定不会失败（见下面的'font-weight'）
+</li>
+<li><a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>必须在一个依赖UA的容忍范围内进行匹配（典型的，可缩放字体的尺寸会被四舍五入为最相近的整数像素，而对位图字体的容忍度可能是20%）。基于'font-size'的计算值，做进一步的计算，例如，根据其它属性的'em'值
+</li>
+
+</ol>
+
+<h2>15.3 <a name="font-family-prop">字体族</a>：<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-family'"><a name="propdef-font-family" class="propdef-title"><strong>'font-family'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[[ <a href="fonts.html#value-def-family-name" class="noxref"><span class="value-inst-family-name">&lt;family-name&gt;</span></a> | <a href="fonts.html#value-def-generic-family" class="noxref"><span class="value-inst-generic-family">&lt;generic-family&gt;</span></a> ] [, <a href="fonts.html#value-def-family-name" class="noxref"><span class="value-inst-family-name">&lt;family-name&gt;</span></a>| <a href="fonts.html#value-def-generic-family" class="noxref"><span class="value-inst-generic-family">&lt;generic-family&gt;</span></a>]* ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>取决于用户代理
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性值是一列按优先级排列的字体族名和/或<a href="#generic-font-families">通用字体族名</a>。与其它大多数CSS属性不同，分量值由逗号分隔表示它们是可选的：
+</p>
+<pre>
+body { font-family: Gill, Helvetica, sans-serif }
+</pre>
+
+<p>尽管很多字体提供了“缺失字符”字形，典型的，一个打开的盒子，虽然它的名字暗示它不应该被认为是对字体中无法找到的字符的匹配（然而，它应该被认为是对U+FFFD，“缺失字符”字符码位值（code point）的匹配）
+</p>
+<p>有两种类型的字体族名：
+</p>
+<dl>
+
+<dt><a name="value-def-family-name">&lt;family-name&gt;</a>
+</dt>
+<dd>一个字体族的名字。上一个示例中，"Gill"和"Helvetica"都是字体族
+</dd>
+<dt><a name="value-def-generic-family">&lt;generic-family&gt;</a>
+</dt>
+<dd>上例中，最后一个值是一个一般字体族名。定义了下列一般字体族名：
+
+<ul>
+
+<li>'serif' (例如，Times)</li>
+
+<li>'sans-serif' (例如，Helvetica)</li>
+
+<li>'cursive' (例如，Zapf-Chancery)</li>
+
+<li>'fantasy' (例如，Western)</li>
+
+<li>'monospace' (例如，Courier)</li>
+
+</ul>
+
+<p>鼓励样式表设计者提供一个一般字体族作为最后一个可选项。一般字体族名是关键字，不要用引号包起来
+</p>
+</dd>
+</dl>
+
+<p>字体族名要么必须用引号包起来作为<a href="syndata.html#strings">字符串</a>，要么不用引号包起来作为一系列一个或多个<a href="syndata.html#value-def-identifier">标识符</a>。这意味着每个token开头的大多数标点符号和数字必须被转义为不含引号的字体族名
+
+<p>例如，下列声明是非法的：
+
+<pre>
+font-family: Red/Black, sans-serif;
+font-family: "Lucida" Grande, sans-serif;
+font-family: Ahem!, sans-serif;
+font-family: test@foo, sans-serif;
+font-family: #POUND, sans-serif;
+font-family: Hawaii 5-0, sans-serif;
+</pre>
+
+<p>如果给定了一系列标识符作为字体族名，计算值为把该名字转换为通过用空格拼接所有标识符形成的字符串序列
+
+<p>为了避免转义期间的错误，推荐用引号把含有除连字符外的空白字符，数字或者标点符号字符的字体族名包起来
+
+<pre>
+body { font-family: "New Century Schoolbook", serif }
+
+&lt;BODY STYLE="font-family: '21st Century', fantasy">
+</pre>
+
+<p>刚好与关键字值相同的字体族<em>名</em>（'inherit'，'serif'，'sans-serif'，'monospace'，'fantasy'，'cursive'）必须用引号包起来，防止与同名的关键字混淆。关键字'initial'和'default'为将来的用法保留，用作字体名时也必须用引号包起来。UA不能把这些关键字当作'&lt;family-name&gt;'类型匹配
+</p>
+
+
+<h3>15.3.1 <a name="generic-font-families">一般字体族</a></h3>
+
+<p>一般字体族是一种fallback机制，在最坏的情况下，指定的字体都没有被选择出来时，（这是）一种用来保留一些样式表编写者意图的方法。为了最佳的排版控制，应该在样式表中使用特定命名的字体
+
+
+<p><a name="defined-to-exist">5个一般字体族的定义全都存在于</a>所有CSS实现中（它们不一定要映射到5个不同的实际字体）。用户代理应该为一般字体族提供合理的默认选项，表达每个族的特征和可能存在的底层技术的限制
+
+<p>鼓励用户代理允许用户为一般字体族选择可选的选项
+
+<h4>15.3.1.1 <span class="index-def" title="serif, definition of"><a name="serif-def"><dfn>serif</dfn></a></span></h4>
+
+<p>serif（衬线）字体的字形，作为用于CSS的术语，往往会具有修饰过的笔画，向外展开的或者尖细的末端，或者是带有实际衬线的末端（包括粗衬线字体）。serif字体是典型的间隔成比例的（proportionately-spaced）。它们通常显示一个比'sans-serif'一般字体族的字体更大的介于粗和细笔画之间的变体。CSS术语'serif'适用于任何文字（script）的字体，尽管其它名字可能对于特定文字来说更熟悉一些，例如，Mincho（日文），Sung或者Song（中文），Totum或者Kodig（韩文）。这样描述的任何字体都可以代表一般'serif'字体族
+
+<p>适合该描述的字体示例包括：</p>
+
+<table>
+<tr><td>拉丁（Latin）字体
+  <td>Times New Roman, Bodoni,
+Garamond, Minion Web, ITC Stone Serif, MS Georgia, Bitstream Cyberbit
+<tr><td>希腊（Greek）字体
+  <td>Bitstream Cyberbit
+<tr><td>斯拉夫字母（Cyrillic）字体
+  <td>Adobe Minion Cyrillic, Excelsior Cyrillic Upright,
+Monotype Albion 70, Bitstream Cyberbit, ER Bukinist
+<tr><td>希伯来（Hebrew）字体
+  <td>New Peninim, Raanana, Bitstream Cyberbit
+<tr><td>日文（Japanese）字体
+  <td>Ryumin Light-KL, Kyokasho ICA, Futo Min A101
+<tr><td>阿拉伯（Arabic）字体
+  <td>Bitstream Cyberbit
+<tr><td>彻罗基（Cherokee）字体
+  <td>Lo Cicero Cherokee
+</table>
+
+<h4>15.3.1.2 <span class="index-def" title="sans-serif, definition of">
+<a name="sans-serif-def"><dfn>sans-serif</dfn></a></span></h4>
+
+<p>sans-serif（无衬线）字体的字形，作为用于CSS的术语，往往会具有笔画清晰的末端--带有一点或者没有向外展开的，交错笔画，或者其它装饰。sans-serif字体是典型的间隔成比例的（proportionately-spaced）。与'serif'族的字体相比，它们通常在笔画粗细间有一点变化。CSS术语'sans-serif'适用于任何文字（script），尽管其它名字可能对于特定文字来说更熟悉，例如，Gothic（日文），Kai（中文）或者Pathang（韩文）。这样描述的任何字体都可以代表一般'sans-serif'字体族
+
+<p>适合该描述的字体示例包括：</p>
+
+<table>
+<tr><td>拉丁（Latin）字体
+  <td>MS Trebuchet, ITC Avant Garde Gothic, MS Arial, MS Verdana, Univers,
+Futura, ITC Stone Sans, Gill Sans, Akzidenz Grotesk, Helvetica
+<tr><td>希腊（Greek）字体
+  <td>Attika, Typiko New Era, MS Tahoma, Monotype Gill Sans 571, Helvetica Greek
+<tr><td>斯拉夫字母（Cyrillic）字体
+  <td>Helvetica Cyrillic, ER Univers, Lucida Sans Unicode, Bastion
+<tr><td>希伯来（Hebrew）字体
+  <td>Arial Hebrew, MS Tahoma
+<tr><td>日文（Japanese）字体
+  <td>Shin Go, Heisei Kaku Gothic W5
+<tr><td>阿拉伯（Arabic）字体
+  <td>MS Tahoma
+</table>
+
+<h4>15.3.1.3 <span class="index-def" title="cursive, definition of">
+<a name="cursive-def"><dfn>cursive</dfn></a></span></h4>
+
+<p>cursive（手写体）字体的字形，作为用于CSS的术语，一般具有连笔（joining strokes）或者其它除斜体字体外的手写特征。字形部分或整个连在一起，结果看起来更向手写笔或者毛笔书写的，而不是打印的字母（printed letterwork）。对于某些文字而言，例如阿拉伯（Arabic），字体差不多总是cursive。CSS术语'cursive'适用于任何文字（script），尽管其它名字，例如Chancery，Brush，Swing和Script也用于字体名
+
+<p>适合该描述的字体示例包括：</p>
+
+<table>
+<tr><td>拉丁（Latin）字体
+  <td>Caflisch Script, Adobe Poetica, Sanvito, Ex Ponto, Snell Roundhand,
+Zapf-Chancery
+<tr><td>斯拉夫字母（Cyrillic）字体
+  <td>ER Architekt
+<tr><td>希伯来（Hebrew）字体
+  <td>Corsiva
+<tr><td>阿拉伯（Arabic）字体
+  <td>DecoType Naskh, Monotype Urdu 507
+</table>
+
+<h4>15.3.1.4 <span class="index-def" title="fantasy, definition of">
+<a name="fantasy-def"><dfn>fantasy</dfn></a></span></h4>
+
+
+<p>Fantasy字体，用于CSS，主要是装饰性的，但仍然具有字符表现（与不表现字符的Pi或者Picture字体相反）。示例包括：</p>
+
+<table>
+<tr><td>拉丁（Latin）字体
+  <td>Alpha Geometrique, Critter, Cottonwood, FB Reactor, Studz
+</table>
+
+
+<h4>15.3.1.5 <span class="index-def" title="monospace, definition of">
+<a name="monospace-def"><dfn>monospace</dfn></a></span></h4>
+
+
+<p>一个monospace的唯一标准是所有字形都具有相等的固定宽度（这会让一些文字，例如，阿拉伯文（Arabic），看起来很古怪）。效果与手动打字机类似，通常用来设置计算机代码的样例
+
+<p>适合该描述的字体示例包括：
+
+<table>
+<tr><td>拉丁（Latin）字体
+  <td>Courier, MS Courier New, Prestige, Everson Mono
+<tr><td>希腊（Greek）字体
+  <td>MS Courier New, Everson Mono
+<tr><td>斯拉夫字母（Cyrillic）字体
+  <td>ER Kurier, Everson Mono
+<tr><td>日文（Japanese）字体
+  <td>Osaka Monospaced
+<tr><td>彻罗基（Cherokee）字体
+  <td>Everson Mono
+</table>
+
+
+<h2>15.4 <a name="font-styling">字体样式</a>：<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-style'"><a name="propdef-font-style" class="propdef-title"><strong>'font-style'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>normal | italic | oblique | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>normal
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>'font-style'属性可以选择一个字体族中的normal（有时被认为是"roman"或者"upright"），italic和oblique字体
+</p>
+<p>'normal'值会在UA的字体数据库中选择一个被分类为'normal'的字体，而'oblique'会选择一个被标记为'oblique'的字体。'italic'值会选择一个被标记为'italic'的字体，或者如果（italic）不可用，就选择被标记为'oblique'的字体
+</p>
+<p>UA的字体数据库中被标记为'oblique'的字体可能实际上已经通过电子倾斜normal字体生成了
+</p>
+<p>典型的，名字中含有Oblique，Slanted或者Incline的字体在UA的字体数据库中会被标记为'oblique'。名字中含有<em>Italic，Cursive</em>或者<em>Kursiv</em>的字体会被标记为'italic'
+</p>
+<pre>
+h1, h2, h3 { font-style: italic }
+h1 em { font-style: normal }
+</pre>
+
+<p>上例中，'H1'中被强调的文本将以normal字体呈现
+</p>
+<h2>15.5 <a name="small-caps">小型大写字母</a>：<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-variant'"><a name="propdef-font-variant" class="propdef-title"><strong>'font-variant'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>normal | small-caps | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>normal
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>字体族中的另一种变体类型是小型大写字母（small-caps）。在小型大写字母字体中，小写字母看起来和大写字母很相似，但尺寸更小，而且比例稍有差异。可以用'font-variant'属性选择这种字体
+</p>
+<p>'normal'值会选择一个非小型大写字母字体，'small-caps'会选择一个小型大写字母字体。如果小型大写字母字体是通过把normal字体中的小写字母替换为缩放的大写字符创建的，在CSS&nbsp;2.1中也可以接受（但不是必须的）。万不得已时，大写字母将被用作小型大写字母字体的替代品
+</p>
+<p>下例会让'H3'元素为小型大写字母，所有被强调的单词都是oblique，'H3'中所有被强调的单词为oblique小型大写字母：
+</p>
+<pre>
+h3 { font-variant: small-caps }
+em { font-style: oblique }
+</pre>
+
+<p>字体族中还可能存在其它变体，例如，老式数字（old-style numerals），小型大写数字（small-caps numerals），缩紧或者扩宽的字体等等。CSS&nbsp;2.1没有可以选择这些字体的属性
+</p>
+<p><em>注意：</em>就该属性会让文本被转换为大写形式而言，也可以考虑应用<a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a>
+</p>
+<h2>15.6 <a name="font-boldness">字体粗细</a>：<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-weight'"><a name="propdef-font-weight" class="propdef-title"><strong>'font-weight'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 |
+600 | 700 | 800 | 900 | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>normal
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>见下文
+</table>
+</dl>
+</div>
+
+
+<p>'font-weight'属性用来选择字体粗细程度。值为'100'到'900'的有序序列，每个数字表示一个粗细程度，至少和它的前一个一样粗（dark）。关键字'normal'等同于'400'，'bold'等同于'700'。除'normal'和'bold'外的关键字经常与字体名混淆，因此一般在列出的9个数字分级中选择
+</p>
+<pre>
+p { font-weight: normal }   /* 400 */
+h1 { font-weight: 700 }     /* bold */
+</pre>
+
+<p>'bolder'和'lighter'值用来相对于从父级继承到的粗细程度选择字体的粗细程度：
+</p>
+<pre>
+strong { font-weight: bolder }
+</pre>
+
+<p>典型的，字体（字体数据）具有一个或者多个值为"weight"字体描述性名字的属性。这些粗细程度名没有可接受的，通用含义。它们的主要作用是区分单一字体族中不同的粗细程度（darkness）。用法在各个字体族之间差异很大，例如，一个bold字体可能被描述为<em>Regular，Roman，Book，Medium，Semi-</em>或者<em>DemiBold，Bold</em>或者<em>Black</em>，取决于设计中"normal"字体有多粗（black）。因为没有标准的名字用法，weight属性值在CSS&nbsp;2.1中是以数字分级给出的，值'400'（或者'normal'）对应该字体族的"normal"文本字体。典型的，与该字体相关的weight名为<em>Book，Regular，Roman，Normal</em>或者<em>Medium</em>
+</p>
+
+<p>字体族中其它weight与数字weight值的关联只是想要保留字体族中粗细程度的顺序。然而，如下启发式方法描述了这种情况下如何完成分配：
+
+<ul>
+<li>如果字体族已经用了9值数字分级（比如，<em>OpenType</em>就是这样），应该直接映射字体粗细程度
+
+<li>如果一个存在一个被标记为<em>Medium</em>的和一个被标记为<em>Book，Regular，Roman</em>或者<em>Normal</em>的字体，那么<em>Medium</em>一般被分配为'500'
+
+<li>被标记为"Bold"的字体通常对应weight值'700'
+</ul>
+
+<p>一旦字体族的weight被映射到CSS分级上，缺少的weight就按照如下规则选择：
+
+<ul>
+<li>如果需要的weight小于400，小于目标weight的weight按降序检查，然后大于目标weight的weight按升序检查，直到找到匹配的
+
+<li>如果需要的weight大于500，大于目标weight的weight按升序检查，然后小于目标weight的weight按降序检查，直到找到匹配的
+
+<li>如果需要的weight为400，先检查500，然后应用需要的weight小于400的规则
+
+<li>如果需要的weight为500，先检查400，然后应用需要的weight小于400的规则
+</ul>
+
+<p>下面的两个例子展示了典型的映射</p>
+
+<div class="html-example">
+<p>假设"Rattlesnake"字体族中的4种weight，从最细到最粗为：<em>Regular，Medium，Bold，Heavy</em></p>
+<table border=1 summary="Example of font-weight mapping">
+<caption>font-weight映射的第一个例子</caption>
+
+<thead>
+<tr><th>Available faces </th><th>Assignments </th><th>Filling the holes</th></tr>
+</thead>
+<tr><td>"Rattlesnake Regular"</td><td> 400     </td><td> 100, 200, 300</td></tr>
+<tr><td>"Rattlesnake Medium" </td><td> 500     </td><td>&nbsp;</td></tr>
+<tr><td>"Rattlesnake Bold"   </td><td> 700     </td><td> 600</td></tr>
+<tr><td>"Rattlesnake Heavy"  </td><td> 800     </td><td> 900</td></tr>
+</table>
+</div>
+
+<div class="html-example">
+<p>假设"Ice Prawn"字体族中的6种weight：<em>Book，Medium，Bold，Heavy，Black，ExtraBlack</em>。注意，这种情况下，用户代理已经决定了<em>不</em>给"Ice Prawn ExtraBlack"分配数字分级</p>
+
+<table border=1 summary="Example of font-weight mapping. Note
+                that ExtraBlack is not mapped to a value.">
+<caption>font-weight映射的第二个例子</caption>
+<thead>
+<tr><th>Available faces </th><th>Assignments </th><th>Filling the holes</th></tr>
+</thead>
+<tr><td>"Ice Prawn Book"  </td><td> 400     </td><td> 100, 200, 300</td></tr>
+<tr><td>"Ice Prawn Medium"</td><td> 500     </td><td>&nbsp;</td></tr>
+<tr><td>"Ice Prawn Bold"  </td><td> 700     </td><td> 600</td></tr>
+<tr><td>"Ice Prawn Heavy" </td><td> 800     </td><td>&nbsp;</td></tr>
+<tr><td>"Ice Prawn Black" </td><td> 900     </td><td>&nbsp;</td></tr>
+<tr><td>"Ice Prawn ExtraBlack"</td><td> (none)  </td><td>&nbsp;</td></tr>
+</table>
+</div>
+
+<p>值为'bolder'和'lighter'表示相对于父元素的weight。基于继承到的weight值，weight的应用值按照下表来计算。子元素继承weight的计算值，而不是'bolder'或者'lighter'
+
+<table summary="The keywords bolder and lighter stand for a specific
+weight as a function of the inherited weight, as defined by this
+table.">
+<caption>'bolder'和'lighter'的含义</caption>
+<thead>
+<tr><th>Inherited value   <th>bolder  <th>lighter
+<tbody>
+<tr><td>100               <td>400     <td>100
+<tr><td>200               <td>400     <td>100
+<tr><td>300               <td>400     <td>100
+<tr><td>400               <td>700     <td>100
+<tr><td>500               <td>700     <td>100
+<tr><td>600               <td>900     <td>400
+<tr><td>700               <td>900     <td>400
+<tr><td>800               <td>900     <td>700
+<tr><td>900               <td>900     <td>700
+</table>
+
+<p>上表相当于给出一个含有normal和bold字体以及thin和heavy字体的字体族，从中选择下一个相对更粗或者更细的字体。想要更好地控制给定元素的精确weight值的编写者应该使用数字分级而不是相对粗细程度
+
+<p>无法保证每个'font-weight'值都存在一个更粗的字体。例如，有些字体可能只有normal和bold字体，而其它的可能具有8种字体粗细程度。无法保证UA会怎样把字体族中的字体映射到weight值。唯一能保证的是给定值的字体不会比lighter值对应的字体更细
+</p>
+
+
+
+<h2>15.7 <a name="font-size-props">字体大小</a>：<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-size'"><a name="propdef-font-size" class="propdef-title"><strong>'font-size'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="fonts.html#value-def-absolute-size" class="noxref"><span class="value-inst-absolute-size">&lt;absolute-size&gt;</span></a> | <a href="fonts.html#value-def-relative-size" class="noxref"><span class="value-inst-relative-size">&lt;relative-size&gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>medium
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>参照继承的字体大小
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>绝对的值
+</table>
+</dl>
+</div>
+
+
+<p>字体大小对应的em square（字元的正方形空间），是一个用于排版的概念。注意某些字形可能会从其em square中伸出来（bleed outside）。值含义如下：</p>
+
+<dl>
+<dt><b><a name="value-def-absolute-size">&lt;absolute-size&gt;</a></b>
+</dt>
+<dd>一个&lt;absolute-size&gt;关键字是字体大小表的索引，该表由UA计算和维护。可能的值为：
+<p>[ xx-small | x-small | small | medium | large | x-large | xx-large ]</p>
+<p>下表为absolute-size到HTML标题和绝对的font-size的映射提供了用户代理指南。'medium'值是用户代理的偏好字体大小，并被用作参考中间值</p>
+
+<table border="1" style="border-collapse: collapse" width="73%" id="AutoNumber2">
+  <tr>
+    <th style="width:16%">CSS absolute-size values</th>
+    <td style="width:12%">xx-small</td>
+    <td style="width:9%">x-small</td>
+    <td style="width:10%">small</td>
+    <td style="width:11%">medium</td>
+    <td style="width:11%">large</td>
+    <td style="width:12%">x-large</td>
+    <td style="width:11%">xx-large</td>
+    <td style="width:8%">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>HTML font sizes</th>
+    <td>1</td>
+    <td>&nbsp;</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+    <td>7</td>
+  </tr>
+</table>
+
+<p>实现者应该为'medium'字体大小相关的absolute-size关键字和特殊设备及其特征（例如，设备分辨率）建立一个比例因子表
+</p>
+
+<p>
+不同媒体可能需要不同的比例因子。计算该表时，UA还应该考虑字体的质量和可用性。不同字体族对应的表可能不一样
+</p>
+
+<p class="note"><em><strong>注意 1</strong> 为了保持可读性，应用这些指南的UA应该避免在计算机显示器上创建小于9像素每EM单元（9 pixels per EM unit）的font-size</em></p>
+
+<p class="note"><em><strong>注意 2</strong> CSS1中，建议的相邻索引间的比例因子为1.5，此时用户体验最佳。CSS2中，建议的计算机屏幕上相邻索引间的比例因子为1.2，对于小尺寸仍然会出问题。实现经验表明相邻absolute-size关键字间固定的比例是有问题的，本规范<em>不</em>推荐这种固定比例</em></p>
+
+</dd>
+<dt><b><a name="value-def-relative-size">&lt;relative-size&gt;</a></b>
+</dt>
+<dd>&lt;relative-size&gt;关键字根据字体大小表和父元素的字体大小来解释。可能的值为：[ larger | smaller ]。例如，如果父元素的字体大小为'medium'，值为'larger'会让当前元素的字体大小变成'large'。如果父元素的大小不贴近表格项，UA可以自由地在表格项中插值或者舍入为最近的表格项。如果数字值超出了关键字的话，UA可能不得不推算表格值
+</dd>
+</dl>
+
+<p>计算元素的字体大小时，长度和百分比值不应该考虑字体大小表
+</p>
+<p>负值是非法的
+</p>
+<p>在所有其它属性上，'em'和'ex'长度值参照当前元素字体大小的计算值。在'font-size'属性上，这些长度单位参照其父元素的字体大小的计算值
+</p>
+<p>注意，一个应用程序可能会重新解释一个显式的大小，这取决于上下文。例如，在VR场景中，因为透视畸变（perspective distortion），字体可能有不同的大小
+</p>
+<p>示例：
+</p>
+<pre>
+p { font-size: 16px; }
+@media print {
+	p { font-size: 12pt; }
+}
+blockquote { font-size: larger }
+em { font-size: 150% }
+em { font-size: 1.5em }
+</pre>
+
+<h2>15.8 <a name="font-shorthand">简写的字体属性</a>：<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font'"><a name="propdef-font" class="propdef-title"><strong>'font'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[ [ <a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">&lt;'font-style'&gt;</span></a> || <a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">&lt;'font-variant'&gt;</span></a> || <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">&lt;'font-weight'&gt;</span></a> ]?
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">&lt;'font-size'&gt;</span></a> [ / <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">&lt;'line-height'&gt;</span></a> ]? <a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">&lt;'font-family'&gt;</span></a> ] | caption | icon | menu | message-box | small-caption | status-bar | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>见单独的各个属性
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>见单独的各个属性
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>见单独的各个属性
+</table>
+</dl>
+</div>
+
+
+<p><a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>属性的描述见<a href="#almost">下文</a>，一个用来在样式表中一次性设置<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>，<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>，<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>，<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>，<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>和<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>的简写属性。该属性的语法基于传统排版简写的表示法，用来设置字体相关的多个属性
+</p>
+<p>所有字体相关的属性都会先被重置为其初始值，包括上文中列出的那些。然后，<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>简写中，那些给定了明确值的属性被设置为给定的值。关于合法值和初始值的定义，见之前定义的各属性
+</p>
+<pre>
+p { font: 12px/14px sans-serif }
+p { font: 80% sans-serif }
+p { font: x-large/110% "New Century Schoolbook", serif }
+p { font: bold italic large Palatino, serif }
+p { font: normal small-caps 120%/120% fantasy }
+</pre>
+
+<p>第二条规则中，字体大小百分比值（'80%'）参照其父元素的字体大小。第三条规则中，行高百分比参照该元素自身的字体大小
+</p>
+<p>上面前三条规则中，'font-style'，'font-variant'和'font-weight'都没有显式提及，这意味着它们三个全都会被设置为其初始值（'normal'）。第四条规则把'font-weight'设置为'bold'，把'font-style'设置为'italic'，并且把'font-variant'隐式设置为'normal'
+</p>
+<p>第五条规则设置了'font-variant'（'small-caps'），'font-size'（其父级字体的120%），'line-height'（120%乘以字体大小）和'font-family'（'fantasy'）。因此，关键字'normal'应用于两个剩余属性：'font-style'和'font-weight'
+</p>
+<p>下列值引用<a name="x11"><span class="index-def" title="system fonts">系统字体</span></a>：</p>
+
+<dl>
+<dt>caption</dt>
+<dd>用于标题控件的字体（例如，按钮，下拉框等等）</dd>
+<dt>icon</dt>
+<dd>用于标记图标的字体</dd>
+<dt>menu</dt>
+<dd>用于菜单的字体（例如，下拉菜单和菜单列表）</dd>
+<dt>message-box</dt>
+<dd>用于对话框的字体</dd>
+<dt>small-caption</dt>
+<dd>用于标记小控件的字体</dd>
+<dt>status-bar</dt>
+<dd>用于窗口状态栏的字体</dd>
+</dl>
+
+<p>系统字体可能只能作为整体来设置，也就是说，会同时设置字体族，大小，粗细程度，样式等等。如果需要的话，随后可以单独改变这些值。如果给定平台上不存在具有指定的特征的字体，用户代理应该智能的替换（例如，'caption'字体更小的版本可以用作'small-caption'字体），或者替换为用户代理默认字体。至于常规（regular）字体，对于一个系统字体，如果所有单独属性都不是操作系统的可用用户偏好的一部分，这些属性应该被设置为其初始值
+</p>
+<p id="almost">这就是为什么该属性“几乎”是一个简写属性：系统字体只能用该属性来指定，而不是用<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>自身，所以<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>让编写者能做的要比子属性加起来要多。然而，单独的属性，例如<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>给定取自系统字体的值后，仍然可以单独改变</p>
+
+<div class="example"><P style="display:none">示例：</P>
+<pre>
+button { font: 300 italic 1.3em/1.7em "FB Armada", sans-serif }
+button p { font: menu }
+button p em { font-weight: bolder }
+</pre>
+
+<p>如果一个特殊系统中用于下拉菜单字体恰好是，例如，9-point Charcoal，weight为600，那么作为BUTTON后代的P元素将被显示成这条规则的效果：
+</p>
+<pre>
+button p { font: 600 9px Charcoal }
+</pre>
+
+<p>因为<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>简写属性会把所有没有显式给定值的属性重置为其初始值，与这个声明的效果一样：
+</p>
+<pre>
+button p {
+  font-family: Charcoal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  font-size: 9px;
+  line-height: normal;
+}
+</pre>
+
+</div>
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="colors.html">上一章</a> &nbsp;
+<a href="text.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</body>
+</html>
+

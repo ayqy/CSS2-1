@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>CSS&nbsp;2.1语法</TITLE>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="propidx.html">
+<link rel="next" href="leftblank.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+</HEAD>
+<BODY>
+<div class="navbar">
+<p><a href="propidx.html">上一章</a> &nbsp;
+<a href="leftblank.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<H1><a name="q0">附录 G. CSS&nbsp;2.1语法</a></H1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="grammar.html#grammar" class="tocxref">G.1 语法</a>
+    <li class="tocline2"><a href="grammar.html#scanner" class="tocxref">G.2 词法分析器</a>
+    <li class="tocline2"><a href="grammar.html#tokenizer-diffs" class="tocxref">G.3 CSS&nbsp;2.1与CSS1的符号化对比</a>
+    <li class="tocline2"><a href="grammar.html#q4" class="tocxref">G.4 实现注释</a>
+  </ul>
+</div>
+
+<p>本附录是非规范的
+
+<P>下面的语法定义了CSS&nbsp;2.1的语法。然而，在某种意义上，它是CSS&nbsp;2.1的一个超集，因为本规范强加了额外的语义约束，在本语法中没有表达出来。一个（与CSS规范）一致的UA也必须坚持<a href="./syndata.html#syntax">向后兼容解析规则</a>，选择器表示法，<a href="./about.html#property-defs">属性和值表示法</a>和单位表示法。然而，不是所有语法正确的CSS都能生效，因为文档语言可能强加了CSS中没有的限制条件，例如，HTML对"class"属性的可能值做了限制
+
+<h2>G.1 <a name="grammar">语法</a></h2>
+
+<P>下面的语法是<a name="x0"><span class="index-inst" title="LALR(1)">LALR(1)</span></a>（但注意，大多数UA不应该直接用它，因为它没有表达<a href="syndata.html#parsing-errors">解析约定</a>，只表达了CSS&nbsp;2.1语法）。产生式的格式已经为了让人方便看（for human consumption）而优化过了，而且用了一些超出了Yacc（见<a href="refs.html#ref-YACC" rel="biblioentry" class="noxref"><span class="normref">[YACC]</span></a>）（Yacc指编译器代码生成器）的简写表示法：</P>
+
+<ul>
+<li><strong>*</strong>: 0 or more
+<li><strong>+</strong>: 1 or more
+<li><strong>?</strong>: 0 or 1 
+<li><strong>|</strong>: separates alternatives 
+<li><strong>[&nbsp;]</strong>: grouping
+</ul>
+
+<p>产生式为：
+
+<pre>
+stylesheet
+  : [ CHARSET_SYM STRING ';' ]?
+    [S|CDO|CDC]* [ import [ CDO S* | CDC S* ]* ]*
+    [ [ ruleset | media | page ] [ CDO S* | CDC S* ]* ]*
+  ;
+import
+  : IMPORT_SYM S*
+    [STRING|URI] S* media_list? ';' S*
+  ;
+media
+  : MEDIA_SYM S* media_list '{' S* ruleset* '}' S*
+  ;
+media_list
+  : medium [ COMMA S* medium]*
+  ;
+medium
+  : IDENT S*
+  ;
+page
+  : PAGE_SYM S* pseudo_page?
+    '{' S* declaration? [ ';' S* declaration? ]* '}' S*
+  ;
+pseudo_page
+  : ':' IDENT S*
+  ;
+operator
+  : '/' S* | ',' S*
+  ;
+combinator
+  : '+' S*
+  | '>' S*
+  ;
+unary_operator
+  : '-' | '+'
+  ;
+property
+  : IDENT S*
+  ;
+ruleset
+  : selector [ ',' S* selector ]*
+    '{' S* declaration? [ ';' S* declaration? ]* '}' S*
+  ;
+<a name="x1"><span class="index-inst" title="selector">selector</span></a>
+  : simple_selector [ combinator selector | S+ [ combinator? selector ]? ]?
+  ;
+simple_selector
+  : element_name [ HASH | class | attrib | pseudo ]*
+  | [ HASH | class | attrib | pseudo ]+
+  ;
+class
+  : '.' IDENT
+  ;
+element_name
+  : IDENT | '*'
+  ;
+attrib
+  : '[' S* IDENT S* [ [ '=' | INCLUDES | DASHMATCH ] S*
+    [ IDENT | STRING ] S* ]? ']'
+  ;
+pseudo
+  : ':' [ IDENT | FUNCTION S* [IDENT S*]? ')' ]
+  ;
+declaration
+  : property ':' S* expr prio?
+  ;
+prio
+  : IMPORTANT_SYM S*
+  ;
+expr
+  : term [ operator? term ]*
+  ;
+term
+  : unary_operator?
+    [ NUMBER S* | PERCENTAGE S* | LENGTH S* | EMS S* | EXS S* | ANGLE S* |
+      TIME S* | FREQ S* ]
+  | STRING S* | IDENT S* | URI S* | hexcolor | function
+  ;
+function
+  : FUNCTION S* expr ')' S*
+  ;
+/*
+ * There is a constraint on the <a name="x2"><span class="index-inst" title="color">color</span></a> that it must
+ * have either 3 or 6 hex-digits (i.e., [0-9a-fA-F])
+ * after the "#"; e.g., "#000" is OK, but "#abcd" is not.
+ */
+hexcolor
+  : HASH S*
+  ;
+</pre>
+
+<h2>G.2 <a name="scanner">词法分析器</a></h2>
+
+<p>下面是<a name="x3"><span class="index-def" title="tokenizer">标记生成器（tokenizer）</span></a>，用Flex（见<a href="refs.html#ref-FLEX" rel="biblioentry" class="noxref"><span class="normref">[FLEX]</span></a>）（FLEX指词法分析器生成器）表示法写的。标记生成器是大小写不敏感的
+
+<p>"\377"代表当前Flex版本可处理的最高字符序号（十进制255）。它应该读作"\4177777"（十进制1114111），是<a name="x4"><span class="index-inst" title="unicode">Unicode</span></a>/<a name="x5"><span class="index-inst" title="iso-10646">ISO-10646</span></a>中最高的可能码位值（code point）
+
+<pre>
+%option case-insensitive
+
+h		[0-9a-f]
+nonascii	[\240-\377]
+unicode		\\{h}{1,6}(\r\n|[ \t\r\n\f])?
+escape		{unicode}|\\[^\r\n\f0-9a-f]
+nmstart		[_a-z]|{nonascii}|{escape}
+nmchar		[_a-z0-9-]|{nonascii}|{escape}
+string1		\"([^\n\r\f\\"]|\\{nl}|{escape})*\"
+string2		\'([^\n\r\f\\']|\\{nl}|{escape})*\'
+badstring1      \"([^\n\r\f\\"]|\\{nl}|{escape})*\\?
+badstring2      \'([^\n\r\f\\']|\\{nl}|{escape})*\\?
+badcomment1     \/\*[^*]*\*+([^/*][^*]*\*+)*
+badcomment2     \/\*[^*]*(\*+[^/*][^*]*)*
+baduri1         url\({w}([!#$%&*-\[\]-~]|{nonascii}|{escape})*{w}
+baduri2         url\({w}{string}{w}
+baduri3         url\({w}{badstring}
+comment		\/\*[^*]*\*+([^/*][^*]*\*+)*\/
+ident		-?{nmstart}{nmchar}*
+name		{nmchar}+
+num		[0-9]+|[0-9]*"."[0-9]+
+string		{string1}|{string2}
+badstring       {badstring1}|{badstring2}
+badcomment      {badcomment1}|{badcomment2}
+baduri          {baduri1}|{baduri2}|{baduri3}
+url		([!#$%&amp;*-~]|{nonascii}|{escape})*
+s		[ \t\r\n\f]+
+w		{s}?
+nl		\n|\r\n|\r|\f
+
+A		a|\\0{0,4}(41|61)(\r\n|[ \t\r\n\f])?
+C		c|\\0{0,4}(43|63)(\r\n|[ \t\r\n\f])?
+D		d|\\0{0,4}(44|64)(\r\n|[ \t\r\n\f])?
+E		e|\\0{0,4}(45|65)(\r\n|[ \t\r\n\f])?
+G		g|\\0{0,4}(47|67)(\r\n|[ \t\r\n\f])?|\\g
+H		h|\\0{0,4}(48|68)(\r\n|[ \t\r\n\f])?|\\h
+I		i|\\0{0,4}(49|69)(\r\n|[ \t\r\n\f])?|\\i
+K		k|\\0{0,4}(4b|6b)(\r\n|[ \t\r\n\f])?|\\k
+L               l|\\0{0,4}(4c|6c)(\r\n|[ \t\r\n\f])?|\\l
+M		m|\\0{0,4}(4d|6d)(\r\n|[ \t\r\n\f])?|\\m
+N		n|\\0{0,4}(4e|6e)(\r\n|[ \t\r\n\f])?|\\n
+O		o|\\0{0,4}(4f|6f)(\r\n|[ \t\r\n\f])?|\\o
+P		p|\\0{0,4}(50|70)(\r\n|[ \t\r\n\f])?|\\p
+R		r|\\0{0,4}(52|72)(\r\n|[ \t\r\n\f])?|\\r
+S		s|\\0{0,4}(53|73)(\r\n|[ \t\r\n\f])?|\\s
+T		t|\\0{0,4}(54|74)(\r\n|[ \t\r\n\f])?|\\t
+U               u|\\0{0,4}(55|75)(\r\n|[ \t\r\n\f])?|\\u
+X		x|\\0{0,4}(58|78)(\r\n|[ \t\r\n\f])?|\\x
+Z		z|\\0{0,4}(5a|7a)(\r\n|[ \t\r\n\f])?|\\z
+
+%%
+
+{s}			{return S;}
+
+\/\*[^*]*\*+([^/*][^*]*\*+)*\/		/* ignore comments */
+{badcomment}                         /* unclosed comment at EOF */
+
+"&lt;!--"		{return CDO;}
+"-->"			{return CDC;}
+"~="			{return INCLUDES;}
+"|="			{return DASHMATCH;}
+
+{string}		{return STRING;}
+{badstring}             {return BAD_STRING;}
+
+{ident}			{return IDENT;}
+
+"#"{name}		{return HASH;}
+
+@{I}{M}{P}{O}{R}{T}	{return IMPORT_SYM;}
+@{P}{A}{G}{E}		{return PAGE_SYM;}
+@{M}{E}{D}{I}{A}	{return MEDIA_SYM;}
+"@charset "		{return CHARSET_SYM;}
+
+"!"({w}|{comment})*{I}{M}{P}{O}{R}{T}{A}{N}{T}	{return IMPORTANT_SYM;}
+
+{num}{E}{M}		{return EMS;}
+{num}{E}{X}		{return EXS;}
+{num}{P}{X}		{return LENGTH;}
+{num}{C}{M}		{return LENGTH;}
+{num}{M}{M}		{return LENGTH;}
+{num}{I}{N}		{return LENGTH;}
+{num}{P}{T}		{return LENGTH;}
+{num}{P}{C}		{return LENGTH;}
+{num}{D}{E}{G}		{return ANGLE;}
+{num}{R}{A}{D}		{return ANGLE;}
+{num}{G}{R}{A}{D}	{return ANGLE;}
+{num}{M}{S}		{return TIME;}
+{num}{S}		{return TIME;}
+{num}{H}{Z}		{return FREQ;}
+{num}{K}{H}{Z}		{return FREQ;}
+{num}{ident}		{return DIMENSION;}
+
+{num}%			{return PERCENTAGE;}
+{num}			{return NUMBER;}
+
+"url("{w}{string}{w}")" {return URI;}
+"url("{w}{url}{w}")"    {return URI;}
+{baduri}                {return BAD_URI;}
+
+{ident}"("		{return FUNCTION;}
+
+.			{return *yytext;}
+</pre>
+
+<h2>G.3 <a name="tokenizer-diffs">CSS&nbsp;2.1与CSS1的符号化对比</a></h2>
+
+<p>上面的语法与CSS1规范（<a href="refs.html#ref-CSS1" rel="biblioentry" class="noxref"><span class="informref">[CSS1]</span></a>）中指定的有一些区别。多半是因为CSS2中有CSS1中不存在的的新token。其它情况是因为为了更好的可读性，语法已经被重写了。然而，存在一些不兼容的改动，在CSS1语法中会被当作错误。解释如下
+
+<ul>
+<li>CSS1样式表只能用每字符1字节的编码，例如，ASCII和ISO-8859-1。CSS&nbsp;2.1没有这样的限制。实际上，推断CSS1符号化几乎没什么困难，并且有些UA已经接受了2字节编码
+
+<li>CSS1只允许斜线(\)后面有4个十六进制数字，来表示Unicode字符，CSS2<a href="syndata.html#escaped-characters">允许6个</a>。而且，CSS2允许用一个空白字符来分隔转义序列。例如，按照CSS1，字符串"\abcdef"有三个字母（\abcd，e和f），按照CSS2的话，它只有一个字母（\abcdef）
+
+<li>制表符（ASCII 9）不允许出现在字符串中。然而，因为CSS1中的字符串只用于字体名和URL，这会导致CSS1和CSS2不兼容的唯一方式就是如果一个样式表中有名字中含有制表符的字体族
+
+<li>同样的，CSS1中，换行（<a href="syndata.html#strings">用斜线转义</a>）也不允许出现在字符串中
+
+<li>CSS2会把后面紧跟着一个标识符的数字解析为一个DIMENSION token（即，一个未知单位），CSS1把它解析为一个数字和一个标识符。这意味着在CSS1中，声明'font: 10pt/1.2serif'是正确的，和'font: 10pt/12pt serif'一样，在CSS2中，"serif"前面需要一个空格（有些UA接受第一种示例，但不接受第二种）
+
+<li>在CSS1中，一个类名可以以数字开头（".55ft"），除非它是一个尺寸（".55in"）。在CSS2中，这样的类会被解析为未知尺寸（为了允许将来添加新单位）。要让".55ft"变成一个合法的类，CSS2需要转义第一个数字（".\35 5ft"）
+</ul>
+
+<h2><a name="q4">G.4 实现注释</a></h2>
+
+<p><a href="syndata.html#tokenization">4.1.1节</a>中CSS核心语法的词法分析器可以用一个无需回溯的词法分析器来实现。用Lex表示法，需要加上下列模式（不会改变返回的token，只改变分析器的效率）：
+
+<pre>
+{ident}/\\          return IDENT;
+#{name}/\\          return HASH;
+@{ident}/\\         return ATKEYWORD;
+#/\\                return DELIM;
+@/\\                return DELIM;
+@/-                 return DELIM;
+@/-\\               return DELIM;
+-/\\                return DELIM;
+-/-                 return DELIM;
+\&lt;/!                return DELIM;
+\&lt;/!-               return DELIM;
+{num}{ident}/\\     return DIMENSION;
+{num}/\\            return NUMBER;
+{num}/-             return NUMBER;
+{num}/-\\           return NUMBER;
+[0-9]+/\.           return NUMBER;
+u/\+                return IDENT;
+u\+[0-9a-f?]{1,6}/- return UNICODE_RANGE;
+</pre>
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="propidx.html">上一章</a> &nbsp;
+<a href="leftblank.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</body>
+</html>
+

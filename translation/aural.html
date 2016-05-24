@@ -1,0 +1,1010 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01//EN'>
+
+<html lang="zh-CN">
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>听觉（Aural）样式表</TITLE>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="ui.html">
+<link rel="next" href="refs.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+</HEAD>
+<BODY>
+<div class="navbar">
+<p><a href="ui.html">上一章</a> &nbsp;
+<a href="refs.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<H1><a name="q0">附录 A. 听觉（Aural）样式表</a></H1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="aural.html#aural-media-group" class="tocxref">A.1 媒体类型'aural'与'speech'</a>
+    <li class="tocline2"><a href="aural.html#aural-intro" class="tocxref">A.2 听觉样式表简介</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="aural.html#angles" class="tocxref">A.2.1 角度</a>
+      <li class="tocline3"><a href="aural.html#times" class="tocxref">A.2.2 时间</a>
+      <li class="tocline3"><a href="aural.html#frequencies" class="tocxref">A.2.3 频率</a>
+    </ul>
+    <li class="tocline2"><a href="aural.html#volume-props" class="tocxref">A.3 音量属性：<span class="propinst-volume">'volume'</span></a>
+    <li class="tocline2"><a href="aural.html#speaking-props" class="tocxref">A.4 发声（Speaking）属性：<span class="propinst-speak">'speak'</span></a>
+    <li class="tocline2"><a href="aural.html#pause-props" class="tocxref">A.5 停顿属性：<span class="propinst-pause-before">'pause-before'</span>，<span class="propinst-pause-after">'pause-after'</span>和<span class="propinst-pause">'pause'</span></a>
+    <li class="tocline2"><a href="aural.html#cue-props" class="tocxref">A.6 提示属性：<span class="propinst-cue-before">'cue-before'</span>，<span class="propinst-cue-after">'cue-after'</span>和<span class="propinst-cue">'cue'</span></a>
+    <li class="tocline2"><a href="aural.html#mixing-props" class="tocxref">A.7 混合属性：<span class="propinst-play-during">'play-during'</span></a>
+    <li class="tocline2"><a href="aural.html#spatial-props" class="tocxref">A.8 空间属性：<span class="propinst-azimuth">'azimuth'</span>和<span class="propinst-elevation">'elevation'</span></a>
+    <li class="tocline2"><a href="aural.html#voice-char-props" class="tocxref">A.9 语音特征属性：<span class="propinst-speech-rate">'speech-rate'</span>，<span class="propinst-voice-family">'voice-family'</span>，<span class="propinst-pitch">'pitch'</span>，<span class="propinst-pitch-range">'pitch-range'</span>，<span class="propinst-stress">'stress'</span>和<span class="propinst-richness">'richness'</span></a>
+    <li class="tocline2"><a href="aural.html#speech-props" class="tocxref">A.10 发音（Speech）属性：<span class="propinst-speak-punctuation">'speak-punctuation'</span>和<span class="propinst-speak-numeral">'speak-numeral'</span></a>
+    <li class="tocline2"><a href="aural.html#aural-tables" class="tocxref">A.11 表格的音频渲染</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="aural.html#speak-headers" class="tocxref">A.11.1 读表头：<span class="propinst-speak-header">'speak-header'</span>属性</a>
+    </ul>
+    <li class="tocline2"><a href="aural.html#sample" class="tocxref">A.12 HTML的样例样式表</a>
+    <li class="tocline2"><a href="aural.html#Emacspeak" class="tocxref">A.13 Emacspeak（某读屏软件）</a>
+  </ul>
+</div>
+
+<p>本章是信息性的。UA不需要为了与CSS 2.1一致而实现本章中的属性
+
+<h2>A.1 <a name="aural-media-group">媒体类型'aural'与'speech'</a></h2>
+
+<p>我们预期将来的CSS版本会有为语音输出定义的新属性和值。因此，CSS&nbsp;2.1保留了'speech'媒体类型（见<a href="media.html">第7章，“媒体类型”</a>），但尚未定义哪些属性适用于或者不适用于它
+
+<p>本附录中的属性适用于CSS2中引入的媒体类型'aural'。'aural'类型现在已经过时了
+
+<div class=note>
+<p>这意味着这样一个样式表
+
+<pre>
+@media speech {
+  body { voice-family: Paul }
+}
+</pre>
+
+<p>是合法的，但其含义在CSS&nbsp;2.1中没有定义，而
+
+<pre>
+@media aural {
+  body { voice-family: Paul }
+}
+</pre>
+
+<p>过时了，但（其含义）由本附录定义
+</div>
+
+
+<H2>A.2 <a name="aural-intro">听觉样式表简介</a></H2>
+
+<p>文档的听觉渲染常用于盲人和阅读能力受损（print-impaired，含义类似于<a href="https://en.wikipedia.org/wiki/Print_disability">print disability</a>）的群体，结合语音合成和<a name="x0"><span class="index-def" title="auditory icon">“听标（auditory icons）”</span></a>。通常这种听觉表现通过把文档转换为纯文本并提供给<a name="x1"><span class="index-def" title="screen
+reader"><dfn>屏幕阅读器</dfn></span></a>--简单地读出屏幕上所有字符的软件或者硬件来进行。这导致（转换为纯文本后的）表现效率低于保持文档结构的情况。听觉表现的样式表属性可以与视觉属性一起用（混合媒体）或者作为视觉表现的一种听觉备选项
+
+<p>除了明显的可访问性优势，还有其它关于收听信息的大市场，包括车载使用（in-car use），工业和医疗记录系统（内网），家庭环境和帮助用户学习阅读或者帮助那些有阅读障碍的人
+
+<p>在使用听觉属性时，<a name="x2"><span class="index-inst" title="canvas">画布</span></a>包含一个三维物理空间（环绕声）和一个时间空间（可以指定声音在其它声音之前，期间和之后）。CSS属性还允许编写者改变合成语音的质量（声音类型，频率，变音（inflection）等等）
+
+<div class="example"><P style="display:none">示例：</P><p>
+<pre>
+h1, h2, h3, h4, h5, h6 {
+    voice-family: paul;
+    stress: 20;
+    richness: 90;
+    cue-before: url("ping.au")
+}
+p.heidi { azimuth: center-left }
+p.peter { azimuth: right }
+p.goat  { volume: x-soft }
+</pre>
+
+<p>这将指导语音合成器用一种叫"paul"的声音（一种“音频字体”）读标题，语气平缓但很浑厚。在读标题之前，会根据给定的URL播放一段声音样例。具有"heidi"类的段落听起来好像来自左前方（如果音频系统支持空间音频的话），而具有"peter"类的段落听起来来自右边。具有"goat"来的段落听起来会很柔和
+</div>
+
+
+<H3>A.2.1 <a name="angles">角度</a></H3>
+<P>角度值在文本中用<span class="index-def" title="&lt;angle&gt;::definition of"><a name="value-def-angle">&lt;angle&gt;</a></span>表示。其格式是一个<span class="index-inst" title="&lt;number&gt;"><a name="x4" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a></span>后面紧跟着一个角度单位标识符
+
+<P>角度单位标识符为：</p>
+
+<ul>
+<li><strong>deg</strong>: 角度（degrees）
+<LI><strong>grad</strong>: 梯度（grads）
+<LI><strong>rad</strong>: 弧度（radians）
+</UL>
+
+<p>角度值可以为负。它们应该被用户代理归一化到0-360deg的范围。例如，-10deg和350deg是等价的
+
+<P>例如，'90deg'或者'100grad'或者'1.570796326794897rad'都是正确的角度
+
+<p>类似于&lt;length&gt;，如果值为0的话，单位可以省略：'0deg'可以写作'0'
+
+<H3>A.2.2 <a name="times">时间</a></H3>
+
+<P>时间值在文本中用<span class="index-def" title="&lt;time&gt;::definition of"><a name="value-def-time">&lt;time&gt;</a></span>表示。其格式是一个<span class="index-inst" title="&lt;number&gt;"><a name="x6" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a></span>后面紧跟着一个时间单位标识符
+
+<P>时间单位标识符为：</p>
+
+<UL>
+<LI><strong>ms</strong>: 毫秒（milliseconds）
+<LI><strong>s</strong>: 秒（seconds）
+</UL>
+
+<p>时间值不能为负
+
+<p>类似于&lt;length&gt;，如果值为0的话，单位可以省略：'0s'可以写作'0'
+
+<H3>A.2.3 <a name="frequencies">频率</a></H3>
+
+<P>频率值在文本中用<span class="index-def" title="&lt;frequency&gt;::definition of"><a name="value-def-frequency">&lt;frequency&gt;</a></span>表示。其格式是一个<span class="index-inst" title="&lt;number&gt;"><a name="x8" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a></span>后面紧跟着一个频率单位标识符
+
+<p>频率单位标识符为：</p>
+
+<ul>
+<li><strong>Hz</strong>: 赫兹（Hertz）
+<li><strong>kHz</strong>: 千赫（kilohertz）
+</ul>
+
+<p>频率值不能为负
+
+<P>例如，200Hz（或者200hz）是一种低音，而6kHz是一种高音
+
+<p>类似于&lt;length&gt;，如果值为0的话，单位可以省略：'0Hz'可以写作'0'
+
+<H2>A.3 <a name="volume-props">音量属性</a>：<a href="aural.html#propdef-volume" class="noxref"><span class="propinst-volume">'volume'</span></a></H2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'volume'"><a name="propdef-volume" class="propdef-title"><strong>'volume'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | silent | x-soft | soft | medium | loud |
+x-loud | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>medium
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>参照继承的值
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>number
+</table>
+</dl>
+</div>
+
+
+<P><a name="x10"><span class="index-def" title="volume">Volume</span></a>表示波形的音量中值（median volume of the waveform）。换句话说，音量为50的高音声音将远高于（波形的音量）（原文：a highly inflected voice at a volume of 50 might peak well above that）。整体值可能是满足人类舒适调节范围的。例如，通过物理的音量控制（将按比例增加0到100的值），该属性的作用是调节动态范围
+
+
+<P>值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x11" href="syndata.html#value-def-number" class="noxref"><span
+		class="value-inst-number"><strong>&lt;number&gt;</strong>
+</span></a></span>
+<dd>介于'0'到'100'的任意数值。'0'表示<em>最小可听</em>音量级，而100对应<em>最大舒适</em>级
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x12" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a></span>
+<dd>百分比值根据继承的值来计算，然后裁剪到'0'到'100'的范围
+<dt><strong>silent</strong>
+<dd>一点声音都没有。值'0'的含义与'silent'不同
+<dt><strong>x-soft</strong>
+<dd>与'0'相同
+<dt><strong>soft</strong>
+<dd>与'25'相同
+<dt><strong>medium</strong>
+<dd>与'50'相同
+<dt><strong>loud</strong>
+<dd>与'75'相同
+<dt><strong>x-loud</strong>
+<dd>与'100'相同
+</dl>
+
+<p>用户代理应该允许收听者设置对应于'0'和'100'的值。没有一种设置是普遍适用的，合适的值取决于使用的设备（音箱，耳机），环境（车里，家庭影院里，图书馆里）和个人偏好。一些示例：</p>
+
+<ul>
+<li>车载使用的浏览器在有很多噪音时候可以设置，'0'会映射到一个比较高的音量级，而'100'会映射到一个很高的音量级。语音很容易盖过道路噪音，但整体动态范围缩小了。隔音效果更好的车可能允许更大的动态范围
+
+<li>另一个语音浏览器用于深夜公寓，或者共用研究室。'0'被设置为一个非常安静的音量级，而'100'也被设置为一个比较安静的音量级。正如第一个示例，这是一个低斜坡，动态范围也减小了。只是这里的实际音量低，而第一个示例中（实际音量）高
+
+<li>在一个安静而与世隔绝的房子里，装上一种昂贵的hi-fi家庭影院。'0'被设置的比较低而'100'很高。动态范围很大
+</ul>
+
+<p>相同的样式表可以用于所有情况，因为把'0'和'100'映射到了客户端合适的音量级
+
+<H2>A.4 <a name="speaking-props">发声（Speaking）属性</a>：<a href="aural.html#propdef-speak" class="noxref"><span class="propinst-speak">'speak'</span></a></H2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak'"><a name="propdef-speak" class="propdef-title"><strong>'speak'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>normal | none | spell-out | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>normal
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<P>该属性指定了是否要对文本进行听觉渲染，以及如果要的话，用哪种方式渲染。可能的值为：
+
+<dl>
+<dt><strong>none</strong></dt>
+<dd>抑制听觉渲染，以致于该元素不需要渲染时间。然而，注意，后代可以重写该值而且将被读出来（要确保抑制一个元素及其后代的渲染的话，用<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性）
+
+<dt><strong>normal</strong></dt>
+<dd>渲染元素及其子级时，用依赖语言的发音规则
+
+<dt><strong>spell-out</strong></dt>
+<dd>逐字母地拼写文本（用于缩写和缩略语）
+</dl>
+
+<p>注意，一个<a href="aural.html#propdef-volume" class="noxref"><span class="propinst-volume">'volume'</span></a>属性值为'silent'的元素和一个<a href="aural.html#propdef-speak" class="noxref"><span class="propinst-speak">'speak'</span></a>属性值为'none'的元素之间的区别。前者会占用把它读出来的情况需要的时间，包括该元素前后的所有停顿，但不会产生声音。后者不占时间，而且不会被渲染（尽管其后代可能会被渲染）
+
+<H2>A.5 <a name="pause-props">停顿属性</a>：<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>，<a href="aural.html#propdef-pause-after" class="noxref"><span class="propinst-pause-after">'pause-after'</span></a>和<a href="aural.html#propdef-pause" class="noxref"><span class="propinst-pause">'pause'</span></a></H2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pause-before'"><a name="propdef-pause-before" class="propdef-title"><strong>'pause-before'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="aural.html#value-def-time" class="noxref"><span class="value-inst-time">&lt;time&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>0
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>见下文
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>time
+</table>
+</dl>
+</div>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pause-after'"><a name="propdef-pause-after" class="propdef-title"><strong>'pause-after'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="aural.html#value-def-time" class="noxref"><span class="value-inst-time">&lt;time&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>0
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>见下文
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>time;;
+</table>
+</dl>
+</div>
+
+
+
+<P>这些属性在读出一个元素的内容之前（或者之后）指定了一种可以察觉到的停顿。值含义如下：</p>
+
+<p class=note><strong>注意</strong> CSS3中，停顿是在提示和内容周围插入的，而不是在它们之间。详情见<a href="refs.html#ref-CSS3SPEECH" rel="biblioentry" class="noxref"><span class="informref">[CSS3SPEECH]</span></a>
+
+<dl>
+<dt><span class="index-inst" title="&lt;time&gt;"><a name="x16" href="aural.html#value-def-time" class="noxref"><span class="value-inst-time"><strong>&lt;time&gt;</strong></span></a></span>
+<dd>用绝对时间单位表达停顿（秒和毫秒）
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x17" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a></span>
+<dd>参照<a href="aural.html#propdef-speech-rate" class="noxref"><span class="propinst-speech-rate">'speech-rate'</span></a>属性值的倒数。例如，如果speech-rate为120词每分钟（即，，每个单词占半秒或者500ms），那么一个值为100%的<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>表示500 ms的停顿，而一个值为20%的<a href="aural.html#propdef-pause-before" class="noxref"><span
+class="propinst-pause-before">'pause-before'</span></a>表示100ms
+</dl>
+
+<p>停顿被插在该元素的内容和所有<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>或者<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>内容之间
+
+<p>编写者在应该用相对单位来创建更健壮的样式表，以应对speech-rate的大幅变化</p>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pause'"><a name="propdef-pause" class="propdef-title"><strong>'pause'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[ [<a href="aural.html#value-def-time" class="noxref"><span class="value-inst-time">&lt;time&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a>]{1,2} ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>见单独的各个属性
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>见'pause-before'和'pause-after'的描述
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>见单独的各个属性
+</table>
+</dl>
+</div>
+
+
+<P><a href="aural.html#propdef-pause" class="noxref"><span class="propinst-pause">'pause'</span></a>属性是一个简写属性，用来设置<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>和<a href="aural.html#propdef-pause-after" class="noxref"><span class="propinst-pause-after">'pause-after'</span></a>。如果给出了2个值，第一个值为<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>而第二个为<a href="aural.html#propdef-pause-after" class="noxref"><span class="propinst-pause-after">'pause-after'</span></a>。如果只给出了1个值，它就应用于这两个属性
+
+<div class="example"><P style="display:none">示例：</P><P>
+<PRE>
+h1 { pause: 20ms } /* pause-before: 20ms; pause-after: 20ms */
+h2 { pause: 30ms 40ms } /* pause-before: 30ms; pause-after: 40ms */
+h3 { pause-after: 10ms } /* pause-before unspecified; pause-after: 10ms */
+</PRE>
+</div>
+
+<H2>A.6 <a name="cue-props">提示属性</a>：<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>，<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>和<a href="aural.html#propdef-cue" class="noxref"><span class="propinst-cue">'cue'</span></a></H2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cue-before'"><a name="propdef-cue-before" class="propdef-title"><strong>'cue-before'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>none
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>绝对URI或者'none'
+</table>
+</dl>
+</div>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cue-after'"><a name="propdef-cue-after" class="propdef-title"><strong>'cue-after'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>none
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>绝对URI或者'none'
+</table>
+</dl>
+</div>
+
+
+<P>听标（auditory icons）是区分语义元素的另一种方式。可以在元素之前和/或之后播放声音来限定它。值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;uri&gt;"><a name="x21" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri"><strong>&lt;uri&gt;</strong></span></a></span>
+<dd>URI必须指定一个听标资源。如果URI解析得到的不是一个音频文件，例如，一张图片，资源应该被忽略，并且当作该属性的值为'none'
+
+<dt><strong>none</strong>
+<dd>没有指定听标
+</dl>
+
+<div class="example"><P style="display:none">示例：</P><P>
+<PRE>
+a {cue-before: url("bell.aiff"); cue-after: url("dong.wav") }
+h1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cue'"><a name="propdef-cue" class="propdef-title"><strong>'cue'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[ <a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">&lt;'cue-before'&gt;</span></a> || <a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">&lt;'cue-after'&gt;</span></a> ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>见单独的各个属性
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>见单独的各个属性
+</table>
+</dl>
+</div>
+
+
+<P><a href="aural.html#propdef-cue" class="noxref"><span class="propinst-cue">'cue'</span></a>属性是一个简写属性，用来设置<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>和<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>。如果给出了2个值，第一个为<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>而第二个为<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>。如果只给出了1个值，它就应用于这两个属性</p>
+
+<div class="example"><P style="display:none">示例：</P><P>
+下列两条规则是等价的：
+<PRE>
+h1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+h1 {cue: url("pop.au") }
+</pre>
+</div>
+
+<P>如果用户代理无法渲染听标（例如，用户环境不允许），我们推荐生成一个替代的提示
+
+<P>关于其它内容生成技术的信息，请查看<a href="generate.html#before-after-content">:before和:after伪元素</a>章节。'Cue-before'声音和'pause-before'停顿会被插在来自':before'伪元素的内容之前。类似的，'pause-after'停顿和'cue-after'声音会被插在来自':after'伪元素的内容之后
+
+<H2>A.7 <a name="mixing-props">混合属性</a>：<a href="aural.html#propdef-play-during" class="noxref"><span class="propinst-play-during">'play-during'</span></a></H2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'play-during'"><a name="propdef-play-during" class="propdef-title"><strong>'play-during'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> [ mix || repeat ]? | auto | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>auto
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>绝对URI，其它的与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>与<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>和<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>属性类似，该属性指定了在读元素内容时播放的背景音。值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;uri&gt;"><a name="x24" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri"><strong>&lt;uri&gt;</strong></span></a></span>
+<dd>在读元素内容时，会播放该<span class="index-inst" title="&lt;uri&gt;"><a name="x25" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a></span>指定的背景音
+<dt><strong>mix</strong>
+<dd>出现mix时，该关键字表示从父元素的<a href="aural.html#propdef-play-during" class="noxref"><span class="propinst-play-during">'play-during'</span></a>属性继承的声音继续播放，并且会与<span class="index-inst" title="&lt;uri&gt;"><a name="x26" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a></span>指定的声音混合起来。如果没有指定'mix'，该元素的背景音会替代父元素的
+<dt><strong>repeat</strong>
+<dd>出现repeat时，该关键字表示如果声音太短无法占满元素的整个时间段，就重复播放该声音。否则，声音只播放一次，然后停止。这与<a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">'background-repeat'</span></a>属性类似。如果声音太长，就从元素已读出的部分裁剪掉
+<dt><strong>auto</strong>
+<dd>父元素的声音会继续播放（而不是重新开始，这与该属性是继承得来的情况一样）
+<dt><strong>none</strong>
+<dd>该关键字表示无声状态（silence）。父元素的声音（如果有的话），在当前元素元素播放期间是无声的，在当前元素播放完毕之后继续
+</dl>
+
+<div class="example"><P style="display:none">示例：</P><P>
+<PRE>
+blockquote.sad { play-during: url("violins.aiff") }
+blockquote Q   { play-during: url("harp.wav") mix }
+span.quiet     { play-during: none }
+</pre>
+</div>
+
+<H2>A.8 <a name="spatial-props">空间属性</a>：<a href="aural.html#propdef-azimuth" class="noxref"><span class="propinst-azimuth">'azimuth'</span></a>和<a href="aural.html#propdef-elevation" class="noxref"><span class="propinst-elevation">'elevation'</span></a>
+</H2>
+
+<p>空间音频对听觉表现来说是一种重要的表现性属性（stylistic property）。它提供了一种自然的方式来区分几种声音，正如现实生活中一样（人们很少会站在房间里的同一个位置）。立体声音箱能产生一种横向声场（a lateral sound stage）。立体声耳机或者逐渐流行的5音箱家庭影院设备能生成全环绕音效，并且多音箱设备能营造一种真正的三维声场。VRML 2.0（指虚拟现实建模语言）也包含空间音频，这意味着很快相对廉价的（consumer-priced）空间音频硬件就会更为普及</p>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'azimuth'"><a name="propdef-azimuth" class="propdef-title"><strong>'azimuth'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="aural.html#value-def-angle" class="noxref"><span class="value-inst-angle">&lt;angle&gt;</span></a> | [[ left-side | far-left | left | center-left | center |
+center-right | right | far-right | right-side ] || behind ] |
+leftwards | rightwards | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>center
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>归一化角度
+</table>
+</dl>
+</div>
+
+
+<P>值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;angle&gt;"><a name="x28" href="aural.html#value-def-angle" class="noxref"><span class="value-inst-angle"><strong>&lt;angle&gt;</strong></span></a></span>
+<dd>位置用一个'-360deg'到'360deg'范围内的角度来描述。值'0deg'表示在声场的正中心。'90deg'表示右方，'180deg'表示后方，'270deg'（或者，与之等价的更方便的，'-90deg'）表示左方
+<dt><strong>left-side</strong>
+<dd>等于'270deg'，与'behind'连用时为'270deg'
+<dt><strong>far-left</strong>
+<dd>等于'300deg'，与'behind'连用时为'240deg'
+<dt><strong>left</strong>
+<dd>等于'320deg'，与'behind'连用时为'220deg'
+<dt><strong>center-left</strong>
+<dd>等于'340deg'，与'behind'连用时为'200deg'
+<dt><strong>center</strong>
+<dd>等于'0deg'，与'behind'连用时为'180deg'
+<dt><strong>center-right</strong>
+<dd>等于'20deg'，与'behind'连用时为'160deg'
+<dt><strong>right</strong>
+<dd>等于'40deg'，与'behind'连用时为'140deg'
+<dt><strong>far-right</strong>
+<dd>等于'60deg'，与'behind'连用时为'120deg'
+<dt><strong>right-side</strong>
+<dd>等于'90deg'，与'behind'连用时为'90deg'
+<dt><strong>leftwards</strong>
+<dd>把声音相对当前角度左移。更精确的，是减去20度。算术运算以360度为模。注意，更准确的说'leftwards'应该是“逆时针”，因为它<em>总是</em>减20度，即使继承来的azimuth已经位于收听者背后了（此时，声音听起来实际上是右移）
+<dt><strong>rightwards</strong>
+<dd>把声音相对当前角度右移。更精确的，是加20度。关于算术运算请查看'leftwards'
+</dl>
+
+<p>该属性很可能是通过在不同声道中以不同音量混合同一个信号来实现的。也可以通过相移（phase shifting），数字延迟以及其它技术来提供声场错觉。实现该效果的准确方法以及使用的音箱数量依赖客户端，该属性只是指明了想要的最终效果
+
+<div class="example"><P style="display:none">示例：</P><P>
+<PRE>
+h1   { azimuth: 30deg }
+td.a { azimuth: far-right }          /*  60deg */
+#12  { azimuth: behind far-right }   /* 120deg */
+p.comment { azimuth: behind }        /* 180deg */
+</PRE>
+</div>
+
+<p>如果指定了spatial-azimuth，但输出设备无法在收听位置<em>后方</em>产生声音，用户代理应该把后半球值转换为前半球值。一种方法如下：</p>
+
+<ul>
+    <li>如果90deg &lt; x &lt;= 180deg，那么x := 180deg - x
+    <li>如果180deg &lt; x &lt;= 270deg，那么x := 540deg - x
+</ul>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'elevation'"><a name="propdef-elevation" class="propdef-title"><strong>'elevation'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="aural.html#value-def-angle" class="noxref"><span class="value-inst-angle">&lt;angle&gt;</span></a>  | below | level | above | higher | lower | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>level
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>归一化角度
+</table>
+</dl>
+</div>
+
+
+<P>该属性值的含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;angle&gt;"><a name="x30" href="aural.html#value-def-angle" class="noxref"><span class="value-inst-angle"><strong>&lt;angle&gt;</strong></span></a></span>
+<dd>指定了仰角，介于'-90deg'到'90deg'之间。'0deg'表示前方水平线，大致与收听者保持水平。'90deg'表示在头顶，而'-90deg'表示在正下方
+<dt><strong>below</strong>
+<dd>等于'-90deg'
+<dt><strong>level</strong>
+<dd>等于'0deg'
+<dt><strong>above</strong>
+<dd>等于'90deg'
+<dt><strong>higher</strong>
+<dd>给当前仰角加10度
+<dt><strong>lower</strong>
+<dd>给当前仰角减去10度
+</dl>
+
+<P>用来实现该效果的准确方式和需要使用的音箱数量是未定义的。该属性只是指明了想要的最终结果
+
+<div class="example"><P style="display:none">示例：</P><P>
+<PRE>
+h1   { elevation: above }
+tr.a { elevation: 60deg }
+tr.b { elevation: 30deg }
+tr.c { elevation: level }
+</pre>
+</div>
+
+<h2>A.9 <a name="voice-char-props">语音特征属性</a>：<a href="aural.html#propdef-speech-rate" class="noxref"><span class="propinst-speech-rate">'speech-rate'</span></a>，<a href="aural.html#propdef-voice-family" class="noxref"><span class="propinst-voice-family">'voice-family'</span></a>，<a href="aural.html#propdef-pitch" class="noxref"><span class="propinst-pitch">'pitch'</span></a>，<a href="aural.html#propdef-pitch-range" class="noxref"><span class="propinst-pitch-range">'pitch-range'</span></a>，<a href="aural.html#propdef-stress" class="noxref"><span class="propinst-stress">'stress'</span></a>和<a href="aural.html#propdef-richness" class="noxref"><span class="propinst-richness">'richness'</span></a></H2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speech-rate'"><a name="propdef-speech-rate" class="propdef-title"><strong>'speech-rate'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a>  | x-slow | slow | medium | fast | x-fast | faster | slower
+| <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>medium
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>number
+</table>
+</dl>
+</div>
+
+
+<P>该属性指定了发音速率。注意，绝对和相对关键字值都可以接受（类比<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>）。值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x32" href="syndata.html#value-def-number" class="noxref"><span
+class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
+<dd>指定了发音速率，单位为单词/分钟，值随语言变化，但尽管如此，都被语音合成器广泛支持
+<dt><strong>x-slow</strong>
+<dd>等于80词/分钟
+<dt><strong>slow</strong>
+<dd>等于120词/分钟
+<dt><strong>medium</strong>
+<dd>等于180 - 200词/分钟
+<dt><strong>fast</strong>
+<dd>等于300词/分钟
+<dt><strong>x-fast</strong>
+<dd>等于500词/分钟
+<dt><strong>faster</strong>
+<dd>给当前发音速率加上40词/分钟
+<dt><strong>slower</strong>
+<dd>给当前发音速率减去40词/分钟
+</dl>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'voice-family'"><a name="propdef-voice-family" class="propdef-title"><strong>'voice-family'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[[<a href="aural.html#value-def-specific-voice" class="noxref"><span class="value-inst-specific-voice">&lt;specific-voice&gt;</span></a>  | <a href="aural.html#value-def-generic-voice" class="noxref"><span class="value-inst-generic-voice">&lt;generic-voice&gt;</span></a> ],]* [<a href="aural.html#value-def-specific-voice" class="noxref"><span class="value-inst-specific-voice">&lt;specific-voice&gt;</span></a>  |
+<a href="aural.html#value-def-generic-voice" class="noxref"><span class="value-inst-generic-voice">&lt;generic-voice&gt;</span></a> ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>取决于用户代理
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<P>值是用逗号分隔的，按优先级排列的语音族名（类比<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>）。值含义如下：</P>
+
+<dl>
+<dt><span class="index-def" title="&lt;generic-voice&gt;,
+definition of"><a
+name="value-def-generic-voice"><strong>&lt;generic-voice&gt;</strong></a></span>
+<dd>值为语音族。可能的值为'male'，'female'和'child'
+<dt><span class="index-def" title="&lt;specific-voice&gt;::definition of"><a name="value-def-specific-voice"><strong>&lt;specific-voice&gt;</strong></a></span>
+<dd>值为具体实例（例如，comedian，trinoids，carlos，lani）
+</dl>
+
+<div class="example"><P style="display:none">示例：</P><P>
+
+<pre>
+h1 { voice-family: announcer, male }
+p.part.romeo  { voice-family: romeo, male }
+p.part.juliet { voice-family: juliet, female }
+</pre>
+</div>
+
+<p>具体声音名可能是用引号包裹起来的，实际上，如果名字中的任意一个单词不符合<a href="syndata.html#tokenization">标识符</a>语法规则的话，必须用引号包裹起来。也推荐把名字多于一个单词的具体语音用引号包裹起来。如果省略引号的话，语音族名前后的所有<a href="syndata.html#whitespace">空白字符</a>都会被忽略，并且语音族名中的所有空白字符序列都会被转换为一个单一空格
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pitch'"><a name="propdef-pitch" class="propdef-title"><strong>'pitch'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="aural.html#value-def-frequency" class="noxref"><span class="value-inst-frequency">&lt;frequency&gt;</span></a> | x-low | low | medium | high | x-high | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>medium
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>frequency
+</table>
+</dl>
+</div>
+
+
+<p>指定了发声语音的平均音高（pitch）（频率）。语音的平均音高取决于语音族。例如，标准男音的平均音高约为120Hz，但对于女音的话，约为210Hz</p>
+
+<P>值含义如下：</P>
+
+<dl>
+<dt><span class="index-inst" title="&lt;frequency&gt;"><a name="x37" href="aural.html#value-def-frequency" class="noxref"><span class="value-inst-frequency"><strong>&lt;frequency&gt;</strong></span></a></span>
+<dd>用赫兹（Hz）指定了发声语音的平均音高
+<dt><strong>x-low</strong>, <strong>low</strong>,
+<strong>medium</strong>, <strong>high</strong>, <strong>x-high</strong>
+<dd>这些值没有映射到绝对频率，因为这些值依赖语音族。用户代理应该根据语音族和用户环境，把这些值映射到适当的频率。然而，用户代理必须按顺序映射这些值（即，'x-low'的频率低于'low'，等等）
+</dl>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pitch-range'"><a name="propdef-pitch-range" class="propdef-title"><strong>'pitch-range'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>50
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>指定了平均音高的变化范围。人语音的感知音高（perceived pitch）由基准频率决定，典型的，女音值为120Hz而男音为210Hz。人类语言读出来带有变化的音调和音高，这些变化传递了额外的含义和强调。因此，一种非常活泼的语音，即，一种富含变化的语音，会呈现出很高的音高范围。该属性指定了这些变化的范围，即，基准频率可以偏离平均音高多少
+
+<P>值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x39" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
+<dd>一个介于'0'到'100'的值。音高范围为0会产生一种平直单调的语音。音高范围为50会产生常规音调。音高范围大于50会产生活泼的语音
+</dl>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'stress'"><a name="propdef-stress" class="propdef-title"><strong>'stress'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>50
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>指定了语音的语调轮廓的“局部高峰”高度。例如，英语是一种<strong>有强调的（stressed）</strong>语言，一个句子的不同部分有主要，次要或者再次强调之分。<a href="aural.html#propdef-stress" class="noxref"><span class="propinst-stress">'stress'</span></a>的值控制基于这些强调标记的变音数量。该属性配合<a href="aural.html#propdef-pitch-range" class="noxref"><span class="propinst-pitch-range">'pitch-range'</span></a>属性，用来支持开发者开发高端听觉表现
+
+<P>值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x41" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
+<dd>一个介于'0'到'100'之间的值。该值的含义取决于朗读的语言。例如，'50'对于标准的英文发声男音（平均音高=122Hz），是以常规音调和强调来发声，而'50'对于意大利语音就有不同的含义
+</dl>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'richness'"><a name="propdef-richness" class="propdef-title"><strong>'richness'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>50
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<P>指定了发声语音的洪亮程度（richness），或者响亮程度（brightness）。洪亮的语音能“传达到（carry）”一片大空间，平缓的语音的就不行（术语“平缓”指的是画出的波形的样子）
+
+<P>值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x43" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
+<dd>一个介于'0'到'100'之间的值。值越高，语音能传达的范围越大。较低的值会产生一种柔和的，甜蜜的语音
+</dl>
+
+<H2>A.10 <a name="speech-props">发音（Speech）属性</a>：<a href="aural.html#propdef-speak-punctuation" class="noxref"><span class="propinst-speak-punctuation">'speak-punctuation'</span></a>和<a href="aural.html#propdef-speak-numeral" class="noxref"><span class="propinst-speak-numeral">'speak-numeral'</span></a>
+</h2>
+
+<p>一种额外的发音属性，<a href="aural.html#propdef-speak-header" class="noxref"><span class="propinst-speak-header">'speak-header'</span></a>如下所述
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak-punctuation'"><a name="propdef-speak-punctuation" class="propdef-title"><strong>'speak-punctuation'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>code | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>none
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<P>该属性指定了怎样读出标点符号。值含义如下：</p>
+
+<dl>
+<dt><strong>code</strong>
+<dd>标点符号，例如分号，花括号等等，都原样读出（be spoken literally）
+<dt><strong>none</strong>
+<dd>不读标点符号，而会自然地渲染成各种停顿
+</dl>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak-numeral'"><a name="propdef-speak-numeral" class="propdef-title"><strong>'speak-numeral'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>digits | continuous | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>continuous
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性控制怎样读出数值。值含义如下：</P>
+
+<dl>
+<dt><strong>digits</strong>
+<dd>按单独的数字来读出数值。因此"237"读作“二三七”
+<dt><strong>continuous</strong>
+<dd>把数值当作完整的数读出来。因此，"237"读作“二百三十七”。读的时候用的单词（字）依赖语言
+</dl>
+
+<h2>A.11 <a name="aural-tables">表格的音频渲染</a></h2>
+<p>在用语音生成器来读表格时，数据单元和表头单元之间的关系必须用不同的方式来表达，而不是通过水平和竖直对齐。某些语音浏览器可能允许用户在（表格的）二维空间中移动，因此，可能可以把它们映射到用空间表示的关系上。如果做不到的话，样式表必须指定在什么时候读出表头</p>
+
+<h3>A.11.1 <a name="speak-headers">读表头：</a><a href="aural.html#propdef-speak-header" class="noxref"><span class="propinst-speak-header">'speak-header'</span></a>属性</h3>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak-header'"><a name="propdef-speak-header" class="propdef-title"><strong>'speak-header'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>once | always | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>once
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>具有表头信息的元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="aural.html#aural-media-group" class="noxref">aural</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<P>该属性指定了表头在每个单元格之前都读，还是只在当前单元格相关的表头与前一个单元格的表头不同时才读。值含义如下：</p>
+
+<dl>
+<dt><strong>once</strong>
+<dd>在一系列（表头相同的）单元格之前，只读一次表头
+<dt><strong>always</strong>
+<dd>在每个相关单元格之前都读表头
+</dl>
+
+<p>每个文档语言让编写者指定表头的机制可能不同。例如，HTML 4（<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>）中，能通过三种不同的属性来指定表头信息（"headers"，"scope"和"axis"），规范还给出了一种在这些属性都没有指定时确定表头信息的策略</p>
+
+<div class="html-example">
+<div class="figure">
+<P><img src="images/table1.png" alt="Image of a table created in MS
+Word"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-table1" href="images/longdesc/table1-desc.html" title="Long description of example illustrating a table of
+travel expenses">[D]</A></SPAN><p class="caption">带有表头单元格（"San Jose"和"Seattle"）的表格图，但不在它们适用的数据的同一行或者列
+</div>
+
+<p>该HTML示例展现了两地连续几天（San Jose和Seattle）用于饮食，住宿和交通的费用。理论上，可以把该表格想成一个n维空间。该空间的表头为：地点，日期，分类和小计。某些单元格定义了沿着一条轴的标记，而其它的给出了该空间中某个点花费的费用。该表格的标记为：</p>
+
+<pre>
+&lt;TABLE&gt;
+&lt;CAPTION&gt;Travel Expense Report&lt;/CAPTION&gt;
+&lt;TR&gt;
+  &lt;TH&gt;&lt;/TH&gt;
+  &lt;TH&gt;Meals&lt;/TH&gt;
+  &lt;TH&gt;Hotels&lt;/TH&gt;
+  &lt;TH&gt;Transport&lt;/TH&gt;
+  &lt;TH&gt;subtotal&lt;/TH&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH id="san-jose" axis="san-jose"&gt;San Jose&lt;/TH&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="san-jose"&gt;25-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;37.74&lt;/TD&gt;
+  &lt;TD&gt;112.00&lt;/TD&gt;
+  &lt;TD&gt;45.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="san-jose"&gt;26-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;27.28&lt;/TD&gt;
+  &lt;TD&gt;112.00&lt;/TD&gt;
+  &lt;TD&gt;45.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="san-jose"&gt;subtotal&lt;/TH&gt;
+  &lt;TD&gt;65.02&lt;/TD&gt;
+  &lt;TD&gt;224.00&lt;/TD&gt;
+  &lt;TD&gt;90.00&lt;/TD&gt;
+  &lt;TD&gt;379.02&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH id="seattle" axis="seattle"&gt;Seattle&lt;/TH&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="seattle"&gt;27-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;96.25&lt;/TD&gt;
+  &lt;TD&gt;109.00&lt;/TD&gt;
+  &lt;TD&gt;36.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="seattle"&gt;28-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;35.00&lt;/TD&gt;
+  &lt;TD&gt;109.00&lt;/TD&gt;
+  &lt;TD&gt;36.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="seattle"&gt;subtotal&lt;/TH&gt;
+  &lt;TD&gt;131.25&lt;/TD&gt;
+  &lt;TD&gt;218.00&lt;/TD&gt;
+  &lt;TD&gt;72.00&lt;/TD&gt;
+  &lt;TD&gt;421.25&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH&gt;Totals&lt;/TH&gt;
+  &lt;TD&gt;196.27&lt;/TD&gt;
+  &lt;TD&gt;442.00&lt;/TD&gt;
+  &lt;TD&gt;162.00&lt;/TD&gt;
+  &lt;TD&gt;800.27&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;/TABLE&gt;
+</pre>
+
+<p>通过用这种方式来提供数据模型，编写者让支持语音的浏览器能以多种方式探索该表格。例如，每个单元格可以读作一个列表，在某个数据单元格之前重复对应的表头：</p>
+
+<pre>
+  San Jose, 25-Aug-97, Meals:  37.74
+  San Jose, 25-Aug-97, Hotels:  112.00
+  San Jose, 25-Aug-97, Transport:  45.00
+ ...
+</pre>
+
+<p>浏览器也可以只在表头改变时才读表头：</p>
+
+<pre>
+San Jose, 25-Aug-97, Meals: 37.74
+    Hotels: 112.00
+    Transport: 45.00
+  26-Aug-97, Meals: 27.28
+    Hotels: 112.00
+...
+</pre>
+</div>
+
+<h2>A.12 <a name="sample">HTML的样例样式表</a></h2>
+
+<p>该样式表描述了HTML 4的一种可能的渲染方式：
+
+<pre>
+@media aural {
+h1, h2, h3, 
+h4, h5, h6    { voice-family: paul, male; stress: 20; richness: 90 }
+h1            { pitch: x-low; pitch-range: 90 }
+h2            { pitch: x-low; pitch-range: 80 }
+h3            { pitch: low; pitch-range: 70 }
+h4            { pitch: medium; pitch-range: 60 }
+h5            { pitch: medium; pitch-range: 50 }
+h6            { pitch: medium; pitch-range: 40 }
+li, dt, dd    { pitch: medium; richness: 60 }
+dt            { stress: 80 }
+pre, code, tt { pitch: medium; pitch-range: 0; stress: 0; richness: 80 }
+em            { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+strong        { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+dfn           { pitch: high; pitch-range: 60; stress: 60 }
+s, strike     { richness: 0 }
+i             { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+b             { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+u             { richness: 0 }
+a:link        { voice-family: harry, male }
+a:visited     { voice-family: betty, female }
+a:active      { voice-family: betty, female; pitch-range: 80; pitch: x-high }
+}
+</pre>
+
+<h2>A.13 <a name="Emacspeak">Emacspeak（某读屏软件）</a></h2>
+
+<p>仅供参考，Emacspeak（Emacs编辑器的一个发声子系统）实现的属性如下：
+
+<ul>
+<li>voice-family
+<li>stress (but with a different range of values)
+<li>richness (but with a different range of values)
+<li>pitch (but with differently named values)
+<li>pitch-range (but with a different range of values)
+</ul>
+
+<p>（关于听觉属性的实现状态的信息，我们要感谢T. V. Raman）
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="ui.html">上一章</a> &nbsp;
+<a href="refs.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</BODY>
+</HTML>
+

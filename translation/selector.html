@@ -1,0 +1,1027 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01//EN'>
+<html lang="zh-CN">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>选择器</title>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="syndata.html">
+<link rel="next" href="cascade.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+</head>
+<body>
+<div class="navbar">
+<p><a href="syndata.html">上一章</a> &nbsp;
+<a href="cascade.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<h1><a name="q0">5 选择器</a></h1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="selector.html#pattern-matching" class="tocxref">5.1 模式匹配</a>
+    <li class="tocline2"><a href="selector.html#selector-syntax" class="tocxref">5.2 选择器语法</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="selector.html#grouping" class="tocxref">5.2.1 分组</a>
+    </ul>
+    <li class="tocline2"><a href="selector.html#universal-selector" class="tocxref">5.3 通配选择器</a>
+    <li class="tocline2"><a href="selector.html#type-selectors" class="tocxref">5.4 类型选择器</a>
+    <li class="tocline2"><a href="selector.html#descendant-selectors" class="tocxref">5.5 后代选择器</a>
+    <li class="tocline2"><a href="selector.html#child-selectors" class="tocxref">5.6 子选择器</a>
+    <li class="tocline2"><a href="selector.html#adjacent-selectors" class="tocxref">5.7 相邻兄弟选择器</a>
+    <li class="tocline2"><a href="selector.html#attribute-selectors" class="tocxref">5.8 属性选择器</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="selector.html#matching-attrs" class="tocxref">5.8.1 匹配属性与属性值</a>
+      <li class="tocline3"><a href="selector.html#default-attrs" class="tocxref">5.8.2 文档类型定义（DTD）中的默认属性值</a>
+      <li class="tocline3"><a href="selector.html#class-html" class="tocxref">5.8.3 类选择器</a>
+    </ul>
+    <li class="tocline2"><a href="selector.html#id-selectors" class="tocxref">5.9 ID选择器</a>
+    <li class="tocline2"><a href="selector.html#pseudo-elements" class="tocxref">5.10 伪元素与伪类</a>
+    <li class="tocline2"><a href="selector.html#pseudo-class-selectors" class="tocxref">5.11 伪类</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="selector.html#first-child" class="tocxref">5.11.1 :first-child伪类</a>
+      <li class="tocline3"><a href="selector.html#link-pseudo-classes" class="tocxref">5.11.2 link伪类：<span class="index-def" title="pseudo-classes:::link|:link|link (pseudo-class)">:link</span>与<span class="index-def" title="pseudo-classes:::visited|:visited|visited (pseudo-class)">:visited</span></a>
+      <li class="tocline3"><a href="selector.html#dynamic-pseudo-classes" class="tocxref">5.11.3 动态伪类：<span class="index-def" title="pseudo-classes:::hover|:hover|hover (pseudo-class)">:hover</span>，<span class="index-def" title="pseudo-classes:::active|:active|active (pseudo-class)">:active</span>与<span class="index-def" title="pseudo-classes:::focus|:focus|focus (pseudo-class)">:focus</span></a>
+      <li class="tocline3"><a href="selector.html#lang" class="tocxref">5.11.4 语言伪类：<span class="index-def" title="pseudo-classes:::lang|:lang|lang (pseudo-class)">:lang</span></a>
+    </ul>
+    <li class="tocline2"><a href="selector.html#pseudo-element-selectors" class="tocxref">5.12 伪元素</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="selector.html#first-line-pseudo" class="tocxref">5.12.1 <span class="index-def" title="pseudo-elements:::first-line|:first-line|first-line">:first-line</span>伪元素</a>
+      <li class="tocline3"><a href="selector.html#first-letter" class="tocxref">5.12.2 <span class="index-def" title="pseudo-elements:::first-letter|:first-letter|first-letter">:first-letter</span>伪元素</a>
+      <li class="tocline3"><a href="selector.html#before-and-after" class="tocxref">5.12.3 <span class="index-def" title="pseudo-elements:::before|:before">:before</span>与<span class="index-def" title="pseudo-elements:::after|:after">:after</span>伪元素</a>
+    </ul>
+  </ul>
+</div>
+
+<h2>5.1 <a name="pattern-matching">模式匹配</a></h2>
+
+<p>CSS中，模式匹配规则决定样式规则应用于<a href="conform.html#doctree">文档树</a>中的元素，这些模式叫<a name="x0"><span class="index-inst" title="selector">选择器</span></a>，从简单的元素名到丰富的上下文模式（rich contextual patterns）。如果特定元素的模式中的所有条件都为真，则选择器<a name="x1"><span class="index-def"
+title="match|selector::match"><dfn>匹配</dfn></span></a>该元素
+
+<P>选择器中，文档语言元素名的大小写敏感性取决于文档语言，例如，HTML中，元素名是大小写不敏感的，但在XML中是大小写敏感的
+
+<P>下表总结了CSS&nbsp;2.1选择器语法：</P>
+
+<table border=1>
+<TR><TH>Pattern<TH>Meaning<TH>Described in section</TR>
+<TR><TD>*<TD>匹配所有元素<TD><a href="#universal-selector">通配选择器</a></TR>
+<TR><TD>E<TD>匹配所有E元素（即，E类型的元素）<TD><a href="#type-selectors">类型选择器（标签选择器）</a></TR>
+<TR><TD>E F<TD>匹配所有E元素后代中的F元素<TD><a href="#descendant-selectors">后代选择器</a></TR>
+<TR><TD>E &gt; F<TD>匹配所有E元素子级中的F元素<TD><a href="#child-selectors">子选择器</a></TR>
+<TR><TD>E:first-child<TD>匹配父元素的第一个子级为E的E元素（Matches element E when E is the first
+child of its parent）
+<TD><a href="#first-child">:first-child伪类</a></TR>
+
+<TR><TD>E:link<br>E:visited <TD>匹配未访问过的(:link)或者已被访问过的(:visited)超链接源anchor的E元素
+<TD><a href="#link-pseudo-classes">link伪类</a></TR>
+<TR><TD>E:active<br>E:hover<br>E:focus <TD>匹配处于某些用户动作期间的E元素
+<TD><a href="#dynamic-pseudo-classes">动态伪类</a>
+<TR><TD>E:lang(c) <TD>匹配语言为（人类）语言c的E元素（文档语言会指定怎样确定语言）
+<TD><a href="#lang">:lang()伪类</a>
+<TR><TD>E + F<TD>匹配所有前面紧跟着一个E元素兄弟的F元素<TD><a href="#adjacent-selectors">相邻选择器</a>
+</TR>
+<TR><TD>E[foo]<TD>匹配具有"foo"属性集（无论值是什么）的E元素
+<TD><a href="#attribute-selectors">属性选择器</a>
+</TR>
+<TR><TD>E[foo="warning"]<TD>匹配所有"foo"属性值恰好是"wraning"的E元素
+<TD><a href="#attribute-selectors">属性选择器</a>
+</TR>
+<TR><TD>E[foo~="warning"]<TD>匹配所有"foo"属性值为一列空格分隔的值，且其中之一恰好是"warning"的E元素
+<TD><a href="#attribute-selectors">属性选择器</a>
+</TR>
+<TR><TD>E[lang|="en"]<TD>匹配所有"lang"属性值为一列以"en"开头（从左向右）用连字符分隔的值的E元素
+<TD><a href="#attribute-selectors">属性选择器</a>
+</TR>
+<TR><TD>DIV.warning<TD><em>语言特定的</em>（HTML中，与DIV[class~="warning"]相同
+<TD><a href="#class-html">类选择器</a></TR>
+<TR><TD>E#myid<TD>匹配所有ID为"myid"的E元素<TD><a href="#id-selectors">ID选择器</a></TR>
+</table>
+
+
+<h2>5.2 <a name="selector-syntax">选择器语法</a></h2>
+
+<P><span class="index-def" title="simple selector"><a
+name="simple-selector"><dfn>简单选择器</dfn></a></span>可以是<a href="#type-selectors">类型选择器</a>或者后面紧跟着一个或多个任意顺序的<a href="#attribute-selectors">属性选择器</a>，<a href="#id-selectors">ID选择器</a>或<a href="#pseudo-classes">伪类</a>的<a href="#universal-selector">通配选择器</a>。简单选择器在其所有部分都匹配（成功）时才匹配（成功）
+
+<p class="note">注意：这里用在CSS&nbsp;2.1中的术语与用在CSS3中的不同，例如，“简单选择器”参考的CSS3选择器部分要比CSS&nbsp;2.1更少。见CSS3选择器模块<a href="refs.html#ref-CSS3SEL" rel="biblioentry" class="noxref"><span class="informref">[CSS3SEL]</span></a>
+
+<P><a name="x4"><span class="index-def"
+title="selector"><dfn>选择器</dfn></span></a>是一串用连接符分隔的一个或者多个简单选择器。<span class="index-def" title="combinator"><a name="combinator"><dfn>连接符</dfn></a></span>是：空白字符，"&gt;"和"+"。空白字符可以出现在连接符和它前后的简单选择器之间
+
+<P>与选择器匹配的文档树元素叫做选择器的<span class="index-def" title="subject (of selector)|selector::subject of"><a name="subject"><dfn>对象（subjects）</dfn></a></span>。由一个简单选择器组成的选择器能够匹配满足其需求的任何元素。给一串（选择器）前面加上一个简单选择器和连接符就增加了额外的匹配约束，所以一个选择器的对象总是最后一个简单选择器匹配的元素的子集
+
+<P>一个<a href="#pseudo-elements">伪元素</a>可以被添加在一串（选择器中）最后一个简单选择器后面，此时样式信息会被应用在每个对象的分量上
+
+<h3>5.2.1 <a name="grouping">分组</a></h3>
+
+<p>当几个选择器共享相同的声明时，它们可以组成一个用逗号分隔的列表</p>
+
+<div class="example"><P style="display:none">示例：</P>
+<P>本例中，我们把三条有相同声明的规则压缩成一条，因此
+
+<pre>
+h1 { font-family: sans-serif }
+h2 { font-family: sans-serif }
+h3 { font-family: sans-serif }
+</pre>
+
+<p>等价于：</p>
+
+<pre>
+h1, h2, h3 { font-family: sans-serif }
+</pre>
+</div>
+
+<P>CSS还提供了其它“简写”机制，包括<span class="index-def" title="multiple declarations"><a name="x8" href="syndata.html#declaration">多个声明</a></span>和<span class="index-inst" title="shorthand property"><a name="x9" href="about.html#shorthand">简写属性</a></span>
+
+<h2>5.3 <a name="universal-selector">通配选择器</a></h2>
+
+<P><a name="x10"><span class="index-def" title="universal selector">通配选择器</span></a>写作"*"，匹配任意元素类型名。匹配<a href="conform.html#doctree">文档树</a>中的任意一个元素
+
+
+<P>如果通配选择器不是<a href="#simple-selector">简单选择器</a>的唯一分量，"*"可以省略，例如：</P>
+
+<ul>
+<li><code>*[lang=fr]</code>和<code>[lang=fr]</code>是等价的
+<li><code>*.warning</code>和<code>.warning</code>是等价的
+<li><code>*#myid</code>和<code>#myid</code>是等价的
+</ul>
+
+<h2>5.4 <a name="type-selectors">类型选择器</a></h2>
+
+<p><a name="x11"><span class="index-def" title="type selector"><em>类型选择器</em></span></a>匹配 文档语言元素类型名。一个类型选择器会匹配文档树中所有该元素类型的实例
+
+<div class="example"><P style="display:none">示例：</P>
+<P>下列规则匹配文档树中的所有H1元素：</p>
+
+<pre>
+h1 { font-family: sans-serif }
+</pre>
+</div>
+
+<h2>5.5 <a name="descendant-selectors">后代选择器</a></h2>
+
+<p>有时，编写者可能想要选择器匹配一个在文档树中作为另一个元素后代的元素（例如，“匹配那些被H1元素包起来的EM元素”），<a name="x12"><span class="index-def" title="descendant-selectors">后代选择器</span></a>把这种关系用模式来表达。一个后代选择器由两个或者多个被<a href="syndata.html#whitespace">空白字符</a>隔开的选择器组成。一个形如"<code>A B</code>"的后代选择器匹配一个元素<code>B</code>，如果它是<a href="conform.html#doctree">祖先</a>元素A的任意后代
+
+<div class="example"><P style="display:none">示例：</P><p>
+例如，考虑下面的规则：</p>
+
+<pre>
+h1 { color: red }
+em { color: red }
+</pre>
+
+<p>尽管这些规则的目的都是通过改变颜色来给文本添加强调，但效果会在这种情况下消失：</p>
+
+<pre class="html-example">
+&lt;H1&gt;This headline is &lt;EM&gt;very&lt;/EM&gt; important&lt;/H1&gt;
+</pre>
+
+<p>对于这种情况，我们通过用一条设置文本颜色为蓝色的规则来补充之前的规则来解决，无论EM出现在H1内的哪个位置：</p>
+
+<pre>
+h1 { color: red }
+em { color: red }
+h1 em { color: blue }
+</pre>
+
+<p>第三条规则将会匹配下列片段中的EM：</p>
+
+<pre class="html-example">
+&lt;H1&gt;This &lt;SPAN class="myclass"&gt;headline 
+is &lt;EM&gt;very&lt;/EM&gt; important&lt;/SPAN&gt;&lt;/H1&gt;
+</pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><P>
+下列选择器：</p>
+
+<PRE>
+div * p 
+</PRE>
+
+<P>匹配一个孙级或者DIV元素更后面的后代P元素。注意，"*"的前后的空白字符不是通配选择器的一部分，空白字符是一种连接符，表示DIV必须是某些元素的祖先并且那些元素还必须是P元素的祖先
+</div>
+
+<div class="example"><P style="display:none">示例：</P><p>
+下列规则中结合了后代和<a href="#attribute-selectors">属性选择器</a>的选择器，匹配(1)具有"href"属性集并且(2)位于本身位于DIV内部的P的内部的任意元素：</p>
+
+<pre>
+div p *[href]
+</pre>
+</div>
+
+<h2>5.6 <a name="child-selectors">子选择器</a></h2>
+
+<p><a name="x13"><span class="index-def" title="child selector"><em>子选择器</em></span></a>匹配一个作为某些元素的<a href="conform.html#doctree">子级</a>的元素。自选择器由两个或者更多用"&gt;"分隔的选择器组成
+
+<div class="example"><P style="display:none">示例：</P><p>
+下面的规则设置了所有作为BODY子级的P元素的样式：</p>
+
+<pre>
+body &gt; P { line-height: 1.3 }
+</pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><P>
+下面的示例结合了后代选择器和子选择器：</p>
+<pre>
+div ol&gt;li p
+</pre>
+
+<P>它匹配一个作为LI后代的的P元素，这个LI元素必须是一个OL元素的子级，OL元素必须是一个DIV的后代。注意，连接符"&gt;"前后可选的空白字符被删掉了
+</div>
+
+<P>关于选择元素的第一个子级的更多信息请查看下面的<a href="#first-child">:first-child</a>伪类小节
+
+<h2>5.7 <a name="adjacent-selectors">相邻兄弟选择器</a></h2>
+
+<p>相邻兄弟选择器语法如下：E1 + E2，E2是选择器的对象，如果E1和E2在文档树中共享相同的父级且E1紧跟在E2前面，忽略非元素节点（例如，文本节点和注释），选择器匹配
+
+<div class="example"><P style="display:none">示例：</P><p>
+因此，下列规则指出，当一个P元素紧跟在一个MATH元素后面时，它不应该缩进：</p>
+
+<pre>
+math + p { text-indent: 0 } 
+</pre>
+
+<p>下一个示例减少了紧挨着的H1和H2之间的竖直空隙：</p>
+
+<pre>
+h1 + h2 { margin-top: -5mm }   
+</pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><p> 
+下面的规则与之前示例中的那个类似，只是它添加了一个类选择器，因此，特殊格式只在H1有<samp>class="opener"</samp>时出现：</p>
+
+<pre>
+h1.opener + h2 { margin-top: -5mm }   
+</pre>
+</div>
+
+<h2>5.8 <a name="attribute-selectors">属性选择器</a></h2>
+
+<p>CSS&nbsp;2.1允许编写者指定用来匹配具有某些定义在源文档中的属性的元素的规则
+
+<h3>5.8.1 <a name="matching-attrs">匹配属性与属性值</a></h3>
+
+<P>属性选择器可以通过4种方式匹配：</p>
+
+<dl>
+<dt><code>[att]</code>
+<dd>当元素设置了"att"属性时匹配，无论该属性的值是什么
+<dt><a name="x14"><span class="index-def" title="exact
+matching|="><code>[att=val]</code></span></a>
+<dd>当元素的"att"属性值恰好是"val"时匹配
+<dt><a name="x16"><span class="index-def" title="space-separated
+matching|~="><code>[att~=val]</code></span></a>
+<dd>代表一个有<code>att</code>属性且值是一个由空白字符分隔的单词列表，其中之一恰好是"val"的元素。如果"val"含有空格，就不代表任何东西（因为单词是用空格<em>分隔</em>的）。如果"val"是个空字符串，它将同样不代表任何东西
+<dt><a name="x18"><span class="index-def" title="hyphen-separated matching|&#124;="><code>[att|=val]</code></span></a>
+<dd>代表一个有<code>att</code>属性且值要么恰好是"val"要么以后面紧跟着"-"(U+002D)的"val"开头的元素。这主要是为了允许<a name="x20"><span class="index-inst" title="language code">语言子码（language subcode）</span></a>按照BCP&nbsp;47（<a href="refs.html#ref-BCP47" rel="biblioentry" class="noxref"><span class="informref">[BCP47]</span></a>）或者其后续版本进行匹配（例如，HTML中<code>a</code>元素的<code>hreflang</code>属性）。关于<code>lang</code>（或者<code>xml:lang</code>）语言子码匹配，请查看<a href="#lang"><code>:lang</code>伪类</a>
+</dl>
+
+<p>属性值必须是标识符或者字符串，选择器中属性名和值的大小写敏感性取决于文档语言
+
+<div class="example"><P style="display:none">示例：</P><p>
+例如，下列属性选择器匹配所有指定了"title"属性的元素，无论值是什么：</p>
+
+<pre>
+h1[title] { color: blue; }
+</pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><p>
+下例中，选择器匹配所有"class"属性值恰好是"example"的SPAN元素：</p>
+
+<pre>
+span[class=example] { color: blue; }
+</pre>
+</div>
+
+<P>多个属性选择器可以用来引用同一个元素的几个属性，或者甚至把同一个属性引用多次
+
+<div class="example"><P style="display:none">示例：</P><p>
+下面的选择器匹配所有"hello"属性值恰好是"Cleveland"并且"goodbye"属性值恰好是"Columbus"的SPAN元素：</P>
+
+<pre>
+span[hello="Cleveland"][goodbye="Columbus"] { color: blue; }
+</pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><p>
+下列选择器描述了"="和"~="的区别，第一个选择器将匹配，例如，"rel"属性值为"copyright copyleft copyeditor"（的元素）。第二个将仅匹配"href"属性值为"http://www.w3.org/"（的元素）
+</p>
+
+<pre>
+a[rel~="copyright"]
+a[href="http://www.w3.org/"]
+</pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><P>
+下面的规则隐藏了所有"lang"属性值为"fr"（即，语言是法语）的元素
+
+<PRE>
+*[lang=fr] { display : none }
+</PRE>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><P>
+下面的规则将匹配"lang"属性值以"en"开头，包括"en"，"en-US"和"en-cockney"：</p>
+
+<PRE>
+*[lang|="en"] { color : red }
+</PRE>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><P>
+类似的，下列听觉样式表（aural style sheet）规则允许一个script能被每个角色以不同的声音读出来：</p>
+
+<pre class="example">
+DIALOGUE[character=romeo] 
+     { voice-family: "Laurence Olivier", charles, male }
+      
+DIALOGUE[character=juliet]  
+     { voice-family: "Vivien Leigh", victoria, female }
+</pre>
+</div>
+
+<H3>5.8.2 <a name="default-attrs">文档类型定义（DTD）中的默认属性值</a></H3>
+
+<P>匹配发生在文档树的属性值上。默认属性值可以定义在<a name="x21"><span class="index-inst" title="DTD">DTD</span></a>里或者其它地方，但不能被属性选择器选择。样式表应该被设计能够在即使默认值未被包含在文档树中时，也能正常工作
+
+<p>更精确的，一个UA可以但<em>不需要</em>读取DTD的“外部子集（external
+subset）”，但<em>需要</em>在文档的“内部子集（internal subset）”中查找默认属性值（这些子集的定义见<a href="refs.html#ref-XML10" rel="biblioentry" class="noxref"><span class="normref">[XML10]</span></a>）。默认属性值定义在DTD的外部子集可能出现也可能不出现在文档树中，这取决于UA
+
+<p>一个识别XML命名空间<a href="refs.html#ref-XMLNAMESPACES" rel="biblioentry" class="noxref"><span class="informref">[XMLNAMESPACES]</span></a>的UA，可以但不需要使用命名空间的信息来处理默认属性值，就像它们出现在文档中一样（例如，一个XHTML UA不需要用其内置的XHTML DTD信息）
+
+<p class="note">注意，典型地，实现选择忽略外部子集
+
+<div class="example"><P style="display:none">示例：</P>
+<P style="display:none">示例：</P>
+<P>例如，考虑一个具有默认值为"decimal"的"notation"属性的EXAMPLE元素，DTD片段可能是
+
+<pre class="dtd-example">
+&lt;!ATTLIST EXAMPLE notation (decimal,octal) "decimal">
+</pre>
+
+<p>如果样式表含有下列规则
+
+<pre class="example">
+EXAMPLE[notation=decimal] { /*... default property settings ...*/ }
+EXAMPLE[notation=octal]   { /*... other settings...*/ }
+</pre>
+
+<p>第一条规则不会匹配"notation"属性被置为默认值的元素，即没有显式设置。为了包括所有情况，针对默认值的属性选择器必须要删掉：</p>
+
+<pre class="example">
+EXAMPLE                   { /*... default property settings ...*/ }
+EXAMPLE[notation=octal]   { /*... other settings...*/ }
+</pre>
+
+<p>因为选择器<code>EXAMPLE[notation=octal]</code>比单独的类型选择器更<a href="cascade.html#specificity">具体</a>，对于具有值为"octal"的"notation"属性的元素，第二条规则中的样式声明将会重写第一条。必须小心所有仅被应用于默认情况的属性声明会被非默认情况的样式规则重写
+</div>
+
+
+<h3>5.8.3 <a name="class-html">类选择器</a></h3> 
+
+<p>HTML中，表示<code>class</code>属性时，编写者可以把句号(<code>.</code>)符号作为<code>~=</code>符号的替代品。因此，对于HTML，<code>div.value</code>与<code>div[class~=value]</code>具有相同的含义。属性值必须紧跟在“句号”(.)后面。UA可以在XML文档中把句号(.)符号用于选择器，如果UA有特定命名空间信息允许它决定各个命名空间下哪个属性是&quot;class&quot;属性。这样的特定命名空间信息的示例在针对特殊命名空间的规范（例如，SVG 1.1 <a href="refs.html#ref-SVG11" rel="biblioentry" class="noxref"><span class="informref">[SVG11]</span></a>描述了<a href="http://www.w3.org/TR/2003/REC-SVG11-20030114/styling.html#ClassAttribute">SVG
+&quot;class&quot;属性</a>以及UA应该怎样解读它，类似的，MathML 3.0 <a href="refs.html#ref-MATH30" rel="biblioentry" class="noxref"><span class="informref">[MATH30]</span></a>描述了<a href="http://www.w3.org/TR/MathML2/chapter2.html#fund.globatt">MathML
+&quot;class&quot;属性</a>）中有
+
+<div class="example"><P style="display:none">示例：</P><p>
+例如，我们给所有具有<samp>class~="pastoral"</samp>的元素设置样式如下：</p>
+
+<pre>
+*.pastoral { color: green }  /* all elements with class~=pastoral */
+</pre>
+
+或者直接
+
+<pre>
+.pastoral { color: green }  /* all elements with class~=pastoral */
+</pre>
+
+<p>下面只给具有<samp>class~="pastoral"</samp>的H1元素设置样式：</p>
+
+<pre>
+H1.pastoral { color: green }  /* H1 elements with class~=pastoral */
+</pre>
+
+<p>根据给出的这些规则，下面第一个H1实例将不会有绿色文本，而第二个会：</p>
+
+<pre>
+&lt;H1&gt;Not green&lt;/H1&gt;
+&lt;H1 class="pastoral"&gt;Very green&lt;/H1&gt;
+</pre>
+</div>
+
+<p>为了匹配"class"值的一个子集，每个值前面必须有一个"."</P>
+
+<div class="example"><P style="display:none">示例：</P><P>
+例如，下列规则匹配所有"class"属性被赋值为一列空格分隔的含有"pastoral"和"marine"的值：</p>
+
+<pre> 
+p.marine.pastoral { color: green }
+</pre>
+
+<p>该规则匹配<samp>class="pastoral blue aqua marine"</samp>但不匹配<samp>class="pastoral blue"</samp>
+</div>
+
+<div class="note"><p> <em><strong>注意：</strong>CSS赋予了"class"属性非常多的能力，编写者可以在与表现几乎无关的元素（例如，HTML中的DIV和SPAN）上设计他们自己的“文档语言”，并通过"class"属性来设置样式信息。编写者应该避免这种实践，因为文档语言的结构化元素通常具有可识别和可接受的含义，而编写者定义的没有</em>
+</div>
+
+<div class="note"><p><em><strong>注意：</strong>如果一个元素具有多个class属性，搜索class之前，它们的值必须用空格连接起来。到现在，工作组对这种情况能被达成的方式并不明确，所以本规范中，这种行为显然是非规范的</em>
+</div>
+
+<h2>5.9 <a name="id-selectors">ID选择器</a></h2>
+
+<P>文档语言可以含有被声明为ID型属性。ID型属性的特殊之处是没有两个这种属性可以有相同的值。无论在什么文档语言中，一个ID属性都可以被用作其元素的唯一标识。HTML中，所有ID属性都叫"id"，XML应用程序可以命名不同的ID属性，但会受到同样的限制
+
+<p>文档语言的ID属性允许编写者给文档树中的一个元素实例设置一个标识符。CSS ID选择器根据它的标识符匹配一个元素实例。一个CSS ID选择器包含"#"和后面紧跟着的ID值，该值必须是一个标识符</p>
+
+<p class=note>注意CSS没有指定一个UA如何获知一个元素的ID属性。UA可能，例如，读取文档的DTD，拥有硬编码的信息或者询问用户
+
+<div class="example"><P style="display:none">示例：</P><p> 
+下列ID选择器匹配ID属性值为"chapter1"的H1元素：</p>
+
+<PRE>
+h1#chapter1 { text-align: center }
+</PRE>
+</div>
+
+<div class="html-example"><p> 
+下例中，样式规则匹配ID值为"z98y"的元素，因此，该规则将匹配P元素：</p>
+
+<pre>
+&lt;HEAD&gt;
+  &lt;TITLE&gt;Match P&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    *#z98y { letter-spacing: 0.3em }
+  &lt;/STYLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+   &lt;P id=z98y&gt;Wide text&lt;/P&gt;
+&lt;/BODY&gt;
+</pre>
+
+<p>下一个示例中，样式规则将只匹配一个ID值为"z98y"的H1元素，该规则不会匹配本例中的P元素：</p>
+
+<pre>
+&lt;HEAD&gt;
+  &lt;TITLE&gt;Match H1 only&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    H1#z98y { letter-spacing: 0.5em }
+  &lt;/STYLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+   &lt;P id=z98y&gt;Wide text&lt;/P&gt;
+&lt;/BODY&gt;
+</pre>
+</div>
+
+<P>ID选择器比属性选择器的特殊性更高。例如，HTML中，根据<a href="cascade.html">层叠</a>，选择器<samp>#p123</samp>比<samp>[id=p123]</samp>更具体
+
+<div class="note">
+<p><em><strong>注意</strong> 在XML 1.0<a href="refs.html#ref-XML10" rel="biblioentry" class="noxref"><span class="informref">[XML10]</span></a>中，关于含有元素ID的属性的信息被包含在DTD中。当解析XML时，UA并不总会读取DTD，并且因此可能不知道一个元素的ID是什么。如果一个样式表设计者知道或者怀疑这种情况，他应该用常规属性选择器代替：<code>[name=p371]</code>而不是<code>#p371</code>。然而，常规属性选择器的层叠顺序与ID选择器不同，可能有必要给声明添上一个"!important"优先级：<code>[name=p371]{color: red ! important}</code></em>
+</div>
+
+<p>如果一个元素有多个ID属性，鉴于ID选择器的目的，它们必须全部都被当作这个元素的ID。这种情况可以通过使用XML的混合（mixtures）来达成：id<a href="refs.html#ref-XMLID" rel="biblioentry" class="noxref"><span class="informref">[XMLID]</span></a>，DOM3 Core <a href="refs.html#ref-DOM-LEVEL-3-CORE" rel="biblioentry" class="noxref"><span class="informref">[DOM-LEVEL-3-CORE]</span></a>，XML DTDs <a href="refs.html#ref-XML10" rel="biblioentry" class="noxref"><span class="informref">[XML10]</span></a>和特定命名空间信息（namespace-specific knowledge）
+
+<h2>5.10 <a name="pseudo-elements">伪元素</a>与<a name="pseudo-classes">伪类</a></h2>
+
+<p>CSS&nbsp;2.1中，样式通常是根据元素在<a href="conform.html#doctree">文档树</a>中的位置添加的。这种简单模型在大多数情况下足够了，但在有些常见的排版场景下可能无法根据<a href="conform.html#doctree">文档树</a>的结构（添加样式）。例如，HTML 4（见<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>）中，没有元素对应的是一个段落的第一行，所以简单CSS选择器无法引用它</p>
+
+<p>为了允许根据文档树之外的信息来格式化，CSS引入了<a name="x22"><span class="index-def" title="pseudo-elements"><dfn>伪元素</dfn></span></a>和<a name="x23"><span class="index-def" title="pseudo-classes"><dfn>伪类</dfn></span></a>的概念</p>
+
+<ul>
+<li>伪元素建立了对超出那些通过文档语言指定的文档树的抽象。例如，文档语言不会提供访问元素内容的第一个字母或者第一行的机制。除了那些很难实现的信息外，CSS伪元素允许样式表设计者这样引用。伪元素也给样式表设计者提供了一种给源文档中不存在的内容赋予样式的方法（例如，<a href="generate.html#before-after-content">:before和:after</a>伪元素提供了访问生成的内容的方法）
+
+<li>伪类根据元素的特征分类，而不是名字，属性或者内容。原则上，这些特征无法从文档树推断得出。伪类可以是动态的，用户与文档交互时，一个元素可能获得或者失去一个伪类。<a href="#first-child">':first-child'</a>是个特例，可以根据文档树推断出来，而且<a href="#lang">':lang()'</a>在某些情况下也能根据文档树推断出来
+</ul>
+
+<P>伪元素和伪类都不会出现在源文档或者文档树中
+
+<P>伪类允许出现在选择器的任何位置，而一个伪元素只能跟在选择器的最后一个简单选择器后面
+</p>
+
+
+<p>伪元素名和伪类名都是大小写不敏感的</p>
+
+<P>有些伪类是互斥的，而其它的可以同时用在一个元素上。在规则冲突的情况下，常规<a href="cascade.html#cascading-order">层叠顺序</a>决定结果
+
+<h2>5.11 <a name="pseudo-class-selectors">伪类</a></h2>
+
+<h3>5.11.1 <a name="first-child">:first-child</a>伪类</h3>
+
+<P><a name="x24"><span class="index-def" title="first-child|:first-child">:first-child</span></a>伪类匹配一个作为某个其它元素的第一个子级的元素
+
+<div class="example"><P style="display:none">示例：</P><P>
+下例中，选择器匹配所有作为DIV元素的第一个子级的P元素。规则禁止DIV中的第一个段落缩进：</p>
+
+<PRE>
+div &gt; p:first-child { text-indent: 0 }
+</PRE>
+
+该选择器将匹配下面片段中DIV里的P：
+
+<pre class="html-example">
+&lt;P&gt; The last P before the note.
+&lt;DIV class="note"&gt;
+   &lt;P&gt; The first P inside the note.
+&lt;/DIV&gt;
+</pre>
+
+但不会匹配下面片段中的第二个P：
+
+<pre class="html-example">
+&lt;P&gt; The last P before the note.
+&lt;DIV class="note"&gt;
+   &lt;H2&gt;Note&lt;/H2&gt;
+   &lt;P&gt; The first P inside the note.
+&lt;/DIV&gt;
+</pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P>
+<p>下面的规则把所有作为第一个子级P元素的后代的EM元素的字体粗细设置为'bold'：</p>
+
+<pre>
+p:first-child em { font-weight : bold }
+</pre>
+</div>
+
+<P>注意，因为<a href="visuren.html#anonymous">匿名</a>盒不是文档树的一部分，计算第一个子级时不算它们</p>
+
+<div class="html-example"><P>
+例如，EM在</p>
+
+<PRE>
+&lt;P&gt;abc &lt;EM&gt;default&lt;/EM&gt; 
+</PRE>
+
+中是P的第一个子级
+</div>
+
+<P>下列两个选择器是等价的：</p>
+
+<PRE>
+* &gt; a:first-child   /* A is first child of any element */
+a:first-child       /* Same */
+</PRE>
+
+
+<h3>5.11.2 <a name="link-pseudo-classes">link伪类</a>：<a name="x26"><span
+class="index-def" title="pseudo-classes:::link|:link|link
+(pseudo-class)">:link</span></a>与<a name="x29"><span class="index-def"
+title="pseudo-classes:::visited|:visited|visited
+(pseudo-class)">:visited</span></a></h3>
+
+<p>User agents commonly display unvisited links differently from
+previously visited ones. CSS provides the pseudo-classes ':link' and
+':visited' to distinguish them:</p>
+
+<ul>
+<li>:link伪类用于未访问过的链接
+
+<li>:visited伪类用于曾被用户访问过的链接
+</ul>
+
+<p>UA有时会让一个访问过的链接回到（未访问的）':link'状态
+
+<P>这两种状态是互斥的
+
+<p>文档语言决定了哪些元素是超链接源anchor。例如，HTML4中，link伪类适用于带有"href"属性的A元素。因此，下列两条CSS&nbsp;2.1声明的效果相似：</p>
+
+<pre>
+a:link { color: red }
+:link  { color: red }
+</pre>
+
+<div class="example"><P style="display:none">示例：</P><p>
+如果下面的链接：</p>
+
+<pre class="html-example">
+&lt;A class="external" href="http://out.side/"&gt;external link&lt;/A&gt;
+</pre>
+
+已经被访问过了，这条规则：
+
+<pre>
+a.external:visited { color: blue }
+</pre>
+
+将让它变蓝
+</div>
+
+<p class=note>注意，样式表编写者可能滥用:link和:visited伪类，来确定用户已经曾访问过哪些站点，而不经用户同意
+
+<p>UA因此可以把所有链接都当作未被访问过的链接，或者在分别渲染访问过的和未访问过的链接时，采取其它措施来保护用户的隐私。关于处理隐私的更多信息请查看<a href="refs.html#ref-P3P" rel="biblioentry" class="noxref"><span class="informref">[P3P]</span></a>
+
+<h3>5.11.3 <a name="dynamic-pseudo-classes">动态伪类：</a>
+<a name="x32"><span class="index-def" title="pseudo-classes:::hover|:hover|hover
+(pseudo-class)">:hover</span></a>，<a name="x35"><span class="index-def"
+title="pseudo-classes:::active|:active|active
+(pseudo-class)">:active</span></a>与<a name="x38"><span class="index-def"
+title="pseudo-classes:::focus|:focus|focus
+(pseudo-class)">:focus</span></a></h3>
+
+<p>交互式用户代理有时会改变渲染以响应用户动作。对于一般情况，CSS提供了三个伪类：</p>
+
+<ul>
+<li>:hover伪类应用于当用户指定了一个元素（用某些指针设备），但没有激活它时。例如，一个可视化用户代理在光标（鼠标指针）悬停在元素生成的盒上时应用该伪类。不支持<a href="media.html#interactive-media-group">互动媒体（interactive media）</a> 的用户代理不必支持该伪元素。某些（与CSS规范）一致的支持<a href="media.html#interactive-media-group">互动媒体</a>的用户代理支持可能也不支持该伪类（例如，笔交互设备（a pen device））
+
+<li>:active伪类应用于当一个元素被用户激活时。例如，在用户按下鼠标按钮并释放时
+
+<li>:focus伪类应用于当一个元素拥有焦点（接受键盘事件或者其它文本输入形式）时
+</ul>
+
+<p>一个元素可以同时匹配几个伪类
+
+<p>CSS没有定义哪些元素可以处于上面的状态，或者这些状态怎样进入和离开。脚本可以改变元素是否对用户事件做出响应，并且不同的设备和UA指向和激活元素的方式不同
+
+<p>CSS&nbsp;2.1没有定义如果一个':active'或者':hover'元素的父级是不是也处于这种状态
+
+<p>用户代理不必因为伪类转变而重排（reflow）当前显示的文档。例如，一个样式表可以指定:active链接的<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>比非激活状态的链接大，但因此会导致字母在读者选中链接时改变位置，UA可以忽略相关样式规则</p>
+
+<div class="example"><P style="display:none">示例：</P><p>
+
+<pre>
+a:link    { color: red }    /* unvisited links */
+a:visited { color: blue }   /* visited links   */
+a:hover   { color: yellow } /* user hovers     */
+a:active  { color: lime }   /* active links    */
+</pre>
+
+<p>注意，A:hover必须放在A:link和A:visited规则后面，因为否则层叠规则将会隐藏A:hover规则中的<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>属性。类似的，因为A:active放在A:hover后面，用户激活并悬停在A元素上时，将会应用激活态的颜色(lime) 
+</div>
+
+<div class="example"><P style="display:none">示例：</P>
+<p>结合了动态伪类的示例：
+
+<pre>
+a:focus { background: yellow }
+a:focus:hover { background: white }
+</pre>
+
+<P>最后一个选择器匹配处于伪类:focus和伪类:hover（状态）的A元素
+
+</div>
+
+ 
+
+<P>关于展示焦点轮廓（focus outline）的更多信息，请查看<a href="ui.html#dynamic-outlines">动态焦点轮廓</a>章节
+
+<div class="note"><P>
+<em><strong>注意</strong>
+CSS1中，':active'伪类与':link'和':visited'是互斥的，而现在情况不一样了。一个元素可以同时处于':visited'和':active'（或者':link'和':active'），由常规层叠规则决定应用哪个样式声明
+</em>
+</div>
+
+<div class="note"><P>
+<em><strong>注意</strong>
+CSS1中，':active'伪类只会应用于链接</em>
+</div>
+
+<h3>5.11.4 <a name="lang">语言伪类：</a> <a name="x41"><span
+class="index-def" title="pseudo-classes:::lang|:lang|lang
+(pseudo-class)">:lang</span></a></h3>
+
+<p>如果文档语言指定了怎样定义一个元素的<a name="x44"><span class="index-inst" title="language (human)">人类语言（human language）</span></a>，就有可能用CSS写出选择器根据元素的语言来匹配一个元素。例如，HTML<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>中，语言是由"lang"属性，META元素以及可能的来自协议的信息（例如，HTTP头）结合起来决定的。XML用一个叫xml:lang的属性和可能的其它文档特定语言的方法来确定语言
+
+<p>伪类':lang(C)'匹配语言为C的元素。是否存在匹配，仅仅根据标识符C等于元素的语言值或者是连字符分隔元素的语言值的子串来确定。同样的，就像<a href="#attribute-selectors">'|='</a>操作符一样。C与元素语言值的匹配过程对ASCII范围内的字符是大小写不敏感的。标识符C不一定是一个合法的语言名</p>
+
+<p>C不能为空
+
+<p class=note>注意：建议文档和协议通过BCP&nbsp;47 <a href="refs.html#ref-BCP47" rel="biblioentry" class="noxref"><span class="informref">[BCP47]</span></a>码或者其后续版本指出语言，而基于XML的文档<a href="refs.html#ref-XML10" rel="biblioentry" class="noxref"><span class="normref">[XML10]</span></a>则用"xml:lang"属性。见<a href="http://www.w3.org/International/questions/qa-lang-2or3">“FAQ：两个字母或三个字母的语言码”</a></p>
+
+<div class="example"><P style="display:none">示例：</P>
+<p>下列规则给一个加拿大法语或德语HTML文档设置引号：</p>
+
+<pre>
+html:lang(fr-ca) { quotes: '« ' ' »' }
+html:lang(de) { quotes: '»' '«' '\2039' '\203A' }
+:lang(fr) > Q { quotes: '« ' ' »' }
+:lang(de) > Q { quotes: '»' '«' '\2039' '\203A' }
+</pre>
+
+<p>第二对规则实际上给Q元素根据其父级的语言设置了<a href="generate.html#propdef-quotes" class="noxref"><span class="propinst-quotes">'quotes'</span></a>属性。能这样做是因为引号是根据引号周围元素的语言选择的，而不是引号本身：比如这段英语文本中的法语&#8220;&agrave; l'improviste&#8221;用的是英文引号</div>
+
+<div class=note>
+  <p><strong>注意</strong> [lang|=xx]和:lang(xx)的区别。在该HTML示例中，只有BODY匹配[lang|=fr]（因为它有LANG属性），但BODY和P都匹配:lang(fr)（因为都是法语）
+
+  <pre>&lt;body lang=fr>
+  &lt;p>Je suis Fran&ccedil;ais.&lt;/p>
+&lt;/body></pre>
+</div>
+
+<h2>5.12 <a name="pseudo-element-selectors">伪元素</a></h2>
+
+<p>伪元素在CSS中的行为就像真实元素一样，除了下面描述的以及<a href="generate.html#before-after-content">其它的</a>
+
+<p class="note"><em>注意，下面的小节没有定义严格的对':first-line'和':first-letter'的渲染，将来的CSS版本可能会精确地定义它们</em>
+
+<h3>5.12.1 <span class="index-def"
+title="pseudo-elements:::first-line|:first-line|first-line"><a
+name="first-line-pseudo">:first-line</a></span>伪元素</h3>
+
+<p>first-line伪元素对段落内容的第一个格式化行应用特殊样式。例如：</p>
+
+<pre class="example">
+p:first-line { text-transform: uppercase }
+</pre>
+
+<p>上面的规则表示“把每个段落的第一个行的字母变成大写”。然而，选择器"P:first-line"不会匹配任何真实HTML元素。它匹配一个（与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>将在每个段落的开头插入的伪元素</p>
+
+<p>注意，第一行的长度取决于很多因素，包括页面宽度，字体大小等等。因此，原始的HTML段落例如：</p>
+
+<pre class="html-example">
+&lt;P&gt;This is a somewhat long HTML 
+paragraph that will be broken into several 
+lines. The first line will be identified
+by a fictional tag sequence. The other lines 
+will be treated as ordinary lines in the 
+paragraph.&lt;/P&gt;
+</pre>
+
+<p>行可能巧好被拆分成这样：
+
+<pre class="html-example">
+THIS IS A SOMEWHAT LONG HTML PARAGRAPH THAT
+will be broken into several lines. The first
+line will be identified by a fictional tag 
+sequence. The other lines will be treated as 
+ordinary lines in the paragraph.
+</pre>
+
+<p>为了包括:first-line的<em><a name="x48"><span class="index-def" title="fictional tag sequence">虚拟标签序列（fictional tag sequence）</span></a></em>，这种虚拟标签序列有助于展示属性怎样继承，可能会被用户代理“重写”：
+
+<pre>
+&lt;P&gt;<b>&lt;P:first-line&gt;</b> This is a somewhat long HTML 
+paragraph that <b>&lt;/P:first-line&gt;</b> will be broken into several
+lines. The first line will be identified 
+by a fictional tag sequence. The other lines 
+will be treated as ordinary lines in the 
+paragraph.&lt;/P&gt;
+</pre>
+
+<p>如果一个伪元素把一个真实元素拆开了，想要的效果是由虚拟标签序列闭合再重新打开该元素。因此如果我们用一个SPAN元素标记之前的段落：</p>
+
+<pre>
+&lt;P&gt;<b>&lt;SPAN class="test"&gt;</b> This is a somewhat long HTML
+paragraph that will be broken into several
+lines.<b>&lt;/SPAN&gt;</b> The first line will be identified
+by a fictional tag sequence. The other lines 
+will be treated as ordinary lines in the 
+paragraph.&lt;/P&gt;
+</pre>
+
+<p>当为:first-line插入虚拟标签序列时，用户代理会为SPAN模拟开始和结束标签：
+
+<pre>
+&lt;P&gt;&lt;P:first-line&gt;<b>&lt;SPAN class="test"&gt;</b> This is a
+somewhat long HTML
+paragraph that will <b>&lt;/SPAN&gt;</b>&lt;/P:first-line&gt;<b>&lt;SPAN class="test"&gt;</b> be
+broken into several
+lines.<b>&lt;/SPAN&gt;</b> The first line will be identified
+by a fictional tag sequence. The other lines
+will be treated as ordinary lines in the 
+paragraph.&lt;/P&gt;
+</pre>
+
+<p><a name="x49"><span class="index-inst" title="pseudo-elements:::first-line">:first-line</span></a>伪元素只能用于<a href="visuren.html#block-boxes">块级容器元素</a>
+
+<p><a name="first-formatted-line"></a>一个元素的"第一个格式化行"可能出现在相同流（flow）（即一个没有被定位且不浮动的块级后代）一个块级后代里面。例如，<code>&lt;DIV>&lt;P>This line...&lt;/P>&lt/DIV></code>中DIV的第一行是P的第一行（假设P和DIV都是块级的）
+
+<p>表格单元或者inline-block的第一行不能作为祖先元素第一个格式化行。因此，在<code>&lt;DIV&gt;&lt;P
+STYLE="display: inline-block">Hello&lt;BR&gt;Goodbye&lt;/P&gt;
+etcetera&lt;/DIV&gt;</code>中，DIV的第一个格式化行不是"Hello"
+
+<p class="note">注意，<code>&lt;p&gt&lt;br&gt;First...</code>中P的第一行不包含任何字母（假设是HTML 4中BR默认样式表）。单词"First"不在第一个格式行内
+
+<p>UA应该表现的就像first-line伪元素的虚拟开始标签嵌套在最内层的闭合块级元素中（因为CSS1和CSS2都没有说明这种情况，编写者不应该依赖这种行为），例如：
+
+<pre>
+&lt;DIV>
+  &lt;P>First paragraph&lt;/P>
+  &lt;P>Second paragraph&lt;/P>
+&lt;/DIV>
+</pre>
+
+<p>虚拟标签序列为
+
+<pre>
+&lt;DIV>
+  &lt;P>&lt;DIV:first-line>&lt;P:first-line>First paragraph&lt;/P:first-line>&lt;/DIV:first-line>&lt;/P>
+  &lt;P>&lt;P:first-line>Second paragraph&lt;/P:first-line>&lt;/P>
+&lt;/DIV>
+</pre>
+
+
+<p><a name="first-line">:first-line</a>伪元素与内联元素类似，但存在一些限制。下列属性适用于:first-line伪元素：<a href="fonts.html">font属性</a>，<a href="colors.html">color属性</a>，<a href="colors.html#background-properties">background属性</a>，<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>，<a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>，<a href="text.html#propdef-text-decoration" class="noxref"><span class="propinst-text-decoration">'text-decoration'</span></a>，<a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a>和<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>。UA还可能应用其它属性</p>
+
+
+<h3>5.12.2<a name="first-letter"> </a> <a name="x50"><span class="index-def" title="pseudo-elements:::first-letter|:first-letter|first-letter">:first-letter</span></a>伪元素</h3>
+
+<p>:first-letter伪元素一定选择一个块的第一行的第一个字母，如果这一行中在它前面没有跟着任何其它内容（例如，图片或者inline table）。:first-letter伪元素可能用于<a name="x53"><span class="index-inst" title="initial caps">“首字母大写（initial caps）”</span></a>和<a name="x54"><span class="index-inst" title="drop
+caps">“首字母下沉（drop caps）”</span></a>，这些都是常见的排版效果。首字母的这种类型与一个<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>属性为'none'的内联元素或者浮动元素类似</p>
+
+<p>这些是适用于:first-letter伪元素的属性：
+<a href="fonts.html">font属性</a>，
+<a href="text.html#propdef-text-decoration" class="noxref"><span class="propinst-text-decoration">'text-decoration'</span></a>，
+<a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a>，
+<a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>，
+<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>（在合适的时候），
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>，
+<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>，<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>（仅当'float'为'none'时），
+<a href="box.html#margin-properties">margin属性</a>，
+<a href="box.html#padding-properties">padding属性</a>，
+<a href="box.html#border-properties">border属性</a>，
+<a href="colors.html">color属性</a>，
+<a href="colors.html#background-properties">background属性</a>。
+UA也可以应用其它规则。为了让UA正确渲染首字母下沉或者首字母大写排版，UA可能会根据字母的形状选择一个行高，宽度和高度，这与常规元素不同。CSS3预期具有能够应用于首字母的具体属性
+</p>
+
+<div class="html-example">
+<p>本例展示了一个可能的首字母大写渲染，注意，first-letter伪元素继承的'line-height'是1.1，但本例中UA特别计算了首字母的高度，所以它不会造成任何前两行之间有多余的空隙。还要注意，首字母的虚拟开始标签在SPAN里面，因此首字母的字体粗细是正常的，而不是和SPAN一样的粗体：
+<pre>
+p { line-height: 1.1 }
+p:first-letter { font-size: 3em; font-weight: normal }
+span { font-weight: bold }
+...
+&lt;p>&lt;span>Het hemelsche&lt;/span> gerecht heeft zich ten lange lesten&lt;br>
+Erbarremt over my en mijn benaeuwde vesten&lt;br>
+En arme burgery, en op mijn volcx gebed&lt;br>
+En dagelix geschrey de bange stad ontzet.
+</pre>
+<div class="figure">
+<p><img src="./images/initial-cap.png" alt="Image illustrating the :first-letter pseudo-element">
+</div>
+</div>
+
+<div class="html-example">
+<p>下列CSS&nbsp;2.1将会让首字母有下沉两行：</p>
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+ &lt;HEAD&gt;
+  &lt;TITLE&gt;Drop cap initial letter&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+   P              { font-size: 12pt; line-height: 1.2 }
+   P:first-letter { font-size: 200%; font-style: italic;
+                    font-weight: bold; float: left }
+   SPAN           { text-transform: uppercase }
+  &lt;/STYLE&gt;
+ &lt;/HEAD&gt;
+ &lt;BODY&gt;
+  &lt;P&gt;&lt;SPAN&gt;The first&lt;/SPAN&gt; few words of an article
+    in The Economist.&lt;/P&gt;
+ &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>本例可能被格式化为这样：</p>
+
+<div class="figure">
+<P><img src="./images/first-letter.png" alt="Image illustrating the combined effect of the :first-letter and :first-line pseudo-elements"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-first-letter" href="images/longdesc/first-letter-desc.html" title="Long description for drop cap example">[D]</A></SPAN></p>
+</div>
+
+<p><a name="x55"><span class="index-inst" title="fictional tag
+sequence">虚拟标签序列</span></a>为：</p>
+
+<pre>
+&lt;P&gt;
+&lt;SPAN&gt;
+&lt;P:first-letter&gt;
+T
+&lt;/P:first-letter&gt;he first
+&lt;/SPAN&gt; 
+few words of an article in the Economist.
+&lt;/P&gt;
+</pre>
+
+<p>注意关于内容（即首字符）的:first-letter伪元素标签，当:first-line伪元素开始标签被插在块元素开始标签右边时</p>
+</div>
+
+<P>为了达到传统首字母下沉的格式化效果，用户代理可以用近似字体大小，例如为了对齐基线。格式化时，可以把字形轮廓考虑在内
+
+<P>应该包括首字母前后的标点符号（即用<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>定义的<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>"open" (Ps)，"close" (Pe)，"initial" (Pi)，"final" (Pf)和"other" (Po)标点类字符），例如：</p>
+
+<div class="figure">
+<P><img src="./images/first-letter2.png" alt="Quotes that precede the
+first letter should be included."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-first-letter2" href="images/longdesc/first-letter2-desc.html" title="Long description for punctuation and drop cap example">[D]</A></SPAN></p>
+</div>
+
+<p>如果首字母是个数字，':first-letter'同样适用，例如，"67 million dollars is a lot of money."中的"6"
+
+<p>:first-letter伪元素适用于<a href="visuren.html#block-boxes">块级容器元素</a>
+
+<p>:first-letter伪元素可以用于所有含有文字的元素，或者在同一个流（flow）中有一个含有文本的后代。UA应该表现得像first-letter伪元素的虚拟开始标签是在元素的第一段文本之前，即使第一段文本位于一个后代元素中</p>
+
+<div class=example><P style="display:none">示例：</P>
+<p>例如，HTML片段
+<pre>
+&lt;div>
+&lt;p>The first text.
+</pre>
+<p>的虚拟标签序列为：
+<pre>
+&lt;div>
+&lt;p>&lt;div:first-letter>&lt;p:first-letter>T&lt;/...>&lt;/...>he first text.
+</pre>
+</div>
+
+<p>表格单元或者inline-block的首字母不是其祖先元素的首字母。因此，在<code>&lt;DIV&gt;&lt;P
+STYLE="display: inline-block">Hello&lt;BR&gt;Goodbye&lt;/P&gt;
+etcetera&lt;/DIV&gt;</code>中，DIV的首字母不是字母"H"，实际上，该DIV没有首字母
+
+<p>首字母必须出现在<a href="#first-formatted-line">第一个格式化行</a>中，例如，片段：<code>&lt;p&gt&lt;br&gt;First...</code>中，第一行没有任何字母，并且':first-letter'不会匹配任何东西（假设是HTML 4中BR默认样式表）。特殊的，它不会匹配"First"的"F"
+
+<p>如果一个元素是<a href="generate.html#lists">列表项</a>（'display: list-item'），':first-letter'适用于标记后面的主要盒中的首字母。UA可能会忽略具有'list-style-position: inside'的列表项上的':first-letter'。如果一个元素具有':before'或者':after'内容，':first-letter'应用于元素<em>包括</em>这些内容在内的第一个字母
+
+<p class="example">
+例如，应用'p:before {content: "Note: "}'规则后，选择器'p:first-letter'会匹配"Note"的"N"
+
+<p>
+一些语言可能有具体的关于怎样对待特定字母组合的规则，在荷兰，例如，如果字母组合"ij"出现在单词开头，这两个字母都被认为在:first-letter伪元素内
+
+<p>如果将要作为first-letter的字母不再同一个元素中，例如<code>&lt;p>'&lt;em>T...</code>中的"'T"，UA可能会从其中一个元素，所有相关元素中创建一个首字母伪元素，或者简单地不创建伪元素
+
+<p>类似的，如果块的首字母不在行开头（例如，由于双向重排序（bidirectional reordering）），那么UA不需要创建该伪元素
+
+<div class="example"><P style="display:none">示例：</P><p>
+<a name="overlapping-example">下例</a>描述了伪元素可能怎样互相重叠。P元素的首字母将是绿色的，字体大小为'24pt'。第一个格式化行的其余部分将是'blue'，而段落的其它部分将是'red'</p>
+
+<pre>
+p { color: red; font-size: 12pt }
+p:first-letter { color: green; font-size: 200% }
+p:first-line { color: blue }
+
+&lt;P&gt;Some text that ends up on two lines&lt;/P&gt;
+</pre>
+
+<p>假设一个行结束符将出现在单词"ends"之前，该片段的<a name="x56"><span class="index-inst" title="fictional tag sequence">虚拟标签序列</span></a>可能是：</p>
+
+<pre>
+&lt;P&gt;
+&lt;P:first-line&gt;
+&lt;P:first-letter&gt; 
+S 
+&lt;/P:first-letter&gt;ome text that 
+&lt;/P:first-line&gt; 
+ends up on two lines 
+&lt;/P&gt;
+</pre>
+
+<p>注意，:first-letter元素在:first-line元素里面。设置在:first-line上的属性被:first-letter继承了，而且如果设置的是:first-letter的相同属性，则会被重写</p>
+</div>
+
+<h3>5.12.3<a name="before-and-after"> </a> <a name="x57"><span class="index-def"
+title="pseudo-elements:::before|:before">:before</span></a>与<a name="x59"><span
+class="index-def" title="pseudo-elements:::after|:after">:after</span></a>伪元素</h3>
+
+<p>':before'和':after'伪元素可以用来在一个元素的内容之前或之后插入生成的内容，在<a href="generate.html">生成的文本</a>章节中有解释
+
+<div class="example"><P style="display:none">示例：</P><P>
+
+<pre>
+h1:before {content: counter(chapno, upper-roman) ". "}
+</pre>
+</div>
+
+<p>当:first-letter和:first-line伪元素被应用在一个具有使用:before和:after生成内容的元素，它们应用于元素包括生成的内容在内的首字母或者首行
+
+<div class="example"><P style="display:none">示例：</P><P>
+
+<pre>
+p.special:before {content: "Special! "}
+p.special:first-letter {color: #ffd800}
+</pre>
+
+<p>将会把"Special!"的"S"渲染成金色
+</div>
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="syndata.html">上一章</a> &nbsp;
+<a href="cascade.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</body>
+</html>
+

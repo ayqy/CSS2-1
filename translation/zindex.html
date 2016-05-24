@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>层叠上下文（Stacking Contexts）详细描述</TITLE>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="sample.html">
+<link rel="next" href="propidx.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+</HEAD>
+<BODY>
+<div class="navbar">
+<p><a href="sample.html">上一章</a> &nbsp;
+<a href="propidx.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<H1><a name="q0">附录 E. 层叠上下文（Stacking Contexts）详细描述</a></H1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="zindex.html#stacking-defs" class="tocxref">E.1 定义</a>
+    <li class="tocline2"><a href="zindex.html#painting-order" class="tocxref">E.2 绘制顺序</a>
+    <li class="tocline2"><a href="zindex.html#stacking-notes" class="tocxref">E.3 注释</a>
+  </ul>
+</div>
+
+<p>本章定义了CSS&nbsp;2.1的绘制顺序，比本规范其余部分描述得更详细</p>
+
+<h2>E.1 <a name="stacking-defs">定义</a></h2>
+
+<dl>
+
+<dt>树序</dt>
+
+<dd><em>渲染</em>树的先序深度遍历，在考虑会让盒移动的属性之后，对于双向内容，按逻辑（而不是可视化）顺序</dd>
+
+<dt>元素</dt>
+
+<dd>在本描述中，“元素”表示实际元素，伪元素和匿名盒。在适当的位置，伪元素和匿名盒会被当作后代。例如，一个外部列表标记出现在行盒中一个相邻的':before'盒之前，而':before'盒出现在盒的内容之前等等</dd>
+
+</dl>
+
+<h2>E.2 <a name="painting-order">绘制顺序</a></h2>
+
+    <p>堆叠（stack）的底层离用户最远，堆叠的顶层离用户最近：
+
+<pre>
+	     |	   |	     |	  |
+	     |		|    |	  |	&#8678; &#9787;
+	     |		|	  |	user
+z-index:  canvas  -1	0    1	  2
+</pre>
+
+    <p>堆叠上下文的背景和最负的（z-index最小）定位的堆叠上下文位于堆叠的底部，而最正（z-index最大）定位的堆叠上下文位于堆叠的顶部
+
+    <p>如果被包含在另一块区域中的话，画布是透明的。否则，给定一个UA定义的颜色。画布就面积而言是无限的，包含根元素。初始情况下，视口的左上角就是画布的原点
+
+    <p>一个生成了堆叠上下文的（见<a href="visuren.html#propdef-z-index" class="noxref"><span class="propinst-z-index">'z-index'</span></a>属性）元素的后代的绘制顺序为：
+
+    <ol class=stack>
+      <li>
+	<p>如果该元素是根元素：
+	<ol>
+	  <li>元素的背景色覆盖整个画布
+
+	  <li>元素的背景图片覆盖整个画布，定位在将用来绘制根元素的原点的位置
+	</ol>
+
+      <li>
+	<p>如果该元素是一个block，list-item或者其它与block等价的东西：
+	<ol>
+	  <li>元素的背景色，除非它是根元素
+
+	  <li>元素的背景图片，除非它是根元素
+
+	  <li>元素的边框
+	</ol>
+
+	<p>否则，如果该元素是一个块级表格：
+	<ol>
+	  <li>表格背景（先颜色，后图片），除非它是根元素
+	  <li>列组背景（先颜色，后图片）
+	  <li>列背景（先颜色，后图片）
+	  <li>行组背景（先颜色，后图片）
+	  <li>行背景（先颜色，后图片）
+	  <li>单元格背景（先颜色，后图片）
+	  <li>所有的表格边框（对于独立边框，按树序绘制）
+	</ol>
+
+      <li>
+	<p>由具有负z-index（不包括0）的定位的后代形成的堆叠上下文按z-index顺序（最小的最先），然后按树序
+
+      <li>
+	<p>对于它的所有流内，非定位的（non-positioned），块级后代，按树序：如果该元素是一个block，list-item或者其它与block等价的东西：
+	<ol>
+	  <li>元素的背景色
+	  <li>元素的背景图片
+	  <li>元素的边框
+	</ol>
+
+	<p>否则，元素是表格的话：
+	<ol>
+	  <li>表格背景（先颜色，后图片）
+	  <li>表格背景（先颜色，后图片）
+	  <li>列背景（先颜色，后图片）
+	  <li>列背景（先颜色，后图片）
+	  <li>行背景（先颜色，后图片）
+	  <li>单元格背景（先颜色，后图片）
+	  <li>所有的表格边框（对于独立边框，按树序绘制）
+	</ol>
+
+      <li>
+	<p>所有非定位的浮动后代，按树序。对于这些后代中的每个元素，就当它创建了一个新的堆叠上下文，但所有定位的后代和那些确实创建了新的堆叠上下文的后代应该被当成父级堆叠上下文的一部分，而不是新的
+      <li>
+	<p>如果该元素是一个生成了堆叠上下文的内联元素，那么：
+	<ol>
+	  <li>
+	    <p>对于元素所在的每一个行盒：
+	    <ol>
+	      <li>对于该行盒中的元素的盒（按树序），跳至<a href="#each-box">7.2.1</a>
+	    </ol>
+	</ol>
+      <li>
+	<p>否则：先绘制该元素，然后按树序绘制它的所有流内，非定位的，块级后代：
+	<ol>
+	  <li>
+	    <p>如果该元素是一个块级可替换元素，那么：绘制不可再分的（atomically）替换后的内容
+	  <li>
+	    <p>否则，对于该元素的每个行盒：
+	    <ol>
+	      <li id=each-box>
+		<p>对于行盒中每个作为该元素的子级的盒，按树序：
+		<ol>
+		  <li>
+		    <p>元素的背景色
+		  <li>
+		    <p>元素的背景图片
+		  <li>
+		    <p>元素的边框
+		  <li>
+		    <p>对于内联元素：
+		    <ol>
+		      <li>
+			<p>对于该元素的位于该行盒中的所有流内，非定位的，内联级子级，和该行盒上元素内的所有文本串，按树序：
+			<ol>
+			  <li>
+			    <p>如果是一串文本，那么：
+			    <ol>
+			      <li>元素的文本的所有下划线效果，按元素应用下划线的树序（所以最深的元素的下划线，如果有的话，被绘制在最顶层，而根元素的下划线，如果有的话，被绘制在最底层）
+
+			      <li>元素的文本的所有上划线效果，按元素应用上划线的树序（所以最深的元素的上划线，如果有的话，被绘制在最顶层，而根元素的上划线，如果有的话，被绘制在最底层）
+
+			      <li>文本
+
+			      <li>元素的文本的所有中划线效果，按元素应用中划线的树序（所以最深的元素的中划线，如果有的话，被绘制在最顶层，而根元素的中划线，如果有的话，被绘制在最底层）
+			    </ol>
+			  <li>
+			    <p>否则，对于该元素，跳至<a href="#each-box">7.2.1</a>
+			</ol>
+		    </ol>
+
+		    <p>对于inline-block和inline-table元素：
+		    <ol>
+		      <li>对于其中的每一个，就当该元素创建了一个新的堆叠上下文，但所有定位的元素和那些确实创建了新的堆叠上下文的后代应该被当成父级堆叠上下文的一部分，而不是新的
+		    </ol>
+
+		    <p>对于内联级可替换元素：
+		    <ol>
+		      <li>绘制不可再分的（atomically）替换后的内容
+		    </ol>
+		</ol>
+
+		<p class=note>有些盒可能已经通过行分隔或者Unicode双向算法生成了
+	      <li>
+		<p>可选的，元素的轮廓（见下面的<a href="#outlines">10</a>）
+	    </ol>
+
+	  <li>
+	    <p>可选的，如果该元素是块级的，绘制该元素的轮廓（见下面的<a href="#outlines">10</a>）
+	</ol>
+
+      <li>
+	<p>所有定位的具有'z-index: auto'或者'z-index: 0'的后代，按树序。对于那些具有'z-index: auto'的元素，就当该元素创建了一个新的堆叠上下文，但所有定位的元素和那些确实创建了新的堆叠上下文的后代应该被当成父级堆叠上下文的一部分，而不是新的。对于那些具有'z-index: 0'的元素，就当生成的堆叠上下文不可再分
+
+      <li>
+	<p>由定位的具有z-index大于等于1的后代形成的堆叠上下文，按z-index顺序（最小的优先），然后按树序
+
+      <li id=outlines>
+	<p>最后，在以上步骤中没有绘制轮廓的实现必须根据现阶段的堆叠上下文绘制轮廓（推荐在这一步绘制轮廓，而不要再上面的步骤中绘制）
+    </ol>
+
+    <h2>E.3 <a name="stacking-notes">注释</a></h2>
+
+    <p>根元素的背景只绘制一次，覆盖整个画布
+
+    <p>而双向内联元素的背景按树序绘制，它们按照可视化顺序定位。因为内联背景的定位在CSS&nbsp;2.1中没有指定，这两种需求的精确结果是UA定义的。CSS3可能会详细定义这部分
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="sample.html">上一章</a> &nbsp;
+<a href="propidx.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</BODY>
+</HTML>

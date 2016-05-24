@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>颜色与背景</title>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="page.html">
+<link rel="next" href="fonts.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+<style type="text/css">
+.current,.proposed,span.delcurrent { background:#feb }
+ins.proposed,span.insproposed,p.insproposed { background:#bfb }
+del.proposed,span.delproposed { background:#fbb }
+span.insproposed,p.insproposed { text-decoration:underline }
+span.delproposed,span.delcurrent { text-decoration:line-through }
+body>del,body>ins {display:block}
+</style>
+</head>
+<body>
+<div class="navbar">
+<p><a href="page.html">上一章</a> &nbsp;
+<a href="fonts.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<h1><a name="q0">14 颜色与背景</a></h1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="colors.html#colors" class="tocxref">14.1 前景色：<span class="propinst-color">'color'</span>'color'属性</a>
+    <li class="tocline2"><a href="colors.html#background" class="tocxref">14.2 背景</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="colors.html#background-properties" class="tocxref">14.2.1 background属性：<span class="propinst-background-color">'background-color'</span>，<span class="propinst-background-image">'background-image'</span>，<span class="propinst-background-repeat">'background-repeat'</span>，<span class="propinst-background-attachment">'background-attachment'</span>，<span class="propinst-background-position">'background-position'</span>和<span class="propinst-background">'background'</span></a>
+    </ul>
+  </ul>
+</div>
+
+<p>CSS属性允许编写者指定元素的前景色和背景色。背景可以是颜色或者图片。background属性允许编写者定位一张背景图片，平铺（repeat）它，以及声明它应该相对<a href="visuren.html#viewport">视口</a>固定还是随文档滚动
+</p>
+<p>合法颜色值的语法见<a href="./syndata.html#color-units">颜色单位</a>小节
+</p>
+<h2>14.1 <a name="colors">前景色</a>：<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'color'"><a name="propdef-color" class="propdef-title"><strong>'color'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;color&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>取决于用户代理
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性描述了元素文本内容的前景色。指定红色有几种不同的方式：
+</p>
+<div class="example"><P style="display:none">示例：</P>
+<pre>
+em { color: red }              /* predefined color name */
+em { color: rgb(255,0,0) }     /* RGB range 0-255   */
+</pre>
+</div>
+
+<h2>14.2 <a name="background">背景</a></h2>
+
+<p>编写者可以把一个元素的背景（即，它的绘制表面（rendering surface）指定为一个颜色或者一张图片。根据<a href="box.html#box-model">盒模型</a>，"background"是指<a href="box.html#box-content-area">content</a>，<a href="box.html#box-padding-area">padding</a>和<a href="box.html#box-border-area">border</a>区域的背景。边框颜色和样式通过<a href="box.html#border-properties">border属性</a>来设置，而margin总是透明的
+</p>
+<p>background属性是不可继承的，但默认情况下父级盒的背景将透过来，因为<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>的初始值为'transparent'
+</p>
+<p>
+根元素的背景会成为画布的背景并覆盖整个<a href="intro.html#canvas">画布</a>，被定位（用<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a>）在同一个位置，就像它只是为根元素本身绘制的一样。根元素不会再次绘制这个背景
+</p>
+
+<p>然而，对于HTML文档，我们推荐编写者给BODY元素指定背景，而不是给HTML元素。对于那些根元素是<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>计算值为'transparent'且<a href="colors.html#propdef-background-image" class="noxref"><span class="propinst-background-image">'background-image'</span></a>计算值为'none'的HTML的"HTML"元素或者XHTML的"html"元素的文档，用户代理在给画布绘制背景时，必须应用该元素的第一个HTML的"BODY"元素或者XHTML的"body"元素子级的background属性的计算值，并且不给那些子元素绘制背景（作为画布的背景覆盖整张画布）。这种背景也必须被定位到同一个位置，就像它们只是为根元素绘制的一样
+</p>
+<div class="html-example"><p>
+根据这些规则，如下HTML文档下层的画布将具有一个"marble"背景：
+</p>
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+    &lt;TITLE&gt;Setting the canvas background&lt;/TITLE&gt;
+    &lt;STYLE type="text/css"&gt;
+       BODY { background: url("http://example.com/marble.png") }
+    &lt;/STYLE&gt;
+    &lt;P&gt;My background is marble.
+</pre>
+<p>
+注意，即使在HTML源码中省略了BODY标签，BODY元素上的规则仍将生效，因为HTML解析器会推断缺少的标签
+</p>
+</div>
+
+<p>
+形成了一个堆叠上下文（见<a href="visuren.html#prpdef-z-index" class="noxref"><span class="propinst-z-index">'z-index'</span></a>属性）的元素的背景会被绘制在该元素的堆叠上下文的底部，在堆叠上下文中的所有东西的下面
+</p>
+
+<h3>14.2.1 <a name="background-properties">background属性</a>：<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>，<a href="colors.html#propdef-background-image" class="noxref"><span class="propinst-background-image">'background-image'</span></a>，<a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">'background-repeat'</span></a>，<a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">'background-attachment'</span></a>，<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a>和<a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+</h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-color'"><a name="propdef-background-color" class="propdef-title"><strong>'background-color'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;color&gt;</span></a> | transparent | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>transparent
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性设置了一个元素的背景色，要么是一个<span class="index-inst" title="&lt;color&gt;"><a name="x2" href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;color&gt;</span></a></span>值，要么是关键字'transparent'让底层颜色透出来
+</p>
+<div class="example"><P style="display:none">示例：</P>
+<pre>
+h1 { background-color: #F00 }
+</pre>
+</div>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-image'"><a name="propdef-background-image" class="propdef-title"><strong>'background-image'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>none
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>绝对URI或者none
+</table>
+</dl>
+</div>
+
+
+<p>该属性设置了一个元素的背景图片。在设置一幅背景图片时，编写者还应该指定一个将在图片不可用时应用的背景色。当图片可用时，它会被渲染在背景色上面（因此，在图片的透明部分背景色是可见的）
+</p>
+<p>该属性的值是用来指定图片的<span class="index-inst" title="&lt;uri&gt;"><a name="x4" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a></span>，或者'none'，表示不使用图片
+</p>
+
+<div class="example"><P style="display:none">示例：</P>
+<pre>
+body { background-image: url("marble.png") }
+p { background-image: none }
+</pre>
+</div>
+
+<p>百分比形式的内在尺寸必须根据为<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a>属性建立坐标系的矩形的尺寸来解析
+</p>
+<p>如果具有一个内在宽度或者内在高度和内在宽高比，那么缺少的尺寸就根据给定的尺寸和比例来计算
+</p>
+<p>如果图片具有一个内在宽度或者内在高度但没有内在宽高比，那么缺少的尺寸被假设为给'background-position'属性建立坐标系的矩形的尺寸
+</p>
+<p>如果图片没有内在尺寸但具有一个内在比例，就把尺寸假定为不超出给<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a>属性建立坐标系的矩形中满足该比例的最大尺寸
+</p>
+<p>如果图片没有内在比例，那么就把尺寸假定为给<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a>属性建立坐标系的矩形
+</p>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-repeat'"><a name="propdef-background-repeat" class="propdef-title"><strong>'background-repeat'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>repeat | repeat-x | repeat-y | no-repeat | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>repeat
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>如果指定了一张背景图片，该属性指定了此图片是否需要平铺，以及怎样平铺。整个平铺会覆盖盒的<a href="box.html#box-content-area">content</a>，<a href="box.html#box-padding-area">padding</a>和<a href="box.html#box-border-area">border</a>区域
+</p><p>
+内联元素上background-image的平铺和定位在本规范中是未定义的。将来的CSS版本可能会定义内联元素上background-image的平铺和定位
+</p>
+<p>属性值含义如下：</p>
+
+<dl>
+<dt><strong>repeat</strong></dt>
+<dd>图片在水平方向和竖直方向都平铺</dd>
+<dt><strong>repeat-x</strong></dt>
+<dd>图片只在水平方向平铺</dd>
+<dt><strong>repeat-y</strong></dt>
+<dd>图片只在竖直方向平铺</dd>
+<dt><strong>no-repeat</strong></dt>
+<dd>图片不平铺：只绘制该图片的一份拷贝</dd>
+</dl>
+
+<div class="example"><P style="display:none">示例：</P>
+<pre>
+body { 
+  background: white url("pendant.png");
+  background-repeat: repeat-y;
+  background-position: center;
+}
+</pre>
+<div class="figure">
+<p><img src="images/bg-repeat.png" alt="A centered background image,
+with copies repeated up and down the padding and content areas."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-bg-repeat" href="images/longdesc/bg-repeat-desc.html" title="Long description for background pattern">[D]</A></SPAN>
+</p>
+<p class="caption">背景图片的一份拷贝居中了，而其它拷贝被放在它的上方和下方，在元素后面形成了一条竖直带
+</p>
+</div>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-attachment'"><a name="propdef-background-attachment" class="propdef-title"><strong>'background-attachment'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>scroll | fixed | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>scroll
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>如果指定了一张背景图片，该属性指定了它应该相对<a href="visuren.html#viewport">视口</a>固定（'fixed'）还是随包含块滚动（'scroll'）</p>
+
+<p>注意，每个视图只有一个视口。如果一个元素具有滚动机制（见'overflow'），'fixed'背景不会随该元素移动，而'scroll'背景也不会随滚动机制移动</p>
+
+<p>即使图片是固定的，它仍然只在处于该元素的content，padding或者border区域时才可见。因此，图片可能不可见，除非它是平铺的（'background-repeat: repeat'）
+</p>
+<p>在分页媒体中不存在视口的地方，'fixed'背景相对页盒固定，并且因此在每一页上重复
+
+<div class="example"><P style="display:none">示例：</P><p>本例创建了一个在元素滚动时，“粘”在视口上的无限竖直带
+</p>
+<pre>
+body { 
+  background: red url("pendant.png");
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+}
+</pre>
+</div>
+
+<p>
+不支持'fixed'背景的用户代理（例如，由于硬件平台的限制）应该忽略带有'fixed'关键字的声明，例如：
+</p>
+<pre>
+body {
+  background: white url(paper.png) scroll; /* for all UAs */
+  background: white url(ledger.png) fixed; /* for UAs that do fixed backgrounds */
+}
+</pre>
+<p>
+详情见<a href="conform.html#conformance">一致性</a>章节
+</p>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-position'"><a name="propdef-background-position" class="propdef-title"><strong>'background-position'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[ [ <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a> | left | center | right ]
+           [ <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a> | top | center | bottom ]? ] |
+         [ [ left | center | right ] || [ top | center | bottom ] ] |
+         <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>0% 0%
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>参照该盒本身的尺寸
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>对于<a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a>是绝对的值，否则就是百分比
+</table>
+</dl>
+</div>
+
+
+<p>如果指定了一张背景图片，该属性指定了它的初始位置。如果只指定了一个值，第二个值就假定为'center'。如果至少有一个值不是关键字，那么第一个值表示水平位置，第二个值表示竖直位置。允许负的&lt;percentage>和&lt;length>值
+
+
+
+<dl>
+  <dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x8" href="syndata.html#value-def-percentage" class="noxref"><span
+  class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a></span>
+
+  <dd>百分比值X会把图片在横向（水平方向）或者纵向（竖直方向）X%的点与该元素的padding box横向或者纵向X%的点对齐。例如，值为'0% 0%'对时，图片的左上角与padding box的左上角对齐。值为'100% 100%'对时，把图片的右下角放在padding box的右下角。值为'14% 84%'对时，把图片横向14%纵向84%的位置放在padding box的横向14%纵向84%的位置
+
+  <dt><span class="index-inst" title="&lt;length&gt;"><a name="x9" href="syndata.html#value-def-length" class="noxref"><span
+  class="value-inst-length"><strong>&lt;length&gt;</strong></span></a></span>
+
+  <dd>长度L是让图片的左上角与该元素的padding box的左上角向右（水平方向）或者向下（竖直方向）距离L的位置对齐。例如，值为'2cm 1cm'对，图片的左上角放在距padding box左上角向右2cm向下1cm的位置
+
+  <dt><strong>top</strong>
+
+  <dd>等价于竖直位置的'0%'
+
+  <dt><strong>right</strong>
+
+  <dd>等价于水平位置的'100%'
+
+  <dt><strong>bottom</strong>
+
+  <dd>等价于竖直位置的'100%'
+
+  <dt><strong>left</strong>
+
+  <dd>等价于水平位置的'0%'
+
+  <dt><strong>center</strong>
+
+  <dd>等价于水平位置的'50%'，否则如果没有给定（水平位置）的话，或者竖直位置的'50%'，如果给定了（水平位置）
+</dl>
+
+<p>然而，如果图片具有一个内在比例但没有内在尺寸，其位置在CSS&nbsp;2.1中是未定义的
+
+<div class="example"><P style="display:none">示例：</P>
+<pre>
+body { background: url("banner.jpeg") right top }    /* 100%   0% */
+body { background: url("banner.jpeg") top center }   /*  50%   0% */
+body { background: url("banner.jpeg") center }       /*  50%  50% */
+body { background: url("banner.jpeg") bottom }       /*  50% 100% */
+</pre>
+</div>
+
+<p>
+内联元素上background-image的平铺和定位在本规范中是未定义的。将来的CSS版本可能会定义内联元素上background-image的平铺和定位
+</p>
+<p>如果背景图片在视口中是固定的（见<a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">'background-attachment'</span></a>属性），图片就相对于视口放置，而不是该元素的padding box。例如，
+</p>
+<div class="example"><P style="display:none">示例：</P>
+<pre>
+body { 
+  background-image: url("logo.png");
+  background-attachment: fixed;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+} 
+</pre>
+
+<p>上例中，（单一的）图片位于视口的右下角
+</p>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background'"><a name="propdef-background" class="propdef-title"><strong>'background'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">&lt;'background-color'&gt;</span></a> || <a href="colors.html#propdef-background-image" class="noxref"><span class="propinst-background-image">&lt;'background-image'&gt;</span></a> || <a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">&lt;'background-repeat'&gt;</span></a>
+|| <a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">&lt;'background-attachment'&gt;</span></a> || <a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">&lt;'background-position'&gt;</span></a>] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>见单独的各个属性
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>允许'background-position'上的百分比
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>见单独的各个属性
+</table>
+</dl>
+</div>
+
+
+<p><a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>属性是一个简写属性，用来在样式表中一次性设置各个background属性（即，<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>，<a href="colors.html#propdef-background-image" class="noxref"><span class="propinst-background-image">'background-image'</span></a>，<a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">'background-repeat'</span></a>，<a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">'background-attachment'</span></a>和<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a>）
+</p>
+<p>对于一个给定的合法声明，<a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>属性先把所有单独的background属性设置为它们的初始值，然后显式赋值为声明中给定的值
+</p>
+<div class="example"><P style="display:none">示例：</P><p> 
+下例的第一条规则中，<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>只给定了一个只，而其它各个属性会被设置为其初始值。第二条规则中，所有单独的属性都被指定了
+</p>
+<pre>
+BODY { background: red }
+P { background: url("chess.png") gray 50% repeat fixed }
+</pre>
+</div>
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="page.html">上一章</a> &nbsp;
+<a href="fonts.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</body>
+</html>
+

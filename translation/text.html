@@ -1,0 +1,540 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>文本</title>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="fonts.html">
+<link rel="next" href="tables.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css">
+.current,.proposed,span.delcurrent { background:#feb }
+ins.proposed,span.insproposed { background:#bfb }
+del.proposed,span.delproposed { background:#fbb }
+span.insproposed { text-decoration:underline }
+span.delproposed,span.delcurrent { text-decoration:line-through }
+body>del,body>ins {display:block}
+</style>
+<style type="text/css">
+.egbidiwsaA,.egbidiwsbB,.egbidiwsaB,.egbidiwsbC
+{ white-space:pre;font-size:80%;font-family:monospace; vertical-align:2px; margin:1px }
+.egbidiwsaA { background:lime;padding:2px; }
+.egbidiwsbB { border:2px solid blue }
+.egbidiwsaB { background:yellow;border:2px dotted white }
+.egbidiwsbC { border:2px dotted red }
+</style>
+</head>
+<body>
+<div class="navbar">
+<p><a href="fonts.html">上一章</a> &nbsp;
+<a href="tables.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<h1><a name="q0">16 文本</a></h1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="text.html#indentation-prop" class="tocxref">16.1 简介：<span class="propinst-text-indent">'text-indent'</span>属性</a>
+    <li class="tocline2"><a href="text.html#alignment-prop" class="tocxref">16.2 对齐：<span class="propinst-text-align">'text-align'</span>属性</a>
+    <li class="tocline2"><a href="text.html#decoration" class="tocxref">16.3 修饰</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="text.html#lining-striking-props" class="tocxref">16.3.1 下划线，上划线，突出显示（striking）与闪烁：<span class="propinst-text-decoration">'text-decoration'</span>属性</a>
+    </ul>
+    <li class="tocline2"><a href="text.html#spacing-props" class="tocxref">16.4 字母与单词间距：<span class="propinst-letter-spacing">'letter-spacing'</span>和<span class="propinst-word-spacing">'word-spacing'</span>属性</a>
+    <li class="tocline2"><a href="text.html#caps-prop" class="tocxref">16.5 大写：<span class="propinst-text-transform">'text-transform'</span>属性</a>
+    <li class="tocline2"><a href="text.html#white-space-prop" class="tocxref">16.6 空白字符：<span class="propinst-white-space">'white-space'</span>属性</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="text.html#white-space-model" class="tocxref">16.6.1 'white-space'处理模型</a>
+      <li class="tocline3"><a href="text.html#egbidiwscollapse" class="tocxref">16.6.2 空白字符合并的双向性示例</a>
+      <li class="tocline3"><a href="text.html#ctrlchars" class="tocxref">16.6.3 控制与合并字符的细节</a>
+    </ul>
+  </ul>
+</div>
+
+<p>定义在下列小节的属性能够影响字符、空格、单词和段落的可视化表现
+</p>
+
+<h2>16.1 <a name="indentation-prop">简介</a>：<a href="text.html#propdef-text-indent" class="noxref"><span class="propinst-text-indent">'text-indent'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-indent'"><a name="propdef-text-indent" class="propdef-title"><strong>'text-indent'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>0
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>块容器
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>参照包含块的宽度
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>百分比与指定值相同，或者是绝对长度
+</table>
+</dl>
+</div>
+
+
+<p>该属性指定了块容器中第一行文本的缩进。更精确的，它指定了排列在该块内第一个<a href="visuren.html#line-box">行盒</a>里的第一个盒的缩进。该盒相对行盒的left（或者right，对于从右向左布局）边缩进。用户代理要把这种缩进当作空白字符来渲染
+</p>
+
+<p>'text-indent'只影响元素的<a href="selector.html#first-line-pseudo">第一个格式化行</a>。例如，匿名块盒的第一行会受到影响，如果它是父元素（指匿名块盒）的第一个子级的话
+
+<p>值含义如下：</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x1" href="syndata.html#value-def-length" class="noxref"><span
+class="value-inst-length">&lt;length&gt;</span></a></span></dt>
+<dd>缩进是一个固定长度</dd>
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x2" href="syndata.html#value-def-percentage" class="noxref"><span
+class="value-inst-percentage">&lt;percentage&gt;
+</span></a></span></dt>
+<dd>缩进是包含块宽度的百分比</dd>
+</dl>
+
+<p><a href="text.html#propdef-text-indent" class="noxref"><span class="propinst-text-indent">'text-indent'</span></a>的值可以为负，但可能存在具体实现限制。如果<a href="text.html#propdef-text-indent" class="noxref"><span class="propinst-text-indent">'text-indent'</span></a>值为负或者超出了该块的宽度，上面描述的<em>第一个盒</em>可以从块溢出。<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>的值将影响这种从块溢出的文本是否可见
+</p>
+
+
+<div class="example"><P style="display:none">示例：</P><p>
+下例会产生'3em'的文本缩进
+</p>
+<pre><code class="css">
+p { text-indent: 3em }
+</code></pre>
+</div>
+
+<p class="note">
+注意：因为'text-intent'属性会继承，给一个块元素指定时，它将影响后代inline-block元素。因此，一般最好给被指定了'<code>display:inline-block</code>'的元素指定'<code>text-indent: 0</code>'
+</p>
+
+<h2>16.2 <a name="alignment-prop">对齐：</a><a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-align'"><a name="propdef-text-align" class="propdef-title"><strong>'text-align'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>left | right | center | justify | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>如果'direction'为'ltr'，就是'left'，如果'direction'为'rtl'就是'right'
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>块容器
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>初始值，或者与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性描述了快容器的内联级内容怎样对齐。值含义如下：</p>
+
+<dl>
+<dt>left, right, center, justify</dt>
+<dd>分别为左对齐，右对齐，居中和两端对齐文本，如<a href="visuren.html#inline-formatting">内联格式化章节</a>所述</dd>
+</dl>
+
+<p>文本块是<a href="visuren.html#line-box">行盒</a>的堆叠。对于'left'，'right'和'center'，该属性指定了每个行盒中的内联级盒相对于行盒的左边和右边怎样对齐，对齐不是相对于<a href="visuren.html#viewport">视口</a>的。对于'justify'，该属性指定了如果可以的话，通过扩宽或者缩紧行盒的内容，让内联级盒与行盒的两边都对齐，否则就按照其初始值来对齐（另见<a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>和<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>）
+</p>
+<p>
+如果元素'white-space'的计算值为'pre'或者'pre-wrap'，那么该元素文本内容的字形和它的空白字符都不会因为两端对齐（justification）而发生变化
+</p>
+
+<p class=note>注意：CSS将来可能会新增一种让'white-space: pre-wrap'文本两端对齐的方法
+
+<div class="example"><P style="display:none">示例：</P><p> 
+本例中，注意因为<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>是可继承的，带有类名'important'的DIV元素中的所有块级元素会让它们的内联内容居中
+</p>
+<pre><code class="css">
+div.important { text-align: center }
+</code></pre>
+</div>
+
+<div class="note"><p>
+<em><strong>注意</strong>
+应用的实际两端对齐算法取决于用户代理和文本的语言/文字（script）</em>
+</p>
+</div>
+<p><em>（与CSS规范）<span class="index-inst" title="conformance"><a name="x4" href="conform.html#conformance">一致的用户代理</a></span>可能会把'justify'值解释为'left'或者'right'，分别取决于该元素的默认书写方向是从左向右还是从右向左
+</em>
+</p>
+
+<h2>16.3 <a name="decoration">修饰</a></h2>
+
+<h3>16.3.1 <a name="lining-striking-props">下划线，上划线，突出显示（striking）与闪烁</a>：<a href="text.html#propdef-text-decoration" class="noxref"><span class="propinst-text-decoration">'text-decoration'</span></a>属性</h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-decoration'"><a name="propdef-text-decoration" class="propdef-title"><strong>'text-decoration'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>none | [ underline || overline || line-through || blink ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>none
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no（见下文）
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>
+该属性描述了可以给元素文本添加的修饰，（修饰）会应用元素的颜色。在指定或者传播给一个内联元素时，它会影响该元素生成的所有盒，还会进一步传播给分割该内联元素的所有流内块级盒（见<a href="visuren.html#anonymous-block-level">9.2.1.1节</a>）。但在CSS&nbsp;2.1中，修饰是否会传入块级表格是未定义的。对于建立了一个<a href="visuren.html#inline-formatting">内联上下文</a>的块容器，修饰会传播给一个包住了该块容器的所有流内内联级子级的匿名内联元素。对于所有其它元素，会传播给所有流内子级。注意，文本修饰不会传播给浮动和绝对定位的后代，也不会传播给原子内联级（atomic inline-level）后代的内容，例如，内联块和内联表格
+<p>
+underline（下划线），overline（上划线）和line-through（中划线）只适用于文本（包括空白字符，字母间隔和单词间隔）：margin，border和padding会被跳过。用户代理不要渲染非文本内容上的这些文本修饰。例如，图片和内联块不能有下划线
+
+<div class=note>
+<p><em><strong>注意</strong> 如果一个元素E既有'visibility: hidden'也有'text-decoration: underline'，下划线是不可见的（尽管E的父级的所有修饰都<strong>是</strong>可见的）。然而，CSS&nbsp;2.1没有指定E的子级中的下划线是可见的还是不可见的：</em>
+<pre class=html-example>
+&lt;span style="visibility: hidden; text-decoration: underline"&gt;
+ &lt;span style="visibility: visible"&gt;
+  underlined or not?
+ &lt;/span&gt;
+&lt;/span&gt;
+</pre>
+<p><em>预期在CSS3中指定这种情况</em>
+</div>
+
+<p>
+后代元素的'text-decoration'属性不会影响祖先的修饰。在确定文本修饰线的位置和粗细程度时，用户代理可以考虑后代的主基线（dominant baseline）和字体大小，但每行必须应用相同的基线和粗细程度。相对定位一个后代元素会移动影响该后代元素文本的所有文本修饰，不会影响那一行中修饰的初始位置的计算
+</p>
+
+<p>值含义如下：</p>
+
+<dl>
+<dt>none</dt>
+<dd>不会产生文本修饰</dd>
+<dt>underline</dt>
+<dd>每行文本都有下划线</dd>
+<dt>overline</dt>
+<dd>每行文本上方都有一条线</dd>
+<dt>line-through</dt>
+<dd>每行文本都有一条线从中间穿过</dd>
+<dt>blink</dt>
+<dd>文本闪烁（可见和不可见交替变化）。（与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>可以简单的不闪烁文本。注意，不闪烁文本是一项满足<a href="http://www.w3.org/TR/UAAG/guidelines.html#tech-on-off-blinking-text">WAI-UAAG的checkpoint 3.3</a>（WAI-UAAG指Web可访问性倡议-用户代理可用性指南）的技术</dd>
+</dl>
+<p>
+文本修饰需要的颜色必须来自'text-decoration'所在的元素的<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>属性值。修饰的颜色必须保持相同，即使后代元素具有不同的<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>值
+</p>
+<p>
+某些用户代理已经通过把修饰传播给后代元素实现了text-decoration，而没有保留上面描述的不变的粗细程度和行位置。这在CSS2宽松的描述中可以说是允许的。SVG1，CSS1-only和CSS2-only的用户代理可以实现旧模式，并仍然声称与CSS&nbsp;2.1这部分一致（这不适用于在本规范发布后开发的UA）
+</p>
+
+<div class="example"><P style="display:none">示例：</P><p>
+如下HTML的示例中，所有A元素的文本内容会像超链接（无论访问过与否）一样被加上下划线：</p>
+
+<pre><code class="css">
+a:visited,a:link { text-decoration: underline }
+</code></pre>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><p>
+下列样式表和文档片段中：
+</p>
+<pre><code class="css">
+   blockquote { text-decoration: underline; color: blue; }
+   em { display: block; }
+   cite { color: fuchsia; }
+</code></pre>
+<pre><code class="html">
+   &lt;blockquote&gt;
+    &lt;p&gt;
+     &lt;span&gt;
+      Help, help!
+      &lt;em&gt; I am under a hat! &lt;/em&gt;
+      &lt;cite&gt; &mdash;GwieF &lt;/cite&gt;
+     &lt;/span&gt;
+    &lt;/p&gt;
+   &lt;/blockquote&gt;
+</code></pre>
+<p>
+...blockquote元素的下划线被传播给一个环绕着span元素的匿名内联元素，让文本"Help, help!"变成蓝色，带有来自它下面的匿名内联元素的蓝色下划线，颜色取自blockquote元素。em块中的<code>&lt;em&gt;text&lt;/em&gt;</code>也有下划线，因为它位于下划线能传播到的流内块中。最后一行文本是fuchsia（紫红色），但它下方的下划线仍然是来自匿名内联元素的蓝色下划线
+</p>
+<p><img src="images/underline-example.png" alt="Sample rendering of the above underline example">
+</p>
+<p>
+此图展示了上例中的涉及的盒。圆角水绿色线代表包裹着段落元素的内联内容的匿名内联元素，圆角蓝色线代表span元素，橘黄色线代表块
+</p>
+</div>
+
+<h2>16.4 <a name="spacing-props">字母与单词间距</a>：<a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>和<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'letter-spacing'"><a name="propdef-letter-spacing" class="propdef-title"><strong>'letter-spacing'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>normal | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>normal
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>'normal'或者绝对长度
+</table>
+</dl>
+</div>
+
+
+<p>该属性指定了文本字符间隔的行为。值含义如下：</p>
+
+<dl>
+<dt>normal</dt>
+<dd>间隔是当前字体的常规间隔。该值允许用户代理为了让文本两端对齐而改变字符间隔</dd>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x7" href="syndata.html#value-def-length" class="noxref"><span
+class="value-inst-length">&lt;length&gt;</span></a></span></dt>
+<dd>该值表示<em>除</em>字符间的默认间隔外的字符间间隔。值可以为负，但可能存在具体实现限制。用户代理不能为了让文本两端对齐而进一步增加或者减少字符间间隔</dd>
+</dl>
+
+<p>字符间隔算法是依赖用户代理的
+</p>
+<div class="example"><P style="display:none">示例：</P><p>
+本例中，BLOCKQUOTE元素中的字符间隔增大了'0.1em'
+</p>
+<pre><code class="css">
+blockquote { letter-spacing: 0.1em }
+</code></pre>
+
+<p>下例中，不允许用户代理改变字符间间隔：</p>
+
+<pre><code class="css">
+blockquote { letter-spacing: 0cm }   /* Same as '0' */
+</code></pre>
+</div>
+
+<p>当两个字符间产生的间隔与默认间隔不同时，用户代理不应该使用<a name="x8"><span class="index-inst" title="ligatures">连字（ligature）</span></a>
+</p>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'word-spacing'"><a name="propdef-word-spacing" class="propdef-title"><strong>'word-spacing'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>normal | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>normal
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>对于'normal'，为'0'，否则就是绝对长度
+</table>
+</dl>
+</div>
+
+
+<p>该属性指定了单词间的间隔行为。值含义如下：</p>
+
+<dl>
+<dt>normal</dt>
+<dd>常规单词间间隔，由当前字体和/或<abbr title="user agent">UA</abbr>定义</dd>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x10" href="syndata.html#value-def-length" class="noxref"><span
+class="value-inst-length">&lt;length&gt;</span></a></span></dt>
+<dd>该值表示<em>除</em>默认单词间隔外的单词间间隔。值可以为负，但可能存在具体实现限制</dd>
+</dl>
+
+<p>单词间隔算法是依赖用户代理的。单词间隔也受两端对齐的影响（见<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性）。单词间隔会影响每个空格(U+0020)和非间断空格（non-breaking space）(U+00A0)，留在空白字符处理规则应用之后的文本中。该属性对其它单词分隔符字符的效果是未定义的。然而，一般标点符号，0步进宽度（advance width）字符（例如，0步进宽度空格U+200B）和固定宽度空格（例如，U+3000和U+2000到U+200A）都不受影响
+
+<div class="example"><P style="display:none">示例：</P><p>
+本例中，H1元素中每个单词间的单词间隔增大了'1em'
+</p>
+<pre><code class="css">
+h1 { word-spacing: 1em }
+</code></pre>
+</div>
+
+<h2>16.5 <a name="caps-prop">大写</a>：<a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-transform'"><a name="propdef-text-transform" class="propdef-title"><strong>'text-transform'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>capitalize | uppercase | lowercase | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>none
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性控制元素文本的大写效果。值含义如下：</p>
+
+<dl>
+  <dt>capitalize</dt>
+  <dd>让每个单词的第一个字符大写，其它字符不受影响</dd>
+  <dt>uppercase</dt>
+  <dd>让每个单词的所有字符都大写</dd>
+  <dt>lowercase</dt>
+  <dd>让每个单词的所有字符都小写</dd>
+  <dt>none</dt>
+  <dd>没有大写效果</dd>
+</dl>
+
+<p>每种情况下的实际转换依赖书写语言。确定一个元素的语言的方法见BCP&nbsp;47（<a href="refs.html#ref-BCP47" rel="biblioentry" class="noxref"><span class="informref">[BCP47]</span></a>）（BCP指最佳当前实践）
+</p>
+<p>只有属于"bicameral scripts" <a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>的字符会受到影响
+</p>
+<div class="example"><P style="display:none">示例：</P><p>
+本例中，H1元素中的所有文本都会被转换为大写文本
+</p>
+<pre><code class="css">
+h1 { text-transform: uppercase }
+</code></pre>
+</div>
+
+<h2>16.6 <a name="white-space-prop">空白字符</a>：<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'white-space'"><a name="propdef-white-space" class="propdef-title"><strong>'white-space'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>normal | pre | nowrap | pre-wrap | pre-line | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>normal
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性声明了如何处理元素内的空白字符。值含义如下：</p>
+
+
+
+<dl>
+<dt>normal</dt>
+<dd>该值指导用户代理把合并空白字符和换行序列作为填充行盒的必要操作</dd>
+<dt>pre</dt>
+<dd>该值阻止用户代理合并空白字符序列。只在保留换行符处换行</dd>
+<dt>nowrap</dt>
+<dd>该值和'normal'一样会合并空白字符，但会抑制文本中的换行</dd>
+<dt>pre-wrap</dt>
+<dd>该值阻止用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行盒（Lines are broken at preserved newline characters, and as necessary to fill line boxes.）</dd>
+<dt>pre-line</dt>
+<dd>该值指导用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行盒</dd>
+</dl>
+<p>
+源码中的换行可以用回车换行(U+000D)，换行(U+000A)或者它们两个(U+000D U+000A)或者某些其它标识文档片段开始和结束的机制（例如，SGML RECORD-START和RECORD-END token）来表示。CSS 'white-space'处理模型假设所有换行已经被标准化为换行符了。承认其它换行表示的UA必须应用空白字符处理规则，就像已经标准化过了一样。如果没有为文档语言指定换行规则，文档文本中的每个回车换行(U+000D)和CRLF序列(U+000D U+000A)都会被当作单个换行字符。默认标准化规则也适用于生成的内容
+
+<p>UA必须承认换行(U+000A)是换行符。此外，UA也可以把其它强制结束符当作UAX14（指Unicode Standard Annex，Unicode标准附件14）换行符
+
+<div class="example"><P style="display:none">示例：</P><p>下例展示了HTML中PRE和P元素和"nowrap"属性预期的<a href="syndata.html#whitespace">空白字符</a>行为
+<pre><code class="css">
+pre        { white-space: pre }
+p          { white-space: normal }
+td[nowrap] { white-space: nowrap }
+</code></pre>
+<p>此外，具有<em>非标准</em>的"wrap"属性的HTML PRE元素的效果如下例所示：
+</p>
+<pre><code class="css">
+pre[wrap]  { white-space: pre-wrap }
+</code></pre>
+</div>
+
+<h3>16.6.1 <a name="white-space-model">'white-space'处理模型</a></h3>
+<p>
+对于每个内联元素（包括匿名内联元素），执行下列步骤，对于bidi格式化字符，就当它们不存在：
+</p>
+<ol>
+<li>
+如果'white-space'被设置为'normal'，'nowrap'或者'pre-line'的话，换行符(U+000A)周围的每个制表符(U+0009)，回车换行(U+000D)或者空格(U+0020)字符会被移除
+     </li>
+<li>如果'white-space'被设置为'pre'或者'pre-wrap'的话，所有没被元素边界隔开的空格(U+0020)序列会被当作一系列非间断空格（non-breaking space）。然而，对于'pre-wrap'，在每个序列的结束处存在换行机会
+     </li>
+<li>如果'white-space'被设置为'normal'或者'nowrap'，为了渲染的目的，换行符会根据基于内容文字的具体UA算法转换为下列字符之一：空格符，0宽空格符(U+200B)或者没有字符（即，不渲染）
+     </li>
+<li>如果'white-space'被设置为'normal'，'nowrap'或者'pre-line'
+ <ol><li>每个制表符(U+0009)会被转换为一个空格(U+0020)</li>
+     <li>所有跟着另一个空格(U+0020)&mdash;甚至一个位于内联（盒）前的空格，如果该空格的'white-space'被设置为'normal'，'nowrap'或者'pre-line'的话&mdash;的空格(U+0020)会被移除</li>
+ </ol>
+ </li>
+</ol>
+<p>
+然后，放置块容器的内联（盒）。放置内联（盒）时，要考虑bidi重新排序，并且按照'white-space'属性指定的方式来换行。换行时，换行位置根据上面的空白字符合并步骤之前的文本来定
+</p>
+<p>
+当每行都摆放好后，
+</p>
+<ol>
+<li>如果'white-space'被设置为'normal'，'nowrap'或者'pre-line'的行开始处有一个空格(U+0020)，它会被移除
+     </li>
+<li>所有制表符(U+0009)会被渲染为一个水平位移，到该行下一个制表位的下一个字形的开始边。制表位出现在从该块的开始content边起，8倍渲染在该块的字体中的空格(U+0020)宽度的倍数位置（原文：Tab stops occur at points that are multiples of 8 times the width of a space (U+0020) rendered in the block's font from the block's starting content edge.）
+     </li>
+<li>如果'white-space'被设置为'normal'，'nowrap'或者'pre-line'的行结束处有一个空格(U+0020)，它会被移除
+     </li>
+<li>如果'white-space'被设置为'pre-wrap'的行结束处有一个空格(U+0020)或者制表符(U+0009)，UA可以可视化地把它们合并起来
+</ol>
+
+<p>浮动的和绝对定位的元素不会引入换行机会
+
+<div class="note"><p>
+<em><strong>注意</strong>
+CSS 2.1没有完整定义换行机会出现的位置</em>
+</div>
+
+<h3>16.6.2 <a name="egbidiwscollapse">空白字符合并的双向性示例</a></h3>
+<p>
+给出如下标记片段，特别注意空格（为了强调和标识带有不同背景和边框）：
+</p>
+<pre><code>
+ 
+     &lt;ltr&gt;A<span class="egbidiwsaA">&nbsp;</span>&lt;rtl&gt;<span class="egbidiwsbB">&nbsp;</span>B<span class="egbidiwsaB">&nbsp;</span>&lt;/rtl&gt;<span class="egbidiwsbC">&nbsp;</span>C&lt;/ltr&gt;
+
+</code></pre> 
+<p>
+...<code>&lt;ltr&gt;</code>元素代表一个从左向右的嵌入（embedding），<code>&lt;rtl&gt;</code>元素代表一个从右向左的嵌入（embedding），假设'white-space'被设置为'normal'，上面的处理模型将产生如下结果：
+</p>
+<ul style="line-height:1.3">
+<li>B(<span class="egbidiwsbB">&nbsp;</span>)前面的空格将和A(<span class="egbidiwsaA">&nbsp;</span>)后面的空格合并</li>
+<li>C(<span class="egbidiwsbC">&nbsp;</span>)前面的空格将和B(<span class="egbidiwsaB">&nbsp;</span>)后面的空格合并</li>
+</ul>
+<p>
+这样会剩下两个空格，一个在A后面处于从左向右的嵌入层级（embedding level），一个在B后面处于从右向左的嵌入层级。然后根据Unicode双向算法来渲染，结果为：
+</p>
+<pre>
+
+     A<span class="egbidiwsaA">&nbsp;</span><span class="egbidiwsaB">&nbsp;</span>BC
+
+</pre>
+<p>
+注意，A和B之间有两个空格，而B和C之间没有。有时可以通过使用字符的自然双向性而不是显式嵌入层级来避免。还有，最好避免紧跟在开始和结束标签里的空格（spaces immediately inside start and end tags），因为在处理空白字符合并时，这往往会引发奇怪的事情
+</p>
+
+<h3>16.6.3 <a name="ctrlchars">控制与合并字符的细节</a></h3>
+
+<p>除U+0009（tab），U+000A（换行），U+0020（空格）和U+202x（bidi格式化字符）外的控制字符会被当作任意常规字符，以相同方式渲染</p>
+
+<p>组合字符（Combining character）应该被当作那些应该被组合的字符的一部分。例如，如果具有类似于"<code>o&lt;span&gt;&amp;#x308;&lt;/span&gt;</code>"的内容的话，:first-letter会样式化整个字形，而不会只匹配基本字符（base character）</p>
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="fonts.html">上一章</a> &nbsp;
+<a href="tables.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</body>
+</html>
+

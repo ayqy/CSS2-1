@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>用户界面</title>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="tables.html">
+<link rel="next" href="aural.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+<style type="text/css">
+.current,.proposed,span.delcurrent { background:#feb }
+ins.proposed,span.insproposed { background:#bfb }
+del.proposed,span.delproposed { background:#fbb }
+span.insproposed { text-decoration:underline }
+span.delproposed,span.delcurrent { text-decoration:line-through }
+body>del,body>ins {display:block}
+</style>
+</head>
+<body>
+<div class="navbar">
+<p><a href="tables.html">上一章</a> &nbsp;
+<a href="aural.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<h1><a name="q0">18 用户界面</a></h1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="ui.html#cursor-props" class="tocxref">18.1 光标：<span class="propinst-cursor">'cursor'</span>属性</a>
+    <li class="tocline2"><a href="ui.html#system-colors" class="tocxref">18.2 系统配色</a>
+    <li class="tocline2"><a href="ui.html#system-fonts" class="tocxref">18.3 用户偏好的字体</a>
+    <li class="tocline2"><a href="ui.html#dynamic-outlines" class="tocxref">18.4 动态轮廓：<span class="index-def" title="outline">'outline'</span>属性</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="ui.html#outline-focus" class="tocxref">18.4.1 轮廓与焦点</a>
+    </ul>
+    <li class="tocline2"><a href="ui.html#magnification" class="tocxref">18.5 放大</a>
+  </ul>
+</div>
+
+<h2>18.1 <a name="cursor-props">光标：</a><a href="ui.html#propdef-cursor" class="noxref"><span
+class="propinst-cursor">'cursor'</span></a>属性</h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cursor'"><a name="propdef-cursor" class="propdef-title"><strong>'cursor'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[ [<a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> ,]* [ auto | crosshair | default | pointer | move | e-resize
+| ne-resize | nw-resize | n-resize | se-resize | sw-resize | s-resize
+| w-resize | text | wait | help | progress ] ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>auto
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>yes
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>, <a href="media.html#interactive-media-group" class="noxref">interactive</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>除了把所有相对URL转换为绝对URL之外，与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>该属性指定了指针设备显示的光标类型。值含义如下：
+</p>
+
+<dl>
+<dt>auto</dt>
+<dd>UA根据当前上下文确定显示的光标</dd>
+
+<dt>crosshair</dt>
+<dd>一个简单的十字（例如，与"+"号类似的短线段）
+</dd>
+<dt>default</dt>
+<dd>依赖平台的默认光标。通常渲染成一个箭头
+</dd>
+<dt>pointer</dt>
+<dd>光标是一个暗示链接的指针
+</dd>
+<dt>move</dt>
+<dd>暗示某些东西可以被移动
+</dd>
+<dt>e-resize, ne-resize, nw-resize, n-resize, se-resize,
+sw-resize, s-resize, w-resize</dt>
+
+<dd>暗示某些边可以被移动。例如，'se-resize'光标用于移动从盒的东南角开始时
+</dd>
+<dt>text</dt>
+<dd>暗示可以被选中的文本。通常渲染成一个I型标（I-beam）
+</dd>
+<dt>wait</dt>
+<dd>暗示程序正忙，用户应该等待。通常渲染成一个钟表或者沙漏
+</dd>
+<dt>progress</dt>
+<dd>一个进度指示器。程序正在执行某些处理，但与'wait'的区别在于用户仍然可以与程序交互。通常渲染成一个旋转的沙滩球，或者一个带有钟表或沙漏的箭头
+</dd>					    
+<dt>help</dt>
+<dd>通过鼠标下方的对象可以获得帮助。通常渲染成一个问号或者气球
+</dd>
+<dt><span class="index-inst" title="&lt;uri&gt;"><a name="x1" href="syndata.html#value-def-uri" class="noxref"><span
+class="value-inst-uri">&lt;uri&gt;</span></a></span></dt>
+<dd>用户代理从URI指定的资源中获取光标。如果用户代理无法处理光标列表中的第一个光标，它应该尝试处理第二个，等等。如果用户代理无法处理所有用户定义的（user-defined）光标，它必须使用列表末尾的通用光标。除了用一个UA定义的矩形来代替为'background-image'属性建立了坐标系的矩形外，光标的内在尺寸的计算与<a href="colors.html#background-properties">背景图片</a>类似。UA定义的矩形应该根据UA的操作系统上典型光标的尺寸来定。如果产生的光标尺寸无法适应该矩形，UA可以按比例缩小产生的光标，直到它能适应该矩形</dd> </dl>
+
+<div class="example"><P style="display:none">示例：</P>
+<pre><code class="css">
+:link,:visited { cursor: url(example.svg#linkcursor), url(hyper.cur), pointer }
+</code></pre>
+<p>本例把所有超链接上的光标（无论访问过与否）设置为一个外部<a href="http://www.w3.org/TR/SVG/interact.html#CursorElement">SVG光标</a>。不支持SVG光标的用户代理将简单地跳到下一个值，尝试使用"hyper.cur"光标。如果光标格式不支持，UA将条到下一个值并简单地渲染'pointer'光标
+</p>
+</div>
+
+
+
+
+<h2>18.2 <a name="system-colors">系统配色</a></h2>
+
+<div class="note"><p><em><strong>注意</strong> 
+系统配色在CSS3颜色模块<a href="refs.html#ref-CSS3COLOR" rel="biblioentry" class="noxref"><span class="informref">[CSS3COLOR]</span></a>中弃用了
+</em></p>
+</div>
+
+<p>除了能够给文本，背景等等指定预定义的<a href="syndata.html#color-units">颜色值</a>外，CSS2还引入了一堆命名颜色值，让编写者通过一种把颜色集成到操作系统图像环境的方式来指定颜色
+</p>
+
+<p>对于没有对应值的系统，指定值应该被映射到最近的系统值，或者映射到一个默认颜色</p>
+
+<p>下面列出了颜色相关的CSS属性的额外的值及其一般含义。任何颜色属性（例如，<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>或者<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>）都可以取下列颜色名之一。虽然这些都是大小写不敏感的，但为了让名字更加易读，推荐使用下面大小写混合的方式</p>
+
+<dl>
+<dt>ActiveBorder</dt>
+<dd>活动窗口边框颜色</dd>
+<dt>ActiveCaption</dt>
+<dd>活动窗口标题颜色</dd>
+<dt>AppWorkspace</dt>
+<dd>多文档界面的背景色</dd>
+<dt>Background</dt>
+<dd>桌面背景色</dd>
+<dt>ButtonFace</dt>
+<dd>三维显示元素的表面色（face color）</dd>
+<dt>ButtonHighlight</dt>
+<dd>三维显示元素的高亮色（对于背对光源的边）</dd>
+<dt>ButtonShadow</dt>
+<dd>三维显示元素的阴影色</dd>
+<dt>ButtonText</dt>
+<dd>按钮上的文本颜色</dd>
+<dt>CaptionText</dt>
+<dd>标题，尺寸框（size box）和滚动条箭头框中的文本颜色</dd>
+<dt>GrayText</dt>
+<dd>变灰的（禁用的）文本。如果当前显示驱动不支持灰色的话，该颜色会被设置为#000</dd>
+<dt>Highlight</dt>
+<dd>控件中被选中的项的颜色</dd>
+<dt>HighlightText</dt>
+<dd>控件中被选中项的文本颜色</dd>
+<dt>InactiveBorder</dt>
+<dd>非活动窗口边框颜色</dd>
+<dt>InactiveCaption</dt>
+<dd>非活动窗口标题颜色</dd>
+<dt>InactiveCaptionText</dt>
+<dd>非活动标题中文本的颜色</dd>
+<dt>InfoBackground</dt>
+<dd>提示控件的背景色</dd>
+<dt>InfoText</dt>
+<dd>提示控件的文本颜色</dd>
+<dt>Menu</dt>
+<dd>菜单背景色</dd>
+<dt>MenuText</dt>
+<dd>菜单中的文本颜色</dd>
+<dt>Scrollbar</dt>
+<dd>滚动条灰色区域的颜色</dd>
+<dt>ThreeDDarkShadow</dt>
+<dd>三维显示元素的深色阴影颜色</dd>
+<dt>ThreeDFace</dt>
+<dd>三维显示元素的表面颜色（face color）</dd>
+<dt>ThreeDHighlight</dt>
+<dd>三维显示元素的高亮颜色</dd>
+<dt>ThreeDLightShadow</dt>
+<dd>三维显示元素的浅色（对于面向光源的边）</dd>
+<dt>ThreeDShadow</dt>
+<dd>三维显示元素的深色阴影颜色</dd>
+<dt>Window</dt>
+<dd>窗口背景色</dd>
+<dt>WindowFrame</dt>
+<dd>窗口框架的颜色</dd>
+<dt>WindowText</dt>
+<dd>窗口中的文本颜色</dd>
+</dl>
+
+<div class="example"><P style="display:none">示例：</P><p>
+例如，为了把一个段落的前景色和背景色设置得与用户窗口的前景色和背景色相同，这样写：
+</p>
+<pre><code class="css">
+p { color: WindowText; background-color: Window }
+</code></pre>
+</div>
+
+<h2>18.3 <a name="system-fonts">用户偏好的字体</a></h2>
+
+<p>像颜色一样，编写者也可以通过一种利用用户系统资源的方式来指定字体。详情请查看<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>属性
+</p>
+<h2>18.4 <a name="dynamic-outlines">动态轮廓：</a><a name="x2"><span class="index-def" title="outline">'outline'</span></a>属性</h2>
+
+<p>有时，为了让可视化对象，例如按钮，活动表单域，图像映射等等凸显出来，样式表编写者可能想在它们周围创建轮廓。CSS&nbsp;2.1中轮廓与<a href="box.html#border-properties">border</a>的区别如下：</p>
+
+<ol>
+<li>轮廓不占空间</li>
+<li>轮廓可以不是矩形的</li>
+</ol>
+
+<p>outline属性控制这些动态轮廓的样式
+</p>
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline'"><a name="propdef-outline" class="propdef-title"><strong>'outline'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>[ <a href="ui.html#propdef-outline-color" class="noxref"><span class="propinst-outline-color">&lt;'outline-color'&gt;</span></a> || <a href="ui.html#propdef-outline-style" class="noxref"><span class="propinst-outline-style">&lt;'outline-style'&gt;</span></a> || <a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">&lt;'outline-width'&gt;</span></a> ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>见单独的各个属性
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>, <a href="media.html#interactive-media-group" class="noxref">interactive</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>见单独的各个属性
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline-width'"><a name="propdef-outline-width" class="propdef-title"><strong>'outline-width'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="box.html#value-def-border-width" class="noxref"><span class="value-inst-border-width">&lt;border-width&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>medium
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>, <a href="media.html#interactive-media-group" class="noxref">interactive</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>绝对长度，如果outline style为'none'的话就是'0'
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline-style'"><a name="propdef-outline-style" class="propdef-title"><strong>'outline-style'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="box.html#value-def-border-style" class="noxref"><span class="value-inst-border-style">&lt;border-style&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>none
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>, <a href="media.html#interactive-media-group" class="noxref">interactive</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline-color'"><a name="propdef-outline-color" class="propdef-title"><strong>'outline-color'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td><a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;color&gt;</span></a> | invert | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>invert
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>所有元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>, <a href="media.html#interactive-media-group" class="noxref">interactive</a>
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>与指定值相同
+</table>
+</dl>
+</div>
+
+
+<p>用outline属性创建的轮廓被绘制在盒“上面”，即，轮廓总是位于上面，并且不会影响该盒或其它盒的位置和尺寸。因此，显示或者抑制轮廓不会导致重排（reflow）或者溢出
+</p>
+<p>轮廓会从<a href="box.html#border-edge">border边</a>外面开始绘制
+</p>
+<p>轮廓可以不是矩形的。例如，如果元素被拆分到了多行，轮廓是能把元素的所有盒包住的最小轮廓。与<a href="box.html#border-properties">border</a>相比，轮廓在行盒的开始处或者结束处不是断开的，而是总会尽量完全连接起来
+</p>
+<p><a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">'outline-width'</span></a>属性与<a href="box.html#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a>接受相同的值
+</p>
+<p><a href="ui.html#propdef-outline-style" class="noxref"><span class="propinst-outline-style">'outline-style'</span></a>属性与<a href="box.html#propdef-border-style" class="noxref"><span
+class="propinst-border-style">'border-style'</span></a>接受相同的值，但'hidden'不是一个合法的轮廓样式
+</p>
+<p><a href="ui.html#propdef-outline-color" class="noxref"><span class="propinst-outline-color">'outline-color'</span></a>接受所有的颜色和关键字<span class="index-def" title="invert"><a class="value-def" name="value-def-invert">'invert'</a></span>。'invert'用来对屏幕上的像素进行反色。这是一种用来确保焦点边框可见的常见技巧，无论背景色是什么
+</p>
+<p>
+不支持屏幕像素反色的平台上的（与CSS规范）一致的UA可以忽略'invert'值。如果UA不支持'invert'值，那么'outline-color'属性的初始值为'color'属性的值，与'border-top-color'属性的初始值类似
+</p>
+<p><a href="ui.html#propdef-outline" class="noxref"><span class="propinst-outline">'outline'</span></a>属性是一个简写属性，一次性设置<a href="ui.html#propdef-outline-style" class="noxref"><span class="propinst-outline-style">'outline-style'</span></a>，<a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">'outline-width'</span></a>和<a href="ui.html#propdef-outline-color" class="noxref"><span class="propinst-outline-color">'outline-color'</span></a>
+</p>
+<div class="note"><p><em><strong>注意</strong> 
+所有方向的轮廓都一样。与border相比，不存在'outline-top'或者'outline-left'属性
+</em></p>
+</div>
+<p>本规范没有定义如何绘制多个重叠的轮廓，或者如何为被遮挡在其它元素后面的部分盒绘制轮廓
+</p>
+<div class="note"><p>
+<em><strong>注意</strong>
+因为轮廓不影响格式化（即，盒模型中没给它留任何空间），它可能会与页面上的其它元素重叠
+</em></p>
+</div>
+
+<div class="example"><P style="display:none">示例：</P><p>
+一个在BUTTON元素周围绘制粗轮廓的示例：
+</p>
+<pre><code class="css">
+button { outline : thick solid}
+</code></pre>
+
+<p>用脚本可以动态改变轮廓的宽度，而不会引起重排（reflow）
+</p>
+</div>
+
+<h3>18.4.1 <a name="outline-focus">轮廓与焦点</a></h3>
+
+<p>图形用户界面可能会用围绕着元素的轮廓来告诉用户页面中的哪些元素具有<a name="x8"><span class="index-def" title="focus"><dfn>焦点</dfn></span></a>。这些轮廓不是任何边框，并且开启轮廓和取消轮廓不应该导致文档重排（reflow）。焦点是一份文档中用户交互的对象（例如，对于输入文本，选中按钮等等）。支持的<a href="media.html#interactive-media-group">互动媒体组</a>的用户代理必须跟踪焦点位置，并且还必须表现出焦点。这可以通过动态轮廓结合:focus伪类来实现
+</p>
+<div class="example"><P style="display:none">示例：</P>
+<p>例如，为了在元素具有焦点时，在它周围绘制一条粗黑线，在它处于激活状态时绘制一条粗红线，可以用下列规则：
+</p>
+<pre><code class="css">
+:focus  { outline: thick solid black }
+:active { outline: thick solid red }
+</code></pre>
+</div>
+
+<h2>18.5 <a name="magnification">放大</a></h2>
+
+<p>CSS工作组考虑对一份文档的放大或者部分放大不应该通过样式表来指定。用户代理可以用不同的方式来支持这种放大（例如，更大的图片，更大的声音，等等）
+</p>
+
+<p>在放大一个页面时，UA应该保持定位的（positioned）元素之间的关系。例如，一个漫画可能由图片和覆盖在上面的文本元素组成。在放大该页面时，用户代理应该保持文本位于漫画对话框（balloon）中
+</p>
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="tables.html">上一章</a> &nbsp;
+<a href="aural.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</body>
+</html>

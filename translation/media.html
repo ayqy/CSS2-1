@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>媒体类型</TITLE>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="cascade.html">
+<link rel="next" href="box.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+</HEAD>
+<BODY>
+<div class="navbar">
+<p><a href="cascade.html">上一章</a> &nbsp;
+<a href="box.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<H1><a name="q0">7 媒体类型</a></H1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="media.html#media-intro" class="tocxref">7.1 媒体类型简介</a>
+    <li class="tocline2"><a href="media.html#media-sheets" class="tocxref">7.2 指定媒体依赖的样式表</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="media.html#at-media-rule" class="tocxref">7.2.1 @media规则</a>
+    </ul>
+    <li class="tocline2"><a href="media.html#media-types" class="tocxref">7.3 可识别的（Recognized）媒体类型</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="media.html#media-groups" class="tocxref">7.3.1 媒体组</a>
+    </ul>
+  </ul>
+</div>
+
+<H2>7.1 <a name="media-intro">媒体类型简介</a></H2>
+
+<P>样式表一个最重要的特性就是它们能指定一个文档在不同的媒体上怎样展示：在屏幕上，纸上，用语音合成器，用盲文设备等等
+
+<P>某些CSS属性是专门为特定媒体设计的（例如，<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性只适用于分页媒体）。然而，有时针对不同媒体类型的样式表可能共享一个属性，但需要不同的属性值。例如，<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>属性在屏幕和打印媒体上都有效。这两种不同的媒体需要不同的属性值，典型的，一个文档将需要电脑屏幕上的字体比纸上的更大。因此，有必要指定一个样式表或者样式表的一部分适用于特定媒体
+
+<H2>7.2 <a name="media-sheets">指定媒体依赖的样式表</a></H2>
+<P>目前有两种方式来指定样式表的媒体依赖：</p>
+
+<UL>
+
+<LI>通过<a name="x0"><span class="index-inst" title="@media">@media</span></a>或者<a name="x1"><span class="index-inst" title="@import">@import</span></a>两种@规则来指定一个样式表的目标媒体
+
+<div class="example"><P style="display:none">示例：</P>
+<PRE>
+@import url("fancyfonts.css") screen;
+@media print {
+  /* style sheet for print goes here */
+}
+</PRE>
+</div>
+
+<LI>通过文档语言指定目标媒体。例如，HTML 4（<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="informref">[HTML4]</span></a>）中，LINK元素的"media"属性指定了一个外部样式表的目标媒体：
+
+<div class="html-example">
+
+<PRE>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+   &lt;HEAD&gt;
+      &lt;TITLE&gt;Link to a target medium&lt;/TITLE&gt;
+      &lt;LINK REL="stylesheet" TYPE="text/css" 
+	 MEDIA="print, handheld" HREF="foo.css"&gt;
+   &lt;/HEAD&gt;
+   &lt;BODY&gt;
+      &lt;P&gt;The body...
+   &lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+</div>
+</UL>
+
+<p><a href="cascade.html#at-import">@import</a>规则定义在<a href="cascade.html">层叠章节</a>
+
+
+<H3>7.2.1 <a name="at-media-rule">@media规则</a></H3> 
+
+<P>一条<a name="x2"><span class="index-def" title="media">@media</span></a>规则指定了一堆<a href="syndata.html#tokenization">语句</a>（用花括号分隔）的目标<a href="#media-types">媒体类型</a>。<a
+href="syndata.html#rule-sets">4.1.7 “规则集，声明块与选择器”</a>和<a href="syndata.html#parsing-errors">4.2 “处理解析错误的规则”</a>中的每个非法语句必须被忽略掉。<a name="x3"><span class="index-inst" title="@media">@media</span></a>结构允许同一样式表中含有针对各种媒体的样式规则：</P>
+
+<pre class="example">
+  @media print {
+    body { font-size: 10pt }
+  }
+  @media screen {
+    body { font-size: 13px }
+  }
+  @media screen, print {
+    body { line-height: 1.2 }
+  }
+</pre>
+
+<p>@media规则之外的样式规则适用于样式表适用的所有媒体类型。@media内部的@规则在CSS2.1中是非法的
+
+<H2>7.3 <a name="media-types">可识别的（Recognized）媒体类型</a></H2> 
+
+
+
+<P>CSS媒体类型的名字反映了相关属性生效的目标设备。下列CSS媒体类型中，媒体类型名是规范的，但描述信息是信息性的。同样的，每个属性描述信息中的"Media"字段也是信息性的
+
+<dl>
+<dt><strong>all</strong>
+<dd>适用于所有设备
+
+
+
+<dt><strong>braille</strong>
+<dd>用于盲文触觉反馈设备
+
+<dt><strong>embossed</strong>
+<dd>用于分页盲文打印机
+
+<dt><strong>handheld</strong>
+<dd>用于手持设备（典型的小屏幕，有限带宽）
+
+<dt><strong>print</strong> 
+<dd>用于分页资料和在屏幕上用打印模式看的文档。关于具体分页媒体格式化问题的更多信息，请查看<a href="page.html">分页媒体</a>章节
+
+<dt><strong>projection</strong>
+<dd>用于投影展示，例如投影仪。关于具体分页媒体格式化问题的更多信息，请查看<a href="page.html">分页媒体</a>章节
+
+<dt><strong>screen</strong> 
+<dd>主要用于彩色计算机屏幕 
+
+<dt><strong>speech</strong>
+<dd>用于语音合成器。注意：CSS2有一个类似的目的相同的媒体类型叫'aural'。详细信息见附录<a href="./aural.html">听觉（aural）样式表</a>
+
+<dt><strong>tty</strong>
+<dd>用于使用固定间距（fixed-pitch）字符网格（例如，电传打字机，终端设备或者显示功能受限的便携式设备）的媒体。编写者不应该对"tty"媒体类型使用<a href="syndata.html#length-units">像素单位</a>
+
+<dt><strong>tv</strong>
+<dd>用于电视类（television-type）设备（低分辨率，彩色，滚动受限的屏幕，音频都是可用的） 
+</dl>
+
+<P>媒体类型名是大小写不敏感的
+
+<P>在有些场景下，媒体类型是互斥的，用户代理渲染一份文档时会只支持一种媒体类型。然而，用户代理可能使用对不同的画布（canvases）用不同的媒体类型。例如，一份文档可能（同时）被用'screen'模式展示在一块画布上并用'print'模式展示在另一块画布上
+
+<p>注意，多模式（multimodal）媒体类型仍然只是一个媒体类型。例如，'tv'媒体类型是一种多模式媒体类型，在单一画布上既进行视觉渲染又进行听觉渲染
+
+<p>带有未知媒体类型（虽然是合法的标识符）的@media和@import规则被当作就像未知媒体类型没有出现一样。如果一个@media/@import规则含有一个格式错误的媒体类型（不是一个标识符），那么该语句是非法的
+
+<p class=note><em><strong>注意：</strong>媒体查询代替了这种错误处理</em>
+
+<div class="example"><P style="display:none">示例：</P>
+<p>例如，下列片段中，P元素上的规则适用于'screen'模式（即使'3D'媒体类型是未知的）
+
+<pre>
+@media screen, 3D {
+  P { color: green; }
+}
+</pre>
+</div>
+
+
+<div class="note"><P>
+<em><strong>注意</strong>
+CSS更新版本的特性可能会扩展媒体类型列表。编写者不应该依赖CSS规范中尚未定义的媒体类型名
+</em>
+</div>
+
+<H3>7.3.1 <a name="media-groups">媒体组</a></H3>
+
+<P><em>本节是信息性的，非规范</em></P>
+
+<P>每个CSS属性定义都指定了属性适用于哪种媒体类型。因为属性一般应用于好几个媒体类型，每个属性定义中的"Applies to media"列出了<a name="x4"><span class="index-def" title="media group">媒体组</span></a>而不是个别媒体类型。每个属性适用于其定义中媒体组中列出的所有媒体类型
+
+<P>CSS&nbsp;2.1定义了下列媒体组：</P>
+<ul>
+<li>
+<span class="index-def" title="'continuous' media group"><a name="continuous-media-group"><strong>continuous</strong></a></span>或者<span class="index-def" title="'paged' media group"><a name="paged-media-group"><strong>paged</strong></a></span>
+
+<li><span class="index-def" title="'visual' media group"><a name="visual-media-group"> <strong>visual</strong></a>，</span><span class="index-def" title="'audio' media group"><a name="audio-media-group"><strong>audio</strong></a>，</span><span class="index-def" title="'speech' media group"><a name="speech-media-group"><strong>speech</strong></a></span>或者<span class="index-def" title="'tactile' media group"><a name="tactile-media-group"><strong>tactile</strong></a></span>
+<li><span class="index-def" title="'grid' media group"><a name="grid-media-group"><strong>grid</strong></a></span>（对于字符网格设备）或者<span class="index-def" title="'bitmap' media group"><a
+name="bitmap-media-group"><strong>bitmap</strong></a></span>
+
+<li><span
+class="index-def" title="'interactive media group"><a name="interactive-media-group"><strong>interactive</strong></a></span>（对于允许用户交互的设备）或者<span class="index-def" title="'static' media group"><a name="static-media-group"><strong>static</strong></a></span>（对于那些不支持（用户交互）的）
+
+<li><span class="index-def" title="'all'
+media group"> <a name="all-media-group"><strong>all</strong></a></span>（包括所有媒体类型）
+</ul>
+
+<P>下表展示了媒体组合媒体类型之间的关系：</P>
+
+<TABLE border=1 
+       summary="Relationship between media groups and media types">
+<CAPTION>Relationship between media groups and media types</CAPTION>
+<TR><TH>Media Types <TH colspan="4">Media Groups
+<TR><TH>&nbsp;
+    <TH>continuous/paged
+    <TH>visual/audio/speech/tactile
+    <TH>grid/bitmap
+    <TH>interactive/static
+
+<TR><TH>braille<TD align="center">continuous<TD align="center">tactile<TD align="center">grid<TD align="center">both</TR>
+<TR><TH>embossed<TD align="center">paged<TD align="center">tactile<TD align="center">grid<TD align="center">static</TR>
+<TR><TH>handheld<TD align="center">both<TD align="center">visual, audio, speech<TD
+align="center">both<TD align="center">both</TR>
+<TR><TH>print<TD align="center">paged<TD align="center">visual<TD
+align="center">bitmap<TD align="center">static</TR>
+<TR><TH>projection<TD align="center">paged<TD align="center">visual<TD align="center">bitmap<TD align="center">interactive</TR>
+<TR><TH>screen<TD align="center">continuous<TD align="center">visual, audio<TD align="center">bitmap<TD align="center">both</TR>
+<TR><TH>speech<TD align="center">continuous<TD align="center">speech<TD align="center">N/A<TD align="center">both</TR>
+<TR><TH>tty<TD align="center">continuous<TD align="center">visual<TD align="center">grid<TD align="center">both</TR>
+<TR><TH>tv<TD align="center">both<TD align="center">visual, audio<TD align="center">bitmap<TD align="center">both</TR>
+</TABLE>
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="cascade.html">上一章</a> &nbsp;
+<a href="box.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</BODY>
+</html>
+

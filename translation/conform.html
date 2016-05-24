@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="zh-CN">
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>一致性：需求与推荐标准</TITLE>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="intro.html">
+<link rel="next" href="syndata.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+
+</HEAD>
+<BODY>
+<div class="navbar">
+<p><a href="intro.html">上一章</a> &nbsp;
+<a href="syndata.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<H1><a name="q0">3 一致性：需求与推荐标准</a></H1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="conform.html#defs" class="tocxref">3.1 定义</a>
+    <li class="tocline2"><a href="conform.html#conformance" class="tocxref">3.2 UA一致性</a>
+    <li class="tocline2"><a href="conform.html#errors" class="tocxref">3.3 错误情况</a>
+    <li class="tocline2"><a href="conform.html#text-css" class="tocxref">3.4 <span class="index-def" title="text/css">text/css内容类型</span></a>
+  </ul>
+</div>
+
+<H2>3.1 <a name="defs">定义</a></H2>
+
+<P>本文档中的<a name="x0"><span class="index-def" title="MUST">"MUST"</span></a>，<a name="x1"><span class="index-def" title="MUST NOT">"MUST NOT"</span></a>，<a name="x2"><span
+class="index-def" title="REQUIRED">"REQUIRED"</span></a>，<a name="x3"><span
+class="index-def" title="SHALL">"SHALL"</span></a>，<a name="x4"><span
+class="index-def" title="SHALL NOT">"SHALL NOT"</span></a>，<a name="x5"><span
+class="index-def" title="SHOULD">"SHOULD"</span></a>，<a name="x6"><span
+class="index-def" title="SHOULD NOT">"SHOULD NOT"</span></a>，<a name="x7"><span
+class="index-def" title="RECOMMENDED">"RECOMMENDED"</span></a>，<a name="x8"><span
+class="index-def" title="MAY">"MAY"</span></a>和<a name="x9"><span class="index-def" title="OPTIONAL">"OPTIONAL"</span></a>都按照RFC&nbsp;2119（见<a href="refs.html#ref-RFC2119" rel="biblioentry" class="noxref"><span class="normref">[RFC2119]</span></a>）中描述的来解释。但为了可读性，这些词不以大写形式出现在本规范中的
+
+<P>有时，本规范会为编写者和用户代理推荐最佳实践。这些建议是非规范的，而且与本规范的一致性取决于其实现。这些建议包括“我们推荐...”，“本规范推荐...”这样的表达或者类似的措辞</P>
+
+<P>实际上，一个被标记废弃的（例如，<a href="aural.html#aural-media-group">'aural'</a>关键字）或者将在CSS3中被废弃的（例如，<a href="ui.html#system-colors">system colors</a>）都不影响一致性（例如，'aural'被标记为非规范的，所以UA不需要支持它，而system colors是规范的，UA必须支持它）。
+
+<p>除注释说明的部分外，本规范的所有章节包括附录都是规范的
+
+<p><a href="about.html#notes-and-examples">示例和注释</a>是非规范的
+
+<div class=example><P style="display:none">示例：</P><p>示例的开头一般都有"example"之类的单词（"示例:"，"下例&hellip;"，"例如"等等），而且会被显示为栗色（maroon），就像本段一样</p></div>
+
+<div class=note><p>注释以"Note"开始，缩进，并显示为绿色，就像本段一样</p></div>
+
+<p>图表仅提供说明，不是参考效果图，除非有明确说明
+
+<dl>
+
+
+
+<dt><strong><span class="index-def" title="style
+sheet"><a name="style-sheet">样式表</a></span></strong>
+
+<dd>指定文档表现的语句集
+
+<P>样式表可能有3个不同的来源：<a href="#author">编写者</a>，<a href="#user">用户</a>和<a
+href="#user-agent">用户代理</a>。这些源之间的相互作用请查看<a href="cascade.html">层叠与继承</a>.
+
+<dt><strong><span class="index-def" title="valid style sheet|validity"><a name="valid-style-sheet">合法的样式表</a></span></strong>
+
+<dd>样式表的合法性取决样式表应用的CSS级别，但对CSS1的一些改动意味着一部分CSS1样式将在CSS&nbsp;2.1中具有稍有差异的语义。一些CSS2特性在CSS&nbsp;2.1中被移除了，所以不是所有CSS2样式表都是合法的CSS&nbsp;2.1样式表
+
+<P>合法的CSS&nbsp;2.1样式表必须根据<a href="grammar.html">CSS&nbsp;2.1语法</a>来编写。而且，必须只包含本规范中定义的@规则，属性名和属性值。任何<span class="index-def"><strong><a
+name="illegal">非法的</a></strong></span>@规则，属性名和属性值都是无效的
+
+<dt><strong><span class="index-def" title="source
+document"><a name="source-document">源文档</a></span></strong>
+
+<dd>应用了一条或多条样式表规则的文档，以某种语言编码，并用<a href="#element">元素</a>树表示文档。每个元素由元素名，元素类型标识符，一堆可选的<a href="#attribute">属性</a>和（可能为空的）内容组成。例如，源文档可以是XML或者SGML实例</dd>
+
+<dt><strong><span class="index-def" title="document language"><a
+name="doclanguage">文档语言</a></span></strong>
+
+<dd>源文档的编码语言（例如，HTML，XHTML或者SVG）。CSS用来描述文档语言的表现，而不会改变文档语言的基本语义（underlying semantics）
+
+<dt><strong><span class="index-def" title="element"><a
+name="element">元素</a></span></strong>
+
+<dd>（一个SGML术语，见<a href="refs.html#ref-ISO8879" rel="biblioentry" class="noxref"><span class="normref">[ISO8879]</span></a>）文档语言的基本语法结构，大多数CSS样式表规则都通过元素名（例如，HTML中的P，TABLE和OL）来指定该元素应该怎样渲染
+
+<dt><strong><span class="index-def" title="replaced element">
+<a name="replaced-element">可替换（Replaced）元素</a></span></strong>
+
+<dd><p>内容超出CSS格式化模型的元素，例如图片，内嵌的文档，或者applet。例如，HTML中IMG元素的内容通常被其"src"属性指定的图片替换。可替换元素通常拥有内在尺寸（intrinsic dimensions）：内在宽度，内在高度和内在比例（intrinsic ratio）。例如，位图图片有绝对单位指定的内在宽度，内在高度（明显可以确定内在比例）。另一方面，其它文档就没有内在尺寸（例如，空白的HTML文档）
+
+<p>用户代理可以认为一个可替换元素没有任何内在尺寸，如果觉得这些尺寸可能会泄漏敏感信息给第三方的话。例如，如果一份HTML文档是根据用户的银行余额改变内在尺寸的，那么UA可能需要假装这个资源没有内在尺寸
+
+<p>CSS的渲染模型不考虑可替换元素的内容
+
+<dt><strong><span class="index-def" title="intrinsic
+dimensions"><a name="intrinsic">内在尺寸（Intrinsic dimensions）</a></span></strong>
+
+<dd>由元素自身定义的宽度和高度，不受环境影响。CSS不定义如何拿到这些内在尺寸。CSS&nbsp;2.1中，只有可替换元素有内在尺寸。因为光栅图像没有可靠的分辨率信息，假设1&nbsp;px对应源图像中的1像素
+
+<dt><strong><span class="index-def" title="attribute"><a
+name="attribute">属性</a></span></strong>
+
+<dd>元素相关的值，由名和相关（文本）值组成
+
+<dt><strong><span class="index-def" title="content"><a
+name="content">内容</a></span></strong>
+
+<dd>源文档中元素相关的内容，一些元素没有内容，被称为<strong><span class="index-def"
+title="empty"><a name="empty">空</a></span></strong>（元素）。元素内容包括文本，或者一堆子元素，这样的元素被称为那些子元素的<strong><span class="index-def"
+title="parent"><a name="parent">父</a></span></strong>（元素）
+
+<dt><strong><span class="index-def"
+title="ignore"><a name="ignore">忽略</a></span></strong>
+
+<dd>本规范中该术语有两个稍有差异的含义，第一个，CSS解析器在样式表中发现未知或者非法语法时必须遵循特定的规则，解析器必须忽略样式表的某些部分。哪些部分应该被忽略的确切规则在（<a href="syndata.html#declaration">声明与属性</a>，<a href="syndata.html#parsing-errors">处理解析错误的规则</a>，<a href="syndata.html#unsupported-values">不支持的值</a>）中有详细描述，或者术语"ignore"出现时可能被解释为文本。第二个，用户代理可能（有时必须）忽略样式表中的某些属性和值，即便语法有效。例如，表格列元素无法影响列的字体，所以字体属性必须忽略
+
+
+<dt><strong><span class="index-def" title="rendered
+content|content::rendered"><a name="rendered-content">呈现（Rendered）内容</a></span></strong>
+
+<dd>根据相关样式表对元素进行渲染之后元素的内容。关于可替换元素的内容怎样渲染不由本规范定义。呈现内容可能是元素的备选文本（例如，XHTML的"alt"属性），还可能包含通过样式表隐式或显式插入的项，例如黑点（bullets），数字等等
+
+<dt><strong><span class="index-def" title="document tree">
+<a name="doctree">文档树</a></span></strong>
+
+<dd>编码在源文档中的元素树。树中的每个元素都有且只有一个父级，除了<strong><span class="index-def" title="root"><a
+name="root">根</a></span></strong>元素没有（父级）
+
+<dt><strong><span class="index-def"
+title="child"><a name="child">子级（Child）</a></span></strong>
+
+<dd>只有元素B是元素A的父级时，A才是B的子级
+
+<dt><strong><span class="index-def"
+title="descendant"><a name="descendant">后代</a></span></strong>
+
+<dd>如果(1)元素A是元素B的子级，(2)或者A是B的其它后代元素C的子级，那么A被称为元素B的后代
+
+<dt><strong><span class="index-def"
+title="ancestor"><a name="ancestor">祖先</a></span></strong>
+
+<dd>当且仅当元素B是元素A的后代时，A是B的祖先
+
+<dt><strong><span class="index-def"
+title="sibling"><a name="sibling">兄弟</a></span></strong>
+
+<dd>当且仅当元素B和元素A有相同父元素时，A是B的兄弟。如果文档树中A在B之前，A就是前导兄弟。如果文档树中B在A后面，B就是后继兄弟
+
+<dt><strong><span class="index-def" title="preceding
+element|element::preceding"><a name="preceding">前导元素</a></span></strong>
+
+<dd>当且仅当(1)元素A是B的祖先，(2)或者A是B的前导兄弟时，A是B的前导元素
+
+<dt><strong><span class="index-def" title="following
+element|element::following"><a name="following">后继元素</a></span></strong>
+
+<dd>当且仅当元素B是A的前导元素时，A是B的后继元素
+
+<dt><strong><span
+class="index-def"><a name="author">编写者</a></span></strong>
+
+<dd>编写者是编写文档和相关样式表的人。<strong><span class="index-def"><a name="authoring">编辑工具</a></span></strong>是一种用来生成样式表的<a href="#user-agent">用户代理</a></dd>
+
+<dt><strong><span
+class="index-def"><a name="user">用户</a></span></strong>
+
+<dd>用户是与用户代理交互的想要看，听或者其它使用文档及相关样式表的人。用户可能提供一份个人样式表作为个人偏好</dd>
+
+<dt><strong><span class="index-def"><a name="user-agent">用户代理(UA)</a></span></strong>
+
+<dd><span class="index-def" title="user agent|UA"><a name="ua">用户代理</a></span>是解释用文档语言编写的并应用了相关符合本文档术语的样式表的文档的任何程序。用户代理可能显示文档，把它读出来，打印出来，转化为其它格式等等</dd>
+
+<DD>HTML用户代理是支持一种或多种HTML规范的用户代理。为了与本规范的目标一致，支持XHTML<a href="refs.html#ref-XHTML" rel="biblioentry" class="noxref"><span class="informref">[XHTML]</span></a>但不支持HTML的用户代理不是HTML用户代理
+
+<dt><strong><span
+class="index-def"><a name="property">属性</a></span></strong>
+
+<dd>CSS定义了一个有限的参数集，叫做属性，用来指导文档渲染。每个属性都有一个名（例如，'color'，'font'和'border'）和一个值（例如，'red'，'12pt Times'和'dotted'）。文档的各个部分，以及文档将通过特殊性，层叠和继承（见<a href="cascade.html">属性值赋值、层叠（Cascading）和继承</a>）机制显示的页面都具有属性
+
+</dl>
+
+<div class="html-example">
+<p>一个HTML源文档示例：
+
+<PRE>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;   
+  &lt;TITLE&gt;My home page&lt;/TITLE&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;My home page&lt;/H1&gt;
+    &lt;P&gt;Welcome to my home page! Let me tell you about my favorite
+		composers:
+    &lt;UL&gt;
+      &lt;LI&gt; Elvis Costello
+      &lt;LI&gt; Johannes Brahms
+      &lt;LI&gt; Georges Brassens
+    &lt;/UL&gt;
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+
+<P>生成的树如下：</P>
+
+<div class="figure">
+<P><IMG src="images/doctree.png" alt="Sample document tree"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-doctree" href="images/longdesc/doctree-desc.html" title="Long description for sample document tree diagram">[D]</A></SPAN></p>
+</div>
+
+<P>根据HTML 4定义，HEAD元素将在解析期间被推断出来并作为文档树的一部分，即便源文档里没有出现"head"标签。类似的，即便源文档中没有&lt;/p&gt;和&lt;/li&gt;标签，解析器也知道P和LI元素结束的位置
+
+<P>XHTML（和其它基于XML的语言）文档行为不同：没有元素推断，并且所有元素都要有结束标签
+
+</div>
+
+
+
+<h2>3.2 <a name="conformance">UA一致性</a></h2>
+
+<P>本节只定义和CSS&nbsp;2.1规范的<span class="index-def" title="conformance"><a name="conformance-term">一致性</a></span>。将来还会有其它CSS级别，为了保持一致，可能需要用户代理实现不同的特性集
+
+<P>一般情况，用户代理必须遵守以下几点一致性规范：</P>
+
+<ol>
+
+<li>必须识别一个或多个CSS&nbsp;2.1 <a href="media.html">媒体类型</a>
+
+<li>对于每个源文档，必须试图检索适用于已识别媒体类型的所有相关样式表。如果无法获取所有相关样式表（例如，因为网络错误），必须用那些可获取的（样式表）显示文档
+
+<li>必须根据本规范解析样式表，特别的，必须识别所有@规则，块，声明和选择器（见<a href="grammar.html">CSS&nbsp;2.1语法</a>）。如果用户代理遇到一个应用于支持的媒体类型的属性，用户代理必须根据属性定义解析其值。这意味着，用户代理必须接受所有合法值并且必须<a name="x44"><span class="index-inst" title="ignore">忽略</span></a>含有非法值的声明。用户代理必须<a name="x45"><span class="index-inst" title="ignore">忽略</span></a>应用于不支持的<a href="media.html">媒体类型</a>的规则
+
+
+
+<li><a href="#doctree">文档树</a>中的每个元素，都必须根据属性定义和<a href="cascade.html">层叠与继承</a>规则给每个属性赋值
+
+<li>如果源文档有可选的样式表集（例如，有HTML 4<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="informref">[HTML4]</span></a>的"alternate"关键字），UA必须允许用户选择UA应该应用哪份样式表集
+
+<li>UA必须允许用户去掉编写者（提供的）样式表的影响
+
+</ol>
+
+<P>不是所有用户代理都必须遵守每一点，然而：</p>
+
+<ul>
+
+<li>读取样式表但不渲染任何内容的应用程序（例如，CSS&nbsp;2.1校验工具）必须遵守1-3点
+
+<li>编辑工具只需要输出<a href="#valid-style-sheet">合法的样式表</a>
+
+<li>根据相关样式表<em>渲染</em>文档的用户代理必须遵守1-6点，并根据本规范中的4个特定媒体需求集之一来渲染文档。用户代理请求时，<a href="cascade.html#actual-value">值</a>可能是近似的
+
+</ul>
+
+<P>用户代理的实现由于特殊设备限制（例如，用户代理无法在 monochrome monitor或页面上渲染颜色）缺少部分规范支持， 并不是不一致性</P>
+
+<p>UA必须允许用户指定一个包含用户样式表的文件。设备上运行的UA不应该有任何方式来写或者说明需要的文件被排除在外（ UAs that run on devices without any means of writing or specifying files are exempted from this requirement.）。此外，UA应该提供其它方式来指定用户偏好，例如，通过GUI
+
+<p>CSS&nbsp;2.1不定义那些应用于表单控件和frame的属性，以及CSS怎样给它们设置样式，由用户代理给这些元素应用CSS属性。建议编写者把这样的特性当作实验性的支持，将来CSS的后续版本可能会指定这些
+
+
+<h2>3.3 <a name="errors">错误情况</a></h2>
+
+<p>一般情况，本文档通过规范说明了错误处理行为。例如，见<a href="syndata.html#parsing-errors">处理解析错误的规则</a>
+
+<h2>3.4 <span class="index-def" title="text/css"><a
+name="text-css">text/css内容类型</a></span></h2>
+
+<p>独立文件中的CSS样式表会通过网络作为结合编码信息的字节序列来发送。传输的结构，术语叫<span class="index-def" title="message entity"><a name="message-entity"><strong>消息实体</strong></a></span>，是在RFC 2045和RFC 2616（见<a href="refs.html#ref-RFC2045" rel="biblioentry" class="noxref"><span class="normref">[RFC2045]</span></a>和<a href="refs.html#ref-RFC2616" rel="biblioentry" class="noxref"><span class="normref">[RFC2616]</span></a>）中定义的。一个内容类型为"text/css"的消息实体表示一个独立的CSS文档，"text/css"内容类型是在RFC 2318（<a href="refs.html#ref-2318" rel="biblioentry" class="noxref"><span class="normref">[RFC2318]</span></a>）中提出的
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="intro.html">上一章</a> &nbsp;
+<a href="syndata.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</BODY>
+</html>
+

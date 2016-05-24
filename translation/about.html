@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01//EN'>
+
+<html lang="zh-CN">
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>关于CSS&nbsp;2.1规范</TITLE>
+<link rel="stylesheet" href="style/default.css" type="text/css">
+<link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
+<link rel="prev" href="cover.html">
+<link rel="next" href="intro.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+<link rel="first" href="cover.html">
+
+</HEAD>
+<BODY>
+<div class="navbar">
+<p><a href="cover.html">上一章</a> &nbsp;
+<a href="intro.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+<hr class="navbar">
+
+<H1><a name="q0">1 关于CSS&nbsp;2.1规范</a></H1>
+<div class="subtoc">
+<p><strong>内容</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="about.html#css2.1-v-css2" class="tocxref">1.1 CSS&nbsp;2.1与CSS&nbsp;2</a>
+    <li class="tocline2"><a href="about.html#reading" class="tocxref">1.2 本规范的阅读</a>
+    <li class="tocline2"><a href="about.html#organization" class="tocxref">1.3 本规范是如何组织的</a>
+    <li class="tocline2"><a href="about.html#conventions" class="tocxref">1.4 约定</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="about.html#doc-language" class="tocxref">1.4.1 文档语言元素和属性</a>
+      <li class="tocline3"><a href="about.html#property-defs" class="tocxref">1.4.2 CSS属性定义</a>
+      <ul class="toc">
+        <li class="tocline4"><a href="about.html#value-defs" class="tocxref">1.4.2.1 值</a>
+        <li class="tocline4"><a href="about.html#initial-value" class="tocxref">1.4.2.2 初始值（Initial）</a>
+        <li class="tocline4"><a href="about.html#applies-to" class="tocxref">1.4.2.3 应用</a>
+        <li class="tocline4"><a href="about.html#inherited-prop" class="tocxref">1.4.2.4 继承（Inherited）</a>
+        <li class="tocline4"><a href="about.html#percentage-wrt" class="tocxref">1.4.2.5 百分比值</a>
+        <li class="tocline4"><a href="about.html#media-applies" class="tocxref">1.4.2.6 媒体类型组</a>
+        <li class="tocline4"><a href="about.html#computed-defs" class="tocxref">1.4.2.7 计算值</a>
+      </ul>
+      <li class="tocline3"><a href="about.html#shorthand" class="tocxref">1.4.3 简写属性</a>
+      <li class="tocline3"><a href="about.html#notes-and-examples" class="tocxref">1.4.4 注释和示例</a>
+      <li class="tocline3"><a href="about.html#images-and-longdesc" class="tocxref">1.4.5 图片与长描述信息</a>
+    </ul>
+    <li class="tocline2"><a href="about.html#acknowledgements" class="tocxref">1.5 致谢</a>
+  </ul>
+</div>
+
+<h2>1.1 <a name="css2.1-v-css2">CSS&nbsp;2.1与CSS&nbsp;2</a></h2>
+
+<p>CSS社区从1998年的CSS2推荐规范中获得了重要经验，虽然CSS2规范中的错误已经陆续通过发布一系列勘误纠正了，但仍然没有机会根据这些经验作出修改
+
+<p>尽管其中很多问题都将在接下来的CSS3规范中处理，目前的状况阻碍了CSS2的实现与互用性。CSS&nbsp;2.1规范尝试通过以下方法来处理这种局势：
+
+<ul>
+<li>保持CSS2中那些已经被广泛接受和实现的部分的兼容性
+   
+<li>结合所有已经发布的CSS2勘误
+
+<li>对于与CSS2规范差异很大的实现，修改规范以适应已经被普遍接受的做法
+
+<li>移除CSS2中那些因为没有被实现而被CSS社区拒绝的特性，CSS&nbsp;2.1旨在反映那些在HTML和XML语言中被广泛实现的合理特性（不<em>单单</em>是对XML语言，或者HTML）
+
+<li>移除CSS2中将被CSS3废弃的特性，因此鼓励采用CSS3中提出的特性
+
+<li>当实现经验表明CSS2需要实现（新特性）时，添加少量的<a href="changes.html#new">新属性值</a>
+</ul>
+
+<p>因此，不是说CSS2样式表必须与CSS&nbsp;2.1保持向前兼容（forwards-compatible），而是符合CSS&nbsp;2.1规范的样式表更可能兼容现有用户代理（user agent），并在将来保持向前兼容。虽然破坏向前兼容不好，但我们相信（换来的）CSS&nbsp;2.1修订版本的优点值得的
+
+<p>CSS&nbsp;2.1源于CSS2，并将代替它。一部分CSS2内容在CSS&nbsp;2.1中没变，一部分被修改了，还有一部分被删掉了。删掉的部分可能会在CSS3规范中出现，将来的新规范可能会参考CSS&nbsp;2.1（需要CSS2特性时，除非需要CSS&nbsp;2.1中出现的特性，否则只会参考那些特性相关的CSS2，或者在包含这些特性的CSS3模块中参考这些特性
+
+<h2>1.2 <a name="reading">本规范的阅读</a></h2>
+
+<p>本节是非规范的内容
+
+<P>本规范编写时考虑了两种读者：CSS编写者和CSS实现者。我们希望本规范能为编写者们提供工具，他们需要编写有效、有吸引力、可访问的文档，不把CSS的实现细节暴露给他们。而实现者们，应该从中寻找构建<a href="conform.html#conformance">符合标准的用户代理</a>所需的所有内容。规范开篇是CSS的一般描述，然后越来越技术化和具体化。为了快速获取信息，电子版和打印版每章开头都有速查表和内容详情表，以及索引导航
+
+<P>本规范编写时考虑了两种表现形式：电子版和打印版。虽然这两种形式无疑是相似的，读者仍将发现一些区别。例如，打印版中链接将失效（废话），并且电子版没有页码。存在差异时，电子版是文档的权威版本。
+
+<h2>1.3 <a name="organization">本规范是如何组织的</a></h2>
+
+<p>本节是非规范的内容
+
+<P>本规范的章节组织方式如下：
+
+<dl>
+
+<dt><Strong>第2章：CSS&nbsp;2.1简介</strong>
+
+<dd>简介包括CSS&nbsp;2.1的简单教程和对CSS&nbsp;2.1背后的设计原则的讨论
+
+<dt><strong>第3 - 18章：CSS&nbsp;2.1参考手册</strong>
+
+<dd>The bulk of the reference manual consists of the CSS&nbsp;2.1 language
+reference. This reference defines what may go into a CSS&nbsp;2.1 style sheet
+(syntax, properties, property values) and how user agents must
+interpret these style sheets in order to claim <a
+href="conform.html#conformance">一致性</a>
+
+
+<dt><strong>附录：</strong>
+
+<dd>附录包含关于<a href="aural.html">听觉（aural）属性</a>（非规范），<a href="sample.html">HTML 4的样例样式表</a>, <a href="changes.html">对CSS2的改动</a>，<a href="grammar.html">CSS&nbsp;2.1语法</a>，规范性与信息性<a href="refs.html">参考</a>列表，以及两份索引目录：一个是<a href="propidx.html">属性索引</a>另一个是<a href="indexlist.html">总索引</a>
+</dl>
+
+<H2>1.4 <a name="conventions">约定</a></H2>
+
+<H3>1.4.1 <a name="doc-language" href="conform.html#doclanguage">文档语言</a>元素和属性</H3>
+
+<ul>
+<li>CSS属性和伪类名用单引号
+<li>CSS值用单引号
+<li>文档语言属性名用小写字母并用双引号
+</ul>
+
+<H3>1.4.2 <a name="property-defs">CSS属性定义</a></H3>
+<P>每个CSS属性定义都从关键信息总结开始，就像这样：</p>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'property-name'"><a name="propdef-property-name" class="propdef-title"><strong>'property-name'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>合法值&amp;语法
+<tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>初始值
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>该属性适用于的元素
+<tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>该属性继承与否
+<tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>百分比值如何应用
+<tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td>该属性适用于的媒体组（media group）
+<tr valign=baseline><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;<td>计算值的计算方式
+</table>
+</dl>
+</div>
+
+
+<h4>1.4.2.1 <a name="value-defs">值</a></h4>
+
+<P>指定名为<a href="about.html#propdef-property-name" class="noxref"><span class="propinst-property-name">'property-name'</span></a>的属性的合法值集合。属性值可以有一个或者多个分量，分量的值类型通过以下几种方式来指定：
+
+<ol>
+<li> <a name="syndata.html#keywords">关键字</a>值（例如，auto,
+disc等等） 
+
+<li>出现在"&lt;"与"&gt;"之间的基本数据类型（例如，&lt;length&gt;, &lt;percentage&gt;等等），电子版中，每个基本数据类型实例都链接到其定义
+
+<li>有相同范围的值类型，与属性名相同（例如，&lt;'border-width'&gt;
+&lt;'background-attachment'&gt;等等）。这种情况下，出现在"&lt;"和"&gt;"之间的类型名就是属性名（例如，&lt;'border-width'&gt;），这样的类型<strong>不</strong>包括'inherit'值。电子版文档中，每个该类型的实例的非终结符名（non-terminal）都链接到相应的属性定义
+
+
+<li> 非终结符中不会出现同名属性，即出现在"&lt;"和"&gt;"之间的非终结符名，例如&lt;border-width&gt;，注意&lt;border-width&gt;和&lt;'border-width'&gt;的区别，后者是根据前者定义。非终结符的定义在它第一次出现在规范中的地方。电子版文档中，每个该类型的值都链接到相应的值定义
+</ol>
+
+<P>这些定义中的其它单词都是必须以字面量形式出现的关键字，没有引号（例如，red）。斜线(/)和逗号(,)也必须以字面量形式出现
+
+<P>分量的值可能被这样安排到属性值中：</p>
+
+<ul>
+<li>几个并列的单词，表示它们必须以给定的顺序全部出现
+<li>竖线(|)分隔两个或者更多可选值：其中必须出现且仅出现一个
+<li>双竖线(||)分隔的两个或者更多项：必须出现一个或者多个，顺序随意
+<li>双和号(&&)分隔的两个或更多部分，必须全部出现，顺序随意
+<li>方括号([&nbsp;])用来分组
+</ul>
+
+<P>并列比双和号优先级高，双和号比双竖线优先级高，双竖线比单竖线优先级高，因此，下面这两行是等价的：
+<PRE>
+    a b   |   c ||   d &&   e f
+  [ a b ] | [ c || [ d && [ e f ]]]
+</PRE>
+
+<P>每个类型、关键字、或者方括号分组（后面）都可能跟着下面的修饰符：</p>
+
+  <UL>
+    <LI>
+      星号(*)表示前面的类型、关键字或者分组出现0次或者多次
+
+    <LI>
+      加号(+)表示前面的类型、关键字或者分组出现1次或者多次
+
+    <LI>
+      问号(?)表示前面的类型、关键字或者分组是可选的（可有可无）
+
+    <LI>
+      花括号中的一对数字({A,B})表示前面的类型、关键字或者分组至少出现A次最多出现B次
+  </UL>
+
+
+<P>下面的示例描述了不同的值类型：
+
+<BLOCKQUOTE><P>
+    <EM>Value:</EM> N | NW | NE<BR>
+    <EM>Value:</EM> [ &lt;length&gt; | thick | thin ]{1,4}<BR>
+    <EM>Value:</EM> [&lt;family-name&gt; , ]* &lt;family-name&gt;<BR>
+    <EM>Value:</EM> &lt;uri&gt;? &lt;color&gt; [ / &lt;color&gt; ]?<BR>
+    <EM>Value:</EM> &lt;uri&gt; || &lt;color&gt;<BR>
+    <EM>Value:</EM> inset? && [ &lt;length&gt;{2,4} && &lt;color&gt;? ]
+</BLOCKQUOTE>
+
+<p>分量的值是根据<a href="grammar.html#scanner">附录 G.2</a>中的token指定的。因为语法允许<code>expr</code>产生式的token之间有空格，空格可以出现在属性值中的token间
+
+<p class=note>注意：多数情况下，为了把token区分开，实际上token之间的空格是<em>必不可少的</em>。例如，'1em2em'将被解析为一个带有数字'1'和标识符'em2em'（非法的单位）的<code>DIMEN</code>。这种情况下，为了解析为2个长度'1em'与'2em'，'2'前面的空格是必不可少的
+
+<h4>1.4.2.2 <a name="initial-value">初始值（Initial）</a></h4>
+
+<P>这部分指定了属性的初始值，关于样式表-指定，继承以及初始属性值之间的相互作用，请查看<a href="cascade.html">层叠（cascade）</a>
+
+
+<h4>1.4.2.3 <a name="applies-to">应用</a></h4>
+
+<p>这部分列出属性适用于的元素。任何元素都具有所有属性，但一些属性在某些元素上没有渲染效果，例如，<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性只对块级元素起作用
+
+<h4>1.4.2.4 <a name="inherited-prop">继承（Inherited）</a></h4>
+
+<p>这部分说明了属性值是不是从祖先元素继承的。关于样式表-指定，继承以及初始属性值之间的相互作用，请查看<a href="cascade.html">层叠（cascade）</a>
+
+
+<h4>1.4.2.5 <a name="percentage-wrt">百分比值</a></h4>
+
+<p>这部分说明了如果百分比出现在属性值中，应该被怎样解释。如果出现的是"N/A"，表示该属性不接受百分比值
+
+<h4>1.4.2.6 <a name="media-applies">媒体类型组</a></h4>
+
+<p>这部分说明了属性适用于的<a href="media.html#media-groups">媒体类型组</a>，关于媒体类型组的信息是不规范的
+
+<h4>1.4.2.7 <a name="computed-defs">计算值</a></h4>
+
+<p>这部分描述了计算后的属性值，关于为什么使用这个定义，请查看<a href="cascade.html#computed-value">计算值</a>
+
+
+<H3>1.4.3 <a name="shorthand">简写属性</a></H3>
+
+<p>一些属性是<a name="x1"><span class="index-def" title="shorthand
+property"><dfn>简写属性</dfn></span></a>，表示它们允许编写者用一个属性指定几个属性值
+
+<P>例如，<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>属性是一个用来一次性设置<a href="fonts.html#propdef-font-style" class="noxref"><span
+class="propinst-font-style">'font-style'</span></a>，<a href="fonts.html#propdef-font-variant" class="noxref"><span
+class="propinst-font-variant">'font-variant'</span></a>，<a href="fonts.html#propdef-font-weight" class="noxref"><span
+class="propinst-font-weight">'font-weight'</span></a>，<a href="fonts.html#propdef-font-size" class="noxref"><span
+class="propinst-font-size">'font-size'</span></a>，<a href="visudet.html#propdef-line-height" class="noxref"><span
+class="propinst-line-height">'line-height'</span></a>和 <a href="fonts.html#propdef-font-family" class="noxref"><span
+class="propinst-font-family">'font-family'</span></a>的简写属性</p>
+
+<P>当简写形式中的值被省略时，每个“缺失”的属性会被赋值为其初始值（见<a href="cascade.html">层叠（cascade）</a>）
+
+<div class="example"><P style="display:none">示例：</P><p>
+本例中的多条样式规则：</p>
+
+<pre>
+h1 { 
+  font-weight: bold; 
+  font-size: 12pt;
+  line-height: 14pt; 
+  font-family: Helvetica; 
+  font-variant: normal;
+  font-style: normal;
+}
+</pre>
+
+<p>可以用一条简写属性改写：</p>
+
+<pre>
+h1 { font: bold 12pt/14pt Helvetica }
+</pre>
+
+<p>本例中，<a href="fonts.html#propdef-font-variant" class="noxref"><span
+class="propinst-font-variant">'font-variant'</span></a>和<a href="fonts.html#propdef-font-style" class="noxref"><span
+class="propinst-font-style">'font-style'</span></a>取了各自的初始值</p>
+</div>
+
+<h3>1.4.4 <a name="notes-and-examples">注释和示例</a></h3>
+
+<P>所有描述非法用法的示例都被清楚地标记为"ILLEGAL EXAMPLE"
+
+<P>缺少DOCTYPE声明的HTML示例是SGML（标准通用标注语言）文本实体都与HTML 4.01 Strict DTD <a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>一致，其它HTML示例与示例中给出的DTD一致
+
+<P>所有注释只是信息性的
+
+<P>规范中的示例和注释都<a href="conform.html#defs">标记在HTML源码中</a>，CSS用户代理可以把它们专门渲染出来
+
+<h3>1.4.5 <a name="images-and-longdesc">图片与长描述信息</a></h3>
+
+<P>本规范电子版中的大多数图片都附有说明其内容的“长描述信息”，长描述信息的链接用图片后面的"[D]"来表示
+
+<P>图片和长描述信息都只是信息性的
+
+<H2>1.5 <a name="acknowledgements">致谢</a></H2> 
+
+<p>本节内容是非规范的
+
+<p>CSS 2.1基于CSS2，对CSS2做出贡献的人见<a href="http://www.w3.org/TR/2008/REC-CSS2-20080411/about.html#q15">CSS2的致谢部分</a>
+
+<p>我们要感谢下列人士，他们在www-style邮件列表上的的输入和反馈，帮助我们完成了本规范：<span class=vcard><span class="fn">Andrew Clover</span></span>, 
+     <span class=vcard><span class="fn">Bernd Mielke</span></span>, 
+     <span class=vcard><span class="fn">C. Bottelier</span></span>, 
+     <span class=vcard><span class="fn">Christian Roth</span></span>, 
+     <span class=vcard><span class="fn">Christoph P&auml;per</span></span>,
+     <span class=vcard><span class="fn">Claus F&auml;rber</span></span>, 
+     <span class=vcard><span class="fn">Coises</span></span>, 
+     <span class=vcard><span class="fn">Craig Saila</span></span>, 
+     <span class=vcard><span class="fn">Darren Ferguson</span></span>, 
+     <span class=vcard><span class="fn">Dylan Schiemann</span></span>, 
+     <span class=vcard><span class="fn">Etan Wexler</span></span>, 
+     <span class=vcard><span class="fn">George Lund</span></span>, 
+     <span class=vcard><span class="fn">James Craig</span></span>, 
+     <span class=vcard><span class="fn n"><span class="given-name">Jan</span> 
+      <span class="additional-name">Eirik</span> 
+      <span class="family-name">Olufsen</span></span></span>, 
+     <span class=vcard><span class="fn"><span class="given-name">Jan</span>
+      <span class="additional-name">Roland</span>
+      <span class="family-name">Eriksson</span></span></span>, 
+     <span class=vcard><span class="fn">Joris Huizer</span></span>, 
+     <span class=vcard><span class="fn">Joshua Prowse</span></span>, 
+     <span class=vcard><span class="fn">Kai Lahmann</span></span>, 
+     <span class=vcard><span class="fn">Kevin Smith</span></span>, 
+     <span class=vcard><span class="fn">Lachlan Cannon</span></span>, 
+     <span class=vcard><span class="fn">Lars Knoll</span></span>, 
+     <span class=vcard><span class="fn">Lauri Raittila</span></span>, 
+     <span class=vcard><span class="fn">Mark Gallagher</span></span>, 
+     <span class=vcard><span class="fn">Michael Day</span></span>, 
+     <span class=vcard><span class="fn">Peter Sheerin</span></span>, 
+     <span class=vcard><span class="fn n"><span class="given-name">Rijk</span> 
+      <span class="family-name">van Geijtenbeek</span></span></span>, 
+     <span class=vcard><span class="fn">Robin Berjon</span></span>, 
+     <span class=vcard><span class="fn">Scott Montgomery</span></span>, 
+     <span class=vcard><span class="fn">Shelby Moore</span></span>, 
+     <span class=vcard><span class="fn">Stuart Ballard</span></span>, 
+     <span class=vcard><span class="fn">Tom Gilder</span></span>, 
+     <span class=vcard><span class="fn">Vadim Plessky</span></span>,
+     <span class=vcard><span class="fn">Peter Moulder</span></span>,
+     <span class=vcard><span class="fn">Anton Prowse</span></span>,
+     <span class=vcard><span class="fn">Gérard Talbot</span></span>,
+     <span class=vcard><span class="fn">Ingo Chao</span></span>,
+     <span class=vcard><span class="fn">Bruno Fassino</span></span>,
+     <span class=vcard><span class="fn">Justin Rogers</span></span>,
+     <span class=vcard><span class="fn">Boris Zbarsky</span></span>,
+     <span class=vcard><span class="fn">Garrett Smith</span></span>,
+     <span class=vcard><span class="fn">Zack Weinberg</span></span>,
+     <span class=vcard><span class="fn">Bjoern Hoehrmann</span></span>和<span class=vcard><span class="fn org">Open eBook Publication Structure Working Group</span></span>的编辑们。我们还要感谢<span class=vcard><span class="fn">Gary Schnabl</span></span>,
+     <span class=vcard><span class="fn">Glenn Adams</span></span>和<span class=vcard><span class="fn">Susan Lesch</span></span>帮助我们校对了本文档的早期版本</p>
+
+    <p>此外，我们要特别感谢<span class=vcard><span class="fn">Elika J. Etemad</span></span>, 
+     <span class=vcard><span class="fn">Ada Chan</span></span>和<span class=vcard><span class="fn">Boris Zbarsky</span></span>为CSS&nbsp;2.1贡献了宝贵时间，以及<span class=vcard><span class="fn">Kimberly Blessing</span></span>帮助编辑</p>
+
+    <p>还要多谢下列人士帮助完成测试集：
+
+	 <span class=vcard><span class="fn">Robert Stam</span></span>,
+     <span class=vcard><span class="fn">Aharon Lanin</span></span>,
+     <span class=vcard><span class="fn">Alan Gresley</span></span>,
+     <span class=vcard><span class="fn">Alan Harder</span></span>,
+     <span class=vcard><span class="fn">Alexander Dawson</span></span>,
+     <span class=vcard><span class="fn">Arron Eicholz</span></span>,
+     <span class=vcard><span class="fn">Bernd Mielke</span></span>,
+     <span class=vcard><span class="fn">Bert Bos</span></span>,
+     <span class=vcard><span class="fn">Boris Zbarsky</span></span>,
+     <span class=vcard><span class="fn">Bruno Fassino</span></span>,
+     <span class=vcard><span class="fn">Daniel Schattenkirchner</span></span>,
+     <span class=vcard><span class="fn">David Hammond</span></span>,
+     <span class=vcard><span class="fn">David Hyatt</span></span>,
+     <span class=vcard><span class="fn">Eira Monstad</span></span>,
+     <span class=vcard><span class="fn">Elika J. Etemad</span></span>,
+     <span class=vcard><span class="fn">Gérard Talbot</span></span>,
+     <span class=vcard><span class="fn">Gabriele Romanato</span></span>,
+     <span class=vcard><span class="fn">Germain Garand</span></span>,
+     <span class=vcard><span class="fn">Hilbrand Edskes</span></span>,
+     <span class=vcard><span class="fn">Ian Hickson</span></span>,
+     <span class=vcard><span class="fn">James Hopkins</span></span>,
+     <span class=vcard><span class="fn">Justin Boss</span></span>,
+     <span class=vcard><span class="fn">L. David Baron</span></span>,
+     <span class=vcard><span class="fn">Lachlan Hunt</span></span>,
+     <span class=vcard><span class="fn">Magne Andersson</span></span>,
+     <span class=vcard><span class="fn">Marc Pacheco</span></span>,
+     <span class=vcard><span class="fn">Mark McKenzie-Bell</span></span>,
+     <span class=vcard><span class="fn">Matt Bradley</span></span>,
+     <span class=vcard><span class="fn">Melinda Grant</span></span>,
+     <span class=vcard><span class="fn">Michael Turnwall</span></span>,
+     <span class=vcard><span class="fn">Ray Kiddy</span></span>,
+     <span class=vcard><span class="fn">Richard Ishida</span></span>,
+     <span class=vcard><span class="fn">Robert O'Callahan</span></span>,
+     <span class=vcard><span class="fn">Simon Montagu</span></span>,
+     <span class=vcard><span class="fn">Tom Clancy</span></span>,
+     <span class=vcard><span class="fn">Vasil Dinkov</span></span>&hellip;以及所有为CSS1测试集做出贡献的人
+
+	 <p>本规范制定期间积极的工作组成员：
+	 
+     <span class=vcard><span class="fn">César Acebal</span> (<span class=org>Universidad de Oviedo</span>)</span>,
+     <span class=vcard><span class="fn">Tab Atkins Jr.</span> (<span class=org>Google, Inc.</span>)</span>,
+     <span class=vcard><span class="fn">L. David Baron</span> (<span class=org>Mozilla Foundation</span>)</span>,
+     <span class=vcard><span class="fn">Bert Bos</span> (<span class=org>W3C/ERCIM</span>)</span>,
+     <span class=vcard><span class="fn">Tantek Çelik</span> (<span class=org>W3C Invited Experts</span>)</span>,
+     <span class=vcard><span class="fn">Cathy Chan</span> (<span class=org>Nokia</span>)</span>,
+     <span class=vcard><span class="fn">Giorgi Chavchanidze</span> (<span class=org>Opera Software</span>)</span>,
+     <span class=vcard><span class="fn">John Daggett</span> (<span class=org>Mozilla Foundation</span>)</span>,
+     <span class=vcard><span class="fn">Beth Dakin</span> (<span class=org>Apple, Inc.</span>)</span>,
+     <span class=vcard><span class="fn">Arron Eicholz</span> (<span class=org>Microsoft Corp.</span>)</span>,
+     <span class=vcard><span class="fn">Elika J. Etemad</span> (<span class=org>W3C Invited Experts</span>)</span>,
+     <span class=vcard><span class="fn">Simon Fraser</span> (<span class=org>Apple, Inc.</span>)</span>,
+     <span class=vcard><span class="fn">Sylvain Galineau</span> (<span class=org>Microsoft Corp.</span>)</span>,
+     <span class=vcard><span class="fn">Daniel Glazman</span> (<span class=org>Disruptive Innovations</span>)</span>,
+     <span class=vcard><span class="fn">Molly Holzschlag</span> (<span class=org>Opera Software</span>)</span>,
+     <span class=vcard><span class="fn">David Hyatt</span> (<span class=org>Apple, Inc.</span>)</span>,
+     <span class=vcard><span class="fn">Richard Ishida</span> (<span class=org>W3C/ERCIM</span>)</span>,
+     <span class=vcard><span class="fn">John Jansen</span> (<span class=org>Microsoft Corp.</span>)</span>,
+     <span class=vcard><span class="fn">Brad Kemper</span> (<span class=org>W3C Invited Experts</span>)</span>,
+     <span class=vcard><span class="fn">Håkon Wium Lie</span> (<span class=org>Opera Software</span>)</span>,
+     <span class=vcard><span class="fn">Chris Lilley</span> (<span class=org>W3C/ERCIM</span>)</span>,
+     <span class=vcard><span class="fn">Peter Linss</span> (<span class=org>HP</span>)</span>,
+     <span class=vcard><span class="fn">Markus Mielke</span> (<span class=org>Microsoft Corp.</span>)</span>,
+     <span class=vcard><span class="fn">Alex Mogilevsky</span> (<span class=org>Microsoft Corp.</span>)</span>,
+     <span class=vcard><span class="fn">David Singer</span> (<span class=org>Apple Inc.</span>)</span>,
+     <span class=vcard><span class="fn">Anne van Kesteren</span> (<span class=org>Opera Software</span>)</span>,
+     <span class=vcard><span class="fn">Steve Zilles</span> (<span class=org>Adobe Systems Inc.</span>)</span>,
+     <span class=vcard><span class="fn">Ian Hickson</span> (<span class=org>Google, Inc.</span>)</span>,
+     <span class=vcard><span class="fn">Melinda Grant</span> (<span class=org>HP</span>)</span>,
+     <span class=vcard><span class="fn">Øyvind Stenhaug</span> (<span class=org>Opera Software</span>)</span>和<span class=vcard><span class="fn">Paul Nelson</span> (<span class=org>Microsoft Corp.</span>)</span>.
+
+<hr class="navbar">
+
+<div class="navbar">
+<p><a href="cover.html">上一章</a> &nbsp;
+<a href="intro.html">下一章</a> &nbsp;
+<a href="cover.html#minitoc">内容</a> &nbsp;
+<a href="propidx.html">属性</a> &nbsp;
+<a href="indexlist.html">索引</a> &nbsp;
+</div>
+</BODY>
+</HTML>
+
