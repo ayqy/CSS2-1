@@ -15,7 +15,7 @@ W3C索引：<https://www.w3.org/2005/11/Translations/Query?titleMatch=css+2.1&la
 [本文档](http://www.ayqy.net/doc/css2-1/cover.html)是《[层叠样式表2级修订版1（CSS 2.1）规范](http://www.w3.org/TR/2011/REC-CSS2-20110607/)（W3C推荐2011-06-07）》的简体中文翻译。
 
 由于译者水平有限，可能存在错误，中文翻译仅供参考，准确的规范内容请查看[官方文档](http://www.w3.org/TR/2011/REC-CSS2-20110607/)。
-（如在阅读过程中发现任何错误，请<a href="mailto:nwujiajie@163.com?subject=%5BCSS2-1%20Translation%20Feedback%5D">联系ayqy</a>，以便及时更正。）
+（如在阅读过程中发现任何错误，请[提出Issue/PR](https://github.com/ayqy/CSS2-1)或者[联系ayqy](mailto:nwujiajie@163.com?subject=%5BCSS2-1%20Translation%20Feedback%5D)，以便及时更正。）
 
 在本文档的翻译过程中（2016.3.29-2016.5.23），[CSS 2.2](https://www.w3.org/TR/CSS22/)规范有了新的进展（2016.4.12发布了第一份工作草案）。
 目前（2016）得到最广泛支持的版本仍然是CSS 2.1（即本规范），关于CSS规范的最新情况查看[CSS](https://www.w3.org/Style/CSS/)。
