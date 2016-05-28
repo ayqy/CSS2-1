@@ -10,6 +10,8 @@ W3C索引：<https://www.w3.org/2005/11/Translations/Query?titleMatch=css+2.1&la
 
 中文翻译：<http://www.ayqy.net/doc/css2-1/cover.html>
 
+License：MIT，可以随意带走，但<span style="color: red;">不建议二次发布</span>，因为后续错误更正难以同步（存在N个错误翻译版并不比没有翻译版好多少）
+
 ##声明
 
 [本文档](http://www.ayqy.net/doc/css2-1/cover.html)是《[层叠样式表2级修订版1（CSS 2.1）规范](http://www.w3.org/TR/2011/REC-CSS2-20110607/)（W3C推荐2011-06-07）》的简体中文翻译。
