@@ -333,7 +333,7 @@ class="propinst-border-right-width">'border-right-width'</span></a> + <a href="b
 + 'padding-right' + 'border-right-width' + 'margin-right' + 'right' = 包含块的宽度</p>
   </blockquote>
   
-<p>如果'left'，'width'和'right'全都是'auto'：先把所有'margin-left'和'margin-right'的值设置为0。然后，如果建立静态位置包含块的元素的'direction'属性为'ltr'，把'left'设置为<a href="#static-position">静态位置</a>并应用下面的第3条规则；否则把'right'设置为<a href="#static-position">静态位置</a>并应用下面的第1条规则</p>
+<p>如果'left'，'width'和'right'全都是'auto'：先把所有的值为'auto'的'margin-left'和'margin-right'设置为0。然后，如果建立静态位置包含块的元素的'direction'属性为'ltr'，把'left'设置为<a href="#static-position">静态位置</a>并应用下面的第3条规则；否则把'right'设置为<a href="#static-position">静态位置</a>并应用下面的第1条规则</p>
 
 <p>如果这3个值都不是'auto'：如果'margin-left'和'margin-right'都是'auto'，解方程时要添上额外的约束：2个margin的值相等，除非这会让它们为负。如果包含块的direction是'ltr' ('rtl')，把'margin-left' ('margin-right')设置为0，再求出'margin-right' ('margin-left')。如果'margin-left'或者'margin-right'有一个是'auto'，就解方程求这个值。如果该值被过度限制了，就忽略'left'（如果包含块的'direction'属性是'rtl'）或者'right'（如果'direction'为'ltr'）的值，再求出这个值</p>
 
