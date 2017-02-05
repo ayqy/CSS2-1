@@ -122,7 +122,7 @@ class="index-def" title="containing block">包含块（containing block）</span
    &lt;BODY id="body"&gt;
       &lt;DIV id="div1"&gt;
       &lt;P id="p1"&gt;This is text in the first paragraph...&lt;/P&gt;
-      &lt;P id="p2"&gt;This is text &lt;EM id="em1"&gt; in the 
+      &lt;P id="p2"&gt;This is text &lt;EM id="em1"&gt; in the
       &lt;STRONG id="strong1"&gt;second&lt;/STRONG&gt; paragraph.&lt;/EM&gt;&lt;/P&gt;
       &lt;/DIV&gt;
    &lt;/BODY&gt;
@@ -261,7 +261,7 @@ p { width: 100px }
 
 <p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>计算值都是'auto'，并且该元素还具有内在宽度，那么这个内在宽度就是<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值
 
-<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且该元素没有内在宽度，但具有内在高度和内在比例；或者如果<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值为'auto'，<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>具有其它计算值，并且该元素没有内在比例；那么<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值为：
+<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且该元素没有内在宽度，但具有内在高度和内在比例；或者如果<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值为'auto'，<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>具有其它计算值，并且该元素有内在比例；那么<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值为：
 
 <blockquote><p>(高度的应用值) * (内在比例)</blockquote>
 
@@ -328,11 +328,11 @@ class="propinst-border-right-width">'border-right-width'</span></a> + <a href="b
 
 <p>决定这些元素的应用值的约束是：</p>
 
-  <blockquote> 
+  <blockquote>
     <p>'left' + 'margin-left' + 'border-left-width' + 'padding-left' + 'width'
 + 'padding-right' + 'border-right-width' + 'margin-right' + 'right' = 包含块的宽度</p>
   </blockquote>
-  
+
 <p>如果'left'，'width'和'right'全都是'auto'：先把所有的值为'auto'的'margin-left'和'margin-right'设置为0。然后，如果建立静态位置包含块的元素的'direction'属性为'ltr'，把'left'设置为<a href="#static-position">静态位置</a>并应用下面的第3条规则；否则把'right'设置为<a href="#static-position">静态位置</a>并应用下面的第1条规则</p>
 
 <p>如果这3个值都不是'auto'：如果'margin-left'和'margin-right'都是'auto'，解方程时要添上额外的约束：2个margin的值相等，除非这会让它们为负。如果包含块的direction是'ltr' ('rtl')，把'margin-left' ('margin-right')设置为0，再求出'margin-right' ('margin-left')。如果'margin-left'或者'margin-right'有一个是'auto'，就解方程求这个值。如果该值被过度限制了，就忽略'left'（如果包含块的'direction'属性是'rtl'）或者'right'（如果'direction'为'ltr'）的值，再求出这个值</p>
@@ -353,7 +353,7 @@ class="propinst-border-right-width">'border-right-width'</span></a> + <a href="b
 
 <li>如果'right'是'auto'，'left'和'width'都不是'auto'，则求出'right'</li>
 </ol>
-  
+
 <p>自适应宽度的计算与用自动表格布局算法去算一个表格单元的宽度类似。粗略地讲：通过格式化不含除显式换行外的换行来计算首选宽度（preferred width），然后计算首选<em>最小</em>宽度（preferred minimum width），例如，通过尝试所有可能的换行。CSS 2.1没有定义准确的算法。第三步，算出<em>可用宽度（available width）</em>：通过把'left'（第1种情况）或者'right'（第3种情况）设置为0后求'width'来确定</p>
 
 <p>那么自适应宽度就是：min(max(首选最小宽度, 可用宽度), 首选宽度)</p>
@@ -668,15 +668,15 @@ p { height: 100px }
 <p>鉴于计算静态位置的目的，fixed定位元素的包含块是初始包含块而不是视口
 
 <p>对于绝对定位的元素，竖直方向（dimension）的应用值必须满足这样的约束：</p>
- 
-  <blockquote>      
+
+  <blockquote>
     <p>'top' + 'margin-top' + 'border-top-width' + 'padding-top' +      'height'
 + 'padding-bottom' + 'border-bottom-width' +      'margin-bottom' + 'bottom'
 = 包含块的高度</p>
   </blockquote>
- 
+
 <p>如果'top'，'height'和'bottom'都是auto，把'top'设置为静态位置并应用下面的第3条规则：</p>
-  
+
 <p>如果这3个值都不是'auto'：如果'margin-top'和'margin-bottom'都是'auto'，解方程时要添上额外的约束：2个margin的值相等。如果'margin-top'或者'margin-bottom'有一个是'auto'，解方程求出这个值。如果该值被过度约束了，就忽略'bottom'的值再求这个值</p>
 
 <p>否则，在下面6条规则中挑1条合适的应用</p>
@@ -930,7 +930,7 @@ div { line-height: 120%; font-size: 10pt }    /* percentage */
 <span class="index-def" title="'vertical-align'"><a name="propdef-vertical-align" class="propdef-title"><strong>'vertical-align'</strong></a></span>
 <dd>
 <table class="propinfo" cellspacing=0 cellpadding=0>
-<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>baseline | sub | super | top | text-top | middle | 
+<tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>baseline | sub | super | top | text-top | middle |
    bottom | text-bottom | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
 <tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>baseline
 <tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>内联级和'table-cell'元素
@@ -944,7 +944,7 @@ div { line-height: 120%; font-size: 10pt }    /* percentage */
 
 
 <p>该属性会影响由一个内联级元素生成的盒的行盒内部的竖直定位</p>
- 
+
 <div class="note"><p>
 <em><strong>注意</strong> 该属性的值在表格上下文中具有不同的含义。详细信息请查看<a href="tables.html#height-layout">表格高度算法</a>章节
 </em>
