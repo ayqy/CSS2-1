@@ -49,7 +49,7 @@ body>del,body>ins {display:block}
       <li class="tocline3"><a href="syndata.html#keywords" class="tocxref">4.1.2 关键字</a>
       <ul class="toc">
         <li class="tocline4"><a href="syndata.html#vendor-keywords" class="tocxref">4.1.2.1 特定供应商（Vendor-specific）扩展</a>
-        <li class="tocline4"><a href="syndata.html#vendor-keyword-history" class="tocxref">4.1.2.2 信息性历史注释</a>
+        <li class="tocline4"><a href="syndata.html#vendor-keyword-history" class="tocxref">4.1.2.2 信息性历史记录</a>
       </ul>
       <li class="tocline3"><a href="syndata.html#characters" class="tocxref">4.1.3 字符和大小写</a>
       <li class="tocline3"><a href="syndata.html#statements" class="tocxref">4.1.4 语句</a>
@@ -180,7 +180,7 @@ unused      : block | ATKEYWORD S* | ';' S* | CDO S* | CDC S*;
 
 <p>"unused"产生式不用在CSS中，也不会被任何将来的扩展使用。这里提到它只是为了帮助完成错误处理。（见<a href="#parsing-errors">4.2 “处理解析错误的规则”</a>）
 
-<p><a name="comment">注释</a> token不会出现在语法中（为了保持其可读性），但无论多少token都可以出现在其它token外的任何地方（注释，然而，出现在@charset前或者里面的注释都会导致@charset无效）</p>
+<p><a name="comment">注意</a> token不会出现在语法中（为了保持其可读性），但无论多少token都可以出现在其它token外的任何地方（注意，然而，出现在@charset前或者里面的注释都会导致@charset无效）</p>
 
 <p>上面语法中的token S代表<a name="whitespace">空白字符</a>，空白字符中只能出现"space" (U+0020)，"tab" (U+0009)，"line feed" (U+000A)，"carriage return" (U+000D)和"form feed" (U+000C)。其它的类空格（space-like）字符，例如"em-space" (U+2003)和"ideographic space" (U+3000)不会被当作空白字符的一部分</p>
 <p>输入不能被字符化或解析的意义在CSS&nbsp;2.1并未定义（The meaning of input that cannot be tokenized or parsed is undefined in CSS&nbsp;2.1.）</p>
@@ -234,7 +234,7 @@ background: "red";
 
 <p>编写者应该避免特定供应商扩展</p>
 
-<h4>4.1.2.2 <a name="vendor-keyword-history">信息性历史注释</a></h4>
+<h4>4.1.2.2 <a name="vendor-keyword-history">信息性历史记录</a></h4>
 <p>本节内容是信息性的</p>
 <p>编写本文档时，下列众所周知的前缀已经存在了：</p>
 
@@ -271,7 +271,7 @@ background: "red";
     <span class="example">例如，标识符"B&amp;W?"可以写成"B\&amp;W\?"或者"B\26 W\3F"</span>
 
 
-    <p>注释，Unicode和ISO 10646（见<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>和<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>）是码与码等价的（code-by-code equivalent）
+    <p>注意，Unicode和ISO 10646（见<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>和<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>）是码与码等价的（code-by-code equivalent）
     </p>
 	</li>
     <li>CSS&nbsp;2.1中，反斜线(\)字符有三种可能的情况，<span class="index-def" title="backslash

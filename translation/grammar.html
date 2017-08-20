@@ -32,7 +32,7 @@
     <li class="tocline2"><a href="grammar.html#grammar" class="tocxref">G.1 语法</a>
     <li class="tocline2"><a href="grammar.html#scanner" class="tocxref">G.2 词法分析器</a>
     <li class="tocline2"><a href="grammar.html#tokenizer-diffs" class="tocxref">G.3 CSS&nbsp;2.1与CSS1的符号化对比</a>
-    <li class="tocline2"><a href="grammar.html#q4" class="tocxref">G.4 实现注释</a>
+    <li class="tocline2"><a href="grammar.html#q4" class="tocxref">G.4 实现提示</a>
   </ul>
 </div>
 
@@ -275,7 +275,7 @@ Z		z|\\0{0,4}(5a|7a)(\r\n|[ \t\r\n\f])?|\\z
 <li>在CSS1中，一个类名可以以数字开头（".55ft"），除非它是一个尺寸（".55in"）。在CSS2中，这样的类会被解析为未知尺寸（为了允许将来添加新单位）。要让".55ft"变成一个合法的类，CSS2需要转义第一个数字（".\35 5ft"）
 </ul>
 
-<h2><a name="q4">G.4 实现注释</a></h2>
+<h2><a name="q4">G.4 实现提示</a></h2>
 
 <p><a href="syndata.html#tokenization">4.1.1节</a>中CSS核心语法的词法分析器可以用一个无需回溯的词法分析器来实现。用Lex表示法，需要加上下列模式（不会改变返回的token，只改变分析器的效率）：
 
