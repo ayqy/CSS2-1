@@ -47,7 +47,7 @@
         <li class="tocline4"><a href="about.html#computed-defs" class="tocxref">1.4.2.7 计算值</a>
       </ul>
       <li class="tocline3"><a href="about.html#shorthand" class="tocxref">1.4.3 简写属性</a>
-      <li class="tocline3"><a href="about.html#notes-and-examples" class="tocxref">1.4.4 注释和示例</a>
+      <li class="tocline3"><a href="about.html#notes-and-examples" class="tocxref">1.4.4 注意事项和示例</a>
       <li class="tocline3"><a href="about.html#images-and-longdesc" class="tocxref">1.4.5 图片与长描述信息</a>
     </ul>
     <li class="tocline2"><a href="about.html#acknowledgements" class="tocxref">1.5 致谢</a>
@@ -74,9 +74,9 @@
 <li>当实现经验表明CSS2需要实现（新特性）时，添加少量的<a href="changes.html#new">新属性值</a>
 </ul>
 
-<p>因此，不是说CSS2样式表必须与CSS&nbsp;2.1保持向前兼容（forwards-compatible），而是符合CSS&nbsp;2.1规范的样式表更可能兼容现有用户代理（user agent），并在将来保持向前兼容。虽然破坏向前兼容不好，但我们相信（换来的）CSS&nbsp;2.1修订版本的优点值得的
+<p>因此，不是说CSS2样式表必须与CSS&nbsp;2.1保持向前兼容（forwards-compatible），而是符合CSS&nbsp;2.1规范的样式表更可能兼容现有用户代理（user agent），并在将来保持向前兼容。虽然破坏向前兼容不好，但我们相信（换来的）CSS&nbsp;2.1修订版本的优点是值得的
 
-<p>CSS&nbsp;2.1源于CSS2，并将代替它。一部分CSS2内容在CSS&nbsp;2.1中没变，一部分被修改了，还有一部分被删掉了。删掉的部分可能会在CSS3规范中出现，将来的新规范可能会参考CSS&nbsp;2.1（需要CSS2特性时，除非需要CSS&nbsp;2.1中出现的特性，否则只会参考那些特性相关的CSS2，或者在包含这些特性的CSS3模块中参考这些特性
+<p>CSS&nbsp;2.1源于CSS2，并将代替它。一部分CSS2内容在CSS&nbsp;2.1中没变，一部分被修改了，还有一部分被删掉了。删掉的部分可能会在CSS3规范中出现，将来的新规范应该参考CSS 2.1（除非他们需要CSS2中那些已经在CSS 2.1被移除的特性，然后应该仅参考CSS2的这些特性，或者优先参考包含这些特性的CSS3模块）。
 
 <h2>1.2 <a name="reading">本规范的阅读</a></h2>
 
@@ -100,11 +100,7 @@
 
 <dt><strong>第3 - 18章：CSS&nbsp;2.1参考手册</strong>
 
-<dd>The bulk of the reference manual consists of the CSS&nbsp;2.1 language
-reference. This reference defines what may go into a CSS&nbsp;2.1 style sheet
-(syntax, properties, property values) and how user agents must
-interpret these style sheets in order to claim <a
-href="conform.html#conformance">一致性</a>
+<dd>参考手册主要由CSS&nbsp;2.1语言参考组成，本参考定义了CSS&nbsp;2.1样式表中会出现的东西（语法，属性，属性值），以及用户代理该怎样解释这些样式表才能保证<a href="conform.html#conformance">一致性</a>
 
 
 <dt><strong>附录：</strong>
@@ -156,7 +152,7 @@ disc等等）
 &lt;'background-attachment'&gt;等等）。这种情况下，出现在"&lt;"和"&gt;"之间的类型名就是属性名（例如，&lt;'border-width'&gt;），这样的类型<strong>不</strong>包括'inherit'值。电子版文档中，每个该类型的实例的非终结符名（non-terminal）都链接到相应的属性定义
 
 
-<li> 非终结符中不会出现同名属性，即出现在"&lt;"和"&gt;"之间的非终结符名，例如&lt;border-width&gt;，注意&lt;border-width&gt;和&lt;'border-width'&gt;的区别，后者是根据前者定义。非终结符的定义在它第一次出现在规范中的地方。电子版文档中，每个该类型的值都链接到相应的值定义
+<li> 非终结符中不会出现同名属性，即出现在"&lt;"和"&gt;"之间的非终结符名，例如&lt;border-width&gt;，注意&lt;border-width&gt;和&lt;'border-width'&gt;的区别，后者是根据前者定义的。非终结符定义在它在规范中首次出现的地方。电子版文档中，每个该类型的值都链接到相应的值定义
 </ol>
 
 <P>这些定义中的其它单词都是必须以字面量形式出现的关键字，没有引号（例如，red）。斜线(/)和逗号(,)也必须以字面量形式出现
@@ -211,7 +207,7 @@ disc等等）
 
 <h4>1.4.2.2 <a name="initial-value">初始值（Initial）</a></h4>
 
-<P>这部分指定了属性的初始值，关于样式表-指定，继承以及初始属性值之间的相互作用，请查看<a href="cascade.html">层叠（cascade）</a>
+<P>这部分指定了属性的初始值，关于样式表指定（值）（style sheet-specified），继承（值）以及初始属性值之间的相互作用，请查看<a href="cascade.html">层叠（cascade）</a>
 
 
 <h4>1.4.2.3 <a name="applies-to">应用</a></h4>
@@ -220,7 +216,7 @@ disc等等）
 
 <h4>1.4.2.4 <a name="inherited-prop">继承（Inherited）</a></h4>
 
-<p>这部分说明了属性值是不是从祖先元素继承的。关于样式表-指定，继承以及初始属性值之间的相互作用，请查看<a href="cascade.html">层叠（cascade）</a>
+<p>这部分说明了属性值是不是从祖先元素继承的。关于样式表指定（值）（style sheet-specified），继承（值）以及初始属性值之间的相互作用，请查看<a href="cascade.html">层叠（cascade）</a>
 
 
 <h4>1.4.2.5 <a name="percentage-wrt">百分比值</a></h4>
@@ -276,15 +272,15 @@ class="propinst-font-variant">'font-variant'</span></a>和<a href="fonts.html#pr
 class="propinst-font-style">'font-style'</span></a>取了各自的初始值</p>
 </div>
 
-<h3>1.4.4 <a name="notes-and-examples">注释和示例</a></h3>
+<h3>1.4.4 <a name="notes-and-examples">注意事项和示例</a></h3>
 
 <P>所有描述非法用法的示例都被清楚地标记为"ILLEGAL EXAMPLE"
 
 <P>缺少DOCTYPE声明的HTML示例是SGML（标准通用标注语言）文本实体都与HTML 4.01 Strict DTD <a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>一致，其它HTML示例与示例中给出的DTD一致
 
-<P>所有注释只是信息性的
+<P>所有注意事项都只是信息性的
 
-<P>规范中的示例和注释都<a href="conform.html#defs">标记在HTML源码中</a>，CSS用户代理可以把它们专门渲染出来
+<P>规范中的示例和注意事项都<a href="conform.html#defs">在HTML源码中标记出来了</a>，CSS用户代理将会做特别呈现
 
 <h3>1.4.5 <a name="images-and-longdesc">图片与长描述信息</a></h3>
 

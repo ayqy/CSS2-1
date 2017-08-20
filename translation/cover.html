@@ -100,7 +100,10 @@
   <hr title="Separator from Header">
 </div>
 
-<p style="border: solid thick red; padding: 1em"><strong>注意：<em>本篇只是信息性的介绍</em>，不涉及文档细节。CSS工作组正在开发<a href="http://dev.w3.org/csswg/css2/">CSS Level&nbsp;2 Revision&nbsp;2</a>，纠正本文档中的错误和遗漏，并包含一些其它改动，见<a href="http://dev.w3.org/csswg/css2/changes.html">改动章节</a>。CSS工作组鼓励编写者和实现者们参考CSS&nbsp;2.2 (后者<a href="http://www.w3.org/TR/CSS">后续版本</a>)而不是本文档</strong>。</p>
+<div style="border: solid thick red; padding: 1em">
+<p><strong>注意：本规范的某些章节已经被其它规范更新了，具体规范列表及其更替章节请查看最新<cite>CSS Snapshot</cite>中的<a href="https://www.w3.org/TR/CSS/#css">"Cascading Style Sheets (CSS) — The Official Definition"</a>部分。</p>
+<p>另外，CSS工作组正在推进<a href="http://www.w3.org/TR/CSS22/">CSS level&nbsp;2 revision&nbsp;2 (CSS&nbsp;2.2)</a>。</p>
+</div>
 
 <h2 id=abstract>摘要</h2>
 
@@ -110,7 +113,7 @@
 
 <p>CSS&nbsp;2.1纠正了CSS2中的一些错误（最重要的是重新定义绝对定位元素的高度/宽度，对HTML的"style"属性的更多影响，以及新的'clip'属性计算方式），并添加了一些已经被广泛实现的特性。但CSS&nbsp;2.1的大部分内容描述了CSS用法的简单印象（"snapshot"）：它包含所有目前（推荐标准发布这天）可以放心实现的CSS特性。
 
-<p>CSS&nbsp;2.1源于CSS2，并将代替它。一部分CSS2内容在CSS&nbsp;2.1中没变，一部分被修改了，还有一部分被删掉了。删掉的部分可能会在CSS3规范中出现，将来的新规范可能会参考CSS&nbsp;2.1（需要CSS2特性时，除非需要CSS&nbsp;2.1中出现的特性，否则只会参考那些特性相关的CSS2，或者在包含这些特性的CSS3模块中参考这些特性。
+<p>CSS&nbsp;2.1源于CSS2，并将代替它。一部分CSS2内容在CSS&nbsp;2.1中没变，一部分被修改了，还有一部分被删掉了。删掉的部分可能会在CSS3规范中出现，将来的新规范应该参考CSS 2.1（除非他们需要CSS2中那些已经在CSS 2.1被移除的特性，然后应该仅参考CSS2的这些特性，或者优先参考包含这些特性的CSS3模块）。
 
 <h2 id=status>文档状态</h2>
 
@@ -123,7 +126,8 @@ href="http://www.w3.org/TR/">W3C技术报告索引目录：http://www.w3.org/TR/
 href="http://lists.w3.org/Archives/Public/www-style/">归档</a>)
 公开邮件列表<a
 href="mailto:www-style@w3.org">www-style@w3.org</a> (查看<a
-href="http://www.w3.org/Mail/Request">介绍</a>)，专门用来讨论本文档。发送邮件时，请在主题中添上&#8220;CSS21&#8221;，比如：&#8220;[CSS21] <em>&hellip;意见总结&hellip;</em>&#8221;</p>
+href="http://www.w3.org/Mail/Request">介绍</a>)，专门用来讨论本文档。发送邮件时，请在主题中添上&#8220;CSS21&#8221;，比如：&#8220;[CSS21] <em>&hellip;summary of
+comment&hellip;</em>&#8221;</p>
 
 <p>本文档由<a
 href="http://www.w3.org/Style/CSS/members">CSS工作组</a>（<a href="http://www.w3.org/Style/">Style Activity</a>的一部分）编写。
@@ -137,7 +141,7 @@ href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C�
 
 <p>工作组已经创建了<a href="/Style/CSS/Test/">测试集</a>和<a href="/Style/CSS/Test/CSS2.1/20110323/reports/">实现报告</a>。
 
-<p>对先前工作草案、候选草案和推荐规范的所有改动都列在<a href="changes.html">附录&nbsp;C</a>中。
+<p>对先前工作草案、候选推荐规范和推荐规范的所有改动都列在<a href="changes.html">附录&nbsp;C</a>中。
 
 <!--NewPage--><!-- this is for html2ps -->
 <div class="toc">
@@ -195,7 +199,7 @@ href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C�
         <li class="tocline4"><a href="about.html#computed-defs" class="tocxref">1.4.2.7 计算值</a>
       </ul>
       <li class="tocline3"><a href="about.html#shorthand" class="tocxref">1.4.3 简写属性</a>
-      <li class="tocline3"><a href="about.html#notes-and-examples" class="tocxref">1.4.4 注释和示例</a>
+      <li class="tocline3"><a href="about.html#notes-and-examples" class="tocxref">1.4.4 注意事项和示例</a>
       <li class="tocline3"><a href="about.html#images-and-longdesc" class="tocxref">1.4.5 图片与长描述信息</a>
     </ul>
     <li class="tocline2"><a href="about.html#acknowledgements" class="tocxref">1.5 致谢</a>
@@ -211,7 +215,7 @@ href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C�
     </ul>
     <li class="tocline2"><a href="intro.html#design-principles" class="tocxref">2.4 CSS设计原则</a>
   </ul>
-  <li class="tocline1"><a href="conform.html" class="tocxref">3 一致性：需求与推荐标准</a>
+  <li class="tocline1"><a href="conform.html" class="tocxref">3 一致性：要求和建议</a>
   <ul class="toc">
     <li class="tocline2"><a href="conform.html#defs" class="tocxref">3.1 定义</a>
     <li class="tocline2"><a href="conform.html#conformance" class="tocxref">3.2 UA一致性</a>
@@ -226,7 +230,7 @@ href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C�
       <li class="tocline3"><a href="syndata.html#keywords" class="tocxref">4.1.2 关键字</a>
       <ul class="toc">
         <li class="tocline4"><a href="syndata.html#vendor-keywords" class="tocxref">4.1.2.1 特定供应商（Vendor-specific）扩展</a>
-        <li class="tocline4"><a href="syndata.html#vendor-keyword-history" class="tocxref">4.1.2.2 信息性历史注释</a>
+        <li class="tocline4"><a href="syndata.html#vendor-keyword-history" class="tocxref">4.1.2.2 信息性历史记录</a>
       </ul>
       <li class="tocline3"><a href="syndata.html#characters" class="tocxref">4.1.3 字符和大小写</a>
       <li class="tocline3"><a href="syndata.html#statements" class="tocxref">4.1.4 语句</a>
@@ -1172,7 +1176,7 @@ href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C�
   <ul class="toc">
     <li class="tocline2"><a href="zindex.html#stacking-defs" class="tocxref">E.1 定义</a>
     <li class="tocline2"><a href="zindex.html#painting-order" class="tocxref">E.2 绘制顺序</a>
-    <li class="tocline2"><a href="zindex.html#stacking-notes" class="tocxref">E.3 注释</a>
+    <li class="tocline2"><a href="zindex.html#stacking-notes" class="tocxref">E.3 注意</a>
   </ul>
   <li class="tocline1"><a href="propidx.html" class="tocxref">附录 F. 属性表</a>
   <li class="tocline1"><a href="grammar.html" class="tocxref">附录 G. CSS&nbsp;2.1语法</a>
@@ -1180,7 +1184,7 @@ href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C�
     <li class="tocline2"><a href="grammar.html#grammar" class="tocxref">G.1 语法</a>
     <li class="tocline2"><a href="grammar.html#scanner" class="tocxref">G.2 词法分析器</a>
     <li class="tocline2"><a href="grammar.html#tokenizer-diffs" class="tocxref">G.3 CSS&nbsp;2.1与CSS1的符号化对比</a>
-    <li class="tocline2"><a href="grammar.html#q4" class="tocxref">G.4 实现注释</a>
+    <li class="tocline2"><a href="grammar.html#q4" class="tocxref">G.4 实现提示</a>
   </ul>
   <li class="tocline1"><a href="indexlist.html" class="tocxref">附录 I. 索引</a>
 </ul>
