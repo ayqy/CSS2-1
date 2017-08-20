@@ -79,13 +79,13 @@ body>del,body>ins {display:block}
 </div>
 <h2>4.1 <a name="syntax">语法</a></h2>
 
-<p>本节描述的语法（以及<a name="x0"><span class="index-def" title="forward-compatible parsing"><dfn>正向兼容分析（forward-compatible parsing）</dfn></span></a>规则）适用于任何版本的CSS（包括CSS&nbsp;2.1）。CSS将来的更新也将遵守此处的核心语法，尽管它们可能添加了额外的语法约束</p>
+<p>本节描述的语法（以及<a name="x0"><span class="index-def" title="forward-compatible parsing"><dfn>向前兼容的解析规则（forward-compatible parsing）</dfn></span></a>规则）适用于任何版本的CSS（包括CSS&nbsp;2.1）。CSS将来的更新也将遵守此处的核心语法，尽管它们可能添加了额外的语法约束</p>
 <p>这些描述都是规范的内容，它们也会被<a href="grammar.html">附录 G</a>中提出的规范语法规则所补充</p>
 <p>本规范中，类似于“前面紧跟”或者“后面紧跟”的表述意味着之间没有空格或者注释
 
 <h3>4.1.1 <a name="tokenization">符号化</a></h3>
 
-<p>所有版本的CSS&mdash;CSS 1，CSS 2和将来的任何版本&mdash;用的都是相同的核心语法。这样UA就可以解析（虽然不完全能理解）根据UA发布时尚不存在的CSS版本编写的样式表。设计者可以根据该特征来创建兼容旧版本用户代理的样式表，同时也能运用最新版本的CSS</p>
+<p>所有版本的CSS&mdash;CSS 1，CSS 2和将来的任何版本&mdash;用的都是相同的核心语法。这样UA就可以解析（虽然不完全能理解）以UA发布时尚不存在的CSS版本编写的样式表。设计者可以根据该特征来创建兼容旧版本用户代理的样式表，同时也能运用最新版本的CSS</p>
 <p>在词法层面上，CSS样式表由一系列token组成，这些token如下，定义中用了词法分析风格（Lex-style）的正则表达式。八进制码参考了ISO 10646（<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>），和词法分析一样，存在多个匹配时，把最长的匹配作为token</p>
 <table>
 <thead>
@@ -158,7 +158,7 @@ body>del,body>ins {display:block}
 <p>例如，最长匹配规则意味着"<code>red--&gt</code>"会被符号化为一个IDENT "<code>red--</code>"后面跟着一个DELIM "<code>&gt;</code>"，而不是一个IDENT后面跟着一个CDC
 </div>
 
-<p>下面是CSS的核心语法，本节接着说怎样用它。<a href="grammar.html">附录 G</a>描述了一个约束更多的很接近CSS2的语法。可以根据本语法解析，但不能用附录 G中的语法解析的部分样式表都是按照<a href="#parsing-errors">处理解析错误的规则</a>应该忽略的部分</a>
+<p>下面是CSS的核心语法，本节接着说怎样用它。<a href="grammar.html">附录 G</a>描述了一个约束更多的更接近CSS2的语法。能根据本语法解析，但不能用附录 G中的语法解析的部分样式表都是按照<a href="#parsing-errors">处理解析错误的规则</a>应该忽略的部分</a>
 </p>
 <pre>
 stylesheet  : [ CDO | CDC | S | statement ]*;
@@ -180,10 +180,10 @@ unused      : block | ATKEYWORD S* | ';' S* | CDO S* | CDC S*;
 
 <p>"unused"产生式不用在CSS中，也不会被任何将来的扩展使用。这里提到它只是为了帮助完成错误处理。（见<a href="#parsing-errors">4.2 “处理解析错误的规则”</a>）
 
-<p><a name="comment">注意</a> token不会出现在语法中（为了保持其可读性），但无论多少token都可以出现在其它token外的任何地方（注意，然而，出现在@charset前或者里面的注释都会导致@charset无效）</p>
+<p><a name="comment">注意</a> token不会出现在语法中（为了保持其可读性），但任意数量的token都可以出现在其它token外的任何地方（注意，然而，出现在@charset前或者里面的注释都会导致@charset无效）</p>
 
 <p>上面语法中的token S代表<a name="whitespace">空白字符</a>，空白字符中只能出现"space" (U+0020)，"tab" (U+0009)，"line feed" (U+000A)，"carriage return" (U+000D)和"form feed" (U+000C)。其它的类空格（space-like）字符，例如"em-space" (U+2003)和"ideographic space" (U+3000)不会被当作空白字符的一部分</p>
-<p>输入不能被字符化或解析的意义在CSS&nbsp;2.1并未定义（The meaning of input that cannot be tokenized or parsed is undefined in CSS&nbsp;2.1.）</p>
+<p>不能被符号化或解析的输入的含义在CSS&nbsp;2.1中是未定义的（The meaning of input that cannot be tokenized or parsed is undefined in CSS&nbsp;2.1.）</p>
 
 <h3>4.1.2 <a name="keywords">关键字</a></h3>
 
@@ -229,7 +229,7 @@ background: "red";
 -wap-accesskey
 </pre>
 </div>
-<p>开头的短线或者下划线为了保证不会用任何版本的CSS用作属性或者关键字。因此，典型CSS实现可能无法识别这种属性，而根据<a href="#parsing-errors">处理解析错误的规则</a>忽略掉它。然而，因为开头短线或者下划线是语法的一部分，CSS&nbsp;2.1的实现者们总是应该使用一个遵从CSS的（CSS-conforming）解析器，无论他们是否支持任何特定供应商扩展
+<p>开头的短线或下划线用来保证不会被现在及将来的任意版本CSS用作属性或关键字。因此，典型CSS实现可能无法识别这种属性，而会根据<a href="#parsing-errors">处理解析错误的规则</a>忽略掉它。然而，因为开头短线或下划线也是语法的一部分，CSS&nbsp;2.1的实现者们都应该采用遵从CSS的（CSS-conforming）解析器，无论是否支持任何特定供应商扩展
 </p>
 
 <p>编写者应该避免特定供应商扩展</p>
@@ -271,7 +271,7 @@ background: "red";
     <span class="example">例如，标识符"B&amp;W?"可以写成"B\&amp;W\?"或者"B\26 W\3F"</span>
 
 
-    <p>注意，Unicode和ISO 10646（见<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>和<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>）是码与码等价的（code-by-code equivalent）
+    <p>注意，Unicode和ISO 10646（见<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>和<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>）是逐码等价的（code-by-code equivalent）
     </p>
 	</li>
     <li>CSS&nbsp;2.1中，反斜线(\)字符有三种可能的情况，<span class="index-def" title="backslash
@@ -377,9 +377,9 @@ h1 {color: blue }
 <p>规则集（也叫“规则”），由后面跟着一个声明块的选择器组成
 </p>
 <p><a name="x14"><span class="index-def"
-title="declaration block"><dfn>声明块</dfn></span></a>以左花括号({)开头，以对应的右花括号(})结束，之间一定有一系列由一个或多个分号分隔的声明
+title="declaration block"><dfn>声明块</dfn></span></a>以左花括号({)开始，以与之匹配的右花括号(})结束，之间必须有一列由0个或多个分号分隔(;)的声明
 </p>
-<p><a name="x15"><span class="index-def" title="selector"><em>选择器</em></span></a>（见<a href="selector.html">选择器</a>）包含直到第一个左花括号({)的所有东西（但不包括左花括号），选择器总是和声明块一起出现。当用户代理无法解一个析选择器（例如，该选择器在CSS&nbsp;2.1中不合法）时，必须<span class="index-inst" title="ignore"><a name="x16"
+<p><a name="x15"><span class="index-def" title="selector"><em>选择器</em></span></a>（见<a href="selector.html">选择器</a>）包含直到第一个左花括号({)的所有东西（但不包括左花括号），选择器总是和声明块一起出现。当用户代理无法解析一个选择器（例如，该选择器在CSS&nbsp;2.1中不合法）时，必须<span class="index-inst" title="ignore"><a name="x16"
 href="#ignore">忽略</a></span>选择器以及后面的声明块（如果有的话）
 </p>
 <p>CSS&nbsp;2.1给选择器中的逗号(,)赋予了特殊的含义，然而，因为不确定将来CSS更新时逗号是否还会获得其他含义，所以如果选择器任何位置出现错误，整个语句都应该被<span class="index-inst" title="ignore"><a name="x17" href="#ignore">忽略</a></span>，即便选择器剩余部分在CSS&nbsp;2.1中完全合法
@@ -443,14 +443,13 @@ h1 {
 </div>
 
 <p>属性名是一个<a
-href="#value-def-identifier">标识符</a>，属性值中可以出现任何token。圆括号("(&nbsp;)")，方括号("[&nbsp;]")，花括号("{&nbsp;}")，单引号(')和双引号(")必须成对出现，并且字符串外的分号不会必须<a
-href="#escaped-characters">转义</a>。圆括号，方括号和花括号可以嵌套。引号里的字符会被解析为一个字符串
-string.
+href="#value-def-identifier">标识符</a>，属性值中可以出现任何token。圆括号("(&nbsp;)")，方括号("[&nbsp;]")，花括号("{&nbsp;}")，单引号(')和双引号(")必须成对出现，并且非字符串形式的分号必须<a
+href="#escaped-characters">转义</a>。圆括号，方括号和花括号可以嵌套。引号里的字符当做string解析
 </p>
-<p><a name="x21"><span class="index-def" title="value">值</span></a>的语法单独定义在每个属性中，但无论如何，值都是由标识符，字符串，数字，长度，百分比，URI，颜色等构成的
+<p><a name="x21"><span class="index-def" title="value">（属性）值</span></a>的语法单独定义在每个属性中，但无论如何，值都是由标识符，字符串，数字，长度，百分比，URI，颜色等构成的
 </p>
 <p>用户代理必须<span class="index-inst" title="ignore"><a name="x22"
-href="#ignore">忽略</a></span>含有非法属性名或者非法值的声明，任何CSS属性对它能接受的值都有自己的句法和语义限制
+href="#ignore">忽略</a></span>含有非法属性名或者非法值的声明，任何CSS属性对它能接受的值都有自己的句法（syntactic）和语义限制
 </p>
 <div class="illegal-example"><P style="display:none">非法示例：</P><p>
 例如，假设一个CSS&nbsp;2.1解析器遇到了这样的样式表：
@@ -523,7 +522,7 @@ img { }
 
 <p>与将来的CSS规范一致的用户代理也可以接受一条或者更多的其它规则</p>
 </li>
-<li><strong>格式错误的声明</strong> 用户代理必须处理解析声明期间遇到的异常token，一直读到声明结束，从()，[]，{}，""和''对中寻找对应的规则，并正确处理转义。例如，一个格式错误的声明可能回缺少属性名，冒号(:)或者属性值，下列（声明）都是等价的
+<li><strong>格式错误的声明</strong> 用户代理必须处理解析声明期间遇到的异常token，一直读到声明结束，从()，[]，{}，""和''对儿中寻找对应的规则，并正确处理转义。例如，一个格式错误的声明可能会缺少属性名，冒号(:)或者属性值，下列（声明）都是等价的
 
 <pre class="example"><code>
 p { color:green }
@@ -626,8 +625,8 @@ h1 { color: blue }
 
 <h3>4.3.1 <a name="numbers">整数和实数</a></h3>
 
-<p>一些值类型可能有整数值（<span class="index-def" title="&lt;integer&gt;::definition of"><a
-name="value-def-integer" class="value-def">&lt;整数&gt;</a></span>中指出的）或者实数值（<span class="index-def" title="&lt;number&gt;::definition of"><a name="value-def-number" class="value-def">&lt;数&gt;</a></span>中指出的）。实数和整数都只是特定的十进制表示法。&lt;整数&gt;由一个或者多个"0"到"9"的数字组成，&lt;数&gt;既可以是一个&lt;整数&gt;，也可以是0个或者多个数字，后面跟着一个小数点和一个或者多个数字。整数和实数之前可以有"-"或者"+"表示符号。-0等价于0，不是负数</p>
+<p>一些值类型可能是整数值（<span class="index-def" title="&lt;integer&gt;::definition of">用<a
+name="value-def-integer" class="value-def">&lt;integer&gt;</a></span>表示）或实数值（<span class="index-def" title="&lt;number&gt;::definition of">用<a name="value-def-number" class="value-def">&lt;number&gt;</a></span>表示）。实数和整数都只是用十进制的表示形式。&lt;integer&gt;由一个或多个"0"到"9"的数字组成，&lt;number&gt;既可以是一个&lt;integer&gt;，也可以是0个或多个数字，后面跟着一个小数点和一个或多个数字。整数和实数之前都可以有"-"或者"+"表示符号。-0等价于0，不是负数</p>
 
 <p>注意，很多允许整数或者实数作为值的属性实际上限制了值的范围，通常是一个非负值
 </p>
@@ -638,8 +637,8 @@ name="value-def-integer" class="value-def">&lt;整数&gt;</a></span>中指出的
 
 <p>长度值的格式（本规范<span class="index-def"
 title="&lt;length&gt;::definition of"><a name="value-def-length"
-class="value-def">&lt;长度&gt;</a></span>）章节中指出的）是一个<a href="syndata.html#value-def-number" class="noxref"><span
-class="value-inst-number">&lt;数&gt;</span></a>（有或没有小数点）后面紧跟着一个单位标识符（例如，px，em等等）。0长度后面的单位标识符是可选的</p>
+class="value-def">&lt;length&gt;</a></span>）章节中指出的）是一个<a href="syndata.html#value-def-number" class="noxref"><span
+class="value-inst-number">&lt;number&gt;</span></a>（有或没有小数点）后面紧跟着一个单位标识符（例如，px，em等等）。0长度后面的单位标识符是可选的</p>
 <p>一些属性允许负的长度值，但会让格式化模型变得复杂，并且可能存在具体实现限制。如果一个负长度值不被支持，它应该被转化为最相近（nearest）的支持值
 </p>
 <p>如果不接受负长度值的属性被设置了一个负长度值，声明会被忽略
@@ -665,7 +664,7 @@ h1 { margin: 1ex }        /* ex */
 </div>
 
 <p><span class="index-def" title="em (unit)|quad width"><a
-name="em-width">'em'</a></span>单位等于应用该规则的元素的<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>属性的计算值。一种异常情况是当'em'出现在'font-size'属性本身的值中时，这种情况下参考父元素的字体大小。它可以用在竖直或者水平测量中（这个单位在排版文本中有时也叫quad-width，四边宽度？）
+name="em-width">'em'</a></span>单位等于应用该规则的元素的<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>属性的计算值。一种异常情况是当'em'出现在'font-size'属性本身的值中时，这种情况下参考父元素的字体大小。它可以用在竖直或者水平测量中（这个单位在印刷文本中有时也叫quad-width，四宽度？）
 </p>
 <p><span class="index-def" title="x-height|ex (unit)"><a
 name="ex">'ex'</a></span>单位是根据元素的第一个可用字体定义的。一种异常情况是当'ex'出现在<a href="fonts.html#propdef-font-size" class="noxref"><span
@@ -680,7 +679,7 @@ class="propinst-font-size">'font-size'</span></a>属性的值中，此时参考�
 h1 { line-height: 1.2em }
 </code></pre>
 
-<p>表示"h1"元素的行高将比"h1"元素的字体大小大20%，另一方面：
+<p>表示"h1"元素的行高将比"h1"元素的字体大小大20%，另一种情况：
 </p>
 <pre><code class="css">
 h1 { font-size: 1.2em }
@@ -760,11 +759,11 @@ p  { font-size: 12px }    /* px */
 
 <h3>4.3.3  <a name="percentage-units">百分比</a></h3>
 
-<p>百分比值（本规范中<span class="index-def" title="&lt;percentage&gt;::definition of"><a
+<p>百分比值（本规范中<span class="index-def" title="&lt;percentage&gt;::definition of">用<a
 name="value-def-percentage"
-class="value-def">&lt;百分比&gt;</a></span>章节指出的）的格式是一个<span class="index-inst"
+class="value-def">&lt;percentage&gt;</a></span>表示）的格式是一个<span class="index-inst"
 title="&lt;number&gt;"><a name="x43" href="syndata.html#value-def-number" class="noxref"><span
-class="value-inst-number">&lt;数&gt;</span></a></span>后面紧跟着'%'
+class="value-inst-number">&lt;number&gt;</span></a></span>后面紧跟着'%'
 </p>
 <p>百分比值总是和其它值有关，例如，长度。每个接受百分比的属性也定义了百分比所参考的值。该值可以是同一元素的另一个属性，祖先元素的属性或者来自格式化上下文（例如，一个<a href="visuren.html#containing-block">包含块</a>的宽度）的值。当给<a href="conform.html#root">根</a>元素的属性设置了一个百分比值时，并且百分比参照了一些属性的继承值，结果值是百分比乘以该属性的<a href="about.html#initial-value">初始值</a>
 </p>
@@ -780,7 +779,7 @@ p { line-height: 120% }  /* 120% of 'font-size' */
 
 <h3>4.3.4 <a name="uri">URL与URI</a></h3>
 
-<p>本规范中，URI值（Uniform Resource Identifiers统一资源标识符，见<a href="refs.html#ref-RFC3986" rel="biblioentry" class="noxref"><span class="normref">[RFC3986]</span></a>，包括URL，URN等等）在<span class="index-def" title="&lt;uri&gt;::definition of"><a name="value-def-uri" class="value-def">&lt;uri&gt;</a></span>中出现。用来指定属性值中URI的函数标记是"url()"，例如：
+<p>本规范中，URI值（Uniform Resource Identifiers统一资源标识符，见<a href="refs.html#ref-RFC3986" rel="biblioentry" class="noxref"><span class="normref">[RFC3986]</span></a>，包括URL，URN等等）用<span class="index-def" title="&lt;uri&gt;::definition of"><a name="value-def-uri" class="value-def">&lt;uri&gt;</a></span>表示。用来指定属性值中URI的函数标记是"url()"，例如：
 </p>
 <div class="example"><P style="display:none">示例：</P>
 <pre><code class="css">
@@ -827,16 +826,16 @@ body { background: url("yellow") }
 </p>
 <h3>4.3.5 <a name="counter">计数器</a></h3>
 
-<p><span class="index-def" title="&lt;counter&gt;, definition of"><a name="value-def-counter">计数器</a></span>用大小写敏感的标识符来表示（见<a href="generate.html#propdef-counter-increment" class="noxref"><span class="propinst-counter-increment">'counter-increment'</span></a>和<a href="generate.html#propdef-counter-reset" class="noxref"><span class="propinst-counter-reset">'counter-reset'</span></a>属性）。为了引用计数器的值，可以用标记<a name="x46"><span class="index-def" title="counter()">'counter(&lt;identifier&gt;)'</span></a>或者'counter(&lt;identifier&gt;,&lt;'list-style-type'&gt;)'，可以有可选的空白字符分隔这些token，默认样式是'decimal'
+<p><span class="index-def" title="&lt;counter&gt;, definition of"><a name="value-def-counter">计数器</a></span>用大小写敏感的标识符来表示（见<a href="generate.html#propdef-counter-increment" class="noxref"><span class="propinst-counter-increment">'counter-increment'</span></a>和<a href="generate.html#propdef-counter-reset" class="noxref"><span class="propinst-counter-reset">'counter-reset'</span></a>属性）。要引用计数器值的话，可以用标记<a name="x46"><span class="index-def" title="counter()">'counter(&lt;identifier&gt;)'</span></a>或者'counter(&lt;identifier&gt;,&lt;'list-style-type'&gt;)'，可以有可选的空白字符分隔这些token，默认样式是'decimal'
 </p>
 <p>为了引用一系列嵌套的同名计数器，可以用标记'counters(&lt;identifier&gt;, &lt;string&gt;)'或者'counters(&lt;identifier&gt;, &lt;string&gt;, &lt;'list-style-type'&gt;)'，可以有可选的空白字符分隔这些token</p>
-<p>关于用户代理应该确定的值或者计数器的值，见<a href="generate.html">内容生成</a>章节的<a href="generate.html#scope">"嵌套的计数器和作用域"</a>小节。关于怎样把计数器值转化为字符串，见<a href="generate.html#propdef-content" class="noxref"><span class="propinst-content">'content'</span></a>属性的定义
+<p>关于用户代理会如何确定值或计数器值，见<a href="generate.html">内容生成</a>章节的<a href="generate.html#scope">"嵌套的计数器和作用域"</a>小节。关于怎样把计数器值转化为字符串，见<a href="generate.html#propdef-content" class="noxref"><span class="propinst-content">'content'</span></a>属性的定义
 </p>
 <p>CSS&nbsp;2.1中，只能通过<a href="generate.html#propdef-content" class="noxref"><span
 class="propinst-content">'content'</span></a>属性引用计数器的值。注意，'none'也是一个可能的&lt;'list-style-type'&gt;: 'counter(x,none)'产生一个空字符串
 </p>
 <div class="example"><P style="display:none">示例：</P>
-<p>有一个样式表对每章(h1)的段落(p)进行计数。段落用罗马数字技术，后面跟着一个句号和一个空格：
+<p>有一个样式表对每章(h1)的段落(p)进行计数。段落用罗马数字计数，后面跟着一个句号和一个空格：
 </p>
 <pre><code class="css">
 p {counter-increment: par-num}
@@ -907,11 +906,11 @@ em { color: rgb(100%, 0%, 0%) }
 <p>RGB值格式的函数标记是'rgb('后面跟着一个逗号分隔的3个数值（要么是3个整数，要么是3个百分比值）和')'。整数值255对应100%和十六进制表示法中的F或者FF：rgb(255,255,255) = rgb(100%,100%,100%) =
 #FFF。数值前后可以有<a href="#whitespace">空白字符</a>
 </p>
-<p>所有RGB颜色都定义在sRGB颜色空间中（见<a href="refs.html#ref-SRGB" rel="biblioentry" class="noxref"><span class="normref">[SRGB]</span></a>）。用户代理表现这些颜色时可能在保真度（fidelity）方面有差异，但会使用sRGB提供的颜色的明确客观的可衡量定义，这与国际化标准有关（见<a href="refs.html#ref-COLORIMETRY" rel="biblioentry" class="noxref"><span class="normref">[COLORIMETRY]</span></a>）
+<p>所有RGB颜色都定义在sRGB颜色空间中（见<a href="refs.html#ref-SRGB" rel="biblioentry" class="noxref"><span class="normref">[SRGB]</span></a>）。用户代理表示这些颜色时可能在保真度（fidelity）方面有差异，但会使用sRGB提供的颜色的明确客观的可衡量定义，这与国际化标准有关（见<a href="refs.html#ref-COLORIMETRY" rel="biblioentry" class="noxref"><span class="normref">[COLORIMETRY]</span></a>）
 </p>
 <p>（与本规范）<a href="conform.html#conformance">一致的用户代理</a>可能会对颜色进行伽玛校正（gamma-correction）来限制颜色显示的效果。sRGB指定了特定观察环境下显示伽玛（display gamma ）为2.2。用户代理应该调整CSS中给出的颜色，这样结合输出设备的“自然”（"natural"）显示伽玛，一个有效的2.2显示伽玛就产生了。注意，只有在CSS中指定的颜色才会受影响，例如，图片被认为携带了它们自己的颜色信息
 </p>
-<p>设备色域（gamut）外的值应该被裁剪或者当色域已知时应该映射到色域中：red，green和blue的值必须必须转变到设备支持的范围内。用户代理可能会进行从一个色域到另一个色域的更高质量的颜色映射。对于典型的CRT显示器（CRT monitor），其设备色域与sRGB相同，下面这4条规则是等价的：
+<p>设备色域（gamut）外的值应该被裁剪或者当色域已知时应该映射到色域中：red，green和blue的值必须必须转换到设备支持的范围内。用户代理可能会进行从一个色域到另一个色域的更高质量的颜色映射。对于典型的CRT显示器（CRT monitor），其设备色域与sRGB相同，下面这4条规则是等价的：
 </p>
 <div class="example"><P style="display:none">示例：</P>
 <pre><code class="css">
@@ -924,7 +923,7 @@ em { color: rgb(110%, 0%, 0%) }  /* clipped to rgb(100%,0%,0%) */
 
 <p>其它设备，例如打印机，色域与sRGB不同，有些0..255 sRGB范围外的颜色也是可表示的（在设备色域内），而那些在0..255 sRGB范围内的颜色会因为不在设备色域内而被映射
 </p>
-<div class=note><p><em><strong>注释</strong> 色值的映射或裁剪应该在设备色域已知（可能比0..255大或小）时进行</em>
+<div class=note><p><em><strong>注意</strong> 色值的映射或裁剪应该在设备色域已知（可能比0..255大或小）时进行</em>
 </div>
 
 <h3>4.3.7 <a name="strings">字符串</a></h3>
@@ -1010,7 +1009,7 @@ class="index-inst">@charset</span></a>（见下方）</li>
 
 <li>除了这里指定的规则外，所有@charset规则都会应该忽略</li>
 
-<li>编码是通过样式表开头的字节流来检测的。下表给出了关于开始字节序列（十六进制形式）的一堆可能性。最先与样式表开头匹配的行给出了基于BOM和/或@charset规则的编码检测结果。如果没有匹配的行，编码就无法根据BOM和/或@charset规则检测。(...)*标记表示匹配部分可能和会重复几次。被标记为"XX"的字节是那些用来确定编码名的，对它们以给出的顺序进行处理，作为一个ASCII字符序列。被标记为"YY"的字节是类似的，但需要根据注释被转码为ASCII。用户代理可能忽略表中的项，如果它们不支持这些项相关的编码的话
+<li>编码是通过样式表开头的字节流来检测的。下表给出了关于开始字节序列（十六进制形式）的一堆可能性。最先与样式表开头匹配的行给出了基于BOM和/或@charset规则的编码检测结果。如果没有匹配的行，编码就无法根据BOM和/或@charset规则检测。(...)*标记表示匹配部分可能和会重复几次。被标记为"XX"的字节是那些用来确定编码名的，对它们以给出的顺序进行处理，作为一个ASCII字符序列。被标记为"YY"的字节是类似的，但需要根据提示被转码为ASCII。用户代理可能忽略表中的项，如果它们不支持这些项相关的编码的话
 
 <table border="1"
   summary="Relationship between initial bytes of sheet and chosen encoding">
@@ -1046,7 +1045,7 @@ class="index-inst">@charset</span></a>（见下方）</li>
 
 </li>
 
-<li>如果编码是根据上面的被标记为"as specified"的某一项检测出来的，但根据选定的@charset解码字符流开头部分无法被解析成一个合适的@charset规则的话，用户代理应该忽略该样式表（If the encoding is detected based on one of the entries in the table above marked "as specified", the user agent ignores the style sheet if it does not parse an appropriate @charset rule at the beginning of the stream of characters resulting from decoding in the chosen @charset.）。这样确保了：
+<li>如果编码是根据上面的被标记为“与指定值相同”的某一项检测出来的，但根据选定的@charset解码字符流开头部分无法被解析成一个合适的@charset规则的话，用户代理应该忽略该样式表（If the encoding is detected based on one of the entries in the table above marked "as specified", the user agent ignores the style sheet if it does not parse an appropriate @charset rule at the beginning of the stream of characters resulting from decoding in the chosen @charset.）。这样确保了：
   <ul>
     <li>@charset规则只在样式表的编码中生效（@charset rules should only function if they are in the encoding of the style sheet）</li>
     <li>字节顺序标记只在支持字节顺序标记的编码中被忽略，并且</li>
@@ -1071,7 +1070,7 @@ class="index-inst">@charset</span></a>（见下方）</li>
 <p>例如，一份以ISO-8859-1(Latin-1)传输的样式表不能直接包含希腊字母："&#954;&#959;&#965;&#961;&#959;&#962;"（希腊语："kouros"(青年)）必须写作"\3BA\3BF\3C5\3C1\3BF\3C2"
 </p>
 <div class="note"><p>
-<em><strong>注释</strong>
+<em><strong>注意</strong>
 HTML 4中，数字字符引用被解释为"style"属性的值，而不是STYLE元素的内容（numeric character references are interpreted in "style" attribute values but not in the content of the STYLE element.）。由于这种不对称（asymmetry），我们建议编写者对"style"属性和STYLE元素都使用CSS字符转义机制而不是数字字符引用，例如，我们推荐：</em></p>
 
 <pre class="html-example"><code class="html">
