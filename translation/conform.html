@@ -50,7 +50,7 @@ class="index-def" title="MAY">"MAY"</span></a>和<a name="x9"><span class="index
 
 <P>有时，本规范会为编写者和用户代理推荐最佳实践。这些建议是非规范的，而且与本规范的一致性取决于其实现。这些建议包括“我们推荐...”，“本规范推荐...”这样的表达或者类似的措辞</P>
 
-<P>实际上，一个被标记废弃的（例如，<a href="aural.html#aural-media-group">'aural'</a>关键字）或者将在CSS3中被废弃的（例如，<a href="ui.html#system-colors">system colors</a>）都不影响一致性（例如，'aural'被标记为非规范的，所以UA不需要支持它，而system colors是规范的，UA必须支持它）。
+<P>实际上，一个被注明废弃的（例如，<a href="aural.html#aural-media-group">'aural'</a>关键字）或者将在CSS3中被废弃的（例如，<a href="ui.html#system-colors">system colors</a>）都不影响一致性（例如，'aural'被标记为非规范的，所以UA不需要支持它，而system colors是规范的，UA必须支持它）。
 
 <p>除注释说明的部分外，本规范的所有章节包括附录都是规范的
 
@@ -99,7 +99,7 @@ name="element">元素</a></span></strong>
 <dt><strong><span class="index-def" title="replaced element">
 <a name="replaced-element">可替换（Replaced）元素</a></span></strong>
 
-<dd><p>内容超出CSS格式化模型的元素，例如图片，内嵌的文档，或者applet。例如，HTML中IMG元素的内容通常被其"src"属性指定的图片替换。可替换元素通常拥有内在尺寸（intrinsic dimensions）：内在宽度，内在高度和内在比例（intrinsic ratio）。例如，位图图片有绝对单位指定的内在宽度，内在高度（明显可以确定内在比例）。另一方面，其它文档就没有内在尺寸（例如，空白的HTML文档）
+<dd><p>内容超出CSS格式化模型的元素，例如图片，内嵌的文档，或者applet。例如，HTML中IMG元素的内容通常被其"src"属性指定的图片替换。可替换元素通常拥有内在尺寸（intrinsic dimensions）：内在宽度，内在高度和内在比例（intrinsic ratio）。例如，位图图片有绝对单位指定的内在宽度，内在高度（显然可以确定内在比例）。另一方面，其它文档就没有内在尺寸（例如，空白的HTML文档）
 
 <p>用户代理可以认为一个可替换元素没有任何内在尺寸，如果觉得这些尺寸可能会泄漏敏感信息给第三方的话。例如，如果一份HTML文档是根据用户的银行余额改变内在尺寸的，那么UA可能需要假装这个资源没有内在尺寸
 
@@ -131,7 +131,7 @@ title="ignore"><a name="ignore">忽略</a></span></strong>
 <dt><strong><span class="index-def" title="rendered
 content|content::rendered"><a name="rendered-content">呈现（Rendered）内容</a></span></strong>
 
-<dd>根据相关样式表对元素进行渲染之后元素的内容。关于可替换元素的内容怎样渲染不由本规范定义。呈现内容可能是元素的备选文本（例如，XHTML的"alt"属性），还可能包含通过样式表隐式或显式插入的项，例如黑点（bullets），数字等等
+<dd>根据相关样式表对元素进行渲染后元素的内容。关于可替换元素的内容怎样渲染不由本规范定义。呈现内容可能是元素的备选文本（例如，XHTML的"alt"属性），还可能包含通过样式表隐式或显式插入的项，例如黑点（bullets），数字等等
 
 <dt><strong><span class="index-def" title="document tree">
 <a name="doctree">文档树</a></span></strong>
@@ -258,13 +258,13 @@ class="index-def"><a name="property">属性</a></span></strong>
 
 <li>编辑工具只需要输出<a href="#valid-style-sheet">合法的样式表</a>
 
-<li>根据相关样式表<em>渲染</em>文档的用户代理必须遵守1-6点，并根据本规范中的4个特定媒体要求集之一来渲染文档。用户代理请求时，<a href="cascade.html#actual-value">值</a>可能是近似的
+<li><em>渲染</em>具有关联样式表的文档的用户代理必须遵守1-6点，并根据本规范中阐述的媒体特定要求呈现文档。必要时，用户代理可以用近似<a href="cascade.html#actual-value">值</a>
 
 </ul>
 
-<P>用户代理的实现由于特殊设备限制（例如，用户代理无法在 monochrome monitor或页面上渲染颜色）缺少部分规范支持， 并不是不一致性</P>
+<P>由于特定设备（例如，用户代理无法在单色监视器或页面上渲染颜色）的限制，用户代理无法实现本规范的一部分并不意味着不一致</P>
 
-<p>UA必须允许用户指定一个包含用户样式表的文件。设备上运行的UA不应该有任何方式来写或者说明需要的文件被排除在外（ UAs that run on devices without any means of writing or specifying files are exempted from this requirement.）。此外，UA应该提供其它方式来指定用户偏好，例如，通过GUI
+<p>UA必须允许用户指定含有用户样式表的文件。UA面向的设备无任何写入或指定文件的方式时可以免除此要求（ UAs that run on devices without any means of writing or specifying files are exempted from this requirement.）。此外，UA可以提供其它方式来指定用户偏好，例如通过GUI
 
 <p>CSS&nbsp;2.1不定义那些应用于表单控件和frame的属性，以及CSS怎样给它们设置样式，由用户代理给这些元素应用CSS属性。建议编写者把这样的特性当作实验性的支持，将来CSS的后续版本可能会指定这些
 
