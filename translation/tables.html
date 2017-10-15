@@ -150,7 +150,7 @@ BAR { display : table-caption }
 
   <dt><strong><span class="index-def" title="inline-table"><a
   class="value-def"
-  name="value-def-inline-table">inline-table</a></span></strong> (HTML中的TABLE) <dd>指定元素定义了一个<a href="visuren.html#inline-level">内联级</a>表格：它是一个参与了<a href="visuren.html#inline-formatting">内联格式化上下文</a>的矩形块
+  name="value-def-inline-table">inline-table</a></span></strong> (HTML中的TABLE) <dd>指定元素定义了一个<a href="visuren.html#inline-level">行内级</a>表格：它是一个参与了<a href="visuren.html#inline-formatting">行内格式化上下文</a>的矩形块
 
   <dt><strong><span class="index-def" title="table-row"><a class="value-def" name="value-def-table-row">table-row</a></span></strong> (HTML中的TR) <dd>指定元素是一行单元格
 
@@ -215,9 +215,9 @@ caption  { display: table-caption }
     <dd>一个'table-row'盒或者适当的表格行父级
 
   <dt><a name="x21"><span class="index-def">连续的（consecutive）</span></a>
-    <dd>如果两个兄弟盒没有除只含空白字符的匿名内联盒外的中间兄弟，它们就是连续的。如果一系列兄弟盒中每个盒都与（该序列中）它前面的那个是连续的，那么这些兄弟盒是连续的
+    <dd>如果两个兄弟盒没有除只含空白字符的匿名行内盒外的中间兄弟，它们就是连续的。如果一系列兄弟盒中每个盒都与（该序列中）它前面的那个是连续的，那么这些兄弟盒是连续的
 </dl>
-<p>这些规则中，流外（out-of-flow）元素被视为宽高都为0的内联元素，其包含块也根据这些规则来选择
+<p>这些规则中，流外（out-of-flow）元素被视为宽高都为0的行内元素，其包含块也根据这些规则来选择
 
 <p>下列步骤分3个阶段执行
 <ol>
@@ -227,9 +227,9 @@ caption  { display: table-caption }
 
       <li>如果一个'table-column-group'父级的子级<var>C</var>不是一个'table-column'盒，那么就当它具有'display: none'
 
-      <li>如果一个表容器<var>P</var>的子级<var>C</var>是一个只含有空白字符的匿名内联盒，并且如果有的话，它前后紧挨着的兄弟分别为<var>P</var>的适当的表格后代和'table-caption'或者内部表格盒，那么就当它具有'display: none'。如果盒<var>D</var>可以作为<var>A</var>的后代，而不会导致任何中间'table'或者'inline-table'生成的话，<var>D</var>是<var>A</var>的一个适当的表格后代
+      <li>如果一个表容器<var>P</var>的子级<var>C</var>是一个只含有空白字符的匿名行内盒，并且如果有的话，它前后紧挨着的兄弟分别为<var>P</var>的适当的表格后代和'table-caption'或者内部表格盒，那么就当它具有'display: none'。如果盒<var>D</var>可以作为<var>A</var>的后代，而不会导致任何中间'table'或者'inline-table'生成的话，<var>D</var>是<var>A</var>的一个适当的表格后代
 
-      <li>如果盒<var>B</var>是一个只含空白字符的匿名内联盒，并且位于两个紧挨着的兄弟之间，（兄弟）是内部表格盒或者'table-caption'盒，那么就当<var>B</var>具有'display: none'
+      <li>如果盒<var>B</var>是一个只含空白字符的匿名行内盒，并且位于两个紧挨着的兄弟之间，（兄弟）是内部表格盒或者'table-caption'盒，那么就当<var>B</var>具有'display: none'
     </ol>
 
   <li>生成缺失的子级容器（wrapper）：
@@ -274,7 +274,7 @@ VBOX { display: table-cell }
 </div>
 
 <div class="example"><P style="display:none">示例：</P>
-<p>本例中，ROW中的3个'table-cell'元素被认为含有文本。注意文本被进一步包进了匿名内联盒中，如<a href="visuren.html#anonymous">可视化格式模型</a>中的解释：
+<p>本例中，ROW中的3个'table-cell'元素被认为含有文本。注意文本被进一步包进了匿名行内盒中，如<a href="visuren.html#anonymous">可视化格式模型</a>中的解释：
 
 <pre class="xml-example">
 &lt;STACK&gt;
@@ -331,11 +331,11 @@ col.totals { width: 5em }
 
 <h2>17.4 <a name="model">可视化格式模型中的表格</a></h2>
 
-<p>根据可视化格式模型，一个表格可以表现得像一个<a href="visuren.html#block-level">块级</a>（对于'display: table'）或者<a href="visuren.html#inline-level">内联级</a>（对于'display: inline-table'）元素
+<p>根据可视化格式模型，一个表格可以表现得像一个<a href="visuren.html#block-level">块级</a>（对于'display: table'）或者<a href="visuren.html#inline-level">行内级</a>（对于'display: inline-table'）元素
 
 <p>这两种情况下，表格都会生成一个叫做<dfn>表格容器盒（table wrapper box）</dfn> 的主块盒，它包含表格盒本身以及所有标题盒（按文档顺序）。<dfn>表格盒</dfn>是一个含有该表格内部表格盒的块级盒。标题盒是保留其原本的content，padding，margin和border区的块级盒，会被当作表格容器盒中的常规块盒来渲染。标题盒放在表格盒前面还是后面由'caption-side'属性决定，如下所述
 
-<p>如果表格是块级的，表格容器盒是一个'block'盒，而如果表格是内联级的，（表格容器盒）就是'inline-block'盒。表格容器盒建立了一个块格式化上下文。表格盒（非表格容器盒）用来对一个'inline-table'进行基线竖直对齐。表格容器盒的的宽度是它里面的表格盒的border边宽度（border-edge width），如17.5.2节所述。表格上'width'和'height'的百分比是相对于表格容器盒的包含块的，而不是表格容器盒本身
+<p>如果表格是块级的，表格容器盒是一个'block'盒，而如果表格是行内级的，（表格容器盒）就是'inline-block'盒。表格容器盒建立了一个块格式化上下文。表格盒（非表格容器盒）用来对一个'inline-table'进行基线竖直对齐。表格容器盒的的宽度是它里面的表格盒的border边宽度（border-edge width），如17.5.2节所述。表格上'width'和'height'的百分比是相对于表格容器盒的包含块的，而不是表格容器盒本身
 
 <p>表格元素上'position'，'float'，'margin-*'，'top'，'right'，'bottom'和'left'属性的计算值被应用在表格容器盒上，而不是表格盒。所有其它不可继承的属性值应用在表格盒上，而不是表格容器盒（对于表格元素上没有应用于表格和表格容器盒的值，就改用初始值）
 
@@ -704,7 +704,7 @@ div { height: 0; overflow: hidden; }
 
 <h3>17.5.4 <a name="column-alignment">列中元素的水平对齐</a></h3>
 
-<p>一个单元格盒里的内联级内容的水平对齐方式可以通过该元素上<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性的值来指定
+<p>一个单元格盒里的行内级内容的水平对齐方式可以通过该元素上<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性的值来指定
 
 
 

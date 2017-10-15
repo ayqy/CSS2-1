@@ -186,14 +186,14 @@ class="propinst-font-family">'font-family'</span></a>属性的值
 &lt;/ARTICLE&gt;
 </PRE>
 
-<P>为了用一种类文档的风格（fashion）显示这段内容，我们必须先声明哪些元素是内联的（也就是说，不会造成换行），哪些是块级的（也就是说，会造成换行）
+<P>为了用一种类文档的风格（fashion）显示这段内容，我们必须先声明哪些元素是行内的（也就是说，不会造成换行），哪些是块级的（也就是说，会造成换行）
 
 <PRE class="example">
 INSTRUMENT { display: inline }
 ARTICLE, HEADLINE, AUTHOR, PARA { display: block }
 </PRE>
 
-<P>第一条规则声明了INSTRUMENT是内联的，第二条规则中用逗号分隔的选择器列表声明了所有其它元素都是块级的。XML中的元素名是大小写敏感的，所以小写的选择器（例如，'instrument'）与大写形式（例如，'INSTRUMENT'）不同
+<P>第一条规则声明了INSTRUMENT是行内的，第二条规则中用逗号分隔的选择器列表声明了所有其它元素都是块级的。XML中的元素名是大小写敏感的，所以小写的选择器（例如，'instrument'）与大写形式（例如，'INSTRUMENT'）不同
 
 <P>一种连接样式表和XML文档的方式是用一条处理指令：
 
@@ -217,7 +217,7 @@ ARTICLE, HEADLINE, AUTHOR, PARA { display: block }
 <p><img src="images/bach1.png" alt="Example rendering"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-bach1" href="images/longdesc/bach1-desc.html" title="Long description for the first Bach/XML formatting example">[D]</A></SPAN>
 </div>
 
-<P>注意：段落中出现的单词"flute"就是内联元素INSTRUMENT的内容
+<P>注意：段落中出现的单词"flute"就是行内元素INSTRUMENT的内容
 
 <P>文本并没有被格式化成我们预期看到的那样，例如，标题的字体大小应该比其余文本大，可能还想把作者名字显示为斜体：</P>
 
