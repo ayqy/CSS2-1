@@ -44,7 +44,7 @@
       <li class="tocline3"><a href="box.html#border-style-properties" class="tocxref">8.5.3 Border style：<span class="propinst-border-top-style">'border-top-style'</span>，<span class="propinst-border-right-style">'border-right-style'</span>，<span class="propinst-border-bottom-style">'border-bottom-style'</span>，<span class="propinst-border-left-style">'border-left-style'</span>和<span class="propinst-border-style">'border-style'</span></a>
       <li class="tocline3"><a href="box.html#border-shorthand-properties" class="tocxref">8.5.4 Border shorthand properties：<span class="propinst-border-top">'border-top'</span>，<span class="propinst-border-right">'border-right'</span>，<span class="propinst-border-bottom">'border-bottom'</span>，<span class="propinst-border-left">'border-left'</span>和<span class="propinst-border">'border'</span></a>
     </ul>
-    <li class="tocline2"><a href="box.html#bidi-box-model" class="tocxref">8.6 双向环境（bidirectional context）中内联元素的盒模型</a>
+    <li class="tocline2"><a href="box.html#bidi-box-model" class="tocxref">8.6 双向环境（bidirectional context）中行内元素的盒模型</a>
   </ul>
 </div>
 
@@ -157,7 +157,7 @@ href="#content-height">content height</a>，加上top和bottom padding，border�
 <a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>，<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>，<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>，<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>和<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a></H2>
 
 <P>Margin属性指定了盒的<a href="#box-margin-area">margin区</a>的宽度。<a href="box.html#propdef-margin" class="noxref"><span
-class="propinst-margin">'margin'</span></a>简写属性一次性设置四周的margin，而其它margin属性只设置它们各侧的。这些属性适用于所有元素，但不可替换的内联元素上的竖直margin将不会产生任何效果
+class="propinst-margin">'margin'</span></a>简写属性一次性设置四周的margin，而其它margin属性只设置它们各侧的。这些属性适用于所有元素，但不可替换的行内元素上的竖直margin将不会产生任何效果
 
 <P>本节定义的属性涉及<span class="index-def" title="&lt;margin-width&gt;::definition of"><a name="value-def-margin-width"><strong>&lt;margin-width&gt;</strong></a></span>值类型，可以取下列值之一：</p>
 
@@ -192,7 +192,7 @@ href="visudet.html#Computing_widths_and_margins">计算width与margin</a>章节
 </div>
 
 
-<p class="note">这些属性对不可替换的内联元素无效</p>
+<p class="note">这些属性对不可替换的行内元素无效</p>
 
 <div class="propdef">
 <dl><dt>
@@ -309,7 +309,7 @@ title="adjoining margins"><DFN>相邻的</DFN></span></a>，当且仅当：
 
   <LI><a href="visuren.html#absolutely-positioned">绝对定位的</a>盒的margin不会合并（甚至与它们的流内子级也不会）
 
-  <LI>内联盒的margin不会合并（甚至与它们的流内子级也不会）
+  <LI>inline-block盒的margin不会合并（甚至与它们的流内子级也不会）
 
   <LI>一个流内块级元素的bottom margin总会与它的下一个流内块级兄弟的top margin合并，除非兄弟有空隙
 
@@ -723,9 +723,9 @@ class="propinst-border-left">'border-left'</span></a>属性之后设置的，但
 </div>
 
 
-<h2>8.6 <a name="bidi-box-model">双向环境（bidirectional context）中内联元素的盒模型</a></h2>
+<h2>8.6 <a name="bidi-box-model">双向环境（bidirectional context）中行内元素的盒模型</a></h2>
 
-<p>对于每一个行盒（line box），UA必须为每个元素生成内联盒（inline box）并按照可视顺序（不是逻辑顺序）渲染margin，border和padding
+<p>对于每一个行盒（line box），UA必须为每个元素生成行内盒（inline box）并按照可视顺序（不是逻辑顺序）渲染margin，border和padding
 
 <p>当元素的<a href="visuren.html#propdef-direction" class="noxref"><span class=propinst-direction>'direction'</span></a>属性为'ltr'时，元素所在的第一个行盒最左端生成的盒具有left margin，left border和left padding，并且元素所在的最后一个行盒最右端生成的盒具有right padding，right border和right margin
 
