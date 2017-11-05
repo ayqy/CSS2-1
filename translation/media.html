@@ -45,7 +45,7 @@
 
 <P>样式表一个最重要的特性就是它们能指定一个文档在不同的媒体上怎样展示：在屏幕上，纸上，用语音合成器，用盲文设备等等
 
-<P>某些CSS属性是专门为特定媒体设计的（例如，<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性只适用于分页媒体）。然而，有时针对不同媒体类型的样式表可能共享一个属性，但需要不同的属性值。例如，<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>属性在屏幕和打印媒体上都有效。这两种不同的媒体需要不同的属性值，典型的，一个文档将需要电脑屏幕上的字体比纸上的更大。因此，有必要指定一个样式表或者样式表的一部分适用于特定媒体
+<P>某些CSS属性是专门为特定媒体设计的（例如，<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性只适用于分页媒体）。然而，有时针对不同媒体类型的样式表可能会共享一个属性，但需要不同的属性值。例如，<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>属性在屏幕和打印媒体上都有效。这两种不同的媒体需要不同的属性值，典型的，一个文档将需要电脑屏幕上的字体比纸上的更大。因此，有必要指定一个样式表或者样式表的一部分应用于特定媒体
 
 <H2>7.2 <a name="media-sheets">指定媒体依赖的样式表</a></H2>
 <P>目前有两种方式来指定样式表的媒体依赖：</p>
@@ -103,13 +103,13 @@ href="syndata.html#rule-sets">4.1.7 “规则集，声明块与选择器”</a>�
   }
 </pre>
 
-<p>@media规则之外的样式规则适用于样式表适用的所有媒体类型。@media内部的@规则在CSS2.1中是非法的
+<p>@media规则之外的样式规则应用于样式表适用的所有媒体类型。@media内部的@规则在CSS2.1中是非法的
 
 <H2>7.3 <a name="media-types">可识别的（Recognized）媒体类型</a></H2> 
 
 
 
-<P>CSS媒体类型的名字反映了相关属性生效的目标设备。下列CSS媒体类型中，媒体类型名是规范的，但描述信息是信息性的。同样的，每个属性描述信息中的"Media"字段也是信息性的
+<P>CSS媒体类型的名称反映了相关属性生效的目标设备。下列CSS媒体类型中，媒体类型名是规范的，但描述信息是信息性的。同样的，每个属性描述信息中的"Media"字段也是信息性的
 
 <dl>
 <dt><strong>all</strong>
@@ -127,7 +127,7 @@ href="syndata.html#rule-sets">4.1.7 “规则集，声明块与选择器”</a>�
 <dd>用于手持设备（典型的小屏幕，有限带宽）
 
 <dt><strong>print</strong> 
-<dd>用于分页资料和在屏幕上用打印模式看的文档。关于具体分页媒体格式化问题的更多信息，请查看<a href="page.html">分页媒体</a>章节
+<dd>用于分页资料和在屏幕上用打印模式查看的文档。关于具体分页媒体格式化问题的更多信息，请查看<a href="page.html">分页媒体</a>章节
 
 <dt><strong>projection</strong>
 <dd>用于投影展示，例如投影仪。关于具体分页媒体格式化问题的更多信息，请查看<a href="page.html">分页媒体</a>章节
@@ -139,24 +139,24 @@ href="syndata.html#rule-sets">4.1.7 “规则集，声明块与选择器”</a>�
 <dd>用于语音合成器。注意：CSS2有一个类似的目的相同的媒体类型叫'aural'。详细信息见附录<a href="./aural.html">听觉（aural）样式表</a>
 
 <dt><strong>tty</strong>
-<dd>用于使用固定间距（fixed-pitch）字符网格（例如，电传打字机，终端设备或者显示功能受限的便携式设备）的媒体。编写者不应该对"tty"媒体类型使用<a href="syndata.html#length-units">像素单位</a>
+<dd>用于使用固定间距（fixed-pitch）字符网格的媒体（例如，电传打字机，终端设备或者显示功能受限的便携式设备）。编写者不应该对"tty"媒体类型使用<a href="syndata.html#length-units">像素单位</a>
 
 <dt><strong>tv</strong>
-<dd>用于电视类（television-type）设备（低分辨率，彩色，滚动受限的屏幕，音频都是可用的） 
+<dd>用于电视类（television-type）设备（低分辨率，彩色，滚动受限的屏幕，支持音频） 
 </dl>
 
 <P>媒体类型名是大小写不敏感的
 
-<P>在有些场景下，媒体类型是互斥的，用户代理渲染一份文档时会只支持一种媒体类型。然而，用户代理可能使用对不同的画布（canvases）用不同的媒体类型。例如，一份文档可能（同时）被用'screen'模式展示在一块画布上并用'print'模式展示在另一块画布上
+<P>在有些场景下，媒体类型是互斥的，用户代理渲染一份文档时只会支持一种媒体类型。然而，用户代理可能对不同的画布（canvases）用不同的媒体类型。例如，一份文档可能（同时）被用'screen'模式展示在一块画布上并用'print'模式展示在另一块画布上
 
-<p>注意，多模式（multimodal）媒体类型仍然只是一个媒体类型。例如，'tv'媒体类型是一种多模式媒体类型，在单一画布上既进行视觉渲染又进行听觉渲染
+<p>注意，多模式（multimodal）媒体类型仍然只是一种媒体类型。例如，'tv'媒体类型是一种多模式媒体类型，在单一画布上既进行视觉渲染又进行听觉渲染
 
 <p>带有未知媒体类型（虽然是合法的标识符）的@media和@import规则被当作就像未知媒体类型没有出现一样。如果一个@media/@import规则含有一个格式错误的媒体类型（不是一个标识符），那么该语句是非法的
 
 <p class=note><em><strong>注意：</strong>媒体查询代替了这种错误处理</em>
 
 <div class="example"><P style="display:none">示例：</P>
-<p>例如，下列片段中，P元素上的规则适用于'screen'模式（即使'3D'媒体类型是未知的）
+<p>例如，下列代码片段中，P元素上的规则适用于'screen'模式（即使'3D'媒体类型是未知的）
 
 <pre>
 @media screen, 3D {
@@ -176,7 +176,7 @@ CSS更新版本的特性可能会扩展媒体类型列表。编写者不应该�
 
 <P><em>本节是信息性的，非规范</em></P>
 
-<P>每个CSS属性定义都指定了属性适用于哪种媒体类型。因为属性一般应用于好几个媒体类型，每个属性定义中的"Applies to media"列出了<a name="x4"><span class="index-def" title="media group">媒体组</span></a>而不是个别媒体类型。每个属性适用于其定义中媒体组中列出的所有媒体类型
+<P>每个CSS属性定义都指定了属性适用于哪种媒体类型。因为属性一般适用于好几个媒体类型，每个属性定义中的"Applies to media"列出了<a name="x4"><span class="index-def" title="media group">媒体组</span></a>而不是个别媒体类型。每个属性适用于其定义中媒体组中列出的所有媒体类型
 
 <P>CSS&nbsp;2.1定义了下列媒体组：</P>
 <ul>
