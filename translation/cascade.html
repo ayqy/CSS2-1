@@ -56,7 +56,7 @@
 
 <p>一旦用户代理已经解析了文档并构造好了<a href="conform.html#doctree">文档树</a>，它就必须给树中的每个元素上适用于目标<a href="media.html">媒体类型</a>的每个属性赋值
 
-<p>属性的最终值是4步计算的结果：值通过指定来确定（“指定值（specified value）”），接着处理得到一个用于继承的值（“计算值（computed value）”），然后如果有必要的话转化为一个绝对值（“应用值（used value）”），最后根据本地环境限制进行转换（“实际值（actual value）”）
+<p>属性的最终值是4步计算的结果：先通过指定来确定值（“指定值（specified value）”），接着处理得到一个用于继承的值（“计算值（computed value）”），然后如果有必要的话转化为一个绝对值（“应用值（used value）”），最后根据本地环境限制进行转换（“实际值（actual value）”）
 
 <h3>6.1.1 <span class="index-def" title="specified value">
 <a name="specified-value">指定值</a></span></h3>
@@ -65,7 +65,7 @@
 
 <ol>
 <li>如果<a href="#cascade">层叠</a>产生了一个值，就使用它
-<li>否则，如果属性是<a href="#inheritance">继承的</a>并且元素不是<a>文档树</a>的根，使用其父元素的计算值
+<li>否则，如果属性是<a href="#inheritance">继承的</a>并且该元素不是<a>文档树</a>的根元素，使用其父元素的计算值
 <li>否则使用属性的<a name="x1"><span class="index-def" title="initial value">初始值</span></a>，每个属性的初始值都在属性定义中指出了
 </ol>
 
@@ -79,26 +79,26 @@
 
 <p>一个属性的计算值由属性定义中Computed Value行决定。当指定值为'inherit'时，计算值的定义见<a href="#inheritance">继承</a>小节
 
-<p>即使属性不适用，计算值也存在，定义在<a href="about.html#applies-to">'Applies To'</a>行。然而，有些属性可能根据属性是否适用于该元素来定义元素属性的计算值
+<p>即使属性不适用（于当前元素），其计算值也存在，定义在<a href="about.html#applies-to">'Applies To'</a>行。然而，有些属性可能根据属性是否适用于该元素来定义元素属性的计算值
 
 
 <h3>6.1.3 <span class="index-def" title="used value">
 <a name="used-value">应用值</a></span></h3>
 
-<p>处理计算值时，尽可能不要格式化文档。然而，有些值只能在文档布局完成时确定。例如，如果一个元素的宽度是其包含块的特定百分比，在包含块的宽度确定之前无法确定这个宽度。<dfn id="usedValue">应用值</dfn>是采用计算值并把剩余的依赖处理成一个绝对值的结果
+<p>处理计算值时，尽可能不要格式化文档。然而，有些值只能在文档布局完成时确定。例如，如果一个元素的宽度是其包含块的特定百分比，在包含块的宽度确定之前无法确定这个宽度。<dfn id="usedValue">应用值</dfn>是把计算值剩余的依赖（值）都处理成绝对值后的（计算）结果
 
 <h3>6.1.4 <span class="index-def" title="actual value">
 <a name="actual-value">实际值</a></span></h3>
 
-<p>原则上，应用值应该用于渲染，但用户代理可能无法在给定的环境中利用该值。例如，用户代理或许只能用整数像素宽度渲染边框，因此不得不对宽度的计算值做近似处理，或者用户代理可能被迫只用黑白色调而不是全彩色。实际值是经过近似处理后的应用值
+<p>原则上，应用值应该用于渲染，但用户代理可能无法在给定的环境中利用该值。例如，用户代理或许只能用整数像素宽度渲染边框，因此不得不对宽度的计算值做近似处理，或者用户代理可能被迫只能用黑白色调而不是全彩色。实际值是经过近似处理后的应用值
 
 
 <h2>6.2 <a name="inheritance">继承</a></h2>
 
-<p>有些值是从<a href="conform.html#doctree">文档树</a>中某个元素的子级继承来的，就像<a href="#specified-value">上面</a>描述的一样。每个属性都<a href="about.html#property-defs">定义</a>了它是不是继承的
+<p>有些值是从<a href="conform.html#doctree">文档树</a>中某个元素的子级继承来的，就像<a href="#specified-value">上面</a>描述的一样。每个属性都<a href="about.html#property-defs">定义</a>了它是否可继承
 
 <div class="html-example"><P>
-假设一个H1元素里有一个强调元素(EM)：</p>
+假设H1元素里有个强调元素(EM)：</p>
 
 <pre>
 &lt;H1&gt;The headline &lt;EM&gt;is&lt;/EM&gt; important!&lt;/H1&gt;
@@ -107,7 +107,7 @@
 <p>如果没有给EM元素赋值颜色，强调的"is"将从其父元素继承颜色，所以如果H1是蓝色的，EM元素同样也将是蓝色的
 </div>
 
-<p>当出现继承时，元素继承计算值。来自父元素的计算值同时作为指定值和其子级的计算值
+<p>发生继承时，元素继承计算值。来自父元素的计算值同时作为指定值和其子级的计算值
 
 <div class="example"><P style="display:none">示例：</P><P> 
 例如，给出如下样式表：</P>
@@ -128,7 +128,7 @@ h1 { font-size: 130% }
 <p>H1元素的<span class="prop-inst-font-size">'font-size'</span>属性将获得计算值'13pt'（130%乘以父元素的值10pt）。因为<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>的计算值是继承的，EM元素也将获得计算值'13pt'。如果用户代理没有可用的13pt字体，H1和EM的<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>的实际值可能是，例如，'12pt'
 </div>
 
-<p class=note>注意，继承遵循文档树并且不会被<span class=index-inst><a name="x5" href="visuren.html#box-gen">匿名盒</a></span>截断
+<p class=note>注意，继承遵循文档树并且不会被<span class=index-inst><a name="x5" href="visuren.html#box-gen">匿名框</a></span>截断
 
 
 <h3>6.2.1 <span class="index-def" title="inherit, definition
@@ -159,10 +159,10 @@ body {
 
 <H2>6.3 <a name="at-import">@import规则</a></h2>
 
-<P><a name="x7"><span class="index-def" title="@import"><dfn>'@import'</dfn></span></a>规则允许用户从其它样式表引入样式规则。CSS&nbsp;2.1中，任何@import规则必须位于所有其它规则（除了@charset，如果有的话）之前。关于用户代理何时必须忽略@import规则，见<a href="syndata.html#at-rules">解析章节</a>。'@import'关键字后面必须跟着想要引入的样式表的URI。字符串也可以接受，也可以表示成周围有url(...)的形式
+<P><a name="x7"><span class="index-def" title="@import"><dfn>'@import'</dfn></span></a>规则允许用户从其它样式表引入样式规则。CSS&nbsp;2.1中，任何@import规则必须位于所有其它规则（除了@charset，如果有的话）之前。关于用户代理什么情况下必须忽略@import规则，见<a href="syndata.html#at-rules">解析章节</a>。'@import'关键字后面必须跟着想要引入的样式表的URI。字符串也可以接受，也可以表示成周围有url(...)的形式
 
 <div class="example"><P style="display:none">示例：</P><P> 
-下列行在意义上是等价的，都描述了'@import'语法（一个有"url()"，另一个是裸字符串）：</p>
+下面这几行在意义上是等价的，都描述了'@import'语法（一个有"url()"，另一个是裸字符串）：</p>
 
 <PRE>
 @import "mystyle.css";
@@ -170,7 +170,7 @@ body {
 </PRE>
 </div>
 
-<p>为了让用户代理可以避免为不支持的<a href="media.html">媒体类型</a>检索资源，编写者可以指定带媒体依赖（media-dependent）的<a name="x8"><span class="index-inst" title="@import">@import</span></a>规则。这些<a name="x9"><span class="index-def" title="conditional import|media-dependent import">条件引入</span></a>在URI后面指定逗号分隔的媒体类型
+<p>为了让用户代理能够避免为不支持的<a href="media.html">媒体类型</a>检索资源，编写者可以指定带媒体依赖（media-dependent）的<a name="x8"><span class="index-inst" title="@import">@import</span></a>规则。这种<a name="x9"><span class="index-def" title="conditional import|media-dependent import">条件引入</span></a>在URI后面指定了逗号分隔的媒体类型
 
 <div class="example"><P style="display:none">示例：</P>
 <p>下列规则描述了@import规则怎样变成带媒体依赖的：</p>
@@ -181,7 +181,7 @@ body {
 </pre>
 </div>
 
-<p>缺少媒体类型时，引入是无条件的，把媒体指定为'all'效果一样。引入只在目标媒体匹配媒体列表时才生效
+<p>缺少媒体类型时，引入是无条件的，与把媒体指定为'all'效果一样。引入只在目标媒体匹配媒体列表时才生效
 
 <p>如果媒体列表中有一项是目标媒体或者'all'时，目标媒体匹配媒体列表
 
@@ -194,11 +194,11 @@ body {
 <P>样式表可能有3种不同来源：编写者，用户和用户代理</p>
 
 <ul>
-<li><strong>编写者</strong>：编写者根据文档语言约定给一个源文档指定样式表。例如，HTML中，样式表可以包含在文档中或者从外部链接
+<li><strong>编写者</strong>：编写者根据文档语言约定给源文档指定样式表。例如，HTML中，样式表可以包含在文档中或者从外部链接
 
-<li><strong>用户</strong>：用户可能给一份特殊的文档指定样式信息。例如，用户可能指定一个含有样式表的文件，或者用户代理可能提供一个用来生成用户样式表（或者表现得像它做了一样）的界面
+<li><strong>用户</strong>：用户可能会给某个特定文档指定样式信息。例如，用户可以指定一个含有样式表的文件，或者用户代理可能会提供一个用来生成用户样式表（或者表现得像这样做了一样）的界面
 
-<li><strong>用户代理</strong>: （与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>必须应用一份<span class="index-def" title="default style sheet"><a name="default-style-sheet"><dfn>默认样式表</dfn></a></span>（或者表现得像它做了一样）。一个用户代理的默认样式表应该以满足文档语言的一般表现预期的方式（例如，对于可视化浏览器，HTML中EM元素用斜体来表示）。关于HTML元素的推荐默认样式表，见<a href="sample.html">一份简单的HTML样式表</a>
+<li><strong>用户代理</strong>: （与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>必须应用一份<span class="index-def" title="default style sheet"><a name="default-style-sheet"><dfn>默认样式表</dfn></a></span>（或者表现得像它做了一样）。用户代理的默认样式表应该以满足文档语言一般表现预期的方式来呈现文档语言元素（例如，对于可视化浏览器，HTML中EM元素用斜体来表示）。关于HTML元素的推荐默认样式表，见<a href="sample.html">一份简单的HTML样式表</a>
 
 <p class="note">注意，用户可能会修改系统设置（例如，系统配色），这会影响默认样式表。然而，有些用户代理实现让默认样式表中的值不可改变
 </ul>
@@ -207,18 +207,18 @@ body {
 
 <P>CSS<a name="x12"><span class="index-def" title="cascade">层叠</span></a>给每个样式规则赋予了权重。应用几条规则时，权重最大的优先
 
-<P>默认情况下，编写者样式表中的规则比用户样式表中的规则权重高。然而，对于"!important"规则，优先级是相反的。所有用户和编写者规则都比UA默认样式表中的规则权重高
+<P>默认情况下，编写者样式表中的规则比用户样式表中的规则权重高。然而，对于"!important"规则，优先级却是相反的。所有用户和编写者规则都比UA默认样式表中的规则权重高
 
 
 <H3>6.4.1 <a name="cascading-order">层叠顺序</a></H3>
 
-<P>为了找出一个元素/属性组合的值，用户代理必须应用以下排列顺序：</p>
+<P>为了找出一个元素/属性组合的值，用户代理必须按照下列（步骤）排序：</p>
 
 <OL>
     <LI>
-      找出目标<a href="media.html">媒体类型</a>下，所有适用于该元素和目标属性的声明。如果相关选择器<A HREF="selector.html">匹配</A>目标元素，并且目标媒体也匹配列在所有含有声明的@media规则中的媒体，并且路径上所有链接的样式表都得到了，则应用声明
+      找出目标<a href="media.html">媒体类型</a>下，所有适用于该元素和目标属性的声明。如果关联的选择器<A HREF="selector.html">匹配</A>该元素，并且目标媒体类型与含有该声明的@media规则列出的所有媒体类型，以及到达样式表的路径上所有链接匹配，则声明适用（Declarations apply if the associated selector matches the element in question and the target medium matches the media list on all @media rules containing the declaration and on all links on the path through which the style sheet was reached.）
 
-    <LI>根据重要性（常规或者重要）以及来源（编写者，用户或者用户代理）排序，升序优先级为：
+    <LI>根据重要性（常规或重要）和来源（编写者，用户或用户代理）排序，升序优先级为：
 
 <ol>
 <li>用户代理声明
@@ -231,17 +231,17 @@ body {
     <LI>
       相同重要性和来源的规则根据选择器的<a href="#specificity">特殊性（specificity）</a>排序：更特殊的选择器将重写一般的。伪元素和伪类被分别算作常规元素和类
 
-    <LI>最后，根据指定顺序排序：如果两个声明的权重，来源和特殊性都相同，后指定的生效。引入的样式表中的声明被认为在样式表本身的所有声明之前
+    <LI>最后，根据指定顺序排序：如果两个声明的权重，来源和特殊性都相同，后指定的生效。引入的样式表（译注：这里应该是指'@import'，而不是广义的通过各种方式引入样式表）中的声明被认为在样式表自身的所有声明之前
 
 </OL>
 
-<P>除了给个别声明设置"!important"外，这种策略给了编写者的样式表比读者的那些更高的权重。用户代理必须给予用户去除特定编写者样式表影响的能力，例如，通过一个下拉菜单。与UAAG 1.0 checkpoint 4.14一致的（用户代理）满足该条件<a href="refs.html#ref-UAAG10" rel="biblioentry" class="noxref"><span class="normref">[UAAG10]</span></a>
+<P>除了给个别声明设置"!important"外，比起读者样式表，这种策略给了编写者样式表更高的权重。用户代理必须给予用户去除特定编写者样式表影响的能力，例如，通过一个下拉菜单。与UAAG 1.0 checkpoint 4.14一致的（用户代理）满足该条件<a href="refs.html#ref-UAAG10" rel="biblioentry" class="noxref"><span class="normref">[UAAG10]</span></a>
 
 <H3>6.4.2 <a name="important-rules">!important规则</a></H3>
 
 <P>CSS尝试在编写者和用户样式表之间建立平衡。默认情况下，编写者样式表中的规则会重写那些位于用户样式表中的（见层叠规则3）
 
-<P>然而，为了平衡，"!important"声明（分隔符token "!"和关键字"important"后面跟着声明）比常规声明优先。编写者和用户样式表都可能含有"!important"声明，并且用户"!important"规则会重写编写者"!important"规则。通过给予用户表现上的特殊需求（大字体，颜色组合等等）控制，该CSS特性提高了文档的可访问性
+<P>然而，为了平衡，"!important"声明（声明后面跟着分隔符token "!"和关键字"important"）比常规声明优先。编写者和用户样式表都可能含有"!important"声明，并且用户"!important"规则会重写编写者"!important"规则。通过给予用户表现上的特殊需求（大字体，颜色组合等等）控制，该CSS特性提高了文档的可访问性
 
 <P>声明一个<a name="x13"><span class="index-inst" title="shorthand property">简写属性</span></a>（例如，<a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>）为"!important"等价于声明其所有子属性为"!important"
 
@@ -317,7 +317,7 @@ base））表示特殊性
 
 <H3>6.4.4 <a name="preshint">非CSS表现型提示（presentational hints）的样式优先级</a></H3> 
 
-<P>UA可能选择尊重HTML源文档中的表现性属性。如果这样的话，这些属性会被翻译成相应的特殊性为0的CSS规则，并且就当它们像是被插在编写者样式表开头的一样。因此，它们可能被后续样式表符规则重写。在过渡阶段，这种策略让表现性属性（stylistic attributes）更容易与样式表共存
+<P>UA可能选择尊重HTML源文档中的表现型属性。如果这样的话，这些属性会被翻译成相应的特殊性为0的CSS规则，并且就当它们像是被插在编写者样式表开头的一样。因此，它们可以被后续样式表符规则重写。在过渡阶段，这种策略让表现型属性（stylistic attributes）更容易与样式表共存
 
 <P>对于HTML，下面列表之外的任何属性都应该被认为是表现性的：abbr，accept-charset，accept，accesskey，
 action，alt，archive，axis，charset，checked，cite，class，classid，
@@ -331,11 +331,11 @@ onreset，onselect，onsubmit，onunload，onunload，profile，prompt，
 readonly，rel，rev，rowspan，scheme，scope，selected，shape，span，
 src，standby，start，style，summary，title，type（LI，OL和UL元素上的除外），usemap，value，valuetype，version
 
-<P>对于其它语言，所有基于文档语言的样式必须被翻译成相应的CSS，并且要么算进用户代理级的层叠中，要么与HTML表现性暗示一起被当作特殊性为0的编写者级规则放在编写者样式表开头
+<P>对于其它语言，所有基于文档语言的样式必须被翻译成相应的CSS，并且要么算进用户代理级的层叠中，要么与HTML表现型提示一起被当作特殊性为0的编写者级规则放在编写者样式表开头
 
 <div class="example"><P style="display:none">示例：</P>
 
-<p>下列用户样式表将会重写所有文档中'b'元素的字体粗细，以及XML文档中具有color属性的font'元素的颜色。它将不会影响HTML文档中任何具有color属性的'font'元素的颜色：
+<p>下列用户样式表将会重写所有文档中'b'元素的字重，以及XML文档中具有color属性的font'元素的颜色。它将不会影响HTML文档中任何具有color属性的'font'元素的颜色（译注：实际上，在HTML里这个样式对有color属性的font元素也是有效的。但<a href="conform.html">一致性章节</a>有声明“示例和注意事项是非规范的”，这里是示例）：
 
 <pre>
 b { font-weight: normal; }
