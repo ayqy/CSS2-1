@@ -31,7 +31,7 @@
 <p><strong>内容</strong>
   <ul class="toc">
     <li class="tocline2"><a href="box.html#box-dimensions" class="tocxref">8.1 盒尺寸（dimensions）</a>
-    <li class="tocline2"><a href="box.html#mpb-examples" class="tocxref">8.2 margin、padding和border的示例</a>
+    <li class="tocline2"><a href="box.html#mpb-examples" class="tocxref">8.2 margin、内边距和border的示例</a>
     <li class="tocline2"><a href="box.html#margin-properties" class="tocxref">8.3 Margin属性：<span class="propinst-margin-top">'margin-top'</span>，<span class="propinst-margin-right">'margin-right'</span>，<span class="propinst-margin-bottom">'margin-bottom'</span>，<span class="propinst-margin-left">'margin-left'</span>和<span class="propinst-margin">'margin'</span></a>
     <ul class="toc">
       <li class="tocline3"><a href="box.html#collapsing-margins" class="tocxref">8.3.1 合并margin</a>
@@ -53,25 +53,25 @@
 <H2>8.1 <a name="box-dimensions">盒尺寸（dimensions）</a></H2> 
 
 <P>每个盒都有一块<span class="index-def" title="box::content|content::of a box">
-<a name="box-content-area"><dfn>内容区（content area）</dfn></a></span>（例如，文本，一张图片等等）和周围可选的<span class="index-def" title="box::padding|padding::of a box"><a name="box-padding-area"><dfn>padding</dfn></a></span>，<span class="index-def" title="box::border|border::of a box"><a name="box-border-area"><dfn>border</dfn></a></span>和<span class="index-def" title="box::margin|margin::of a box"><a name="box-margin-area"><dfn>margin</dfn></a></span>区域，每块区域的尺寸通过下面定义的属性指定。下图展示了这些区域的联系以及用来引用margin，border和padding块的术语：</P>
+<a name="box-content-area"><dfn>内容区（content area）</dfn></a></span>（例如，文本，一张图片等等）和周围可选的<span class="index-def" title="box::padding|padding::of a box"><a name="box-padding-area"><dfn>内边距</dfn></a></span>，<span class="index-def" title="box::border|border::of a box"><a name="box-border-area"><dfn>border</dfn></a></span>和<span class="index-def" title="box::margin|margin::of a box"><a name="box-margin-area"><dfn>margin</dfn></a></span>区域，每块区域的尺寸通过下面定义的属性指定。下图展示了这些区域的联系以及用来引用margin，border和内边距块的术语：</P>
 
 <div class="figure">
 <P><img src="./images/boxdim.png"
      alt="Image illustrating the relationship between content, padding, borders, and margins."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-boxdim" href="images/longdesc/boxdim-desc.html" title="Long description of illustration of box areas">[D]</A></SPAN></P>
 </div>
 
-<P>margin，border和padding可以分为top，right，bottom和left片段（例如，图中，"LM"表示left margin，"RP"表示right padding，"TB"表示top border等等）
+<P>margin，border和内边距可以分为top，right，bottom和left片段（例如，图中，"LM"表示left margin，"RP"表示right 内边距，"TB"表示top border等等）
 
-<P>4块区域（content，padding，border和margin）中每一块的边界叫一条“边（edge）”，所以每个盒有4种边：</P>
+<P>4块区域（content，内边距，border和margin）中每一块的边界叫一条“边（edge）”，所以每个盒有4种边：</P>
 
 <dl>
 <dt><span class="index-def"
 title="content edge"><a name="content-edge"><strong>content边</strong></a></span>或<span class="index-def" title="inner edge"><a name="inner-edge"><strong>内边</strong></a></span>
 <dd>content边环绕着盒的<a href="visudet.html#Computing_widths_and_margins">width</a>和<a href="visudet.html#Computing_heights_and_margins">height</a>指出的矩形，通常取决于元素的<a href="conform.html#rendered-content">呈现（rendered）内容</a>。4条content边定义了盒的<dfn><a name="x10"><span class="index-def">content box</span></a></dfn>
-<dt><span class="index-def" title="padding edge"><a name="padding-edge"><strong>padding边</strong></a></span>
-<dd>padding边环绕着盒的padding。如果padding的宽度为0，那么padding边就和content边相同。4条padding边定义了盒的<dfn><a name="x12"><span class="index-def">padding box</span></a></dfn>
+<dt><span class="index-def" title="padding edge"><a name="padding-edge"><strong>内边距边</strong></a></span>
+<dd>内边距边环绕着盒的内边距。如果内边距的宽度为0，那么内边距边就和content边相同。4条内边距边定义了盒的<dfn><a name="x12"><span class="index-def">内边距 box</span></a></dfn>
 <dt><span class="index-def" title="border edge"><a name="border-edge"><strong>border边</strong></a></span>
-<dd>border边环绕着盒的border。如果border的宽度为0，那么border边就和padding边相同。4条border边定义了盒的<dfn><a name="x14"><span class="index-def">border box</span></a></dfn>.
+<dd>border边环绕着盒的border。如果border的宽度为0，那么border边就和内边距边相同。4条border边定义了盒的<dfn><a name="x14"><span class="index-def">border box</span></a></dfn>.
 <dt><span class="index-def" title="margin edge"><a name="margin-edge"><strong>margin边</strong></a></span>或<span class="index-def" title="outer edge"><a name="outer-edge"><strong>外边</strong></a></span>
 <dd>margin边环绕着盒的margin。如果margin的宽度为0，那么margin边就和border边相同。4条margin边定义了盒的<dfn><a name="x17"><span class="index-def">margin box</span></a></dfn>
 </dl>
@@ -82,12 +82,12 @@ title="content edge"><a name="content-edge"><strong>content边</strong></a></spa
 class="index-def" title="box::content height"><a
 name="content-height"><dfn>content height</dfn></a></span> &mdash;取决于几个因素：元素生成的盒是否具有<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>或<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性集，盒是否包含文本或者其它盒，盒是不是一个表格等等。盒的宽度和高度在<a href="visudet.html">视觉格式化模型详细描述</a>
 
-<P>盒的content，padding和border区域的背景样式通过生成元素的<a href="colors.html#propdef-background" class="noxref"><span
+<P>盒的content，内边距和border区域的背景样式通过生成元素的<a href="colors.html#propdef-background" class="noxref"><span
 class="propinst-background">'background'</span></a>属性来指定。Margin背景总是透明的
 
-<H2>8.2 <a name="mpb-examples">margin、padding和border的示例</a></H2> 
+<H2>8.2 <a name="mpb-examples">margin、内边距和border的示例</a></H2> 
 
-<P>本例描述了margin，padding和border之间的相互影响。示例HTML文档：
+<P>本例描述了margin，内边距和border之间的相互影响。示例HTML文档：
 
 <pre class="html-example">
 &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
@@ -128,7 +128,7 @@ class="propinst-background">'background'</span></a>属性来指定。Margin背�
 
 <P>产生的是一个<a href="conform.html#doctree">文档树</a>，（在其它关系中）有一个含有两个LI子级的UL元素
 
-<P>下面的第一个图描述了本例将产生的结果。第二幅图描述了UL元素的margin，padding，border和它的子级LI元素的这些属性之间的关系（图片没有经过缩放）</P>
+<P>下面的第一个图描述了本例将产生的结果。第二幅图描述了UL元素的margin，内边距，border和它的子级LI元素的这些属性之间的关系（图片没有经过缩放）</P>
 
 <div class="figure">
 <P><img src="./images/boxdimeg.png"
@@ -144,11 +144,11 @@ padding, and borders">[D]</A></SPAN></p>
 <li>每个LI盒的<a href="#content-width">content width</a>是自顶向下计算的，每个LI盒的<a href="visuren.html#containing-block">包含块</a>是通过UL元素建立的
 
 <li>每个LI盒的margin box height取决于其<a
-href="#content-height">content height</a>，加上top和bottom padding，border以及margin。注意LI盒之间的垂直margin<a href="#collapsing-margins">合并</a>了
+href="#content-height">content height</a>，加上top和bottom 内边距，border以及margin。注意LI盒之间的垂直margin<a href="#collapsing-margins">合并</a>了
 
-<li>LI盒的right padding被设置为0宽度（<a href="box.html#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a>属性）。第二幅图中效果很明显
+<li>LI盒的right 内边距被设置为0宽度（<a href="box.html#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a>属性）。第二幅图中效果很明显
 
-<li>LI盒的margin是透明的&mdash;margins总是透明的&mdash;所以，UL的padding和content区域的背景色（yellow）透出来了
+<li>LI盒的margin是透明的&mdash;margins总是透明的&mdash;所以，UL的内边距和content区域的背景色（yellow）透出来了
 
 <li>第二个LI元素指定了一个虚线边框（<a href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a>属性）
 </ul>
@@ -279,7 +279,7 @@ title="adjoining margins"><DFN>相邻的</DFN></span></a>，当且仅当：
 <UL>
   <LI>都属于流内（in-flow）<a href="visuren.html#block-boxes">块级盒</a>，处于同一个<a href="visuren.html#block-formatting">块格式化上下文</a>
 
-  <LI>没有行框（line box），没有空隙，没有padding并且没有border把它们隔开<span class="note">（注意，因此<a href="visuren.html#phantom-line-box">某些0高度行框</a>（见<a href="visuren.html#inline-formatting">9.4.2</a>）会被忽略）</span>
+  <LI>没有行框（line box），没有空隙，没有内边距并且没有border把它们隔开<span class="note">（注意，因此<a href="visuren.html#phantom-line-box">某些0高度行框</a>（见<a href="visuren.html#inline-formatting">9.4.2</a>）会被忽略）</span>
 
   <LI>都属于垂直相邻盒边（vertically-adjacent box edges），即来自下列某一对：
 
@@ -313,12 +313,12 @@ title="adjoining margins"><DFN>相邻的</DFN></span></a>，当且仅当：
 
   <LI>一个流内块级元素的bottom margin总会与它的下一个流内块级兄弟的top margin合并，除非兄弟有空隙
 
-  <LI>一个流内块级元素的top margin会与它的第一个流内块级子级的top margin合并，如果该元素没有top border，没有top padding并且该子级没有空隙
+  <LI>一个流内块级元素的top margin会与它的第一个流内块级子级的top margin合并，如果该元素没有top border，没有top 内边距并且该子级没有空隙
 
   <LI>一个<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>为'auto'并且<a href="visudet.html#propdef-min-height" class="noxref"><span
-  class="propinst-min-height">'min-height'</span></a>为0的流内块级盒的bottom margin会与它的最后一个流内块级子级的bottom margin合并，如果该盒没有bottom padding并且没有bottom border并且子级的bottom margin不与有空隙的top margin合并
+  class="propinst-min-height">'min-height'</span></a>为0的流内块级盒的bottom margin会与它的最后一个流内块级子级的bottom margin合并，如果该盒没有bottom 内边距并且没有bottom border并且子级的bottom margin不与有空隙的top margin合并
 
-  <LI>盒自身的margin也会合并，如果<a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>属性为0，并且既没有top或者bottom border也没有top或者bottom padding，并且其<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>为0或者'auto'，并且不含行框，并且其所有流内子级的margin（如果有的话）都合并了
+  <LI>盒自身的margin也会合并，如果<a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>属性为0，并且既没有top或者bottom border也没有top或者bottom 内边距，并且其<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>为0或者'auto'，并且不含行框，并且其所有流内子级的margin（如果有的话）都合并了
 </UL>
 </DIV>
 
@@ -339,7 +339,7 @@ title="adjoining margins"><DFN>相邻的</DFN></span></a>，当且仅当：
 <a href="box.html#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a>，<a href="box.html#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a>，<a href="box.html#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>，<a href="box.html#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a>和<a href="box.html#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a>
 </H2> 
 
-<P>padding属性指定了盒的<a href="#box-padding-area">padding区</a>的宽度。<a href="box.html#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a>简写属性一次性设置四周的padding，而其它padding属性只设置它们各侧的
+<P>padding属性指定了盒的<a href="#box-padding-area">内边距区</a>的宽度。<a href="box.html#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a>简写属性一次性设置四周的内边距，而其它padding属性只设置它们各侧的
 
 <P>本节定义的属性涉及<span class="index-def" title="&lt;padding-width&gt;::definition of"><a
 name="value-def-padding-width"><strong>&lt;padding-width&gt;</strong></a></span>值类型，可以取下列值之一：</p>
@@ -370,7 +370,7 @@ name="value-def-padding-width"><strong>&lt;padding-width&gt;</strong></a></span>
 </div>
 
 
-<P>这些属性设置了盒的top，right，bottom和left padding
+<P>这些属性设置了盒的top，right，bottom和left 内边距
 
 <div class="example"><P style="display:none">示例：</P><P>
 <PRE>
@@ -399,7 +399,7 @@ blockquote { padding-top: 0.3em }
 
 <P>如果只有1个分量值，它会应用于所有方向。如果有2个值，top和bottom padding会被设置为第一个值，并且right和left padding会被设置为第二个值。如果有3个值，top被设置为第一个值，left和right被设置为第二个值，bottom被设置为第三个值。如果有4个值，会分别应用于top，right，bottom和left
 
-<P>padding区的表面颜色或者图像通过<a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>属性来指定：
+<P>内边距区的表面颜色或者图像通过<a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>属性来指定：
 
 <div class="example"><P style="display:none">示例：</P><P>
 <PRE>
@@ -409,7 +409,7 @@ h1 {
 } 
 </PRE>
 
-<P>上例指定了'1em'的垂直padding（<a href="box.html#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a>和<a href="box.html#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>）以及'2em'的水平padding（<a href="box.html#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a>和<a href="box.html#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a>）。'em'单位是<a href="syndata.html#absrel-units">相对</a>与元素的字体大小的：'1em'等于应用的字体大小
+<P>上例指定了'1em'的垂直内边距（<a href="box.html#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a>和<a href="box.html#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>）以及'2em'的水平内边距（<a href="box.html#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a>和<a href="box.html#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a>）。'em'单位是<a href="syndata.html#absrel-units">相对</a>与元素的字体大小的：'1em'等于应用的字体大小
 </div>
 
 <H2>8.5 <a name="border-properties">Border属性</a></H2>
@@ -725,11 +725,11 @@ class="propinst-border-left">'border-left'</span></a>属性之后设置的，但
 
 <h2>8.6 <a name="bidi-box-model">双向环境（bidirectional context）中行内元素的盒模型</a></h2>
 
-<p>对于每一个行框（line box），UA必须为每个元素生成行内框（inline box）并按照可视顺序（不是逻辑顺序）渲染margin，border和padding
+<p>对于每一个行框（line box），UA必须为每个元素生成行内框（inline box）并按照可视顺序（不是逻辑顺序）渲染margin，border和内边距
 
-<p>当元素的<a href="visuren.html#propdef-direction" class="noxref"><span class=propinst-direction>'direction'</span></a>属性为'ltr'时，元素所在的第一个行框最左端生成的盒具有left margin，left border和left padding，并且元素所在的最后一个行框最右端生成的盒具有right padding，right border和right margin
+<p>当元素的<a href="visuren.html#propdef-direction" class="noxref"><span class=propinst-direction>'direction'</span></a>属性为'ltr'时，元素所在的第一个行框最左端生成的盒具有left margin，left border和left 内边距，并且元素所在的最后一个行框最右端生成的盒具有right 内边距，right border和right margin
 
-<p>当元素的<a href="visuren.html#propdef-direction" class="noxref"><span class=propinst-direction>'direction'</span></a>属性为'rtl'时，元素所在的第一个行框最右端生成的盒具有right padding，right border和right margin，并且元素所在的最后一个行框最左端生成的盒具有left margin，left border和left padding
+<p>当元素的<a href="visuren.html#propdef-direction" class="noxref"><span class=propinst-direction>'direction'</span></a>属性为'rtl'时，元素所在的第一个行框最右端生成的盒具有right 内边距，right border和right margin，并且元素所在的最后一个行框最左端生成的盒具有left margin，left border和left 内边距
 
 <hr class="navbar">
 
