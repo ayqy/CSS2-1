@@ -52,9 +52,9 @@ blockquote.math span:first-child {text-align: right}
       <ul class="toc">
         <li class="tocline4"><a href="visuren.html#anonymous-block-level" class="tocxref">9.2.1.1 匿名块盒</a>
       </ul>
-      <li class="tocline3"><a href="visuren.html#inline-boxes" class="tocxref">9.2.2 行内级元素与行内盒</a>
+      <li class="tocline3"><a href="visuren.html#inline-boxes" class="tocxref">9.2.2 行内级元素与行内框</a>
       <ul class="toc">
-        <li class="tocline4"><a href="visuren.html#anonymous" class="tocxref">9.2.2.1 匿名行内盒</a>
+        <li class="tocline4"><a href="visuren.html#anonymous" class="tocxref">9.2.2.1 匿名行内框</a>
       </ul>
       <li class="tocline3"><a href="visuren.html#run-in" class="tocxref">9.2.3 Run-in盒</a>
       <li class="tocline3"><a href="visuren.html#display-prop" class="tocxref">9.2.4 <span class="propinst-display">'display'</span>属性</a>
@@ -148,7 +148,7 @@ element"><a name="block-level"><dfn>块级元素</dfn></a></span>是源文档中
 
 <p><a name="x5"><span class="index-def" title="block-level box"><dfn>块级盒</dfn></span></a>是参与<a href="#block-formatting">块格式化上下文</a>的盒。每个块级元素生成一个<span class="index-def" title="principal block-level box"><a name="principal-box"><dfn>主块级盒（principal block-level box）</dfn></a></span>，用来包含后代盒和生成的内容，并且任何定位模式都与该盒有关。有些块级元素可能生成除主盒外的额外的盒：'list-item'元素。这些额外的盒根据主盒来放置
 
-<p>除了后面章节描述的表格盒与可替换元素外，一个块级盒也是一个块容器盒。一个<span class="index-def" title="block container box"><a name="block-container-box"><dfn >块容器盒</dfn></a></span>要么只包含块级盒，要么建立了行内格式化上下文并因此只包含行内盒。不是所有的块容器盒都是块级盒：不可替换的行内块和不可替换的表格单元是块级容器，但不是块级盒。作为块级容器的块级盒也叫<a name="x8"><span class="index-def" title="block box"><dfn>块盒</dfn></span></a>
+<p>除了后面章节描述的表格盒与可替换元素外，一个块级盒也是一个块容器盒。一个<span class="index-def" title="block container box"><a name="block-container-box"><dfn >块容器盒</dfn></a></span>要么只包含块级盒，要么建立了行内格式化上下文并因此只包含行内框。不是所有的块容器盒都是块级盒：不可替换的行内块和不可替换的表格单元是块级容器，但不是块级盒。作为块级容器的块级盒也叫<a name="x8"><span class="index-def" title="block box"><dfn>块盒</dfn></span></a>
 
 <p>三个术语“块级盒（block-level box）”，“块容器盒（block container box）”与“块盒（block box）”在没有歧义的时候就简称为“块（block）”
 
@@ -173,7 +173,7 @@ boxes for the example above"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 
 <p>换句话说：如果一个块容器盒（例如，为上面的DIV生成的）里面有一个块级盒（例如上面的P），那么我们强制让它里面<em>只含有</em>块级盒
 
-<p>当一个行内盒包含一个流内块级盒时，该行内盒（及与它处于同一行盒里的行内祖先）会被从周围的块级盒（和任何连续的，或者仅仅被可折叠的空白字符和/或流外元素隔开的块级兄弟）中拆分出来，把行内盒分成两个盒（即使有一边是空的），分别位于块级盒的两边。拆分前的行盒与拆分后的行盒都被包进匿名块盒，并且该块级盒成为了这些匿名盒的兄弟。当这样一个行内盒受到相对定位的影响时，任何由此产生的转变也会影响行内盒里面的块级盒
+<p>当一个行内框包含一个流内块级盒时，该行内框（及与它处于同一行盒里的行内祖先）会被从周围的块级盒（和任何连续的，或者仅仅被可折叠的空白字符和/或流外元素隔开的块级兄弟）中拆分出来，把行内框分成两个盒（即使有一边是空的），分别位于块级盒的两边。拆分前的行盒与拆分后的行盒都被包进匿名块盒，并且该块级盒成为了这些匿名盒的兄弟。当这样一个行内框受到相对定位的影响时，任何由此产生的转变也会影响行内框里面的块级盒
 
 <div class="example"><P style="display:none">示例：</P>
 <p>此模型会应用于下例，如果下列规则：</p>
@@ -213,14 +213,14 @@ span { display: block }
 
 <p>在处理相关的百分比值时，匿名块盒会被忽略：用最近的非匿名祖先盒代替。例如，如果上面DIV里面的匿名块盒的子级为了处理百分比高度，需要知道其包含块的包含块的高度，那么它将采用DIV形成的包含块的高度，而不是匿名块盒的
 
-<h3>9.2.2 <a name="inline-boxes">行内级元素与行内盒</a></h3>
+<h3>9.2.2 <a name="inline-boxes">行内级元素与行内框</a></h3>
 
 <p><span class="index-def" title="inline-level element">
 <a name="inline-level"><dfn>行内级元素</dfn></a></span>是源文档中那些不会为其内容形成新块的元素，内容分布于多行（例如，强调段落中的一部分文本，行内图片等等）。<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性的下列值能让一个元素变成行内级：'inline'，'inline-table'和'inline-block'。行内级元素生成<a name="x11"><span class="index-def" title="inline-level box"><dfn>行内级盒</dfn></span></a>，即参与行内格式化上下文的盒
 
-<p>一个<span class="index-def" title="inline box"><a name="inline-box"><dfn>行内盒</dfn></a></span>是一个（特殊的）行内级盒，其内容参与了它的包含行内格式化上下文。一个'display'值为'inline'的不可替换元素会生成一个行内盒。不属于行内盒的行内块级盒（例如，可替换行内级元素，inline-block元素和inline-table元素）被称为<a name="x13"><span class="index-def" title="atomic inline-level box"><dfn>原子行内级盒（atomic inline-level boxes）</dfn></span></a>，因为它们作为单一的不透明盒（opaque box）参与其行内格式化上下文
+<p>一个<span class="index-def" title="inline box"><a name="inline-box"><dfn>行内框</dfn></a></span>是一个（特殊的）行内级盒，其内容参与了它的包含行内格式化上下文。一个'display'值为'inline'的不可替换元素会生成一个行内框。不属于行内框的行内块级盒（例如，可替换行内级元素，inline-block元素和inline-table元素）被称为<a name="x13"><span class="index-def" title="atomic inline-level box"><dfn>原子行内级盒（atomic inline-level boxes）</dfn></span></a>，因为它们作为单一的不透明盒（opaque box）参与其行内格式化上下文
 
-<h4>9.2.2.1 <a name="anonymous">匿名行内盒</a></h4>
+<h4>9.2.2.1 <a name="anonymous">匿名行内框</a></h4>
 
 <p>任何被直接包含在一个块容器元素中（不在一个行内元素里面）的文本，必须视为一个匿名行内元素
 
@@ -232,16 +232,16 @@ span { display: block }
 </code></pre>
 </div>
 
-<p><code>&lt;p&gt;</code>会生成一个块盒，里面还有几个行内盒。"emphasized"的盒是一个由行内元素（<code>&lt;em&gt;</code>）生成的行内盒，但其它盒（"Some"和"text"）都是由块级元素（<code>&lt;p&gt;</code>）生成的行内盒。后者叫做<a name="x14"><span class="index-def" title="anonymous inline boxes">匿名行内盒</span></a>，因为它们没有与之相关的行内级元素
+<p><code>&lt;p&gt;</code>会生成一个块盒，里面还有几个行内框。"emphasized"的盒是一个由行内元素（<code>&lt;em&gt;</code>）生成的行内框，但其它盒（"Some"和"text"）都是由块级元素（<code>&lt;p&gt;</code>）生成的行内框。后者叫做<a name="x14"><span class="index-def" title="anonymous inline boxes">匿名行内框</span></a>，因为它们没有与之相关的行内级元素
 </p>
-<p>这种匿名行内盒从它们父级块盒继承了可继承的属性，不可继承的属性取其初始值。示例中，匿名行内盒的颜色是从P继承的，但背景是透明的
+<p>这种匿名行内框从它们父级块盒继承了可继承的属性，不可继承的属性取其初始值。示例中，匿名行内框的颜色是从P继承的，但背景是透明的
 </p>
 
 <p>
-后续将根据<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性合并起来的空白字符内容，不会生成任何匿名行内盒
+后续将根据<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性合并起来的空白字符内容，不会生成任何匿名行内框
 </p>
 
-<p>如果知道上下文中匿名盒是哪种含义，本规范中的匿名行内盒和匿名块盒都可以简称为匿名盒
+<p>如果知道上下文中匿名盒是哪种含义，本规范中的匿名行内框和匿名块盒都可以简称为匿名盒
 </p>
 <p>在格式化<a href="tables.html#anonymous-boxes">表格</a>时会出现更多的匿名盒类型
 </p>
@@ -288,7 +288,7 @@ name="value-def-inline-block"><strong>inline-block</strong></a></span>
 <dt><span class="index-def" title="'inline', definition of"><a
 name="value-def-inline"><strong>inline</strong></a></span>
 </dt>
-<dd>该值会让元素生成一个或多个行内盒
+<dd>该值会让元素生成一个或多个行内框
 </dd>
 <dt><span class="index-def" title="'list-item', definition of"><a
 name="value-def-list-item"><strong>list-item</strong></a></span>
@@ -535,28 +535,28 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 </p>
 <p>一般来说，一个行盒的left边挨着其包含块的left边，right边挨着其包含块的right边。然而，浮动盒可能会跑到包含块边与行盒边之间。因此，尽管同一个行内格式化上下文中的行盒一般都有相同的宽度（也就是包含块的宽度），如果可用的水平空间因为<a href="#floats">浮动</a>而减少了的话，它们的宽度就可能不同。同一个行内格式化上下文中的行盒一般高度各不相同（例如，一行可能含有一个高图片，而其它的只含文本）
 </p>
-<p>当一行的行内级盒的总宽度小于它们所在的行盒的宽度时，它们在行盒里的水平分布由<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性决定。如果该属性值为'justify'，用户代理可能会拉伸行内盒（不包括inline-table和inline-block盒）里的空白和字（间距）
+<p>当一行的行内级盒的总宽度小于它们所在的行盒的宽度时，它们在行盒里的水平分布由<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性决定。如果该属性值为'justify'，用户代理可能会拉伸行内框（不包括inline-table和inline-block盒）里的空白和字（间距）
 </p>
 
 <p>
-当一个行内盒超出一个行盒的宽度时，它会被分成几个盒，并且这些盒会跨多行盒分布。如果一个行内块无法分割（例如，如果该行内盒含有一个单个字符，或者特定语言的单词分隔规则不允许在该行内盒里分隔，或如果该行内盒受到了一个值为nowrap或者pre的white-space的影响），那么该行内盒会从行盒溢出
+当一个行内框超出一个行盒的宽度时，它会被分成几个盒，并且这些盒会跨多行盒分布。如果一个行内块无法分割（例如，如果该行内框含有一个单个字符，或者特定语言的单词分隔规则不允许在该行内框里分隔，或如果该行内框受到了一个值为nowrap或者pre的white-space的影响），那么该行内框会从行盒溢出
 </p>
 <p>
-当一个行内盒被分割后，margin，border和padding在发生分割的地方（或者在任何分割处，如果有多处的话）不会有可视化效果
+当一个行内框被分割后，margin，border和padding在发生分割的地方（或者在任何分割处，如果有多处的话）不会有可视化效果
 </p>
-<p><em>同一个行盒里的</em>行内盒也可能因为<a href="#direction">双向（bidirectional）文本处理</a>而被分割成几个盒
+<p><em>同一个行盒里的</em>行内框也可能因为<a href="#direction">双向（bidirectional）文本处理</a>而被分割成几个盒
 </p>
 <p id="phantom-line-box">需要盛放（hold）一个行内格式化上下文中的行内级内容时，创建一个行盒。不含文本、<a href="text.html#white-space-prop">保留空白符（preserved white space）</a>、margin，padding或者border非0的行内元素、其它<a href="#positioning-scheme">流内</a>内容（例如，图片，inline block或者inline table），并且不以保留换行符（preserved newline）结束的行盒必须被当作一个0高度的行盒，为了确定它里面所有元素的位置，而其它时候（for any other purpose）必须当它不存在
 </p>
 <div class="html-example"><p> 
-有个行内盒构造的示例，下面的段落（HTML块级元素P创建的）含有匿名文本，穿插在EM和STRONG元素中：
+有个行内框构造的示例，下面的段落（HTML块级元素P创建的）含有匿名文本，穿插在EM和STRONG元素中：
 </p>
 <pre><code class="html">
 &lt;P&gt;Several &lt;EM&gt;emphasized words&lt;/EM&gt; appear
 &lt;STRONG&gt;in this&lt;/STRONG&gt; sentence, dear.&lt;/P&gt;
 </code></pre>
 
-<p>P元素生成了一个含有5个行内盒的块盒，其中有3个是匿名的：</p>
+<p>P元素生成了一个含有5个行内框的块盒，其中有3个是匿名的：</p>
 
 <ul>
 <li>Anonymous: "Several"</li>
@@ -566,13 +566,13 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 <li>Anonymous: "sentence, dear."</li>
 </ul>
  
-<p>为了格式化该段落，用户代理把5个盒排列（flows）在一个行盒里。本例中，P元素生成的盒为行盒建立了包含块。如果该包含块足够宽，所有行内盒都能放进一个行盒里：
+<p>为了格式化该段落，用户代理把5个盒排列（flows）在一个行盒里。本例中，P元素生成的盒为行盒建立了包含块。如果该包含块足够宽，所有行内框都能放进一个行盒里：
 </p>
 <pre>
  Several <em>emphasized words</em> appear <strong>in this</strong> sentence, dear.
 </pre>
 
-<p>如果不行，行内盒将被分割并跨行盒分布。之前的段落可能被分成下面这样：
+<p>如果不行，行内框将被分割并跨行盒分布。之前的段落可能被分成下面这样：
 </p>
 <pre>
 Several <em>emphasized words</em> appear
@@ -1208,7 +1208,7 @@ span { display: inline }
 #inner { position: relative; top: 12px; color: blue }
 </code></pre>
 
-<p>文本常规排列，直到<em>outer</em>元素。<em>outer</em>文本保持其常规流位置和尺寸，位于在第1行末尾。然后，含有文本（分布在3行里）的行内盒被整体（as a unit）移动了'-12px'（向上）
+<p>文本常规排列，直到<em>outer</em>元素。<em>outer</em>文本保持其常规流位置和尺寸，位于在第1行末尾。然后，含有文本（分布在3行里）的行内框被整体（as a unit）移动了'-12px'（向上）
 </p>
 
 <p><em>inner</em>的内容，作为<em>outer</em>的一个子级，常规地将紧跟着单词"of outer contents"排列（在1.5行）。然而，<em>inner</em>内容自身相对于<em>outer</em>内容偏移了'12px'（向下），回到它们原来在第2行的位置
@@ -1312,7 +1312,7 @@ with clear">[D]</A></SPAN></p>
    alt="Image illustrating the effects of absolutely positioning a box."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-flow-absolute" href="images/longdesc/flow-absolute-desc.html" title="Long description for example illustrating absolute positioning">[D]</A></SPAN></p>
 </div>
 
-<p>下例展示了一个作为相对定位盒的子级的绝对定位的盒。尽管父级<em>outer</em>盒并没有实际偏移，设置其<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>属性为'relative'，表示它的盒可以为定位的后代提供包含块。因为<em>outer</em>盒是一个行内盒，被跨行分割了，第一个行内盒的top和left边（下图中用粗虚线描绘的）作为<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>偏移的参照
+<p>下例展示了一个作为相对定位盒的子级的绝对定位的盒。尽管父级<em>outer</em>盒并没有实际偏移，设置其<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>属性为'relative'，表示它的盒可以为定位的后代提供包含块。因为<em>outer</em>盒是一个行内框，被跨行分割了，第一个行内框的top和left边（下图中用粗虚线描绘的）作为<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>偏移的参照
 </p>
 <pre class="example"><code class="css">
 #outer { 
@@ -1593,7 +1593,7 @@ word.&lt;/P&gt;
 
 
 </p>
-<p>注意，为了能够在一个统一方向（要么全部从左向右，要么全部从右向左）的环境中排列行内盒，可能不得不创建更多行内盒（包括匿名行内盒），一些行内盒必须在排列之前被分割开来并重新排序
+<p>注意，为了能够在一个统一方向（要么全部从左向右，要么全部从右向左）的环境中排列行内框，可能不得不创建更多行内框（包括匿名行内框），一些行内框必须在排列之前被分割开来并重新排序
 </p>
 <p>因为Unicode算法有对嵌入<em title="According to unicode 3.0, chapter 3, section 12, definition BD2. Specifically, page 58 here: http://www.unicode.org/unicode/uni2book/ch03.pdf" >61层</em>的限制，应该注意不要使用值不为'normal'的<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>，除非适当（unless appropriate）。特别的，使用'inherit'值应该格外小心。然而，对于那些一般要显示为块的元素，更应该设置'unicode-bidi: embed'，这样在display会变为inline（见下例），元素仍然（挨）在一起
 </p>

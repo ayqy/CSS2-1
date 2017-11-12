@@ -215,7 +215,7 @@ caption  { display: table-caption }
     <dd>一个'table-row'盒或者适当的表格行父级
 
   <dt><a name="x21"><span class="index-def">连续的（consecutive）</span></a>
-    <dd>如果两个兄弟盒没有除只含空白字符的匿名行内盒外的中间兄弟，它们就是连续的。如果一系列兄弟盒中每个盒都与（该序列中）它前面的那个是连续的，那么这些兄弟盒是连续的
+    <dd>如果两个兄弟盒没有除只含空白字符的匿名行内框外的中间兄弟，它们就是连续的。如果一系列兄弟盒中每个盒都与（该序列中）它前面的那个是连续的，那么这些兄弟盒是连续的
 </dl>
 <p>这些规则中，流外（out-of-flow）元素被视为宽高都为0的行内元素，其包含块也根据这些规则来选择
 
@@ -227,9 +227,9 @@ caption  { display: table-caption }
 
       <li>如果一个'table-column-group'父级的子级<var>C</var>不是一个'table-column'盒，那么就当它具有'display: none'
 
-      <li>如果一个表容器<var>P</var>的子级<var>C</var>是一个只含有空白字符的匿名行内盒，并且如果有的话，它前后紧挨着的兄弟分别为<var>P</var>的适当的表格后代和'table-caption'或者内部表格盒，那么就当它具有'display: none'。如果盒<var>D</var>可以作为<var>A</var>的后代，而不会导致任何中间'table'或者'inline-table'生成的话，<var>D</var>是<var>A</var>的一个适当的表格后代
+      <li>如果一个表容器<var>P</var>的子级<var>C</var>是一个只含有空白字符的匿名行内框，并且如果有的话，它前后紧挨着的兄弟分别为<var>P</var>的适当的表格后代和'table-caption'或者内部表格盒，那么就当它具有'display: none'。如果盒<var>D</var>可以作为<var>A</var>的后代，而不会导致任何中间'table'或者'inline-table'生成的话，<var>D</var>是<var>A</var>的一个适当的表格后代
 
-      <li>如果盒<var>B</var>是一个只含空白字符的匿名行内盒，并且位于两个紧挨着的兄弟之间，（兄弟）是内部表格盒或者'table-caption'盒，那么就当<var>B</var>具有'display: none'
+      <li>如果盒<var>B</var>是一个只含空白字符的匿名行内框，并且位于两个紧挨着的兄弟之间，（兄弟）是内部表格盒或者'table-caption'盒，那么就当<var>B</var>具有'display: none'
     </ol>
 
   <li>生成缺失的子级容器（wrapper）：
@@ -274,7 +274,7 @@ VBOX { display: table-cell }
 </div>
 
 <div class="example"><P style="display:none">示例：</P>
-<p>本例中，ROW中的3个'table-cell'元素被认为含有文本。注意文本被进一步包进了匿名行内盒中，如<a href="visuren.html#anonymous">可视化格式模型</a>中的解释：
+<p>本例中，ROW中的3个'table-cell'元素被认为含有文本。注意文本被进一步包进了匿名行内框中，如<a href="visuren.html#anonymous">可视化格式模型</a>中的解释：
 
 <pre class="xml-example">
 &lt;STACK&gt;
