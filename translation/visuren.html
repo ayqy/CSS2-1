@@ -173,7 +173,7 @@ boxes for the example above"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 
 <p>换句话说：如果一个块容器盒（例如，为上面的DIV生成的）里面有一个块级盒（例如上面的P），那么我们强制让它里面<em>只含有</em>块级盒
 
-<p>当一个行内框包含一个流内块级盒时，该行内框（及与它处于同一行盒里的行内祖先）会被从周围的块级盒（和任何连续的，或者仅仅被可折叠的空白字符和/或流外元素隔开的块级兄弟）中拆分出来，把行内框分成两个盒（即使有一边是空的），分别位于块级盒的两边。拆分前的行盒与拆分后的行盒都被包进匿名块盒，并且该块级盒成为了这些匿名盒的兄弟。当这样一个行内框受到相对定位的影响时，任何由此产生的转变也会影响行内框里面的块级盒
+<p>当一个行内框包含一个流内块级盒时，该行内框（及与它处于同一行框里的行内祖先）会被从周围的块级盒（和任何连续的，或者仅仅被可折叠的空白字符和/或流外元素隔开的块级兄弟）中拆分出来，把行内框分成两个盒（即使有一边是空的），分别位于块级盒的两边。拆分前的行框与拆分后的行框都被包进匿名块盒，并且该块级盒成为了这些匿名盒的兄弟。当这样一个行内框受到相对定位的影响时，任何由此产生的转变也会影响行内框里面的块级盒
 
 <div class="example"><P style="display:none">示例：</P>
 <p>此模型会应用于下例，如果下列规则：</p>
@@ -208,7 +208,7 @@ span { display: block }
 设置在让匿名块盒生成的元素上的属性仍然会应用于该元素（生成的）盒和内容。例如，如果一个border被设置在上例中的P元素上，border将会绘制在C1（在行结束的位置打开）和C2（在行开始的位置打开）周围
 </p>
 <p>
-有些用户代理以它们的方式给行内包含块实现了border。例如，通过把这种嵌套块包进“匿名行盒”并且因此在这个盒周围绘制行内border。因为CSS1和CSS2没有定义这种行为，只支持CSS1的和只支持CSS2的用户代理可能会实现这种替代模型，并仍声称与CSS&nbsp;2.1的这部分一致。这不适用于在本规范发布后开发的UA
+有些用户代理以它们的方式给行内包含块实现了border。例如，通过把这种嵌套块包进“匿名行框”并且因此在这个盒周围绘制行内border。因为CSS1和CSS2没有定义这种行为，只支持CSS1的和只支持CSS2的用户代理可能会实现这种替代模型，并仍声称与CSS&nbsp;2.1的这部分一致。这不适用于在本规范发布后开发的UA
 </p>
 
 <p>在处理相关的百分比值时，匿名块盒会被忽略：用最近的非匿名祖先盒代替。例如，如果上面DIV里面的匿名块盒的子级为了处理百分比高度，需要知道其包含块的包含块的高度，那么它将采用DIV形成的包含块的高度，而不是匿名块盒的
@@ -519,7 +519,7 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 </p>
 
 <p>
-在一个块格式化上下文中，每个盒的left外边（left outer edge）挨着包含块的left边（对于从右向左的格式化，right边挨着）。即使存在浮动（尽管一个盒的<em>行盒</em>可能会因为浮动收缩），这也成立。除非该盒建立了一个新的块格式化上下文（这种情况下，该盒自身<a href="#bfc-next-to-float"><em>可能会因为浮动</em>变窄</a>）
+在一个块格式化上下文中，每个盒的left外边（left outer edge）挨着包含块的left边（对于从右向左的格式化，right边挨着）。即使存在浮动（尽管一个盒的<em>行框</em>可能会因为浮动收缩），这也成立。除非该盒建立了一个新的块格式化上下文（这种情况下，该盒自身<a href="#bfc-next-to-float"><em>可能会因为浮动</em>变窄</a>）
 </p>
 
 <p>关于分页媒体中分页的信息，请查看<a href="page.html#allowed-page-breaks">合法的分页</a>章节
@@ -527,26 +527,26 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 
 <h3>9.4.2 <a name="inline-formatting">行内格式化上下文</a></h3>
 
-<p>在一个行内格式化上下文中，盒是一个接一个水平放置的，从包含块的顶部开始。这些盒之间的水平margin，border和padding都有效。盒可能以不同的方式竖直对齐：以它们的底部或者顶部对齐，或者以它们里面的文本的基线对齐。包含来自同一行的盒的矩形区域叫做<span class="index-def" title="line box"><a name="line-box"><dfn>行盒</dfn></a></span>
+<p>在一个行内格式化上下文中，盒是一个接一个水平放置的，从包含块的顶部开始。这些盒之间的水平margin，border和padding都有效。盒可能以不同的方式竖直对齐：以它们的底部或者顶部对齐，或者以它们里面的文本的基线对齐。包含来自同一行的盒的矩形区域叫做<span class="index-def" title="line box"><a name="line-box"><dfn>行框</dfn></a></span>
 </p>
-<p>行盒的宽度由<a href="#containing-block">包含块</a>和浮动情况决定，行盒的高度由<a href="visudet.html#line-height">行高的计算</a>小节给出的规则决定
+<p>行框的宽度由<a href="#containing-block">包含块</a>和浮动情况决定，行框的高度由<a href="visudet.html#line-height">行高的计算</a>小节给出的规则决定
 </p>
-<p>一个行盒总是足够高，能够容纳它包含的所有盒。然而，它可能比它所包含的最高的盒还要高（例如，如果盒是以基线对齐的）。当盒B的高度小于它所在的行盒的高度时，行盒中B的竖直对齐方式由<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定。当几个行内级盒在水平方向上不能共存于一个行盒时，它们会被分到两个或多个垂直堆叠的（vertically-stacked） 行盒里。因此，段落就是个行盒的垂直栈（vertical stack）。行盒没有垂直间隔地堆放（除非在其它地方有特别说明）并且它们不会重叠
+<p>一个行框总是足够高，能够容纳它包含的所有盒。然而，它可能比它所包含的最高的盒还要高（例如，如果盒是以基线对齐的）。当盒B的高度小于它所在的行框的高度时，行框中B的竖直对齐方式由<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定。当几个行内级盒在水平方向上不能共存于一个行框时，它们会被分到两个或多个垂直堆叠的（vertically-stacked） 行框里。因此，段落就是个行框的垂直栈（vertical stack）。行框没有垂直间隔地堆放（除非在其它地方有特别说明）并且它们不会重叠
 </p>
-<p>一般来说，一个行盒的left边挨着其包含块的left边，right边挨着其包含块的right边。然而，浮动盒可能会跑到包含块边与行盒边之间。因此，尽管同一个行内格式化上下文中的行盒一般都有相同的宽度（也就是包含块的宽度），如果可用的水平空间因为<a href="#floats">浮动</a>而减少了的话，它们的宽度就可能不同。同一个行内格式化上下文中的行盒一般高度各不相同（例如，一行可能含有一个高图片，而其它的只含文本）
+<p>一般来说，一个行框的left边挨着其包含块的left边，right边挨着其包含块的right边。然而，浮动盒可能会跑到包含块边与行框边之间。因此，尽管同一个行内格式化上下文中的行框一般都有相同的宽度（也就是包含块的宽度），如果可用的水平空间因为<a href="#floats">浮动</a>而减少了的话，它们的宽度就可能不同。同一个行内格式化上下文中的行框一般高度各不相同（例如，一行可能含有一个高图片，而其它的只含文本）
 </p>
-<p>当一行的行内级盒的总宽度小于它们所在的行盒的宽度时，它们在行盒里的水平分布由<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性决定。如果该属性值为'justify'，用户代理可能会拉伸行内框（不包括inline-table和inline-block盒）里的空白和字（间距）
+<p>当一行的行内级盒的总宽度小于它们所在的行框的宽度时，它们在行框里的水平分布由<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性决定。如果该属性值为'justify'，用户代理可能会拉伸行内框（不包括inline-table和inline-block盒）里的空白和字（间距）
 </p>
 
 <p>
-当一个行内框超出一个行盒的宽度时，它会被分成几个盒，并且这些盒会跨多行盒分布。如果一个行内块无法分割（例如，如果该行内框含有一个单个字符，或者特定语言的单词分隔规则不允许在该行内框里分隔，或如果该行内框受到了一个值为nowrap或者pre的white-space的影响），那么该行内框会从行盒溢出
+当一个行内框超出一个行框的宽度时，它会被分成几个盒，并且这些盒会跨多行框分布。如果一个行内块无法分割（例如，如果该行内框含有一个单个字符，或者特定语言的单词分隔规则不允许在该行内框里分隔，或如果该行内框受到了一个值为nowrap或者pre的white-space的影响），那么该行内框会从行框溢出
 </p>
 <p>
 当一个行内框被分割后，margin，border和padding在发生分割的地方（或者在任何分割处，如果有多处的话）不会有可视化效果
 </p>
-<p><em>同一个行盒里的</em>行内框也可能因为<a href="#direction">双向（bidirectional）文本处理</a>而被分割成几个盒
+<p><em>同一个行框里的</em>行内框也可能因为<a href="#direction">双向（bidirectional）文本处理</a>而被分割成几个盒
 </p>
-<p id="phantom-line-box">需要盛放（hold）一个行内格式化上下文中的行内级内容时，创建一个行盒。不含文本、<a href="text.html#white-space-prop">保留空白符（preserved white space）</a>、margin，padding或者border非0的行内元素、其它<a href="#positioning-scheme">流内</a>内容（例如，图片，inline block或者inline table），并且不以保留换行符（preserved newline）结束的行盒必须被当作一个0高度的行盒，为了确定它里面所有元素的位置，而其它时候（for any other purpose）必须当它不存在
+<p id="phantom-line-box">需要盛放（hold）一个行内格式化上下文中的行内级内容时，创建一个行框。不含文本、<a href="text.html#white-space-prop">保留空白符（preserved white space）</a>、margin，padding或者border非0的行内元素、其它<a href="#positioning-scheme">流内</a>内容（例如，图片，inline block或者inline table），并且不以保留换行符（preserved newline）结束的行框必须被当作一个0高度的行框，为了确定它里面所有元素的位置，而其它时候（for any other purpose）必须当它不存在
 </p>
 <div class="html-example"><p> 
 有个行内框构造的示例，下面的段落（HTML块级元素P创建的）含有匿名文本，穿插在EM和STRONG元素中：
@@ -566,13 +566,13 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 <li>Anonymous: "sentence, dear."</li>
 </ul>
  
-<p>为了格式化该段落，用户代理把5个盒排列（flows）在一个行盒里。本例中，P元素生成的盒为行盒建立了包含块。如果该包含块足够宽，所有行内框都能放进一个行盒里：
+<p>为了格式化该段落，用户代理把5个盒排列（flows）在一个行框里。本例中，P元素生成的盒为行框建立了包含块。如果该包含块足够宽，所有行内框都能放进一个行框里：
 </p>
 <pre>
  Several <em>emphasized words</em> appear <strong>in this</strong> sentence, dear.
 </pre>
 
-<p>如果不行，行内框将被分割并跨行盒分布。之前的段落可能被分成下面这样：
+<p>如果不行，行内框将被分割并跨行框分布。之前的段落可能被分成下面这样：
 </p>
 <pre>
 Several <em>emphasized words</em> appear
@@ -671,18 +671,18 @@ div.a8 { position: relative; direction: ltr; left: -1em; right: 5em }
 <p>float（盒）就是一个在当前行向左或向右移动的盒。float（或者"floated"或者"floating"盒）最有意思的特性是其它内容会沿着它的一侧排列（可以通过<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性禁止这种行为）。其它内容会沿着left-floated盒的右侧，right-floated盒的左侧排列。下面是浮动定位和其它内容排列（flow）的介绍，控制浮动行为的准确<a href="#float-rules">规则</a>见<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>属性中的描述
 </p>
 <p>
-一个浮动盒会向左或向右移动，直到其外边（outer edge）挨到包含块边或者另一个浮动盒的外边。如果存在行盒，浮动盒的外top（边）会与当前行盒的top（边）对齐
+一个浮动盒会向左或向右移动，直到其外边（outer edge）挨到包含块边或者另一个浮动盒的外边。如果存在行框，浮动盒的外top（边）会与当前行框的top（边）对齐
 </p>
 <p>
 如果没有足够的水平空间来浮动，它会向下移动，直到空间合适或者不会再出现其它浮动了
 </p>
-<p>因为浮动（盒）不在流内，在浮动盒之前或者之后创建的未定位的（non-positioned）块盒会竖直排列，就像浮动不存在一样。然而，接着（next to）浮动（盒）创建的当前及后续行盒会进行必要的缩短，为了给浮动（盒）的margin box让出空间
+<p>因为浮动（盒）不在流内，在浮动盒之前或者之后创建的未定位的（non-positioned）块盒会竖直排列，就像浮动不存在一样。然而，接着（next to）浮动（盒）创建的当前及后续行框会进行必要的缩短，为了给浮动（盒）的margin box让出空间
 
-<p>如果存在一个完全满足4个条件的的竖直位置：(a)在行盒top或者top以下，(b)在行盒bottom或者bottom以上，(c)在浮动（盒）的top margin边以下，并且(d)在浮动（盒）的bottom margin边以上，那么就说该行盒接着（next to）浮动（盒）
+<p>如果存在一个完全满足4个条件的的竖直位置：(a)在行框top或者top以下，(b)在行框bottom或者bottom以上，(c)在浮动（盒）的top margin边以下，并且(d)在浮动（盒）的bottom margin边以上，那么就说该行框接着（next to）浮动（盒）
 
-<p class=note>注意：意思是0外高度（outer height）或者负外高度（的盒）的浮动不会缩短行盒
+<p class=note>注意：意思是0外高度（outer height）或者负外高度（的盒）的浮动不会缩短行框
 
-<p>如果一个缩短的行盒小到无法容纳任何内容了，那么该行盒会向下移动（并重新计算其宽度）直到有些内容能适应（它的空间）或者不会再出现其它浮动了。位于浮动（盒）之前的当前行盒里的任何内容都会在浮动（盒）的另一侧的相同行重新排列（reflowed）。换句话说，如果遇到了被放在一个向左浮动（的盒）之前的行盒里的行内级盒，它适应剩余的行盒空间，则该向左浮动（的盒）会被放在该行，与行盒的top对齐，然后该行里的行内级盒会被移动到浮动（的盒）的右边，对于rtl和向右浮动则正好相反
+<p>如果一个缩短的行框小到无法容纳任何内容了，那么该行框会向下移动（并重新计算其宽度）直到有些内容能适应（它的空间）或者不会再出现其它浮动了。位于浮动（盒）之前的当前行框里的任何内容都会在浮动（盒）的另一侧的相同行重新排列（reflowed）。换句话说，如果遇到了被放在一个向左浮动（的盒）之前的行框里的行内级盒，它适应剩余的行框空间，则该向左浮动（的盒）会被放在该行，与行框的top对齐，然后该行里的行内级盒会被移动到浮动（的盒）的右边，对于rtl和向右浮动则正好相反
 </p>
 
 <p id="bfc-next-to-float">
@@ -690,7 +690,7 @@ div.a8 { position: relative; direction: ltr; left: -1em; right: 5em }
 </p>
 <div class="example"><P style="display:none">示例：</P>
 <p><strong>示例</strong> 
-下面这段文档中，包含块窄到无法容纳与浮动（盒）接着的内容了，所以内容被移动到了浮动（盒）下方，在行盒中按照text-align属性对齐（的位置）
+下面这段文档中，包含块窄到无法容纳与浮动（盒）接着的内容了，所以内容被移动到了浮动（盒）下方，在行框中按照text-align属性对齐（的位置）
 </p>
 <pre><code class="css">
 p { width: 10em; border: solid aqua; }
@@ -749,7 +749,7 @@ img.icon {
 &lt;/HTML&gt;
 </code></pre>
 
-<p>IMG盒向左浮动，后面跟着的内容被格式化到浮动（盒）的右边，从浮动（盒）的同一行开始。浮动（盒）右边的行盒因为浮动出现而被缩短了，但恢复了浮动（盒）后面的（盒的）“常规”宽度（P元素建立的包含块的宽度）。该文档可能会被格式化成：</p>
+<p>IMG盒向左浮动，后面跟着的内容被格式化到浮动（盒）的右边，从浮动（盒）的同一行开始。浮动（盒）右边的行框因为浮动出现而被缩短了，但恢复了浮动（盒）后面的（盒的）“常规”宽度（P元素建立的包含块的宽度）。该文档可能会被格式化成：</p>
 
 <div class="figure">
 <p><img src="./images/floateg.png"
@@ -867,7 +867,7 @@ href="box.html#collapsed-through">规则</a>来定义
 </li>
 <li>一个浮动盒的<a href="box.html#outer-edge">外top</a>不能高于源文档中任何在此之前的元素生成的<a href="#block-boxes">块盒</a>或者<a href="#floats">浮动盒</a>的外top
 </li>
-<li>一个元素的浮动盒的<a href="box.html#outer-edge">外top</a>不能高于任何含有源文档中在此之前的元素生成的盒的行盒的top
+<li>一个元素的浮动盒的<a href="box.html#outer-edge">外top</a>不能高于任何含有源文档中在此之前的元素生成的盒的行框的top
 </li>
 <li>左边存在另一个左浮动盒的左浮动盒的right外边不能位于其包含块的right边的右边（不严谨的：一个左浮动盒不能超出right边，除非它已经尽量向左（紧挨着包含块的left边）了）。右浮动元素也有类似的规则
 </li>
@@ -1040,7 +1040,7 @@ alt="An a at the left side of a box and a b at the right side">
 
 <div class="note"><p>
 <em><strong>注意</strong>
-该属性<a href="http://www.w3.org/TR/REC-CSS1#clear">适用于CSS1中的所有元素</a>，实现可能因此已经支持该属性用在所有元素上了。CSS2和CSS 2.1中，'clear'属性只适用于块级元素。因此，编写者应该只把该属性用在块级元素上。如果一个实现支持行内元素上的clear，而不像上面解释的那样设置一个空隙，该实现应该强制打断（break）并有效地插入一个或多个空行盒（或者把新的行盒按<a href="#floats">9.5节</a>中描述的那样向下移动），来把cleared的行内元素的行盒的top移到对应的浮动盒下方
+该属性<a href="http://www.w3.org/TR/REC-CSS1#clear">适用于CSS1中的所有元素</a>，实现可能因此已经支持该属性用在所有元素上了。CSS2和CSS 2.1中，'clear'属性只适用于块级元素。因此，编写者应该只把该属性用在块级元素上。如果一个实现支持行内元素上的clear，而不像上面解释的那样设置一个空隙，该实现应该强制打断（break）并有效地插入一个或多个空行框（或者把新的行框按<a href="#floats">9.5节</a>中描述的那样向下移动），来把cleared的行内元素的行框的top移到对应的浮动盒下方
 </em>
 </p>
 </div>
@@ -1234,7 +1234,7 @@ box's content."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-flow-relative
 #inner { float: right; width: 130px; color: blue }
 </code></pre>
 
-<p>文本常规排列，直到<em>inner</em>盒，脱离了流，并浮动到right margin（它的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>已经显式赋值了），浮动（盒）左边的行盒被缩短了，文档的剩余文本都排列在它们里面</p>
+<p>文本常规排列，直到<em>inner</em>盒，脱离了流，并浮动到right margin（它的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>已经显式赋值了），浮动（盒）左边的行框被缩短了，文档的剩余文本都排列在它们里面</p>
 
 <div class="figure">
 <p><img src="./images/flow-float.png"

@@ -198,7 +198,7 @@ class="index-def" title="containing block">包含块（containing block）</span
 
 <p>该属性指定了盒的<a href="box.html#content-width">内容宽度（content width）</a>
 </p>
-<p>该属性不适用于不可替换的<a href="visuren.html#inline-boxes">行内</a>元素。不可替换的行内元素盒的内容宽度是它里面渲染的内容（的内容宽度）（在所有子级的相对偏移<em>之前</em>）。请记住行内框排列在<a href="visuren.html#line-box">行盒</a>里面。行盒的宽度由它们的<a href="visuren.html#containing-block">包含块</a>决定，但可能因为<a href="visuren.html#floats">浮动</a>的出现而被缩短
+<p>该属性不适用于不可替换的<a href="visuren.html#inline-boxes">行内</a>元素。不可替换的行内元素盒的内容宽度是它里面渲染的内容（的内容宽度）（在所有子级的相对偏移<em>之前</em>）。请记住行内框排列在<a href="visuren.html#line-box">行框</a>里面。行框的宽度由它们的<a href="visuren.html#containing-block">包含块</a>决定，但可能因为<a href="visuren.html#floats">浮动</a>的出现而被缩短
 </p>
 <p>属性值含义如下：</p>
 
@@ -614,7 +614,7 @@ p { height: 100px }
 </p>
 <p class=note>注意：CSS 3可能会含有用来选择用于内容高度的字体测量方法的属性
 </p>
-<p>一个行内不可替换盒的竖直padding，border和margin从内容区的top和bottom开始，并且与<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>无关。<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>只用在计算行盒的高度时使用
+<p>一个行内不可替换盒的竖直padding，border和margin从内容区的top和bottom开始，并且与<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>无关。<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>只用在计算行框的高度时使用
 </p>
 <p><a name="multi-font-inline-height"></a>如果应用了多个字体（发现字形是多种字体时会发生这种情况），内容区的高度不由本规范定义。然而，我们建议高度让内容区刚好放得下元素中的<em>所有</em>字体的(1)em盒或者(2)最大上伸部和下伸部。注意，这可能大于所有涉及的字体（的高度），取决于字体的基线对齐方式
 </p>
@@ -647,7 +647,7 @@ p { height: 100px }
 <p>该元素的高度为从其top content边到下面第一个适用的（位置）的距离：
 
 <ol>
-  <li>最后一个行盒的bottom边。如果该盒为一行或多行建立了一个行内格式化上下文的话
+  <li>最后一个行框的bottom边。如果该盒为一行或多行建立了一个行内格式化上下文的话
 
   <li>它的最后一个流内子级的bottom margin（可能被合并了）的的bottom边。如果该子级的bottom margin没有和该元素的bottom margin合并的话
 
@@ -733,14 +733,14 @@ p { height: 100px }
 <p>如果<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>或者<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>为'auto'，其应用值为0。如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>是'auto'，<a
 href="#root-height">高度取决于该元素的后代，根据10.6.7</a>
 
-<p>对于'inline-block'元素，在计算行盒的高度时，要用到margin box
+<p>对于'inline-block'元素，在计算行框的高度时，要用到margin box
 
 
 <h3>10.6.7 <a name="root-height">块格式化上下文中的'Auto'高度</a></h3>
 
 <p>特定情况下（例如，见上面的<a href="#abs-non-replaced-height">10.6.4</a>节和<a href="#block-root-margin">10.6.6</a>节），一个建立了块格式化上下文的元素的高度按照如下规则计算：
 
-<p>如果它只含有行内级子级，高度就是最高的行盒的top与最低的行盒的bottom之间的距离
+<p>如果它只含有行内级子级，高度就是最高的行框的top与最低的行框的bottom之间的距离
 </p>
 <p>如果它只含有块级子级，高度由就是最高的块级子级盒的top margin-edge到最低的块级子级盒的bottom margin-edge之间的距离
 </p>
@@ -830,15 +830,15 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 </p>
 <h2>10.8 <a name="line-height">行高的计算</a>：<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>与<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性</h2>
 
-<p>如<a href="visuren.html#inline-formatting">行内格式化上下文</a>节所述，用户代理把行内级盒排列在一个<a href="visuren.html#line-box">行盒</a>的垂直堆叠里。行盒的高度由下列规则决定：</p>
+<p>如<a href="visuren.html#inline-formatting">行内格式化上下文</a>节所述，用户代理把行内级盒排列在一个<a href="visuren.html#line-box">行框</a>的垂直堆叠里。行框的高度由下列规则决定：</p>
 
 <ol>
-<li>计算行盒中每个行内级盒的高度时，对于可替换元素，inline-block元素和inline-table元素，这个值就是其margin box的高度；对于行内框，这个值是其'line-height'（见<a href="#Computing_heights_and_margins">“计算height与margin”</a>和<a href="#leading">“行距（Leading）与半行距”</a>中的<a href="#inline-box-height">行内框的高度</a>）
+<li>计算行框中每个行内级盒的高度时，对于可替换元素，inline-block元素和inline-table元素，这个值就是其margin box的高度；对于行内框，这个值是其'line-height'（见<a href="#Computing_heights_and_margins">“计算height与margin”</a>和<a href="#leading">“行距（Leading）与半行距”</a>中的<a href="#inline-box-height">行内框的高度</a>）
 
 </li>
-<li>行内级盒是根据其<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性竖直对齐的。如果它们是'top'或者'bottom'对齐，它们必须对齐得让行盒高度最小化。如果这样的盒足够高，存在多个解，而CSS&nbsp;2.1没有定义行盒基线的位置（即，<a href="#strut">strut</a>的位置，见下文）
+<li>行内级盒是根据其<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性竖直对齐的。如果它们是'top'或者'bottom'对齐，它们必须对齐得让行框高度最小化。如果这样的盒足够高，存在多个解，而CSS&nbsp;2.1没有定义行框基线的位置（即，<a href="#strut">strut</a>的位置，见下文）
 </li>
-<li>行盒高度是最高的盒的top与最低的盒的bottom之间的距离（包括下面<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>中解释的<a href="#strut">strut</a>）
+<li>行框高度是最高的盒的top与最低的盒的bottom之间的距离（包括下面<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>中解释的<a href="#strut">strut</a>）
 </li>
 </ol>
 
@@ -857,7 +857,7 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 
 <p id="inline-box-height">行内框的高度包含所有字形及其两边的半行距，所以恰好是'line-height'。子级元素的盒不会影响这个高度
 
-<p>尽管不可替换元素的margin，border和padding不会算入行盒的计算，它们仍然渲染在行内框周围。这意味着如果用<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>指定的高度小于包含的盒（contained boxes）的内容高度，背景与padding和border的颜色可能会“流（bleed）”进相邻的行盒。用户代理应该按文档顺序渲染这些盒。这将导致后续行的border绘制在之前行的border和文本上面（覆盖）
+<p>尽管不可替换元素的margin，border和padding不会算入行框的计算，它们仍然渲染在行内框周围。这意味着如果用<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>指定的高度小于包含的盒（contained boxes）的内容高度，背景与padding和border的颜色可能会“流（bleed）”进相邻的行框。用户代理应该按文档顺序渲染这些盒。这将导致后续行的border绘制在之前行的border和文本上面（覆盖）
 </p>
 
 <p class=note><em><strong>注意</strong> CSS&nbsp;2.1没有定义一个行内框的内容区（content area）是什么（见上面的<a href="#inline-non-replaced">10.6.1</a>），并且因此不同的UA可能在不同的地方绘制背景和border</em>
@@ -881,12 +881,12 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 </div>
 
 
-<p>对于一个内容由<a href="visuren.html#inline-level">行内级</a>元素组成的<a href="visuren.html#block-boxes">块容器元素</a>，'line-height'指定了元素内行盒的<em>最小</em>高度。这个最小高度包含基线上方的最小高度和下方的最小深度，就像每个行盒以一个<a name="strut">具有该元素的字体和行高属性的0宽行内框开始</a>。我们把这种假想盒叫做"strut"（这个名字是受TeX的启发）
+<p>对于一个内容由<a href="visuren.html#inline-level">行内级</a>元素组成的<a href="visuren.html#block-boxes">块容器元素</a>，'line-height'指定了元素内行框的<em>最小</em>高度。这个最小高度包含基线上方的最小高度和下方的最小深度，就像每个行框以一个<a name="strut">具有该元素的字体和行高属性的0宽行内框开始</a>。我们把这种假想盒叫做"strut"（这个名字是受TeX的启发）
 </p>
 
 <p>假设字体基线上方和下方的高度和深度存在于该字体所包含的规格中（更多详细信息，见CSS level&nbsp;3）
 
-<p>对于不可替换的<a href="visuren.html#inline-boxes">行内</a>元素，'line-height'指定了用来计算行盒高度的高度
+<p>对于不可替换的<a href="visuren.html#inline-boxes">行内</a>元素，'line-height'指定了用来计算行框高度的高度
 </p>
 <p>属性值含义如下：</p>
 
@@ -897,7 +897,7 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 <dt><span class="index-inst" title="&lt;length&gt;"><a name="x19" href="syndata.html#value-def-length" class="noxref"><span
 class="value-inst-length"><strong>&lt;length&gt;</strong></span></a></span>
 </dt>
-<dd>指定的长度用来计算行盒的高度。负值是非法的
+<dd>指定的长度用来计算行框的高度。负值是非法的
 </dd>
 <dt><span class="index-inst" title="&lt;number&gt;"><a name="x20" href="syndata.html#value-def-number" class="noxref"><span
 class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
@@ -943,7 +943,7 @@ div { line-height: 120%; font-size: 10pt }    /* percentage */
 </div>
 
 
-<p>该属性会影响由一个行内级元素生成的盒的行盒内部的竖直定位</p>
+<p>该属性会影响由一个行内级元素生成的盒的行框内部的竖直定位</p>
 
 <div class="note"><p>
 <em><strong>注意</strong> 该属性的值在表格上下文中具有不同的含义。详细信息请查看<a href="tables.html#height-layout">表格高度算法</a>章节
@@ -976,17 +976,17 @@ div { line-height: 120%; font-size: 10pt }    /* percentage */
   <dd>把该盒提升（正值）或者降低（负值）这个距离。值'0cm'表示与“基线”相同
   </dd>
 </dl>
-<p>下面的值让元素相对于一个行盒对齐。因为该元素可能具有相对于它对齐的子级（相应的，（这些子级也）可能具有相对于它们对齐的后代），这些值使用对齐子树的边界（the bounds of the aligned subtree）。一个行内元素的<dfn>对齐子树</dfn>包括这个元素和所有'vertical-align'的计算值不为'top'或者'bottom'的子级行内元素的对齐子树。对齐子树的top是子树中盒的top最高的（位置），bottom（的定义）与之类似
+<p>下面的值让元素相对于一个行框对齐。因为该元素可能具有相对于它对齐的子级（相应的，（这些子级也）可能具有相对于它们对齐的后代），这些值使用对齐子树的边界（the bounds of the aligned subtree）。一个行内元素的<dfn>对齐子树</dfn>包括这个元素和所有'vertical-align'的计算值不为'top'或者'bottom'的子级行内元素的对齐子树。对齐子树的top是子树中盒的top最高的（位置），bottom（的定义）与之类似
 <dl>
   <dt><strong>top</strong></dt>
-  <dd>把对齐子树的top与行盒的top对齐</dd>
+  <dd>把对齐子树的top与行框的top对齐</dd>
   <dt><strong>bottom</strong></dt>
-  <dd>把对齐子树的bottom与行盒的bottom对齐</dd>
+  <dd>把对齐子树的bottom与行框的bottom对齐</dd>
 </dl>
 
 <p>'inline-table'（盒）的基线是表格第一行的基线
 </p>
-<p>'inline-block'（盒）的基线是它的最后一个常规流中的行盒的基线，除非它没有流内行盒或者它的'overflow'属性的计算值不为'visible'，此时基线是bottom margin边</p>
+<p>'inline-block'（盒）的基线是它的最后一个常规流中的行框的基线，除非它没有流内行框或者它的'overflow'属性的计算值不为'visible'，此时基线是bottom margin边</p>
 <hr class="navbar">
 
 <div class="navbar">

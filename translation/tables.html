@@ -396,7 +396,7 @@ caption { caption-side: bottom;
 <p>这些盒的可视化布局由不规则行列组成的矩形网格控制。每个盒占据整数个单元格，由下列规则来定。这些规则不适用于HTML 4及更早的HTML版本，HTML对行和列跨度（row and column spans）规定了它自己的限制
 
 <ol>
-  <li>每个行盒占据一行单元格。所有行盒从顶部到底部能够铺满表格，按照它们出现在源文档中的顺序排列（即，表格占据的网格行数恰好和row元素数量一样）
+  <li>每个行框占据一行单元格。所有行框从顶部到底部能够铺满表格，按照它们出现在源文档中的顺序排列（即，表格占据的网格行数恰好和row元素数量一样）
 
   <li>一个行组与它所包含的行占据的网格单元相同
 
@@ -624,7 +624,7 @@ table { table-layout: fixed;
 
 <p class=note><em><strong>注意</strong> CSS将来的更新可能会进一步详细说明这个问题</em>
 
-<p>一旦用户代理有了该行中所有可用单元格，'table-row'元素的盒的高度就能计算了：为该行<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，行中每个单元格<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，以及单元格所需要的最小高度(MIN)三者之间的最大值。'table-row'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>值为'auto'表示用于布局的行高度为MIN。MIN取决于单元格盒的高度和单元格盒的对齐（很像<a href="visudet.html#line-height">行盒</a>的计算）。CSS&nbsp;2.1没有定义表格单元和表格行的高度怎样计算，  当其高度被指定为百分比值时。CSS&nbsp;2.1没有定义行组上<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的含义
+<p>一旦用户代理有了该行中所有可用单元格，'table-row'元素的盒的高度就能计算了：为该行<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，行中每个单元格<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，以及单元格所需要的最小高度(MIN)三者之间的最大值。'table-row'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>值为'auto'表示用于布局的行高度为MIN。MIN取决于单元格盒的高度和单元格盒的对齐（很像<a href="visudet.html#line-height">行框</a>的计算）。CSS&nbsp;2.1没有定义表格单元和表格行的高度怎样计算，  当其高度被指定为百分比值时。CSS&nbsp;2.1没有定义行组上<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的含义
 
 <p>CSS&nbsp;2.1中，一个单元盒的高度是内容所需要的最小高度。表格单元的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性会影响行的高度（见上文），但不会增加该单元格的高度
 
@@ -655,7 +655,7 @@ table { table-layout: fixed;
     <dd>这些值不适用于单元格，单元格会相对基线对齐
 </dl>
 
-<p>一个单元格的基线是该单元格中第一个流内<a href="visuren.html#line-box">行盒</a>，或者该单元格中第一个流内table-row的基线，看哪个先出现。如果没有这样的行盒或者table-row，基线就是该单元格盒的content边的底部。为了找出基线，具有滚动机制（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性）的流内盒必须被当作被滚动到其初始位置了。注意，一个单元格的基线可以伸出其底部边框，见下面的<a href="#baseline-below">示例</a>
+<p>一个单元格的基线是该单元格中第一个流内<a href="visuren.html#line-box">行框</a>，或者该单元格中第一个流内table-row的基线，看哪个先出现。如果没有这样的行框或者table-row，基线就是该单元格盒的content边的底部。为了找出基线，具有滚动机制（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性）的流内盒必须被当作被滚动到其初始位置了。注意，一个单元格的基线可以伸出其底部边框，见下面的<a href="#baseline-below">示例</a>
 
 <p>单元格盒的顶部到所有具有'vertical-align: baseline'的单元格的基线之间的最远距离用来设置行的基线，有个示例：
 

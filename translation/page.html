@@ -295,7 +295,7 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 
 <p>只允许正值
 
-<P>关于段落格式化的信息，请查看<a href="visuren.html#line-box">行盒</a>章节
+<P>关于段落格式化的信息，请查看<a href="visuren.html#line-box">行框</a>章节
 
 <h3>13.3.3 <a name="allowed-page-breaks">合法的（Allowed）分页符</a></h3>
 
@@ -305,9 +305,9 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 <li>
 在块级盒之间的竖直margin中。当一个非强制的分页符出现在这里时，相关的<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>和<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>属性的<a href="cascade.html#used-value">应用值</a>被置为'0'。当一个强制的分页符出现在这里时，相关的<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>属性的应用值被置为'0'，相关的<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>的应用值可能会被置为'0'或者保留原值
 
-<li>在一个<a href="visuren.html#block-boxes">块容器</a>盒里的<a href="visuren.html#line-box">行盒</a>之间
+<li>在一个<a href="visuren.html#block-boxes">块容器</a>盒里的<a href="visuren.html#line-box">行框</a>之间
 
-<li>在一个块容器盒的content边和其子级内容的外边（块级子级的margin边或者行内级子级的行盒边）之间，如果它们之间存在一个（非零）间隔的话
+<li>在一个块容器盒的content边和其子级内容的外边（块级子级的margin边或者行内级子级的行框边）之间，如果它们之间存在一个（非零）间隔的话
 </ol>
 
 <p class=note>注意：预期CSS3将会指定在一个强制分页符后面应用相关的'margin-top'（即，不再置为'0'）
@@ -320,7 +320,7 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 <li><strong>Rule B：</strong>然而，如果它们全部都是'auto'并且它们的一个公共祖先具有值为'avoid'的<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>，那么不允许在这里分页
 
 <li>
-<strong>Rule C：</strong>只有结束符与周围的块盒（enclosing block box）之间的<a href="visuren.html#line-box">行盒</a>的数量大于等于<a href="page.html#propdef-orphans" class="noxref"><span class="propinst-orphans">'orphans'</span></a>的值，并且结束符与该盒结束处之间的行盒的数量大于等于<a href="page.html#propdef-widows" class="noxref"><span class="propinst-widows">'widows'</span></a>的值时，才可以在(2)处分页
+<strong>Rule C：</strong>只有结束符与周围的块盒（enclosing block box）之间的<a href="visuren.html#line-box">行框</a>的数量大于等于<a href="page.html#propdef-orphans" class="noxref"><span class="propinst-orphans">'orphans'</span></a>的值，并且结束符与该盒结束处之间的行框的数量大于等于<a href="page.html#propdef-widows" class="noxref"><span class="propinst-widows">'widows'</span></a>的值时，才可以在(2)处分页
 
 <li><strong>Rule D：</strong>此外，只有当该元素及其所有祖先的<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>属性都是'auto'时，才可以在(2)或者(3)处分页
 </ul>
@@ -345,7 +345,7 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 </ul>
 
 <div class="example"><P style="display:none">示例：</P><P> 
-例如，假设样式表含有'orphans: 4'，'widows: 2'，并且当前页面的底部有20行（<a href="visuren.html#line-box">行盒</a>）可用：</p>
+例如，假设样式表含有'orphans: 4'，'widows: 2'，并且当前页面的底部有20行（<a href="visuren.html#line-box">行框</a>）可用：</p>
 
 <ul>
 
