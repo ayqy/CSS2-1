@@ -515,7 +515,7 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 
 <p>浮动，绝对定位元素，非块盒的块容器（例如，inline-blocks，table-cells和table-captions）和'overflow'不为'visible'的块盒（当该值已被传播到视口时除外（except when that value has been propagated to the viewport））会为它们的内容建立一个新的块格式化上下文</p>
 
-<p>在一个块格式化上下文中，盒在竖直方向一个接一个地放置，从包含块的顶部开始。两个兄弟盒之间的竖直距离由<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>属性决定。同一个块格式化上下文中的相邻块级盒之间的竖直margin会<a href="box.html#collapsing-margins">合并</a>
+<p>在一个块格式化上下文中，盒在垂直方向一个接一个地放置，从包含块的顶部开始。两个兄弟盒之间的垂直距离由<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>属性决定。同一个块格式化上下文中的相邻块级盒之间的垂直margin会<a href="box.html#collapsing-margins">合并</a>
 </p>
 
 <p>
@@ -527,11 +527,11 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 
 <h3>9.4.2 <a name="inline-formatting">行内格式化上下文</a></h3>
 
-<p>在一个行内格式化上下文中，盒是一个接一个水平放置的，从包含块的顶部开始。这些盒之间的水平margin，border和padding都有效。盒可能以不同的方式竖直对齐：以它们的底部或者顶部对齐，或者以它们里面的文本的基线对齐。包含来自同一行的盒的矩形区域叫做<span class="index-def" title="line box"><a name="line-box"><dfn>行框</dfn></a></span>
+<p>在一个行内格式化上下文中，盒是一个接一个水平放置的，从包含块的顶部开始。这些盒之间的水平margin，border和padding都有效。盒可能以不同的方式垂直对齐：以它们的底部或者顶部对齐，或者以它们里面的文本的基线对齐。包含来自同一行的盒的矩形区域叫做<span class="index-def" title="line box"><a name="line-box"><dfn>行框</dfn></a></span>
 </p>
 <p>行框的宽度由<a href="#containing-block">包含块</a>和浮动情况决定，行框的高度由<a href="visudet.html#line-height">行高的计算</a>小节给出的规则决定
 </p>
-<p>一个行框总是足够高，能够容纳它包含的所有盒。然而，它可能比它所包含的最高的盒还要高（例如，如果盒是以基线对齐的）。当盒B的高度小于它所在的行框的高度时，行框中B的竖直对齐方式由<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定。当几个行内级盒在水平方向上不能共存于一个行框时，它们会被分到两个或多个垂直堆叠的（vertically-stacked） 行框里。因此，段落就是个行框的垂直栈（vertical stack）。行框没有垂直间隔地堆放（除非在其它地方有特别说明）并且它们不会重叠
+<p>一个行框总是足够高，能够容纳它包含的所有盒。然而，它可能比它所包含的最高的盒还要高（例如，如果盒是以基线对齐的）。当盒B的高度小于它所在的行框的高度时，行框中B的垂直对齐方式由<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定。当几个行内级盒在水平方向上不能共存于一个行框时，它们会被分到两个或多个垂直堆叠的（vertically-stacked） 行框里。因此，段落就是个行框的垂直栈（vertical stack）。行框没有垂直间隔地堆放（除非在其它地方有特别说明）并且它们不会重叠
 </p>
 <p>一般来说，一个行框的left边挨着其包含块的left边，right边挨着其包含块的right边。然而，浮动盒可能会跑到包含块边与行框边之间。因此，尽管同一个行内格式化上下文中的行框一般都有相同的宽度（也就是包含块的宽度），如果可用的水平空间因为<a href="#floats">浮动</a>而减少了的话，它们的宽度就可能不同。同一个行内格式化上下文中的行框一般高度各不相同（例如，一行可能含有一个高图片，而其它的只含文本）
 </p>
@@ -676,9 +676,9 @@ div.a8 { position: relative; direction: ltr; left: -1em; right: 5em }
 <p>
 如果没有足够的水平空间来浮动，它会向下移动，直到空间合适或者不会再出现其它浮动了
 </p>
-<p>因为浮动（盒）不在流内，在浮动盒之前或者之后创建的未定位的（non-positioned）块盒会竖直排列，就像浮动不存在一样。然而，接着（next to）浮动（盒）创建的当前及后续行框会进行必要的缩短，为了给浮动（盒）的margin box让出空间
+<p>因为浮动（盒）不在流内，在浮动盒之前或者之后创建的未定位的（non-positioned）块盒会垂直排列，就像浮动不存在一样。然而，接着（next to）浮动（盒）创建的当前及后续行框会进行必要的缩短，为了给浮动（盒）的margin box让出空间
 
-<p>如果存在一个完全满足4个条件的的竖直位置：(a)在行框top或者top以下，(b)在行框bottom或者bottom以上，(c)在浮动（盒）的top margin边以下，并且(d)在浮动（盒）的bottom margin边以上，那么就说该行框接着（next to）浮动（盒）
+<p>如果存在一个完全满足4个条件的的垂直位置：(a)在行框top或者top以下，(b)在行框bottom或者bottom以上，(c)在浮动（盒）的top margin边以下，并且(d)在浮动（盒）的bottom margin边以上，那么就说该行框接着（next to）浮动（盒）
 
 <p class=note>注意：意思是0外高度（outer height）或者负外高度（的盒）的浮动不会缩短行框
 
@@ -770,7 +770,7 @@ margins."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-floateg" href="imag
 <p>因为浮动（盒）左边的内容被浮动（盒）替代了，所以（内容）会沿着其右侧重新排列（reflowed）
 </p></div>
 
-<p>如<a href="box.html#collapsing-margins">8.3.1小节</a>所述, 浮动盒的margin不会与相邻盒的margin<a href="box.html#collapsing-margins">合并</a>。因此，之前的示例中，P盒与浮动的IMG盒之间的竖直margin不会<a href="box.html#collapsing-margins">合并</a>
+<p>如<a href="box.html#collapsing-margins">8.3.1小节</a>所述, 浮动盒的margin不会与相邻盒的margin<a href="box.html#collapsing-margins">合并</a>。因此，之前的示例中，P盒与浮动的IMG盒之间的垂直margin不会<a href="box.html#collapsing-margins">合并</a>
 </p>
 <p>
 浮动（盒）的内容会堆叠起来，就像浮动（盒）生成了新的层叠上下文（stacking contexts）一样，除了所有定位的元素和实际创建了新的层叠上下文并参与了浮动（盒）的父级堆叠上下文的元素。一个浮动（盒）可以与常规流中的其它盒重叠（例如，当一个常规流盒接着一个有负margin的浮动（盒）时），出现这种情况时，浮动（盒）会被渲染在未定位的（non-positioned）流内块之前，流内行内（盒）之后
@@ -877,7 +877,7 @@ href="box.html#collapsed-through">规则</a>来定义
 </li>
 </ol>
 
-<p>但在CSS&nbsp;2.1中，如果块格式化上下文里有一个流内负竖直margin，导致浮动（盒）的位置在原位置（假设该负margin被设置为0）的上方，浮动（盒）的位置是未定义的
+<p>但在CSS&nbsp;2.1中，如果块格式化上下文里有一个流内负垂直margin，导致浮动（盒）的位置在原位置（假设该负margin被设置为0）的上方，浮动（盒）的位置是未定义的
 
 <p>这些规则里涉及的其它元素仅仅是指与浮动（盒）处于同一个<a href="#block-formatting">块格式化上下文</a>的其它元素
 </p>
@@ -941,7 +941,7 @@ alt="An a at the left side of a box and a b at the right side">
 <dd>对该盒相对于浮动（盒）的位置没有约束</dd>
 </dl>
 
-<p>值不为'none'就隐含了要引入<dfn><span class="index-def"><a name="clearance">空隙（clearance）</a></span></dfn>。空隙会阻止margin合并，并作为元素margin-top上方的空间。用来在竖直方向上推着元素越过浮动（It is used to push the element vertically past the float）
+<p>值不为'none'就隐含了要引入<dfn><span class="index-def"><a name="clearance">空隙（clearance）</a></span></dfn>。空隙会阻止margin合并，并作为元素margin-top上方的空间。用来在垂直方向上推着元素越过浮动（It is used to push the element vertically past the float）
 
 <p>计算一个设置了'clear'的元素的空隙，先要确定该元素的top border边的假定位置。该位置是当元素的'clear'属性为'none'时其top border边实际所在的位置
 
@@ -972,7 +972,7 @@ alt="An a at the left side of a box and a b at the right side">
      alt="Float F extends into the margin above M2."></p>
 </div>
 
-<p>我们再假设B2不在F下方（竖直方向），即规范描述的那种需要添加空隙的情况，意味着：
+<p>我们再假设B2不在F下方（垂直方向），即规范描述的那种需要添加空隙的情况，意味着：
 
 <blockquote>
 <p>max(M1,M2) &lt; M1 + H
@@ -1422,7 +1422,7 @@ word.&lt;/P&gt;
 
 <p><em>本节中，“在...前面”表示当用户面对屏幕时，离用户更近</em></p>
 
-<p>CSS&nbsp;2.1中，每个盒都具有一个用3个维度表示的位置。除了它们的水平和竖直位置，盒还会沿着“Z轴”排列，被格式化成一个叠在另一个上面。当盒在视觉上重叠时，Z轴位置尤为重要。本节讨论了盒可能会怎样沿着Z轴定位
+<p>CSS&nbsp;2.1中，每个盒都具有一个用3个维度表示的位置。除了它们的水平和垂直位置，盒还会沿着“Z轴”排列，被格式化成一个叠在另一个上面。当盒在视觉上重叠时，Z轴位置尤为重要。本节讨论了盒可能会怎样沿着Z轴定位
 </p>
 <p>
 渲染树绘制到画布上的顺序是根据堆叠上下文来定的，堆叠上下文可以包含堆叠上下文。从其父级堆叠上下文的角度来看，堆叠上下文是不可再分的（atomic），其它堆叠上下文中的盒不可能出现在它的任意盒里

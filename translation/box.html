@@ -144,7 +144,7 @@ padding, and borders">[D]</A></SPAN></p>
 <li>每个LI盒的<a href="#content-width">content width</a>是自顶向下计算的，每个LI盒的<a href="visuren.html#containing-block">包含块</a>是通过UL元素建立的
 
 <li>每个LI盒的margin box height取决于其<a
-href="#content-height">content height</a>，加上top和bottom padding，border以及margin。注意LI盒之间的竖直margin<a href="#collapsing-margins">合并</a>了
+href="#content-height">content height</a>，加上top和bottom padding，border以及margin。注意LI盒之间的垂直margin<a href="#collapsing-margins">合并</a>了
 
 <li>LI盒的right padding被设置为0宽度（<a href="box.html#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a>属性）。第二幅图中效果很明显
 
@@ -157,7 +157,7 @@ href="#content-height">content height</a>，加上top和bottom padding，border�
 <a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>，<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>，<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>，<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>和<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a></H2>
 
 <P>Margin属性指定了盒的<a href="#box-margin-area">margin区</a>的宽度。<a href="box.html#propdef-margin" class="noxref"><span
-class="propinst-margin">'margin'</span></a>简写属性一次性设置四周的margin，而其它margin属性只设置它们各侧的。这些属性适用于所有元素，但非替换的行内元素上的竖直margin将不会产生任何效果
+class="propinst-margin">'margin'</span></a>简写属性一次性设置四周的margin，而其它margin属性只设置它们各侧的。这些属性适用于所有元素，但非替换的行内元素上的垂直margin将不会产生任何效果
 
 <P>本节定义的属性涉及<span class="index-def" title="&lt;margin-width&gt;::definition of"><a name="value-def-margin-width"><strong>&lt;margin-width&gt;</strong></a></span>值类型，可以取下列值之一：</p>
 
@@ -263,7 +263,7 @@ body {
 
 <P>CSS中，两个或者多个盒（可能但不一定是兄弟）的相邻的margin会被结合成一个margin。Margin按这种方式结合叫<dfn><a name="x26"><span class="index-def">合并（collapse）</span></a></dfn>，产生的结合的margin叫做<dfn><a name="x27"><span class="index-def" title="collapsing margin">合并margin</span></a></dfn>
 
-<P>相邻的竖直margin会合并，除了：
+<P>相邻的垂直margin会合并，除了：
 
 <UL>
   <LI>根元素的盒的margin不合并
@@ -281,7 +281,7 @@ title="adjoining margins"><DFN>相邻的</DFN></span></a>，当且仅当：
 
   <LI>没有行框（line box），没有空隙，没有padding并且没有border把它们隔开<span class="note">（注意，因此<a href="visuren.html#phantom-line-box">某些0高度行框</a>（见<a href="visuren.html#inline-formatting">9.4.2</a>）会被忽略）</span>
 
-  <LI>都属于竖直相邻盒边（vertically-adjacent box edges），即来自下列某一对：
+  <LI>都属于垂直相邻盒边（vertically-adjacent box edges），即来自下列某一对：
 
   <UL>
     <LI>一个盒的top margin和它的第一个流内子级的top margin
@@ -409,7 +409,7 @@ h1 {
 } 
 </PRE>
 
-<P>上例指定了'1em'的竖直padding（<a href="box.html#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a>和<a href="box.html#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>）以及'2em'的水平padding（<a href="box.html#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a>和<a href="box.html#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a>）。'em'单位是<a href="syndata.html#absrel-units">相对</a>与元素的字体大小的：'1em'等于应用的字体大小
+<P>上例指定了'1em'的垂直padding（<a href="box.html#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a>和<a href="box.html#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>）以及'2em'的水平padding（<a href="box.html#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a>和<a href="box.html#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a>）。'em'单位是<a href="syndata.html#absrel-units">相对</a>与元素的字体大小的：'1em'等于应用的字体大小
 </div>
 
 <H2>8.5 <a name="border-properties">Border属性</a></H2>
@@ -634,7 +634,7 @@ p {
 <PRE>
 #xy34 { border-style: solid dotted }
 </PRE>
-<P>上例中，水平边框将是'solid'，竖直边框将是'dotted'
+<P>上例中，水平边框将是'solid'，垂直边框将是'dotted'
 </div>
 
 <P>因为border style的初始值为'none'，不会有可见边框，除非设置了border style

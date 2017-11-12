@@ -614,7 +614,7 @@ p { height: 100px }
 </p>
 <p class=note>注意：CSS 3可能会含有用来选择用于内容高度的字体测量方法的属性
 </p>
-<p>一个行内非替换盒的竖直padding，border和margin从内容区的top和bottom开始，并且与<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>无关。<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>只用在计算行框的高度时使用
+<p>一个行内非替换盒的垂直padding，border和margin从内容区的top和bottom开始，并且与<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>无关。<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>只用在计算行框的高度时使用
 </p>
 <p><a name="multi-font-inline-height"></a>如果应用了多个字体（发现字形是多种字体时会发生这种情况），内容区的高度不由本规范定义。然而，我们建议高度让内容区刚好放得下元素中的<em>所有</em>字体的(1)em盒或者(2)最大上伸部和下伸部。注意，这可能大于所有涉及的字体（的高度），取决于字体的基线对齐方式
 </p>
@@ -667,7 +667,7 @@ p { height: 100px }
 </p>
 <p>鉴于计算静态位置的目的，fixed定位元素的包含块是初始包含块而不是视口
 
-<p>对于绝对定位的元素，竖直方向（dimension）的应用值必须满足这样的约束：</p>
+<p>对于绝对定位的元素，垂直方向（dimension）的应用值必须满足这样的约束：</p>
 
   <blockquote>
     <p>'top' + 'margin-top' + 'border-top-width' + 'padding-top' +      'height'
@@ -836,7 +836,7 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 <li>计算行框中每个行内级盒的高度时，对于替换元素，inline-block元素和inline-table元素，这个值就是其margin box的高度；对于行内框，这个值是其'line-height'（见<a href="#Computing_heights_and_margins">“计算height与margin”</a>和<a href="#leading">“行距（Leading）与半行距”</a>中的<a href="#inline-box-height">行内框的高度</a>）
 
 </li>
-<li>行内级盒是根据其<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性竖直对齐的。如果它们是'top'或者'bottom'对齐，它们必须对齐得让行框高度最小化。如果这样的盒足够高，存在多个解，而CSS&nbsp;2.1没有定义行框基线的位置（即，<a href="#strut">strut</a>的位置，见下文）
+<li>行内级盒是根据其<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性垂直对齐的。如果它们是'top'或者'bottom'对齐，它们必须对齐得让行框高度最小化。如果这样的盒足够高，存在多个解，而CSS&nbsp;2.1没有定义行框基线的位置（即，<a href="#strut">strut</a>的位置，见下文）
 </li>
 <li>行框高度是最高的盒的top与最低的盒的bottom之间的距离（包括下面<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>中解释的<a href="#strut">strut</a>）
 </li>
@@ -943,7 +943,7 @@ div { line-height: 120%; font-size: 10pt }    /* percentage */
 </div>
 
 
-<p>该属性会影响由一个行内级元素生成的盒的行框内部的竖直定位</p>
+<p>该属性会影响由一个行内级元素生成的盒的行框内部的垂直定位</p>
 
 <div class="note"><p>
 <em><strong>注意</strong> 该属性的值在表格上下文中具有不同的含义。详细信息请查看<a href="tables.html#height-layout">表格高度算法</a>章节
@@ -959,7 +959,7 @@ div { line-height: 120%; font-size: 10pt }    /* percentage */
   <dt><strong>baseline</strong></dt>
   <dd>把盒的基线与父级盒的基线对齐。如果该盒没有基线，就把bottom margin边和父级的基线对齐</dd>
   <dt><strong>middle</strong></dt>
-  <dd>把该盒的竖直中点和父级盒的基线加上父级的半x-height对齐</dd>
+  <dd>把该盒的垂直中点和父级盒的基线加上父级的半x-height对齐</dd>
   <dt><strong>sub</strong></dt>
   <dd>把该盒的基线降低到合适的位置作为父级盒的下标（该值不影响该元素文本的字体大小）</dd>
   <dt><strong>super</strong></dt>

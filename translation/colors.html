@@ -203,11 +203,11 @@ p { background-image: none }
 
 <dl>
 <dt><strong>repeat</strong></dt>
-<dd>图片在水平方向和竖直方向都平铺</dd>
+<dd>图片在水平方向和垂直方向都平铺</dd>
 <dt><strong>repeat-x</strong></dt>
 <dd>图片只在水平方向平铺</dd>
 <dt><strong>repeat-y</strong></dt>
-<dd>图片只在竖直方向平铺</dd>
+<dd>图片只在垂直方向平铺</dd>
 <dt><strong>no-repeat</strong></dt>
 <dd>图片不平铺：只绘制该图片的一份拷贝</dd>
 </dl>
@@ -224,7 +224,7 @@ body {
 <p><img src="images/bg-repeat.png" alt="A centered background image,
 with copies repeated up and down the padding and content areas."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-bg-repeat" href="images/longdesc/bg-repeat-desc.html" title="Long description for background pattern">[D]</A></SPAN>
 </p>
-<p class="caption">背景图片的一份拷贝居中了，而其它拷贝被放在它的上方和下方，在元素后面形成了一条竖直带
+<p class="caption">背景图片的一份拷贝居中了，而其它拷贝被放在它的上方和下方，在元素后面形成了一条垂直带
 </p>
 </div>
 </div>
@@ -254,7 +254,7 @@ with copies repeated up and down the padding and content areas."><SPAN class="dl
 </p>
 <p>在分页媒体中不存在视口的地方，'fixed'背景相对页盒固定，并且因此在每一页上重复
 
-<div class="example"><P style="display:none">示例：</P><p>本例创建了一个在元素滚动时，“粘”在视口上的无限竖直带
+<div class="example"><P style="display:none">示例：</P><p>本例创建了一个在元素滚动时，“粘”在视口上的无限垂直带
 </p>
 <pre>
 body { 
@@ -298,7 +298,7 @@ body {
 </div>
 
 
-<p>如果指定了一张背景图片，该属性指定了它的初始位置。如果只指定了一个值，第二个值就假定为'center'。如果至少有一个值不是关键字，那么第一个值表示水平位置，第二个值表示竖直位置。允许负的&lt;percentage>和&lt;length>值
+<p>如果指定了一张背景图片，该属性指定了它的初始位置。如果只指定了一个值，第二个值就假定为'center'。如果至少有一个值不是关键字，那么第一个值表示水平位置，第二个值表示垂直位置。允许负的&lt;percentage>和&lt;length>值
 
 
 
@@ -306,16 +306,16 @@ body {
   <dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x8" href="syndata.html#value-def-percentage" class="noxref"><span
   class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a></span>
 
-  <dd>百分比值X会把图片在横向（水平方向）或者纵向（竖直方向）X%的点与该元素的padding box横向或者纵向X%的点对齐。例如，值为'0% 0%'对时，图片的左上角与padding box的左上角对齐。值为'100% 100%'对时，把图片的右下角放在padding box的右下角。值为'14% 84%'对时，把图片横向14%纵向84%的位置放在padding box的横向14%纵向84%的位置
+  <dd>百分比值X会把图片在横向（水平方向）或者纵向（垂直方向）X%的点与该元素的padding box横向或者纵向X%的点对齐。例如，值为'0% 0%'对时，图片的左上角与padding box的左上角对齐。值为'100% 100%'对时，把图片的右下角放在padding box的右下角。值为'14% 84%'对时，把图片横向14%纵向84%的位置放在padding box的横向14%纵向84%的位置
 
   <dt><span class="index-inst" title="&lt;length&gt;"><a name="x9" href="syndata.html#value-def-length" class="noxref"><span
   class="value-inst-length"><strong>&lt;length&gt;</strong></span></a></span>
 
-  <dd>长度L是让图片的左上角与该元素的padding box的左上角向右（水平方向）或者向下（竖直方向）距离L的位置对齐。例如，值为'2cm 1cm'对，图片的左上角放在距padding box左上角向右2cm向下1cm的位置
+  <dd>长度L是让图片的左上角与该元素的padding box的左上角向右（水平方向）或者向下（垂直方向）距离L的位置对齐。例如，值为'2cm 1cm'对，图片的左上角放在距padding box左上角向右2cm向下1cm的位置
 
   <dt><strong>top</strong>
 
-  <dd>等价于竖直位置的'0%'
+  <dd>等价于垂直位置的'0%'
 
   <dt><strong>right</strong>
 
@@ -323,7 +323,7 @@ body {
 
   <dt><strong>bottom</strong>
 
-  <dd>等价于竖直位置的'100%'
+  <dd>等价于垂直位置的'100%'
 
   <dt><strong>left</strong>
 
@@ -331,7 +331,7 @@ body {
 
   <dt><strong>center</strong>
 
-  <dd>等价于水平位置的'50%'，否则如果没有给定（水平位置）的话，或者竖直位置的'50%'，如果给定了（水平位置）
+  <dd>等价于水平位置的'50%'，否则如果没有给定（水平位置）的话，或者垂直位置的'50%'，如果给定了（水平位置）
 </dl>
 
 <p>然而，如果图片具有一个内在比例但没有内在尺寸，其位置在CSS&nbsp;2.1中是未定义的
