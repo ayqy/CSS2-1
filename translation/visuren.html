@@ -148,7 +148,7 @@ element"><a name="block-level"><dfn>块级元素</dfn></a></span>是源文档中
 
 <p><a name="x5"><span class="index-def" title="block-level box"><dfn>块级盒</dfn></span></a>是参与<a href="#block-formatting">块格式化上下文</a>的盒。每个块级元素生成一个<span class="index-def" title="principal block-level box"><a name="principal-box"><dfn>主块级盒（principal block-level box）</dfn></a></span>，用来包含后代盒和生成的内容，并且任何定位模式都与该盒有关。有些块级元素可能生成除主盒外的额外的盒：'list-item'元素。这些额外的盒根据主盒来放置
 
-<p>除了后面章节描述的表格盒与可替换元素外，一个块级盒也是一个块容器盒。一个<span class="index-def" title="block container box"><a name="block-container-box"><dfn >块容器盒</dfn></a></span>要么只包含块级盒，要么建立了行内格式化上下文并因此只包含行内框。不是所有的块容器盒都是块级盒：不可替换的行内块和不可替换的表格单元是块级容器，但不是块级盒。作为块级容器的块级盒也叫<a name="x8"><span class="index-def" title="block box"><dfn>块盒</dfn></span></a>
+<p>除了后面章节描述的表格盒与替换元素外，一个块级盒也是一个块容器盒。一个<span class="index-def" title="block container box"><a name="block-container-box"><dfn >块容器盒</dfn></a></span>要么只包含块级盒，要么建立了行内格式化上下文并因此只包含行内框。不是所有的块容器盒都是块级盒：非替换的行内块和非替换的表格单元是块级容器，但不是块级盒。作为块级容器的块级盒也叫<a name="x8"><span class="index-def" title="block box"><dfn>块盒</dfn></span></a>
 
 <p>三个术语“块级盒（block-level box）”，“块容器盒（block container box）”与“块盒（block box）”在没有歧义的时候就简称为“块（block）”
 
@@ -218,7 +218,7 @@ span { display: block }
 <p><span class="index-def" title="inline-level element">
 <a name="inline-level"><dfn>行内级元素</dfn></a></span>是源文档中那些不会为其内容形成新块的元素，内容分布于多行（例如，强调段落中的一部分文本，行内图片等等）。<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性的下列值能让一个元素变成行内级：'inline'，'inline-table'和'inline-block'。行内级元素生成<a name="x11"><span class="index-def" title="inline-level box"><dfn>行内级盒</dfn></span></a>，即参与行内格式化上下文的盒
 
-<p>一个<span class="index-def" title="inline box"><a name="inline-box"><dfn>行内框</dfn></a></span>是一个（特殊的）行内级盒，其内容参与了它的包含行内格式化上下文。一个'display'值为'inline'的不可替换元素会生成一个行内框。不属于行内框的行内块级盒（例如，可替换行内级元素，inline-block元素和inline-table元素）被称为<a name="x13"><span class="index-def" title="atomic inline-level box"><dfn>原子行内级盒（atomic inline-level boxes）</dfn></span></a>，因为它们作为单一的不透明盒（opaque box）参与其行内格式化上下文
+<p>一个<span class="index-def" title="inline box"><a name="inline-box"><dfn>行内框</dfn></a></span>是一个（特殊的）行内级盒，其内容参与了它的包含行内格式化上下文。一个'display'值为'inline'的非替换元素会生成一个行内框。不属于行内框的行内块级盒（例如，替换行内级元素，inline-block元素和inline-table元素）被称为<a name="x13"><span class="index-def" title="atomic inline-level box"><dfn>原子行内级盒（atomic inline-level boxes）</dfn></span></a>，因为它们作为单一的不透明盒（opaque box）参与其行内格式化上下文
 
 <h4>9.2.2.1 <a name="anonymous">匿名行内框</a></h4>
 
@@ -503,7 +503,7 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 <dd>偏移量是包含块的宽度（对于<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>或<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>）或高度（对于<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>和<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>）的百分比。允许负值
 </dd>
 <dt><strong>auto</strong></dt>
-<dd>对于不可替换元素，该值的效果取决于那些相关的值也是'auto'的属性。不可替换元素的详细情况，见<a href="#absolutely-positioned">绝对定位</a>的<a href="visudet.html#abs-non-replaced-width">width</a>和<a href="visudet.html#abs-non-replaced-height">height</a>章节。对于可替换元素，该值的影响只取决于替换内容的内在尺寸。可替换元素的详细情况，见绝对定位的<a href="visudet.html#abs-replaced-width">width</a>和<a href="visudet.html#abs-replaced-height">height</a>章节
+<dd>对于非替换元素，该值的效果取决于那些相关的值也是'auto'的属性。非替换元素的详细情况，见<a href="#absolutely-positioned">绝对定位</a>的<a href="visudet.html#abs-non-replaced-width">width</a>和<a href="visudet.html#abs-non-replaced-height">height</a>章节。对于替换元素，该值的影响只取决于替换内容的内在尺寸。替换元素的详细情况，见绝对定位的<a href="visudet.html#abs-replaced-width">width</a>和<a href="visudet.html#abs-replaced-height">height</a>章节
 </dd>
 </dl>
 
@@ -686,7 +686,7 @@ div.a8 { position: relative; direction: ltr; left: -1em; right: 5em }
 </p>
 
 <p id="bfc-next-to-float">
-一个表格，块级可替换元素或者常规流中建立了新的<a href="visuren.html#block-formatting">块格式化上下文</a>的元素（例如一个'overflow'不为'visible'的元素）不能和与元素自身处于同一块格式化上下文中的任何浮动（盒）的margin box重叠。如果必要的话，实现应该通过把它放在所有之前出现的浮动（盒）下方来清除（clear）该元素，如果空间充足的话，可以放得与浮动（盒）相邻。它们甚至会让该元素的border box比<a href="visudet.html#blockwidth">10.3.3小节</a>中定义的更窄。CSS2没有定义UA可以把该元素接着浮动（盒）放或者该元素可以变得多窄
+一个表格，块级替换元素或者常规流中建立了新的<a href="visuren.html#block-formatting">块格式化上下文</a>的元素（例如一个'overflow'不为'visible'的元素）不能和与元素自身处于同一块格式化上下文中的任何浮动（盒）的margin box重叠。如果必要的话，实现应该通过把它放在所有之前出现的浮动（盒）下方来清除（clear）该元素，如果空间充足的话，可以放得与浮动（盒）相邻。它们甚至会让该元素的border box比<a href="visudet.html#blockwidth">10.3.3小节</a>中定义的更窄。CSS2没有定义UA可以把该元素接着浮动（盒）放或者该元素可以变得多窄
 </p>
 <div class="example"><P style="display:none">示例：</P>
 <p><strong>示例</strong> 
@@ -1587,7 +1587,7 @@ word.&lt;/P&gt;
 </dd>
 </dl>
 
-<p>如果已经添加了bidi控制代码，标记已经被分离，产生的字符序列已经被传递给一个纯文本Unicode双向算法的实现，并产生了与样式化后的文本相同的换行的话，每个块容器中字符的最终顺序与上述（顺序）相同。这个过程中，'display: inline'的可替换元素被当作中性字符（neutral characters），除非它们的<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性值不为'normal'，此时，它们会被当作粗体字符（strong characters），用为该元素指定的<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>。所有其它原子行内级盒都总被当作中性字符
+<p>如果已经添加了bidi控制代码，标记已经被分离，产生的字符序列已经被传递给一个纯文本Unicode双向算法的实现，并产生了与样式化后的文本相同的换行的话，每个块容器中字符的最终顺序与上述（顺序）相同。这个过程中，'display: inline'的替换元素被当作中性字符（neutral characters），除非它们的<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性值不为'normal'，此时，它们会被当作粗体字符（strong characters），用为该元素指定的<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>。所有其它原子行内级盒都总被当作中性字符
 
 
 
