@@ -255,7 +255,7 @@ ARTICLE, HEADLINE, AUTHOR, PARA { margin: 0.5em }
 
 <li>通过给每个适用于目标<a href="media.html">媒体类型</a>的<a href="syndata.html#properties">属性</a>赋值来为文档树中的元素做标注。根据<a href="cascade.html">层叠与继承</a>中描述的机制来对属性赋值
 
-<P>值的计算部分取决于适用于目标<a href="media.html">媒体类型</a>的格式化算法。例如，如果目标媒体是screen，用户代理会应用<a href="visuren.html">可视化格式模型</a> 
+<P>值的计算部分取决于适用于目标<a href="media.html">媒体类型</a>的格式化算法。例如，如果目标媒体是screen，用户代理会应用<a href="visuren.html">视觉格式化模型</a> 
 
 <li>根据有标注的文档树，生成<span class="index-def" title="formatting structure"><a name="formatting-structure"><dfn>格式化结构</dfn></a></span>。通常，格式化结构与文档树很像，但也可能大不一样，尤其是编写者使用伪元素和生成的内容时。首先，格式化结构根本没必要是“树形的”——结构的类型取决于实现。其次，与文档树相比，格式化结构包含的信息可能更多也可能更少。例如，如果文档树中的一个元素有一个值为'none'的<a href="visuren.html#propdef-display" class="noxref"><span
 class="propinst-display">'display'</span></a>属性，这个元素将不会在格式化结构中生成任何东西。而一个列表元素可能在格式化结构中生成更多信息：列表元素的内容和列表样式信息（例如，黑点图片）
