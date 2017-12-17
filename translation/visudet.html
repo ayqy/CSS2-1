@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<title>视觉格式化模型详细描述</title>
+<title>视觉格式化模型细节</title>
 <link rel="stylesheet" href="style/default.css" type="text/css">
 <link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
 <link rel="prev" href="visuren.html">
@@ -33,7 +33,7 @@ body>del,body>ins {display:block}
 </div>
 <hr class="navbar">
 
-<h1><a name="q0">10 视觉格式化模型详细描述</a></h1>
+<h1><a name="q0">10 视觉格式化模型细节</a></h1>
 <div class="subtoc">
 <p><strong>内容</strong>
   <ul class="toc">
@@ -86,7 +86,7 @@ class="index-def" title="containing block">包含块（containing block）</span
 </li>
 <li>如果元素具有'position: absolute'，包含块由最近的<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>为'absolute'，'relative'或者'fixed'的祖先建立，按照如下方式：
 <ol>
-<li>如果该祖先是一个行内元素，包含块就是环绕着为该元素生成的第一个和最后一个行内框的padding box的边界框（bounding box）。在CSS&nbsp;2.1中，如果该行内元素被跨行分割了，那么包含块是未定义的
+<li>如果该祖先是一个行内元素，包含块就是环绕着为该元素生成的第一个和最后一个行内盒的padding box的边界框（bounding box）。在CSS&nbsp;2.1中，如果该行内元素被跨行分割了，那么包含块是未定义的
 </li>
 <li>否则，包含块由该祖先的<a href="box.html#padding-edge">padding边</a>形成
 </li>
@@ -198,7 +198,7 @@ class="index-def" title="containing block">包含块（containing block）</span
 
 <p>该属性指定了盒的<a href="box.html#content-width">内容宽度（content width）</a>
 </p>
-<p>该属性不适用于非替换的<a href="visuren.html#inline-boxes">行内</a>元素。非替换的行内元素盒的内容宽度是它里面渲染的内容（的内容宽度）（在所有子级的相对偏移<em>之前</em>）。请记住行内框排列在<a href="visuren.html#line-box">行框</a>里面。行框的宽度由它们的<a href="visuren.html#containing-block">包含块</a>决定，但可能因为<a href="visuren.html#floats">浮动</a>的出现而被缩短
+<p>该属性不适用于非替换的<a href="visuren.html#inline-boxes">行内</a>元素。非替换的行内元素盒的内容宽度是它里面渲染的内容（的内容宽度）（在所有子级的相对偏移<em>之前</em>）。请记住行内盒排列在<a href="visuren.html#line-box">行框</a>里面。行框的宽度由它们的<a href="visuren.html#containing-block">包含块</a>决定，但可能因为<a href="visuren.html#floats">浮动</a>的出现而被缩短
 </p>
 <p>属性值含义如下：</p>
 
@@ -824,7 +824,7 @@ href="#root-height">高度取决于该元素的后代，根据10.6.7</a>
 </ol>
 
 <p class="note">这些步骤不会影响上面属性真正的计算值，<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>应用值的变更不会影响margin合并，除了在<a
-href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到的关于<a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>或者<a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>的规则</p>
+href="box.html#collapsing-margins">“合并外边距(8.3.1)”</a>中特别提到的关于<a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>或者<a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>的规则</p>
 
 <p>然而，对于<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>和<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值为'auto'的替换元素，就用上面的<a href="#min-max-widths">最小、最大宽度</a>中的算法来算出宽度和高度的应用值。然后把产生的宽度和高度作为计算值再应用上面的<a href="#Computing_heights_and_margins">“计算height与margin”</a>中的规则
 </p>
@@ -833,7 +833,7 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 <p>如<a href="visuren.html#inline-formatting">行内格式化上下文</a>节所述，用户代理把行内级盒排列在一个<a href="visuren.html#line-box">行框</a>的垂直堆叠里。行框的高度由下列规则决定：</p>
 
 <ol>
-<li>计算行框中每个行内级盒的高度时，对于替换元素，inline-block元素和inline-table元素，这个值就是其margin box的高度；对于行内框，这个值是其'line-height'（见<a href="#Computing_heights_and_margins">“计算height与margin”</a>和<a href="#leading">“行距（Leading）与半行距”</a>中的<a href="#inline-box-height">行内框的高度</a>）
+<li>计算行框中每个行内级盒的高度时，对于替换元素，inline-block元素和inline-table元素，这个值就是其margin box的高度；对于行内盒，这个值是其'line-height'（见<a href="#Computing_heights_and_margins">“计算height与margin”</a>和<a href="#leading">“行距（Leading）与半行距”</a>中的<a href="#inline-box-height">行内盒的高度</a>）
 
 </li>
 <li>行内级盒是根据其<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性垂直对齐的。如果它们是'top'或者'bottom'对齐，它们必须对齐得让行框高度最小化。如果这样的盒足够高，存在多个解，而CSS&nbsp;2.1没有定义行框基线的位置（即，<a href="#strut">strut</a>的位置，见下文）
@@ -842,25 +842,25 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 </li>
 </ol>
 
-<p>空行内元素生成空的行内框，但这些盒仍然具有margin，padding，border和line height，并因此会影响这些计算，就像有内容的元素一样
+<p>空行内元素生成空的行内盒，但这些盒仍然具有margin，padding，border和line height，并因此会影响这些计算，就像有内容的元素一样
 </p>
 
 <h3>10.8.1 <a name="leading">行距（Leading）与半行距</a></h3>
 
 <p>CSS假定任何字体都具有指定了基线上方的高度（height）和下方的深度（depth）特征的字体规格（font metrics）。本节中，我们用<var>A</var>表示高度（对于一个给定大小的指定字体），<var>D</var>表示深度。我们还定义了<var>AD</var> = <var>A</var> + <var>D</var>，表示从top到bottom的距离（见下面对<a href="#sTypoAscender">如何找出TrueType和OpenType字体的<var>A</var>和<var>D</var></a>的注释）。注意，这些都是字体整体的规格，并没有与所有单个字形的上伸部（ascender）和下伸部（descender）对应
 
-<p>用户代理必须把一个非替换的行内框中的字形彼此之间按其相关基线对齐，然后，对每个字形，确定<var>A</var>和<var>D</var>。注意单一元素中的字形可能来自不同的字体，并且因此不一定具有相同的<var>A</var>和<var>D</var>。如果行内框不含任何字形，就认为它含有一个<a href="#strut">strut</a>（一个不可见的0宽字形），它具有该元素的第一个可用字体的<var>A</var>和<var>D</var>
+<p>用户代理必须把一个非替换的行内盒中的字形彼此之间按其相关基线对齐，然后，对每个字形，确定<var>A</var>和<var>D</var>。注意单一元素中的字形可能来自不同的字体，并且因此不一定具有相同的<var>A</var>和<var>D</var>。如果行内盒不含任何字形，就认为它含有一个<a href="#strut">strut</a>（一个不可见的0宽字形），它具有该元素的第一个可用字体的<var>A</var>和<var>D</var>
 
 <p>然后对每个字形，确定要添加的行距（leading）<var>L</var>，其中<var>L</var> = <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a> - <var>AD</var>。半行距添在<var>A</var>上方，而另一半添在<var>D</var>下方，字形及其行距在基线上方的总高度为<var>A'</var> = <var>A</var> + <var>L</var>/2，总深度为<var>D'</var> = <var>D</var> + <var>L</var>/2
 
 <p class=note><strong>注意</strong> <var>L</var>可以为负
 
-<p id="inline-box-height">行内框的高度包含所有字形及其两边的半行距，所以恰好是'line-height'。子级元素的盒不会影响这个高度
+<p id="inline-box-height">行内盒的高度包含所有字形及其两边的半行距，所以恰好是'line-height'。子级元素的盒不会影响这个高度
 
-<p>尽管非替换元素的margin，border和padding不会算入行框的计算，它们仍然渲染在行内框周围。这意味着如果用<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>指定的高度小于包含的盒（contained boxes）的内容高度，背景与padding和border的颜色可能会“流（bleed）”进相邻的行框。用户代理应该按文档顺序渲染这些盒。这将导致后续行的border绘制在之前行的border和文本上面（覆盖）
+<p>尽管非替换元素的margin，border和padding不会算入行框的计算，它们仍然渲染在行内盒周围。这意味着如果用<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>指定的高度小于包含的盒（contained boxes）的内容高度，背景与padding和border的颜色可能会“流（bleed）”进相邻的行框。用户代理应该按文档顺序渲染这些盒。这将导致后续行的border绘制在之前行的border和文本上面（覆盖）
 </p>
 
-<p class=note><em><strong>注意</strong> CSS&nbsp;2.1没有定义一个行内框的内容区（content area）是什么（见上面的<a href="#inline-non-replaced">10.6.1</a>），并且因此不同的UA可能在不同的地方绘制背景和border</em>
+<p class=note><em><strong>注意</strong> CSS&nbsp;2.1没有定义一个行内盒的内容区（content area）是什么（见上面的<a href="#inline-non-replaced">10.6.1</a>），并且因此不同的UA可能在不同的地方绘制背景和border</em>
 
 <p id=sTypoAscender class=note><em><strong>注意</strong> 建议使用OpenType或者TrueType字体的实现根据字体的OS/2表中的"sTypoAscender"和"sTypoDescender"规格（metrics）找出相应的A和D（在缩放当前元素的字体大小后）。如果没有这些规格，就应该用HHEA表中的"Ascent"和"Descent"规格</em>
 
@@ -881,7 +881,7 @@ href="box.html#collapsing-margins">“合并margin(8.3.1)”</a>中特别提到�
 </div>
 
 
-<p>对于一个内容由<a href="visuren.html#inline-level">行内级</a>元素组成的<a href="visuren.html#block-boxes">块容器元素</a>，'line-height'指定了元素内行框的<em>最小</em>高度。这个最小高度包含基线上方的最小高度和下方的最小深度，就像每个行框以一个<a name="strut">具有该元素的字体和行高属性的0宽行内框开始</a>。我们把这种假想盒叫做"strut"（这个名字是受TeX的启发）
+<p>对于一个内容由<a href="visuren.html#inline-level">行内级</a>元素组成的<a href="visuren.html#block-boxes">块容器元素</a>，'line-height'指定了元素内行框的<em>最小</em>高度。这个最小高度包含基线上方的最小高度和下方的最小深度，就像每个行框以一个<a name="strut">具有该元素的字体和行高属性的0宽行内盒开始</a>。我们把这种假想盒叫做"strut"（这个名字是受TeX的启发）
 </p>
 
 <p>假设字体基线上方和下方的高度和深度存在于该字体所包含的规格中（更多详细信息，见CSS level&nbsp;3）
@@ -923,7 +923,7 @@ div { line-height: 120%; font-size: 10pt }    /* percentage */
 
 <p>当一个元素含有以多种字体渲染的文本时，用户代理可以根据最大字体大小来确定“常规”<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>值
 </p>
-<p class=note><em><strong>注意</strong> 当一个块容器盒里的所有行内框只有一个<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>值并且它们都是相同的字体时（并且不存在替换元素，行内元素等等），以上内容将确保连续行的基线都恰好相隔<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>。在不得不对齐字体不同的文本列时，这一点很重要，例如在一个表格中</em>
+<p class=note><em><strong>注意</strong> 当一个块容器盒里的所有行内盒只有一个<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>值并且它们都是相同的字体时（并且不存在替换元素，行内元素等等），以上内容将确保连续行的基线都恰好相隔<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>。在不得不对齐字体不同的文本列时，这一点很重要，例如在一个表格中</em>
 </p>
 <div class="propdef">
 <dl><dt>
