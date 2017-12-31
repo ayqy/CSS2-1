@@ -259,15 +259,15 @@ p { width: 100px }
 
 <p>计算值为'auto'的<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>或者<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>对应的应用值为'0'
 
-<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>计算值都是'auto'，并且该元素还具有内在宽度，那么这个内在宽度就是<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值
+<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>计算值都是'auto'，并且该元素还具有固有宽度，那么这个固有宽度就是<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值
 
-<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且该元素没有内在宽度，但具有内在高度和内在比例；或者如果<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值为'auto'，<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>具有其它计算值，并且该元素有内在比例；那么<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值为：
+<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且该元素没有固有宽度，但具有固有高度和固有比例；或者如果<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值为'auto'，<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>具有其它计算值，并且该元素有固有比例；那么<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值为：
 
-<blockquote><p>(高度的应用值) * (内在比例)</blockquote>
+<blockquote><p>(高度的应用值) * (固有比例)</blockquote>
 
-<p>如果'height'和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且该元素具有内在比例但没有内在高度或者宽度，那么'width'的应用值在CSS&nbsp;2.1是未定义的。然而，建议如果包含块的宽度不依赖替换元素的宽度，那么'width'的应用值根据用于常规流中块级非替换元素的约束等式（constraint equation）来计算
+<p>如果'height'和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且该元素具有固有比例但没有固有高度或者宽度，那么'width'的应用值在CSS&nbsp;2.1是未定义的。然而，建议如果包含块的宽度不依赖替换元素的宽度，那么'width'的应用值根据用于常规流中块级非替换元素的约束等式（constraint equation）来计算
 
-<p>否则，如果<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值为'auto'，并且该元素具有内在宽度，那么这个内在宽度就是<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值
+<p>否则，如果<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值为'auto'，并且该元素具有固有宽度，那么这个固有宽度就是<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值
 
 <p>否则，如果<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值为'auto'，但不满足上面的条件，那么<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的应用值变为300px。如果300px对于适应设备来说太宽了，UA应该应用适应设备的最大的比例为2:1的矩形代替
 
@@ -460,11 +460,11 @@ class="propinst-border-right-width">'border-right-width'</span></a> + <a href="b
 
 <p class="note">这些步骤不影响上述属性真正的计算值</p>
 
-<p>然而，对于具有内在比例并且<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>和<a href="visudet.html#propdef-height" class="noxref"><span
+<p>然而，对于具有固有比例并且<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>和<a href="visudet.html#propdef-height" class="noxref"><span
 class="propinst-height">'height'</span></a>都被指定为'auto'的的替换元素，算法如下：
 </p>
 
-<p>从表格中的约束违反情况找出解得高度和宽度值。取<var>max-width</var>和<var>max-height</var>作为max(min, max)，以保证<var>min</var>&#8804<var>max</var>成立。表中的<var>w</var>和<var>h</var>代表忽略<a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>，<a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>，<a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>和<a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>属性后，width和height计算的结果。常规地这些都是内在宽度和高度，但它们可能不属于具有内在比例的替换元素的情况
+<p>从表格中的约束违反情况找出解得高度和宽度值。取<var>max-width</var>和<var>max-height</var>作为max(min, max)，以保证<var>min</var>&#8804<var>max</var>成立。表中的<var>w</var>和<var>h</var>代表忽略<a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>，<a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>，<a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>和<a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>属性后，width和height计算的结果。常规地这些都是固有宽度和高度，但它们可能不属于具有固有比例的替换元素的情况
 
 <p class=note>注意：如果设置了一个明确的宽度或者高度，而其它尺寸为auto，对auto边应用一个最小或者最大约束会引起过度约束的情况。规范对这种行为很明确，但可能不是编写者预期的。CSS3的object-fit属性可以用来获取这种情况下不同的结果
 
@@ -623,13 +623,13 @@ p { height: 100px }
 
 <p>如果<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>或者<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>为'auto'，其应用值为0
 
-<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且元素还具有内在高度，那么这个内在高度就是<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的应用值
+<p>如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>和<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>的计算值都是'auto'，并且元素还具有固有高度，那么这个固有高度就是<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的应用值
 
-<p>否则，如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值为'auto'，并且该元素具有内在比例，那么<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的应用值为：
+<p>否则，如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值为'auto'，并且该元素具有固有比例，那么<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的应用值为：
 
-<blockquote><p>(宽度的应用值) / (内在比例)</blockquote>
+<blockquote><p>(宽度的应用值) / (固有比例)</blockquote>
 
-<p>否则，如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值为'auto'，并且该元素具有内在高度，那么这个内在高度就是<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的应用值
+<p>否则，如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值为'auto'，并且该元素具有固有高度，那么这个固有高度就是<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的应用值
 
 <p>否则，如果<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值为'auto'，但上面的条件都不满足，那么<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的应用值必须设置为比例为2:1，高度不超过150px并且宽度不超过设备宽度的最大矩形的高度
 
@@ -697,7 +697,7 @@ p { height: 100px }
 
 <h3>10.6.5 <a name="abs-replaced-height">绝对定位的替换元素</a></h3>
 
-<p>这种情况与前一种类似，除了元素具有<a href="conform.html#intrinsic">内在</a>高度。步骤（sequence）替换为：
+<p>这种情况与前一种类似，除了元素具有<a href="conform.html#intrinsic">固有</a>高度。步骤（sequence）替换为：
 </p>
 <ol>
 
