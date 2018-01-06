@@ -47,24 +47,24 @@ body>del,body>ins {display:block}
 
 <h2>11.1 <a name="overflow-clipping">溢出与裁剪</a></h2>
 
-<p>一般地，一个块盒的内容都被限制在该盒的content边内。某些情况下，一个盒可能会<a name="x0"><span class="index-def" title="overflow|box::overflow"><dfn>溢出</dfn></span></a>，意味着它的部分内容或者全部内容位于该盒外部，例如：</p>
+<p>一般地，一个块盒的内容都被限制在该盒的内容边界内。某些情况下，一个盒可能会<a name="x0"><span class="index-def" title="overflow|box::overflow"><dfn>溢出</dfn></span></a>，意味着它的部分内容或者全部内容位于该盒外部，例如：</p>
 
 <ul>
 <li>一行无法拆分，导致行框比块盒宽
 </li>
-<li>一个块级盒对其包含块来说太宽了。当一个元素的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性具有一个能让生成盒从包含块的边内溢出的值时，可能会发生这种情况
+<li>一个块级盒对其包含块来说太宽了。当一个元素的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性具有一个能让生成盒从包含块的边界内溢出的值时，可能会发生这种情况
 </li>
 <li>一个元素的高度超出了为其包含块显式指定的高度（即，包含块的高度由<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性决定，而不是由内容高度）
 </li>
 <li>一个后代盒是<a href="visuren.html#absolute-positioning">绝对定位的</a>，部分内容在该盒外部。这种盒并不一定会根据其祖先的overflow属性裁剪。特殊的，它们不会被介于自身和包含块之间的任意祖先的overflow裁剪
 </li>
-<li>一个后代盒具有<a href="box.html#margin-properties">负margin</a>，导致它的部分内容被定为在该盒外部
+<li>一个后代盒具有<a href="box.html#margin-properties">负margin</a>，导致它的部分内容被定位在该盒外部
 </li>
-<li>'text-indent'属性让一个行框挂在该块盒的left或者right边上
+<li>'text-indent'属性让一个行框挂在该块盒的左边界或右边界上
 </li>
 </ul>
 
-<p>出现溢出时，<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性指定了一个盒是否应该被裁剪到其padding边内，以及是否需要提供一种滚动机制来访问所有被裁剪掉的内容
+<p>出现溢出时，<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性指定了一个盒是否应该被裁剪到其内边距边界里，以及是否需要提供一种滚动机制来访问那些被裁剪掉的内容
 </p>
 
 <h3>11.1.1 <a name="overflow">溢出</a>：<a href="visufx.html#propdef-overflow" class="noxref"><span
@@ -88,7 +88,7 @@ class="propinst-overflow">'overflow'</span></a>属性</h3>
 
 
 <p>
-该属性指定了块容器元素的内容在从该元素的盒中溢出时是否需要裁剪。它会影响该元素所有内容的裁剪，除了所有包含块为视口或者该元素的祖先的后代元素（的内容）。属性值含义如下：
+该属性指定了块容器元素的内容从该元素的盒中溢出时是否需要裁剪。它会影响元素所有内容的裁剪，除了那些包含块是视口或该元素的祖先的后代元素，包括这些元素的内容及其后代。属性值含义如下：
 </p>
 
 <dl>
@@ -105,29 +105,29 @@ class="propinst-overflow">'overflow'</span></a>属性</h3>
 
 <dt><strong>scroll</strong></dt>
 
-<dd>该值表示内容会被裁剪，而且如果用户代理会使用一种在屏幕上保持可见的滚动机制（例如，一个滚动条或者panner），这种机制应该用于那些有任意内容被裁剪了的盒。这避免了动态环境中所有滚动条显示和不显示相关的问题。当指定了该值并且目标媒体为'print'时，溢出的内容可能会被打印出来
+<dd>该值表示内容会被裁剪，而且如果用户代理使用一种在屏幕上保持可见的滚动机制（例如，一个滚动条或者抓手（译注：panner，应该是指类似于Photoshop中抓手工具的东西，作用与滚动条一样）），则无论其内容被裁剪与否，都应为该盒显示这种机制。这样就避免了动态环境中那些滚动条显示与不显示的问题。当指定了该值并且目标媒体为'print'时，溢出的内容可能会被打印出来
 </dd>
 
 <dt><strong>auto</strong></dt>
 
-<dd>'auto'值的行为是用户代理独立的（user agent-dependent），但应该会为溢出的盒提供一种滚动机制
+<dd>'auto'值的行为是依赖用户代理的（user agent-dependent），但应该为溢出的盒提供一种滚动机制
 </dd>
 
 </dl>
 
-<p>即使把<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>设置为'visible'，内容可能会被原生操作环境裁剪到UA的文档窗口中
+<p>即使把<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>设置为'visible'，内容也可能会被原生操作环境裁剪到UA的文档窗口中
 </p>
 
 <p>
-UA必须把设置在根元素上的'overflow'属性应用到视口上。如果根元素是HTML的"HTML"元素或者XHTML的"html"元素，并且该元素具有一个作为子级的HTML的"BODY"元素或者XHTML的"body"元素，如果根元素上该值为'visible'，用户代理必须把第一个这种子级元素的'overflow'属性应用到视口上（而不是根元素的'overflow'）。'visible'用于视口时，必须解释为'auto'。该值被传播的元素必须具有值为'visible'的'overflow'
+UA必须把设置在根元素上的'overflow'属性应用到视口上。如果根元素是HTML的"HTML"元素或者XHTML的"html"元素，并且该元素具有一个作为子级的HTML的"BODY"元素或者XHTML的"body"元素的话，如果根元素上该值为'visible'，用户代理必须把第一个这种子级元素的'overflow'属性应用到视口上（而不是根元素的'overflow'）。'visible'用于视口时，必须解释为'auto'。该值被传播的元素必须具有应用值为'visible'的'overflow'
 </p>
 
 <p>
-如果一个滚动条被放在该元素的盒的一边上，它应该被插入在内border边与外padding边之间。滚动条占用的所有空间不应该算入带有滚动条的元素形成的包含块（从包含块的尺寸中减去滚动条）
+如果滚动条被放在元素框的一边上，则应将其插入边框内边界与内边距外边界之间。滚动条占用的任何空间都应该从包含滚动条的元素所形成的含块的尺寸中减去（从包含块的尺寸中减去滚动条）
 </p>
 
 <div class="example"><P style="display:none">示例：</P><p>
-考虑下面块引用（<code>&lt;blockquote&gt;</code>）的例子，对其包含块来说太大了（由<code>&lt;div&gt;</code>建立的）。（HTML）源码如下：</p>
+考虑下面的示例，对其包含块（由<code>&lt;div&gt;</code>建立的）而言，块引用（<code>&lt;blockquote&gt;</code>）太大。（HTML）源码如下：</p>
 
 <pre class="html-example"><code class="html">
 &lt;div&gt;
@@ -158,13 +158,13 @@ cite { display: block;
        }
 </code></pre>
 
-<p><a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>的初始值是'visible'，所以<code>&lt;blockquote&gt;</code>将被格式化成没有裁剪的，就像这样：</p>
+<p><a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>的初始值是'visible'，所以<code>&lt;blockquote&gt;</code>将被格式化成未经裁剪的，就像这样：</p>
 
 <div class="figure">
 <p><img src="./images/overflow1.png" alt="Rendered overflow"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-overflow1" href="images/longdesc/overflow1-desc.html" title="Long description for example with unclipped overflow">[D]</A></SPAN></p>
 </div>
 
-<p>把<code>&lt;div&gt;</code>的<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>设置为'hidden'，另一方面，会让<code>&lt;blockquote&gt;</code>被裁剪到包含（它）的<code>&lt;div&gt;</code>里：
+<p>另一方面，把<code>&lt;div&gt;</code>的<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>设置为'hidden'，会让<code>&lt;blockquote&gt;</code>被裁剪到包含（它）的<code>&lt;div&gt;</code>里：
 </p>
 
 <div class="figure">
@@ -177,7 +177,7 @@ cite { display: block;
 
 <div>
 <p>
-最后，考虑这种情况，当一个绝对定位的元素拥有一个溢出的父级时
+最后，考虑这种情况，当绝对定位的元素与溢出的父元素混在一起时
 </p>
 <p>
 样式表：
@@ -209,7 +209,7 @@ class="propinst-clip">'clip'</span></a>属性</h3>
 
 
 
-<p><a name="x3"><span class="index-def" title="clipping region"><dfn>裁剪区域（clipping region）</dfn></span></a>定义了一个元素border box的哪一部分是可见的。默认情况下，元素不会被裁剪。然而，裁剪区域可以通过<a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a>属性显式地设置
+<p><a name="x3"><span class="index-def" title="clipping region"><dfn>裁剪区域（clipping region）</dfn></span></a>定义了一个元素边框框中的哪一部分是可见的。默认情况下，元素不会被裁剪。然而，裁剪区域可以通过<a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a>属性显式地设置
 </p>
 
 <div class="propdef">
@@ -237,20 +237,20 @@ class="propinst-clip">'clip'</span></a>属性</h3>
 
 <dt><span class="index-def" title="&lt;shape&gt;::definition of"><a name="value-def-shape"
 class="value-def"><strong>&lt;shape&gt;</strong></a></span></dt>
-<dd>CSS&nbsp;2.1中，唯一合法的&lt;shape&gt;值为：rect(<a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;top&gt;</span></a>, <a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;right&gt;</span></a>, <a href="visufx.html#value-def-bottom" class="noxref"><span class="value-inst-bottom">&lt;bottom&gt;</span></a>, <a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;left&gt;</span></a>)。其中<a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;top&gt;</span></a>和<a href="visufx.html#value-def-bottom" class="noxref"><span class="value-inst-bottom">&lt;bottom&gt;</span></a>指定了从该盒的top border边的偏移，而<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;right&gt;</span></a>和<a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;left&gt;</span></a>指定了从该盒的left border边的偏移。编写者应该用逗号分隔偏移值。用户代理必须支持逗号分隔，但可能也支持无逗号分隔（但也不是把值结合起来），因为本规范的一个先前版本在这方面不明确
+<dd>CSS&nbsp;2.1中，唯一合法的&lt;shape&gt;值为：rect(<a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;top&gt;</span></a>, <a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;right&gt;</span></a>, <a href="visufx.html#value-def-bottom" class="noxref"><span class="value-inst-bottom">&lt;bottom&gt;</span></a>, <a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;left&gt;</span></a>)。其中<a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;top&gt;</span></a>和<a href="visufx.html#value-def-bottom" class="noxref"><span class="value-inst-bottom">&lt;bottom&gt;</span></a>指定了从该盒的上边框边界的偏移，而<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;right&gt;</span></a>和<a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;left&gt;</span></a>指定了从该盒的左边框边界的偏移。编写者应该用逗号分隔偏移值。用户代理必须支持逗号分隔，但可能也支持无逗号分隔（但也不是把值结合起来），因为本规范的一个先前版本在这方面不明确
 
-<p><span class="index-def" title="&lt;top&gt;::definition of"><a name="value-def-top" class="value-def">&lt;top&gt;</a></span>，<span class="index-def" title="&lt;right&gt;::definition of"><a name="value-def-right" class="value-def">&lt;right&gt;</a></span>，<span class="index-def" title="&lt;bottom&gt;::definition of"><a name="value-def-bottom" class="value-def">&lt;bottom&gt;</a></span>和<span class="index-def" title="&lt;left&gt;::definition of"><a name="value-def-left" class="value-def">&lt;left&gt;</a></span>可以具有一个<a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a>值或者'auto'。允许负的长度。'auto'值表示裁剪区域给定的边将和该元素生成的border box的边相同（即，'auto'表示<a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;top&gt;</span></a>和<a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;left&gt;</span></a>为'0'，<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;bottom&gt;</span></a>为高度的应用值加上垂直padding和border宽度之和，<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;right&gt;</span></a>为宽度的应用值加上水平padding和border宽度之和。因此4个'auto'值产生的裁剪区域与该元素的border box相同）
+<p><span class="index-def" title="&lt;top&gt;::definition of"><a name="value-def-top" class="value-def">&lt;top&gt;</a></span>，<span class="index-def" title="&lt;right&gt;::definition of"><a name="value-def-right" class="value-def">&lt;right&gt;</a></span>，<span class="index-def" title="&lt;bottom&gt;::definition of"><a name="value-def-bottom" class="value-def">&lt;bottom&gt;</a></span>和<span class="index-def" title="&lt;left&gt;::definition of"><a name="value-def-left" class="value-def">&lt;left&gt;</a></span>可以具有一个<a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a>值或者'auto'。允许负的长度。'auto'值表示裁剪区域给定的边界将和该元素生成的边框框边界相同（即，'auto'表示<a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;top&gt;</span></a>和<a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;left&gt;</span></a>为'0'，<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;bottom&gt;</span></a>为高度的应用值加上垂直内边距和边框宽度之和，<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;right&gt;</span></a>为宽度的应用值加上水平内边距和边框宽度之和。因此4个'auto'值产生的裁剪区域与该元素的边框框相同）
 </p>
-<p>当坐标被四舍五入成像素坐标时，应该注意所有像素都将不可见，如果&lt;left&gt;和&lt;right&gt;值相同的话（或者&lt;top&gt;和&lt;bottom&gt;值相同），反过来，如果这些值都是'auto'，所有处于该元素的border box里的像素都将可见
+<p>当坐标被四舍五入成像素坐标时，应该注意如果&lt;left&gt;和&lt;right&gt;值相同（或者&lt;top&gt;和&lt;bottom&gt;值相同）的话，不显示任何像素，反过来，如果这些值都是'auto'，所有处于该元素的边框框里的像素都会显示出来
 </p>
 </dd>
 </dl>
 
 <p>一个元素的裁剪区域会裁剪掉该元素裁剪区域外的所有东西（例如，内容，子级，背景，边框，text decoration，outline和可见的滚动机制&mdash;如果有的话）。已经被裁剪掉的内容不会导致溢出
 </p>
-<p>该内容的祖先也可能被裁剪掉部分内容（例如，通过它们自己的<a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a>属性和/或如果它们的<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性不为'visible'）。渲染的是累计交叠的东西（what is rendered is the cumulative intersection）
+<p>元素的祖先也可能被裁剪掉部分内容（例如，通过它们自己的<a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a>属性和/或如果它们的<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性不为'visible'）。呈现的是累计交集（what is rendered is the cumulative intersection）
 </p>
-<p>如果裁剪区域超出了UA的文档窗口的边界。内容可能被原生操作环境被裁剪到这个窗口
+<p>如果裁剪区域超出了UA文档窗口的边界。内容可能被原生操作环境裁剪到该窗口
 </p>
 <div class="example"><P style="display:none">示例：</P><p>示例：下列2条规则：</p>
 <pre><code class="css">p#one { clip: rect(5px, 40px, 45px, 5px); }
@@ -284,7 +284,7 @@ p#two { clip: rect(5px, 55px, 45px, 5px); }</code></pre>
 </div>
 
 
-<p><a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>属性指定了一个元素生成的盒是否应该渲染出来。不可见的盒仍然会影响布局（把<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性设置为'none'可以完全禁止盒生成）。值含义如下：</p>
+<p><a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>属性指定了一个元素生成的盒是否应该呈现出来。不可见的盒仍然会影响布局（把<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性设置为'none'可以完全禁止盒生成）。值含义如下：</p>
 
 <dl>
 <dt><strong>visible</strong></dt>
@@ -292,7 +292,7 @@ p#two { clip: rect(5px, 55px, 45px, 5px); }</code></pre>
 <dt><strong>hidden</strong></dt>
 <dd>生成的盒是不可见的（完全透明，什么都不绘制），但仍然会影响布局。而且该元素具有'visibility: visible'的后代将是可见的</dd>
 <dt><strong>collapse</strong></dt>
-<dd>请查看表格的<a href="tables.html#dynamic-effects">动态行列效果</a>章节。如果用在元素上而不是行，行组（row group），列，或者列组（column group）上，'collapse'与'hidden'含义相同
+<dd>请查看表格的<a href="tables.html#dynamic-effects">动态行列效果</a>章节。如果用在非行，行组（row group），列，或者列组（column group）元素上，'collapse'与'hidden'含义相同
 </dd>
 </dl>
 
