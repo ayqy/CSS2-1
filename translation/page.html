@@ -33,7 +33,7 @@
     <li class="tocline2"><a href="page.html#page-intro" class="tocxref">13.1 分页媒体简介</a>
     <li class="tocline2"><a href="page.html#page-box" class="tocxref">13.2 页盒：@page规则</a>
     <ul class="toc">
-      <li class="tocline3"><a href="page.html#page-margins" class="tocxref">13.2.1 页margin</a>
+      <li class="tocline3"><a href="page.html#page-margins" class="tocxref">13.2.1 页外边距</a>
       <li class="tocline3"><a href="page.html#page-selectors" class="tocxref">13.2.2 页选择器：选择左面，右面和第一页</a>
       <li class="tocline3"><a href="page.html#outside-page-box" class="tocxref">13.2.3 页盒外的内容</a>
     </ul>
@@ -51,7 +51,7 @@
 
 <h2>13.1 <a name="page-intro">分页媒体简介</a></h2>
 
-<p>分页媒体（例如，纸，幻灯片，在计算机屏幕上显示的页面等等）与<a href="./media.html#continuous-media-group">连续媒体</a>的区别是文档的内容分布在一个或者多个不连续的页里。为了处理页面，CSS&nbsp;2.1描述了怎样给<a href="#page-box">页盒</a>设置页margin，以及怎样声明<a href="#page-breaks">分页符</a>
+<p>分页媒体（例如，纸，幻灯片，在计算机屏幕上显示的页面等等）与<a href="./media.html#continuous-media-group">连续媒体</a>的区别是文档的内容分布在一个或者多个不连续的页里。为了处理页面，CSS&nbsp;2.1描述了怎样给<a href="#page-box">页盒</a>设置页外边距，以及怎样声明<a href="#page-breaks">分页符</a>
 
 <p>用户代理负责把一个文档的页盒转换到最终渲染文档的真实<a name="x0"><span class="index-def" title="sheet"><dfn>页（sheet）</dfn></span></a>（纸，幻灯片，屏幕等等）上。通常页盒与页之间都有一对一的关系，但并不总是这样。可能的转换情况包括：</P>
 
@@ -88,9 +88,9 @@
 
 <P>对格式错误的声明，格式错误的语句和@page中非法的@规则的处理规则定义在<a href="syndata.html#parsing-errors">4.2节</a>，还有下列额外规则：当UA预期一个声明或者@规则的开始（即，一个IDENT或者ATKEYWORD token），但发现了一个其它token时，该token就被认为是格式错误的声明的第一个token。即这种情况下，用格式错误的声明的规则来决定要忽略的token，而不用格式错误的语句的规则
 
-<h3>13.2.1 <a name="page-margins">页margin</a></h3>
+<h3>13.2.1 <a name="page-margins">页外边距</a></h3>
 
-<P>CSS&nbsp;2.1中，只有<a href="box.html#margin-properties">margin属性</a>（<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>，<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>，<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>，<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>和<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>）适用于<a href="#page-context">页上下文</a>。下图展示了页，页盒和页margin之间的关系：</P>
+<P>CSS&nbsp;2.1中，只有<a href="box.html#margin-properties">margin属性</a>（<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>，<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>，<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>，<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>和<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>）适用于<a href="#page-context">页上下文</a>。下图展示了页，页盒和页外边距之间的关系：</P>
 
 <div class="figure">
 <P><img src="./images/page-info.png" alt="Illustration of sheet, page
@@ -99,7 +99,7 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 </div>
 
 <div class="example"><P style="display:none">示例：</P><P>
-有个给所有页设置页margin的简单例子：
+有个给所有页设置页外边距的简单例子：
 
 <pre>
 @page {
