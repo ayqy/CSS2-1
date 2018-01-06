@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<title>可视化格式模型</title>
+<title>视觉格式化模型</title>
 <link rel="stylesheet" href="style/default.css" type="text/css">
 <link rel="stylesheet" href="style/W3C-REC.css" type="text/css">
 <link rel="prev" href="box.html">
@@ -37,11 +37,11 @@ blockquote.math span:first-child {text-align: right}
 </div>
 <hr class="navbar">
 
-<h1><a name="q0">9 可视化格式模型</a></h1>
+<h1><a name="q0">9 视觉格式化模型</a></h1>
 <div class="subtoc">
 <p><strong>内容</strong>
   <ul class="toc">
-    <li class="tocline2"><a href="visuren.html#visual-model-intro" class="tocxref">9.1 可视化格式模型简介</a>
+    <li class="tocline2"><a href="visuren.html#visual-model-intro" class="tocxref">9.1 视觉格式化模型简介</a>
     <ul class="toc">
       <li class="tocline3"><a href="visuren.html#viewport" class="tocxref">9.1.1 视口（viewport）</a>
       <li class="tocline3"><a href="visuren.html#containing-block" class="tocxref">9.1.2 <span class="index-def" title="containing block">包含块（Containing block）</span></a>
@@ -59,9 +59,9 @@ blockquote.math span:first-child {text-align: right}
       <li class="tocline3"><a href="visuren.html#run-in" class="tocxref">9.2.3 Run-in盒</a>
       <li class="tocline3"><a href="visuren.html#display-prop" class="tocxref">9.2.4 <span class="propinst-display">'display'</span>属性</a>
     </ul>
-    <li class="tocline2"><a href="visuren.html#positioning-scheme" class="tocxref">9.3 定位模式</a>
+    <li class="tocline2"><a href="visuren.html#positioning-scheme" class="tocxref">9.3 定位方案</a>
     <ul class="toc">
-      <li class="tocline3"><a href="visuren.html#choose-position" class="tocxref">9.3.1 选择定位模式：<span class="propinst-position">'position'</span>属性</a>
+      <li class="tocline3"><a href="visuren.html#choose-position" class="tocxref">9.3.1 选择定位方案：<span class="propinst-position">'position'</span>属性</a>
       <li class="tocline3"><a href="visuren.html#position-props" class="tocxref">9.3.2 盒偏移：<span class="propinst-top">'top'</span>，<span class="propinst-right">'right'</span>，<span class="propinst-bottom">'bottom'</span>，<span class="propinst-left">'left'</span></a>
     </ul>
     <li class="tocline2"><a href="visuren.html#normal-flow" class="tocxref">9.4 常规流（Normal flow）</a>
@@ -95,25 +95,25 @@ blockquote.math span:first-child {text-align: right}
   </ul>
 </div>
 
-<h2>9.1 <a name="visual-model-intro">可视化格式模型简介</a></h2>
+<h2>9.1 <a name="visual-model-intro">视觉格式化模型简介</a></h2>
 
-<p>本章及下一章描述了<a name="x0"><span class="index-def" title="visual formatting model">可视化格式模型</span></a>：对于可视化<a href="media.html">媒体</a>，用户代理怎样处理<a href="conform.html#doctree">文档树</a>
+<p>本章及下一章描述了<a name="x0"><span class="index-def" title="visual formatting model">视觉格式化模型</span></a>：对于可视化<a href="media.html">媒体</a>，用户代理怎样处理<a href="conform.html#doctree">文档树</a>
 </p>
 
-<p>在格式化格式模型中，文档树中的每个元素根据其<a href="box.html">盒模型</a>生成0个或多个盒。这些盒的布局由（以下因素）控制：</p>
+<p>在视觉格式化模型中，文档树中的每个元素根据其<a href="box.html">盒模型</a>生成0个或多个盒。这些盒的布局由（以下因素）控制：</p>
 
 <ul>
 <li><a href="box.html#box-dimensions">盒尺寸</a>与<a href="#box-gen">类型</a>
-</li><li><a href="#positioning-scheme">定位模式</a>（常规流，浮动与绝对定位）
+</li><li><a href="#positioning-scheme">定位方案</a>（常规流，浮动与绝对定位）
 </li><li><a href="conform.html#doctree">文档树</a>中元素间的关系
-</li><li>外部信息（例如，视口大小，图片的<a href="conform.html#intrinsic">内在</a>尺寸等等）
+</li><li>外部信息（例如，视口大小，图片的<a href="conform.html#intrinsic">固有</a>尺寸等等）
 </li></ul>
 
-<p>本章及下一章中定义的属性适用于<a href="media.html#continuous-media-group">连续媒体</a>和<a href="media.html#paged-media-group">分页媒体</a>。<span class="paged">然而，<a href="box.html#margin-properties">margin属性</a>应用于分页媒体时有不同的含义（详细信息请查看<a href="page.html#page-margins">页模型</a>）
+<p>本章及下一章中定义的属性适用于<a href="media.html#continuous-media-group">连续媒体</a>和<a href="media.html#paged-media-group">分页媒体</a>。<span class="paged">但<a href="box.html#margin-properties">margin属性</a>应用于分页媒体时有不同的含义（详细信息请查看<a href="page.html#page-margins">页模型</a>）
 </span>
 </p>
 
-<p>可视化格式模型并没有指定格式化的所有方面（例如，它没有指定字母间距算法）。（与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>在这些本规范未提及的格式化问题上的表现可能有差异
+<p>视觉格式化模型并没有指定格式化的所有方面（例如，它没有指定字母间距算法）。（与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>在这些本规范未提及的格式化问题上的表现可能存在差异
 </p>
 
 <h3>9.1.1 <a name="viewport">视口（viewport）</a></h3>
@@ -128,16 +128,16 @@ blockquote.math span:first-child {text-align: right}
 <a name="containing-block">包含块（Containing block）</a></span>
 </h3>
 
-<p>CSS&nbsp;2.1中，很多盒的位置和大小是根据被称为<a name="x3"><span class="index-def" title="containing block"><dfn>包含块</dfn></span></a>的矩形框的边计算的。一般把生成的盒作为后代盒的包含块，我们说一个盒为其后代“建立”了包含块。“一个盒的包含块”表示“盒所在的包含块”，而不是它生成的（包含块）
+<p>CSS&nbsp;2.1中，很多盒的位置和大小是根据被称为<a name="x3"><span class="index-def" title="containing block"><dfn>包含块</dfn></span></a>的矩形框的边界计算的。一般把生成的盒作为后代盒的包含块，我们说一个盒为其后代“建立”了包含块。“一个盒的包含块”表示“盒所在的包含块”，而不是它生成的（包含块）
 </p>
-<p>每个盒都根据其包含块给定了一个位置，但它不受该包含块的限制，可能会<a href="visufx.html#overflow">溢出</a>
+<p>每个盒都根据其包含块确定了一个位置，但它不受该包含块的限制，可能会<a href="visufx.html#overflow">溢出</a>
 </p>
 
-<p>关于如何计算一个包含块的尺寸的<a href="visudet.html#containing-block-details">细节</a>见<a href="visudet.html">下一章</a>
+<p>关于如何计算包含块尺寸的<a href="visudet.html#containing-block-details">细节</a>见<a href="visudet.html">下一章</a>
 </p>
 <h2>9.2 <a name="box-gen">控制盒生成</a></h2>
 
-<p>下面的各节描述了CSS&nbsp;2.1中可能生成的盒的类型。盒的类型对其在可视化格式模型中的行为有一定影响。下面描述的<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性指定了盒的类型
+<p>下面的各节描述了CSS&nbsp;2.1中可能生成的盒的类型。盒的类型对其在视觉格式化模型中的行为有一定影响。下面描述的<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性指定了盒的类型
 </p>
 
 <h3>9.2.1 <a name="block-boxes">块级元素与块盒</a></h3>
@@ -146,11 +146,11 @@ blockquote.math span:first-child {text-align: right}
 element"><a name="block-level"><dfn>块级元素</dfn></a></span>是源文档中那些被格式化成视觉上的块的元素（例如，段落）。<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性的下列值能让一个元素变成块级的：'block'，'list-item'和'table'
 </p>
 
-<p><a name="x5"><span class="index-def" title="block-level box"><dfn>块级盒</dfn></span></a>是参与<a href="#block-formatting">块格式化上下文</a>的盒。每个块级元素生成一个<span class="index-def" title="principal block-level box"><a name="principal-box"><dfn>主块级盒（principal block-level box）</dfn></a></span>，用来包含后代盒和生成的内容，并且任何定位模式都与该盒有关。有些块级元素可能生成除主盒外的额外的盒：'list-item'元素。这些额外的盒根据主盒来放置
+<p><a name="x5"><span class="index-def" title="block-level box"><dfn>块级盒</dfn></span></a>是参与<a href="#block-formatting">块格式化上下文</a>的盒。每个块级元素生成一个<span class="index-def" title="principal block-level box"><a name="principal-box"><dfn>主块级盒（principal block-level box）</dfn></a></span>，用来包含后代盒及生成的内容，并且任何定位方案都与该盒有关。有些块级元素可能会生成除主盒外的额外的盒：'list-item'元素。这些额外的盒根据主盒来放置
 
-<p>除了后面章节描述的表格盒与可替换元素外，一个块级盒也是一个块容器盒。一个<span class="index-def" title="block container box"><a name="block-container-box"><dfn >块容器盒</dfn></a></span>要么只包含块级盒，要么建立了行内格式化上下文并因此只包含行内盒。不是所有的块容器盒都是块级盒：不可替换的行内块和不可替换的表格单元是块级容器，但不是块级盒。作为块级容器的块级盒也叫<a name="x8"><span class="index-def" title="block box"><dfn>块盒</dfn></span></a>
+<p>除了后面章节描述的表格盒与替换元素外，一个块级盒也是块容器盒。一个<span class="index-def" title="block container box"><a name="block-container-box"><dfn >块容器盒</dfn></a></span>要么只包含块级盒，要么建立了行内格式化上下文并因此只包含行内盒。不是所有的块容器盒都是块级盒：非替换的行内块与非替换的表格单元是块级容器，但不是块级盒。作为块级容器的块级盒也叫<a name="x8"><span class="index-def" title="block box"><dfn>块盒</dfn></span></a>
 
-<p>三个术语“块级盒（block-level box）”，“块容器盒（block container box）”与“块盒（block box）”在没有歧义的时候就简称为“块（block）”
+<p>“块级盒（block-level box）”，“块容器盒（block container box）”和“块盒（block box）”这三个术语在没有歧义的时候就简称为“块（block）”
 
 <h4>9.2.1.1 <a name="anonymous-block-level">匿名块盒</a></h4>
 
@@ -163,7 +163,7 @@ element"><a name="block-level"><dfn>块级元素</dfn></a></span>是源文档中
 &lt;/DIV&gt;
 </code></pre>
 <p>
-（假设DIV和P都有'display: block'），DIV似乎既有行内内容也有块内容。为了更容易定义格式，我们假设在"Some text"四周有一个<em><a name="x9"><span class="index-def" title="anonymous">匿名块盒</span></a></em>
+（假设DIV和P都有'display: block'），DIV似乎既有行内内容也有块内容。为了更容易定义格式化，我们假设在"Some text"四周有一个<em><a name="x9"><span class="index-def" title="anonymous">匿名块盒</span></a></em>
 </p>
 <div class="figure">
 <p><img src="images/anon-block.png" alt="diagram showing the three
@@ -171,9 +171,9 @@ boxes for the example above"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 </p><p class="caption">上例图片展示了3个盒，其中一个匿名的
 </p></div>
 
-<p>换句话说：如果一个块容器盒（例如，为上面的DIV生成的）里面有一个块级盒（例如上面的P），那么我们强制让它里面<em>只含有</em>块级盒
+<p>换句话说：如果块容器盒（例如，为上面的DIV生成的）里面有一个块级盒（例如上面的P），那么我们强制让它里面<em>只含有</em>块级盒
 
-<p>当一个行内盒包含一个流内块级盒时，该行内盒（及与它处于同一行盒里的行内祖先）会被从周围的块级盒（和任何连续的，或者仅仅被可折叠的空白字符和/或流外元素隔开的块级兄弟）中拆分出来，把行内盒分成两个盒（即使有一边是空的），分别位于块级盒的两边。拆分前的行盒与拆分后的行盒都被包进匿名块盒，并且该块级盒成为了这些匿名盒的兄弟。当这样一个行内盒受到相对定位的影响时，任何由此产生的转变也会影响行内盒里面的块级盒
+<p>当行内盒包含流内块级盒时，该行内盒（及与它处于同一行框里的行内祖先）会打破周围的块级盒（以及任何连续的或只被可合并的空白符和/或流外元素隔开的块级兄弟），把行内盒分成两个盒（即使有一边是空的），分别位于块级盒的两边。拆分前的行框与拆分后的行框都被包进匿名块盒，并且该块级盒作为这些匿名盒的兄弟。当这样一个行内盒受到相对定位的影响时，任何由此产生的位移也会影响行内盒里面的块级盒
 
 <div class="example"><P style="display:none">示例：</P>
 <p>此模型会应用于下例，如果下列规则：</p>
@@ -199,30 +199,30 @@ span { display: block }
 &lt;/BODY&gt;
 </code></pre>
 
-<p>P元素包含一个匿名文本的chunk(C1)后面跟着一个块级元素和另一个匿名文本的chunk(C2)。产生的盒将会是一个代表BODY的块盒，包含一个环绕着C1的匿名块盒，SPAN块盒和另一个环绕着C2的匿名块盒
+<p>P元素包含一个匿名文本块(C1)后面跟着一个块级元素和另一个匿名文本块(C2)。产生的盒将会是一个代表BODY的块盒，包含一个环绕着C1的匿名块盒，SPAN块盒和另一个环绕着C2的匿名块盒
 </p></div>
 
-<p>匿名盒的属性是从周围的（enclosing）非匿名盒继承来的（例如，“匿名块盒”小节的标题下面那个示例中，DIV的盒），不可继承的属性取其初始值。例如，匿名盒的字体是从那个DIV继承的，但margin将为0
+<p>匿名盒的属性是从周围的（enclosing）非匿名盒继承来的（例如，“匿名块盒”小节的标题下面那个示例中，DIV的盒），不可继承的属性取其初始值。例如，匿名盒的字体是从那个DIV继承的，但margin将是0
 </p>
 <p>
-设置在让匿名块盒生成的元素上的属性仍然会应用于该元素（生成的）盒和内容。例如，如果一个border被设置在上例中的P元素上，border将会绘制在C1（在行结束的位置打开）和C2（在行开始的位置打开）周围
+设置在让匿名块盒生成的元素上的属性仍然会应用于该元素（生成的）盒与内容。例如，如果一个border被设置在上例中的P元素上，border将会绘制在C1（在行结束的位置打开）和C2（在行开始的位置打开）周围
 </p>
 <p>
-有些用户代理以它们的方式给行内包含块实现了border。例如，通过把这种嵌套块包进“匿名行盒”并且因此在这个盒周围绘制行内border。因为CSS1和CSS2没有定义这种行为，只支持CSS1的和只支持CSS2的用户代理可能会实现这种替代模型，并仍声称与CSS&nbsp;2.1的这部分一致。这不适用于在本规范发布后开发的UA
+有些用户代理以它们的方式给行内包含块实现了border。例如，通过把这种嵌套块包进“匿名行框”并且因此在这些盒周围绘制行内边框。因为CSS1和CSS2没有定义这种行为，只支持CSS1的和只支持CSS2的用户代理可能会实现这种替代模型，并仍声称与CSS&nbsp;2.1的这部分一致。这不适用于在本规范发布后开发的UA
 </p>
 
-<p>在处理相关的百分比值时，匿名块盒会被忽略：用最近的非匿名祖先盒代替。例如，如果上面DIV里面的匿名块盒的子级为了处理百分比高度，需要知道其包含块的包含块的高度，那么它将采用DIV形成的包含块的高度，而不是匿名块盒的
+<p>在处理相关的百分比值时，匿名块盒会被忽略：用最近的非匿名祖先盒代替。例如，如果上面DIV里面的匿名块盒的孩子需要知道其包含块的高度，以处理百分比高度，那么它将采用DIV形成的包含块的高度，而不是匿名块盒的
 
 <h3>9.2.2 <a name="inline-boxes">行内级元素与行内盒</a></h3>
 
 <p><span class="index-def" title="inline-level element">
-<a name="inline-level"><dfn>行内级元素</dfn></a></span>是源文档中那些不会为其内容形成新块的元素，内容分布于多行（例如，强调段落中的一部分文本，行内图片等等）。<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性的下列值能让一个元素变成行内级：'inline'，'inline-table'和'inline-block'。行内级元素生成<a name="x11"><span class="index-def" title="inline-level box"><dfn>行内级盒</dfn></span></a>，即参与行内格式化上下文的盒
+<a name="inline-level"><dfn>行内级元素</dfn></a></span>是源文档中那些不会形成新内容块的元素，内容分布于多行（例如，强调段落中的一部分文本，行内图片等等）。<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性的下列值能让一个元素变成行内级：'inline'，'inline-table'和'inline-block'。行内级元素生成<a name="x11"><span class="index-def" title="inline-level box"><dfn>行内级盒</dfn></span></a>，即参与行内格式化上下文的盒
 
-<p>一个<span class="index-def" title="inline box"><a name="inline-box"><dfn>行内盒</dfn></a></span>是一个（特殊的）行内级盒，其内容参与了它的包含行内格式化上下文。一个'display'值为'inline'的不可替换元素会生成一个行内盒。不属于行内盒的行内块级盒（例如，可替换行内级元素，inline-block元素和inline-table元素）被称为<a name="x13"><span class="index-def" title="atomic inline-level box"><dfn>原子行内级盒（atomic inline-level boxes）</dfn></span></a>，因为它们作为单一的不透明盒（opaque box）参与其行内格式化上下文
+<p><span class="index-def" title="inline box"><a name="inline-box"><dfn>行内盒</dfn></a></span>是（特殊的）行内级盒，其内容参与了它的包含行内格式化上下文（containing inline formatting context）。'display'值为'inline'的非替换元素会生成一个行内盒。不属于行内盒的行内块级盒（例如，行内级替换元素，inline-block元素和inline-table元素）被称为<a name="x13"><span class="index-def" title="atomic inline-level box"><dfn>原子行内级盒（atomic inline-level boxes）</dfn></span></a>，因为它们作为单一的不透明盒（opaque box）参与其行内格式化上下文
 
 <h4>9.2.2.1 <a name="anonymous">匿名行内盒</a></h4>
 
-<p>任何被直接包含在一个块容器元素中（不在一个行内元素里面）的文本，必须视为一个匿名行内元素
+<p>任何被直接包含在一个块容器元素中（不在行内元素里面）的文本，必须视为一个匿名行内元素
 
 <p>在一个有如下HTML标记的文档里：</p>
 
@@ -234,11 +234,11 @@ span { display: block }
 
 <p><code>&lt;p&gt;</code>会生成一个块盒，里面还有几个行内盒。"emphasized"的盒是一个由行内元素（<code>&lt;em&gt;</code>）生成的行内盒，但其它盒（"Some"和"text"）都是由块级元素（<code>&lt;p&gt;</code>）生成的行内盒。后者叫做<a name="x14"><span class="index-def" title="anonymous inline boxes">匿名行内盒</span></a>，因为它们没有与之相关的行内级元素
 </p>
-<p>这种匿名行内盒从它们父级块盒继承了可继承的属性，不可继承的属性取其初始值。示例中，匿名行内盒的颜色是从P继承的，但背景是透明的
+<p>这种匿名行内盒从它们的父级块盒继承了可继承的属性，不可继承的属性取其初始值。示例中，匿名行内盒的颜色是从P继承的，但背景是透明的
 </p>
 
 <p>
-后续将根据<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性合并起来的空白字符内容，不会生成任何匿名行内盒
+对于后续会根据<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性合并起来的空白字符内容，不会生成任何匿名行内盒
 </p>
 
 <p>如果知道上下文中匿名盒是哪种含义，本规范中的匿名行内盒和匿名块盒都可以简称为匿名盒
@@ -247,7 +247,7 @@ span { display: block }
 </p>
 <h3>9.2.3 <a name="run-in">Run-in盒</a></h3>
 
-<p>[本节之所以存在是为了保持节序号与之前的草案一致，<a name="x15"><span class="index-def" title="run-in">'Display: run-in'</span></a>现在定义在CSS level&nbsp;3中（见<a href="/TR/css3-box">CSS基本盒模型</a>）]
+<p>[本节之所以存在是为了保持节序号与之前的草案一致，<a name="x15"><span class="index-def" title="run-in">'Display: run-in'</span></a>现在定义在CSS level&nbsp;3中（见<a href="https://www.w3.org/TR/css3-box/">CSS基本盒模型</a>）]
 
 <h3>9.2.4 <a name="display-prop"> </a><a href="visuren.html#propdef-display" class="noxref"><span
 class="propinst-display">'display'</span></a>属性</h3>
@@ -293,11 +293,11 @@ name="value-def-inline"><strong>inline</strong></a></span>
 <dt><span class="index-def" title="'list-item', definition of"><a
 name="value-def-list-item"><strong>list-item</strong></a></span>
 </dt>
-<dd>该值会让元素（例如，HTML中的LI）生成一个主块盒（principal block box）和一个标记盒（marker box）。关于列表和列表格式化示例的更多信息请查看<a href="generate.html#lists">列表</a>章节
+<dd>该值会让元素（例如，HTML中的LI）生成一个主块盒（principal block box）和一个标记盒（marker box）。关于列表及列表格式化示例的更多信息请查看<a href="generate.html#lists">列表</a>章节
 </dd>
 <dt><strong>none</strong></dt>
 
-<dd><a name="x21"><span class="index-def" title="'none'::as display value">该值</span></a>会让元素不在<a href="intro.html#formatting-structure">格式化结构（formatting structure）</a>中出现（即在可视化媒体中，元素不会生成盒也不会影响布局）。后代元素也不会生成任何盒，该元素及其内容会从格式化结构中全部移除。这种行为<strong>不能</strong>通过给后代设置<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性来重写
+<dd><a name="x21"><span class="index-def" title="'none'::as display value">该值</span></a>会让元素不在<a href="intro.html#formatting-structure">格式化结构（formatting structure）</a>中出现（即在视觉媒体中，元素不会生成盒也不会影响布局）。后代元素也不会生成任何盒，该元素及其内容会从格式化结构中全部移除。这种行为<strong>不能</strong>通过给后代设置<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性来重写
 
 <p>注意，display为none时不会创建一个不可见的盒，它根本不会创建任何盒。CSS提供了一种让一个元素在格式化结构中生成能影响格式化的但本身不可见的盒的机制。详细信息请查看<a href="visufx.html#visibility">可见性</a>章节
 </p>
@@ -305,11 +305,11 @@ name="value-def-list-item"><strong>list-item</strong></a></span>
 <dt>
 <a href="tables.html#value-def-table" class="noxref"><span class="value-inst-table">table</span></a>，<a href="tables.html#value-def-inline-table" class="noxref"><span class="value-inst-inline-table">inline-table</span></a>，<a href="tables.html#value-def-table-row-group" class="noxref"><span class="value-inst-table-row-group">table-row-group</span></a>，<a href="tables.html#value-def-table-column" class="noxref"><span class="value-inst-table-column">table-column</span></a>，<a href="tables.html#value-def-table-column-group" class="noxref"><span class="value-inst-table-column-group">table-column-group</span></a>，<a href="tables.html#value-def-table-header-group" class="noxref"><span class="value-inst-table-header-group">table-header-group</span></a>，<a href="tables.html#value-def-table-footer-group" class="noxref"><span class="value-inst-table-footer-group">table-footer-group</span></a>，<a href="tables.html#value-def-table-row" class="noxref"><span class="value-inst-table-row">table-row</span></a>，<a href="tables.html#value-def-table-cell" class="noxref"><span class="value-inst-table-cell">table-cell</span></a>和<a href="tables.html#value-def-table-caption" class="noxref"><span class="value-inst-table-caption">table-caption</span></a>
 </dt>
-<dd>这些值会让一个元素表现的像个表格元素一样（相关限制在<a href="tables.html">表格</a>章节中讨论）
+<dd>这些值会让元素表现得像个表格元素一样（相关限制在<a href="tables.html">表格</a>章节中讨论）
 </dd>
 </dl>
 
-<p>（display属性的）计算值与指定值相同，除了定位的（positioned）和浮动元素（见<a href="#dis-pos-flo">'display'，'position'与'float'之间的关系</a>）以及根元素。对于根元素，计算值的变化描述在<a href="#dis-pos-flo">'display'，'position'与'float'之间的关系</a>章节
+<p>（display属性的）计算值与指定值相同，除了定位元素（positioned）和浮动元素（见<a href="#dis-pos-flo">'display'，'position'与'float'之间的关系</a>）以及根元素。对于根元素，计算值的变化描述在<a href="#dis-pos-flo">'display'，'position'与'float'之间的关系</a>章节
 </p>
 
 <p>注意，尽管<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>的<a href="about.html#initial-value">初始值</a>是'inline'，用户代理<a href="cascade.html#default-style-sheet">默认样式表</a>中的规则可能会<a href="cascade.html">重写</a>该值。见附录中HTML 4的<a href="sample.html">样例样式表</a>
@@ -326,32 +326,32 @@ img { display: none }      /* Do not display images */
 </div>
 
 
-<h2>9.3 <a name="positioning-scheme">定位模式</a></h2>
+<h2>9.3 <a name="positioning-scheme">定位方案</a></h2>
 
-<p>CSS&nbsp;2.1中，一个盒可能根据三种<a name="x22"><span class="index-def" title="positioning scheme"><dfn>定位模式</dfn></span></a>来布局：</p>
+<p>CSS&nbsp;2.1中，一个盒可能会根据三种<a name="x22"><span class="index-def" title="positioning scheme"><dfn>定位方案</dfn></span></a>来布局：</p>
 
 <ol>
 <li><a href="#normal-flow">常规流</a> CSS&nbsp;2.1中，常规流包括块级盒的<a href="#block-formatting">块格式化（block formatting）</a>，行内级盒的<a href="#inline-formatting">行内格式化</a>和块级与行内级盒的<a href="#relative-positioning">相对定位</a>
 </li>
-<li><a href="#floats">浮动</a> 在浮动模型中，一个盒先根据常规流布局，然后从流中取出来尽可能地左移或右移。其它内容可能会沿着浮动（盒）的一侧排列（Content may flow along the side of a float）
+<li><a href="#floats">浮动</a> 在浮动模型中，盒先根据常规流来放置，然后从常规流中取出来并尽可能远地向左或向右移动。其它内容可能沿着浮动（盒）的一侧排列（Content may flow along the side of a float）
 </li>
-<li><a href="#absolute-positioning">绝对定位</a> 在绝对定位模型中，一个盒会从常规流中全部移除（它不会影响后面的兄弟）并根据包含块确定位置
+<li><a href="#absolute-positioning">绝对定位</a> 在绝对定位模型中，一个盒会从常规流中全部移除（它不会影响后面的兄弟元素）并根据包含块确定位置
 </li>
 </ol>
 
 <p>如果一个元素是浮动的，绝对定位的或者是根元素，它就叫<dfn><a name="x23"><span class="index-def">流外（out of flow）</span></a></dfn>（元素）。如果一个元素不是流外的，就叫<dfn><a name="x24"><span
-class="index-def">流内（in-flow）</span></a></dfn>（元素）。元素<var>A</var>的<dfn><a name="x25"><span class="index-def">流</span></a></dfn>是由<var>A</var>和所有最近的流外祖先为A的流内元素组成的集合
+class="index-def">流内（in-flow）</span></a></dfn>（元素）。（流外）元素<var>A</var>的<dfn><a name="x25"><span class="index-def">流</span></a></dfn>是由<var>A</var>和所有最近的流外祖先为A的流内元素组成的集合（The flow of an element A is the set consisting of A and all in-flow elements whose nearest out-of-flow ancestor is A.译注：这句话假定A是个流外元素，一般只对流外元素讨论“元素的流”，因为流内元素的流只包括该元素自己，流外元素的流包括自身及所有后代元素，除了被包进其它流外元素的）
 
 <div class="note">
 <em><strong>注意</strong>
-CSS&nbsp;2.1的定位模式帮助编写者让他们的文档可读性更好，让他们避免那些用来实现布局效果的标记技巧（mark-up tricks）（例如，不可见的图片）
+CSS&nbsp;2.1的定位方案帮助编写者让他们的文档可读性更好，让他们避免那些用来实现布局效果的标记技巧（mark-up tricks）（例如，不可见的图片）
 </em>
 </div>
 
-<h3>9.3.1 <a name="choose-position">选择定位模式：</a> <a href="visuren.html#propdef-position" class="noxref"><span
+<h3>9.3.1 <a name="choose-position">选择定位方案：</a> <a href="visuren.html#propdef-position" class="noxref"><span
 class="propinst-position">'position'</span></a>属性</h3>
 
-<p><a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>和<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>属性决定用哪种CSS&nbsp;2.1定位算法来计算盒的位置
+<p><a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>和<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>属性决定了用哪种CSS&nbsp;2.1定位算法来计算盒的位置
 </p>
 
 <div class="propdef">
@@ -376,18 +376,18 @@ class="propinst-position">'position'</span></a>属性</h3>
 <dl>
 <dt><strong>static</strong></dt>
 
-<dd>盒是一个常规盒，根据<a href="#normal-flow">常规流</a>布局。<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>，<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>属性失效
+<dd>盒是个常规盒，根据<a href="#normal-flow">常规流</a>布局。<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>，<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>属性失效
 </dd>
 <dt><strong>relative</strong></dt>
 
-<dd>盒的位置是根据<a href="#normal-flow">常规流</a>（被称为常规流中的位置）计算的，然后盒<a
-href="#relative-positioning">相对于</a>其常规位置偏移。当盒B为相对定位时，后面的盒的位置就按照B没有偏移量（参照B的位置）来计算。table-row-group，table-header-group，table-footer-group，table-row，table-column-group，table-column，table-cell和table-caption元素上'position:relative'的效果是未定义的
+<dd>盒的位置是根据<a href="#normal-flow">常规流</a>计算的（被称为常规流中的位置），然后盒<a
+href="#relative-positioning">相对于</a>其常规位置偏移。当盒B为相对定位时，后面的盒的位置仍按照B没有偏移量来计算。table-row-group，table-header-group，table-footer-group，table-row，table-column-group，table-column，table-cell和table-caption元素上'position:relative'的效果是未定义的
 </dd>
 <dt><strong>absolute</strong></dt>
-<dd>盒的位置（及可能的大小）由<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>，<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>属性指定，这些属性指定了相对于盒的<a href="#containing-block">包含块</a>的偏移量。绝对定位的盒脱离了常规流，意味着它们不会影响后面兄弟的布局，而且，虽然<a href="#absolutely-positioned">绝对定位的</a>盒有margin，但它们不会与任何其它margin<a href="box.html#collapsing-margins">合并</a>
+<dd>盒的位置（及可能的大小）由<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>，<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>属性指定，这些属性指定了相对于盒的<a href="#containing-block">包含块</a>的偏移量。绝对定位的盒脱离了常规流，意味着它们不会影响后面兄弟元素的布局，而且，虽然<a href="#absolutely-positioned">绝对定位的</a>盒有外边距，但它们不会与任何其它外边距<a href="box.html#collapsing-margins">合并</a>
 </dd>
 <dt><strong>fixed</strong></dt>
-<dd>除了盒相对于某些参照（reference）是<a href="#fixed-positioning">固定的（fixed）</a>之外，盒的位置根据'absolute'模型来计算。如同'absolute'模型一样，盒的margin不会与任何其它margin合并。媒体类型为handheld，projection，screen，tty和tv的情况下，该盒相对于<a href="#viewport">视口</a>固定，并且滚动时不会移动。媒体类型为print时，该盒在每一页都会渲染，并且相对于页盒（page box）固定，即使页面是通过一个<a href="#viewport">视口</a>看到的（例如，打印预览时）。对于其它媒体类型，表现是未定义的。编写者可能希望以一种媒体依赖（media-dependent）的方式指定'fixed'。例如，一个编写者可能想让一个盒保持在屏幕<a href="#viewport">视口</a>顶部，但不出现在每一个打印页的顶部。可以用<a href="media.html#at-media-rule">@media规则</a>把它们分开，例如：
+<dd>除了盒相对于某些参照（reference）是<a href="#fixed-positioning">固定的（fixed）</a>之外，盒的位置根据'absolute'模型来计算。如同'absolute'模型一样，盒的外边距不会与任何其它外边距合并。媒体类型为handheld，projection，screen，tty和tv的情况下，该盒相对于<a href="#viewport">视口</a>固定，并且滚动时不会移动。媒体类型为print时，该盒在每一页都会呈现，并且相对于页盒（page box）固定，即使页面是通过一个<a href="#viewport">视口</a>看到的（例如，打印预览时）。对于其它媒体类型，表现是未定义的。编写者可能希望以一种依赖媒体（media-dependent）的方式指定'fixed'。例如，一个编写者可能想让一个盒保持在屏幕<a href="#viewport">视口</a>顶部，但不出现在每一个打印页的顶部。可以用<a href="media.html#at-media-rule">@media规则</a>把它们分开，例如：
 
 <div class="example"><P style="display:none">示例：</P>
 <pre><code class="css">   
@@ -410,7 +410,7 @@ href="#relative-positioning">相对于</a>其常规位置偏移。当盒B为相�
 class="propinst-top">'top'</span></a>，<a href="visuren.html#propdef-right" class="noxref"><span
 class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>，<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a></h3>
 
-<p>如果一个元素的<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>属性有一个除'static'外的值，就说它是<span class="index-def" title="positioned element/box"><a name="positioned-element"><dfn>定位的（positioned）</dfn></a></span>。定位的元素生成定位的盒（positioned boxes），根据以下4个属性布局：</p>
+<p>如果元素的<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>属性有一个除'static'外的值，就说它是<span class="index-def" title="positioned element/box"><a name="positioned-element"><dfn>定位元素（positioned）</dfn></a></span>。定位的元素生成定位的盒（positioned boxes），根据以下4个属性布局：</p>
 
 <div class="propdef">
 <dl><dt>
@@ -429,7 +429,7 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 </div>
 
 
-<p>该属性指定了一个<a href="#absolutely-positioned">绝对定位的</a>盒的top margin边离盒的<a href="#containing-block">包含块</a>的top边有多远。对于相对定位的盒，偏移量参照该盒自身的top边（例如，该盒在常规流中给定了一个位置，然后根据这些属性从原位置偏移）
+<p>该属性指定了一个<a href="#absolutely-positioned">绝对定位的</a>盒的上外边距边界离盒的<a href="#containing-block">包含块</a>的上边界有多远。对于相对定位的盒，偏移量参照该盒自身的上边界（例如，该盒在常规流中给定了一个位置，然后根据这些属性从原位置偏移）
 </p>
 
 <div class="propdef">
@@ -449,7 +449,7 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 </div>
 
 
-<p>与'top'类似，只是指定了一个盒的right margin边离该盒<a href="#containing-block">包含块</a>的right边有多远。对于相对定位的盒，偏移量参照该盒自身的right边
+<p>与'top'类似，只是指定了一个盒的右外边距边界离该盒<a href="#containing-block">包含块</a>的右边界有多远。对于相对定位的盒，偏移量参照该盒自身的右边界
 </p>
 
 <div class="propdef">
@@ -469,7 +469,7 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 </div>
 
 
-<p>与'top'类型，只是指定了一个盒的bottom margin边离该盒<a href="#containing-block">包含块</a>的bottom有多远。对于相对定位的盒，偏移量参照该盒自身的bottom边
+<p>与'top'类型，只是指定了一个盒的下外边距边界离该盒<a href="#containing-block">包含块</a>的下边界有多远。对于相对定位的盒，偏移量参照该盒自身的下边界
 </p>
 
 <div class="propdef">
@@ -489,10 +489,10 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 </div>
 
 
-<p>与'top'类似，只是指定了一个盒的left margin边离该盒<a href="#containing-block">包含块</a>的left边有多远。对于相对定位的盒，偏移量参照该盒自身的left边
+<p>与'top'类似，只是指定了一个盒的左外边距边界离该盒<a href="#containing-block">包含块</a>的左边界有多远。对于相对定位的盒，偏移量参照该盒自身的左边界
 </p>
 
-<p>这4个属性的值的含义如下：</p>
+<p>这4个属性的值含义如下：</p>
 
 <dl>
 <dt><strong><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;length&gt;</span></a></strong></dt>
@@ -500,56 +500,56 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 </dd>
 <dt><strong><a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;percentage&gt;</span></a></strong></dt>
 
-<dd>偏移量是包含块的宽度（对于<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>或<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>）或高度（对于<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>和<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>）的百分比。允许负值
+<dd>偏移量是包含块宽度（对于<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>或<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>）或高度（对于<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>和<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>）的百分比。允许负值
 </dd>
 <dt><strong>auto</strong></dt>
-<dd>对于不可替换元素，该值的效果取决于那些相关的值也是'auto'的属性。不可替换元素的详细情况，见<a href="#absolutely-positioned">绝对定位</a>的<a href="visudet.html#abs-non-replaced-width">width</a>和<a href="visudet.html#abs-non-replaced-height">height</a>章节。对于可替换元素，该值的影响只取决于替换内容的内在尺寸。可替换元素的详细情况，见绝对定位的<a href="visudet.html#abs-replaced-width">width</a>和<a href="visudet.html#abs-replaced-height">height</a>章节
+<dd>对于非替换元素，该值的效果取决于那些相关的值也是'auto'的属性。非替换元素的详细情况，见<a href="#absolutely-positioned">绝对定位</a>的<a href="visudet.html#abs-non-replaced-width">width</a>和<a href="visudet.html#abs-non-replaced-height">height</a>章节。对于替换元素，该值的影响只取决于替换内容的固有尺寸。替换元素的详细情况，见绝对定位的<a href="visudet.html#abs-replaced-width">width</a>和<a href="visudet.html#abs-replaced-height">height</a>章节
 </dd>
 </dl>
 
 <h2>9.4 <a name="normal-flow">常规流（Normal flow）</a></h2> 
 
-<p>常规流中的盒属于一个<a name="x32"><span class="index-def" title="formatting context">格式化上下文</span></a>，可能是块或是行内，但不能都是（既是块又是行内）。<a href="#block-level">块级</a>盒参与<a href="#block-formatting">块格式化</a>上下文。<a href="#inline-level">行内级盒</a>参与<a href="#inline-formatting">行内格式化</a>上下文
+<p>常规流中的盒属于一个<a name="x32"><span class="index-def" title="formatting context">格式化上下文</span></a>，可能是块或是行内（格式化上下文），但不能两者都是。<a href="#block-level">块级</a>盒参与<a href="#block-formatting">块格式化</a>上下文。<a href="#inline-level">行内级盒</a>参与<a href="#inline-formatting">行内格式化</a>上下文
 </p>
 <h3>9.4.1 <a name="block-formatting">块格式化上下文</a></h3>
 
-<p>浮动，绝对定位元素，非块盒的块容器（例如，inline-blocks，table-cells和table-captions）和'overflow'不为'visible'的块盒（当该值已被传播到视口时除外（except when that value has been propagated to the viewport））会为它们的内容建立一个新的块格式化上下文</p>
+<p>浮动，绝对定位的元素，非块盒的块容器（例如inline-blocks，table-cells和table-captions），以及’overflow’不为’visible’的块盒（当该值已被传播到视口时除外（except when that value has been propagated to the viewport））会为其内容建立新的块格式化上下文</p>
 
-<p>在一个块格式化上下文中，盒在竖直方向一个接一个地放置，从包含块的顶部开始。两个兄弟盒之间的竖直距离由<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>属性决定。同一个块格式化上下文中的相邻块级盒之间的竖直margin会<a href="box.html#collapsing-margins">合并</a>
+<p>在一个块格式化上下文中，盒在垂直方向一个接一个地放置，从包含块的顶部开始。两个兄弟盒之间的垂直距离由<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>属性决定。同一个块格式化上下文中的相邻块级盒之间的垂直外边距会<a href="box.html#collapsing-margins">合并</a>
 </p>
 
 <p>
-在一个块格式化上下文中，每个盒的left外边（left outer edge）挨着包含块的left边（对于从右向左的格式化，right边挨着）。即使存在浮动（尽管一个盒的<em>行盒</em>可能会因为浮动收缩），这也成立。除非该盒建立了一个新的块格式化上下文（这种情况下，该盒自身<a href="#bfc-next-to-float"><em>可能会因为浮动</em>变窄</a>）
+在一个块格式化上下文中，每个盒的左外边界（left outer edge）挨着包含块的左外边界（对于从右向左的格式化，右外边界挨着）。即使存在浮动（尽管一个盒的<em>行框</em>可能会因为浮动而收缩 译注：环绕浮动元素放置的行框比正常的行短一些），这也成立。除非该盒建立了一个新的块格式化上下文（这种情况下，该盒自身<a href="#bfc-next-to-float"><em>可能会因为浮动</em>变窄</a>）
 </p>
 
-<p>关于分页媒体中分页的信息，请查看<a href="page.html#allowed-page-breaks">合法的分页</a>章节
+<p>关于分页媒体中分页相关的信息，请查看<a href="page.html#allowed-page-breaks">合法的分页</a>章节
 </p>
 
 <h3>9.4.2 <a name="inline-formatting">行内格式化上下文</a></h3>
 
-<p>在一个行内格式化上下文中，盒是一个接一个水平放置的，从包含块的顶部开始。这些盒之间的水平margin，border和padding都有效。盒可能以不同的方式竖直对齐：以它们的底部或者顶部对齐，或者以它们里面的文本的基线对齐。包含来自同一行的盒的矩形区域叫做<span class="index-def" title="line box"><a name="line-box"><dfn>行盒</dfn></a></span>
+<p>在行内格式化上下文中，盒是从包含块的顶部开始一个挨一个水平放置的。这些盒之间的水平外边距，边框和内边距都有效。盒可能会以不同的方式垂直对齐：以它们的底部或者顶部对齐，或者以它们里面的文本的基线对齐。包含来自同一行的盒的矩形区域叫做<span class="index-def" title="line box"><a name="line-box"><dfn>行框</dfn></a></span>
 </p>
-<p>行盒的宽度由<a href="#containing-block">包含块</a>和浮动情况决定，行盒的高度由<a href="visudet.html#line-height">行高的计算</a>小节给出的规则决定
+<p>行框的宽度由<a href="#containing-block">包含块</a>和浮动情况决定，行框的高度由<a href="visudet.html#line-height">行高的计算</a>小节给出的规则决定
 </p>
-<p>一个行盒总是足够高，能够容纳它包含的所有盒。然而，它可能比它所包含的最高的盒还要高（例如，如果盒是以基线对齐的）。当盒B的高度小于它所在的行盒的高度时，行盒中B的竖直对齐方式由<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定。当几个行内级盒在水平方向上不能共存于一个行盒时，它们会被分到两个或多个垂直堆叠的（vertically-stacked） 行盒里。因此，段落就是个行盒的垂直栈（vertical stack）。行盒没有垂直间隔地堆放（除非在其它地方有特别说明）并且它们不会重叠
+<p>行框总是足够高，能够容纳它包含的所有盒。然而，它可能比它所包含的最高的盒还要高（例如，如果盒是以基线对齐的）。当盒B的高度小于它所在的行框的高度时，行框中B的垂直对齐方式由<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定。当几个行内级盒在水平方向上不能共存于一个行框时，它们会被分到两个或多个垂直堆叠的（vertically-stacked） 行框里。因此，段落就是个行框的垂直栈（vertical stack）。行框没有垂直间隔地堆放（除非在其它地方有特别说明）并且它们不会重叠
 </p>
-<p>一般来说，一个行盒的left边挨着其包含块的left边，right边挨着其包含块的right边。然而，浮动盒可能会跑到包含块边与行盒边之间。因此，尽管同一个行内格式化上下文中的行盒一般都有相同的宽度（也就是包含块的宽度），如果可用的水平空间因为<a href="#floats">浮动</a>而减少了的话，它们的宽度就可能不同。同一个行内格式化上下文中的行盒一般高度各不相同（例如，一行可能含有一个高图片，而其它的只含文本）
+<p>一般来说，一个行框的左边界挨着其包含块的左边界，右边界挨着其包含块的右边界。然而，浮动盒可能会跑到包含块边界与行框边界之间。因此，尽管同一个行内格式化上下文中的行框一般都有相同的宽度（即包含块的宽度），如果可用的水平空间因为<a href="#floats">浮动</a>而减少了的话，它们的宽度就可能不同。同一个行内格式化上下文中的行框一般高度各不相同（例如，一行可能含有一个高图片，而其它的只含文本）
 </p>
-<p>当一行的行内级盒的总宽度小于它们所在的行盒的宽度时，它们在行盒里的水平分布由<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性决定。如果该属性值为'justify'，用户代理可能会拉伸行内盒（不包括inline-table和inline-block盒）里的空白和字（间距）
+<p>当一行的行内级盒的总宽度小于它们所在的行框的宽度时，它们在行框里的水平分布由<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性决定。如果该属性值为'justify'，用户代理可能还会拉伸行内盒（不包括inline-table和inline-block盒）里的空格和单词
 </p>
 
 <p>
-当一个行内盒超出一个行盒的宽度时，它会被分成几个盒，并且这些盒会跨多行盒分布。如果一个行内块无法分割（例如，如果该行内盒含有一个单个字符，或者特定语言的单词分隔规则不允许在该行内盒里分隔，或如果该行内盒受到了一个值为nowrap或者pre的white-space的影响），那么该行内盒会从行盒溢出
+当行内盒超出行框宽度时，它会被分成几个盒，并且这些盒会跨多行框分布。如果一个行内块无法分割（例如，如果该行内盒（只）含单一字符，或者特定语言的单词分隔规则不允许在该行内盒里分隔，或该行内盒受到了一个值为nowrap或者pre的white-space的影响），那么该行内盒会从行框溢出
 </p>
 <p>
-当一个行内盒被分割后，margin，border和padding在发生分割的地方（或者在任何分割处，如果有多处的话）不会有可视化效果
+当一个行内盒被分割后，外边距，边框和内边距在发生分割的地方（或者在任何分割处，如果有多处的话）没有视觉效果
 </p>
-<p><em>同一个行盒里的</em>行内盒也可能因为<a href="#direction">双向（bidirectional）文本处理</a>而被分割成几个盒
+<p><em>同一个行框里的</em>行内盒也可能因为<a href="#direction">双向（bidirectional）文本处理</a>而被分割成几个盒
 </p>
-<p id="phantom-line-box">需要盛放（hold）一个行内格式化上下文中的行内级内容时，创建一个行盒。不含文本、<a href="text.html#white-space-prop">保留空白符（preserved white space）</a>、margin，padding或者border非0的行内元素、其它<a href="#positioning-scheme">流内</a>内容（例如，图片，inline block或者inline table），并且不以保留换行符（preserved newline）结束的行盒必须被当作一个0高度的行盒，为了确定它里面所有元素的位置，而其它时候（for any other purpose）必须当它不存在
+<p id="phantom-line-box">需要盛放（hold）行内格式化上下文中的行内级内容时，创建一个行框。该行框不含文本、<a href="text.html#white-space-prop">保留空白符（preserved white space）</a>、外边距，内边距和边框非0的行内元素、 以及其它<a href="#positioning-scheme">流内</a>内容（例如，图片，行内块或行内表格），并且不以保留换行符结束的（行框）在确定其内部元素的位置时必须被当做0高度行框，出于其他目的时，必须当它不存在
 </p>
 <div class="html-example"><p> 
-有个行内盒构造的示例，下面的段落（HTML块级元素P创建的）含有匿名文本，穿插在EM和STRONG元素中：
+有个行内盒构造的示例，下面的段落（HTML块级元素P创建的）含有匿名文本，散布在EM和STRONG元素间：
 </p>
 <pre><code class="html">
 &lt;P&gt;Several &lt;EM&gt;emphasized words&lt;/EM&gt; appear
@@ -566,13 +566,13 @@ class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom
 <li>Anonymous: "sentence, dear."</li>
 </ul>
  
-<p>为了格式化该段落，用户代理把5个盒排列（flows）在一个行盒里。本例中，P元素生成的盒为行盒建立了包含块。如果该包含块足够宽，所有行内盒都能放进一个行盒里：
+<p>为了格式化该段落，用户代理把5个盒排列（flows）在一个行框里。本例中，P元素生成的盒为行框建立了包含块。如果该包含块足够宽，所有行内盒都能放进一个行框里：
 </p>
 <pre>
  Several <em>emphasized words</em> appear <strong>in this</strong> sentence, dear.
 </pre>
 
-<p>如果不行，行内盒将被分割并跨行盒分布。之前的段落可能被分成下面这样：
+<p>如果不行，行内盒将被分割并跨行框分布。之前的段落可能被分成下面这样：
 </p>
 <pre>
 Several <em>emphasized words</em> appear
@@ -589,7 +589,7 @@ sentence, dear.
 
 </div>
 
-<p>在之前的示例中，EM盒被分成了两个EM盒（叫它们"split1"和"split2"）。Margin，border，padding或者文本修饰（text decorations）不会在split1后面或split2前面产生可见的效果
+<p>在之前的示例中，EM盒被分成了两个EM盒（叫它们"split1"和"split2"）。外边距，边框，内边距或文本修饰（text decorations）不会在split1后面和split2前面产生可见的效果
 </p>
 <div class="html-example"><p>
 考虑下例：
@@ -615,7 +615,7 @@ sentence, dear.
 &lt;/HTML&gt;
 </code></pre>
 
-<p>取决于P的宽度，盒可能分布如下：</p>
+<p>取决于P的宽度，各盒可能分布如下：</p>
 
 <div class="figure">
 <p><img src="./images/inline-layout.png"
@@ -625,19 +625,19 @@ behavior on split inline box">[D]</A></SPAN></p>
 </div>
 
 <ul>
-<li>在"emphasized"前面和"words"后面插入了margin</li>
+<li>外边距插在"emphasized"前面和"words"后面</li>
 
-<li>在"emphasized"的前面，上面及下面，"words"的后面，上面及下面插入了padding，每种情况下都渲染了三个方向的虚线边框</li>
+<li>内边距插在"emphasized"的前面，上面和下面，以及"words"的后面，上面和下面，虚线边框也出现在这3个方向</li>
 </ul>
 </div>
 
 <h3>9.4.3 <a name="relative-positioning">相对定位</a></h3>  
 
-<p>当一个盒根据<a href="#normal-flow">常规流</a>或者浮动摆放好后，它可能会相对于该位置移动，这叫<a name="x34"><span class="index-def" title="relative positioning"><dfn>相对定位</dfn></span></a>。如果给定盒(B2)的位置时就当盒(B1)没有偏移，并且B2没有在B1偏移之后重新定位（re-positioned）的话，B1的偏移不会影响B2，这说明相对定位可能导致盒重叠。然而，如果相对定位的'overflow:auto'或'overflow:scroll'盒溢出了，滚动条的创建可能会影响布局
+<p>当一个盒根据<a href="#normal-flow">常规流</a>或者浮动摆放好后，它可能会相对于该位置移动，称之为<a name="x34"><span class="index-def" title="relative positioning"><dfn>相对定位</dfn></span></a>。用这种方式偏移盒(B1)的位置不影响盒(B2)，遵循：给定B2位置时就当B1没有偏移，并且B2在B1应用偏移之后没有重新定位（re-positioned）。这表明相对定位可能会导致盒重叠。然而，如果相对定位导致具有'overflow:auto'或'overflow:scroll'的盒溢出了的话，UA必须让用户能够访问这部分内容（在其偏移位置），此时，滚动条的创建可能会影响布局
 </p>
 <p>相对定位的盒保持它在常规流中的大小，包括换行和空格都会原样保留。<a href="#containing-block">包含块</a>小节解释了一个相对布局盒会在什么时候建立一个新的包含块
 </p>
-<p>对于相对定位的元素，'left'和'right'水平移动盒，不会改变其大小。'left'把盒向右移，而'right'把盒向左移动。因为盒没有被分割或者拉伸，所以'left'或'right'的应用值总是（保持）：left = -right
+<p>对于相对定位的元素，'left'和'right'水平移动盒，不会改变其大小。'left'把盒向右移，而'right'把盒向左移动。因为盒没有被分割或者拉伸，所以'left'或'right'的应用值总是（满足）：left = -right
 </p>
 <p>如果'left'和'right'都是'auto'（各自的初始值），应用值为'0'（即盒待在原位置）
 </p>
@@ -645,7 +645,7 @@ behavior on split inline box">[D]</A></SPAN></p>
 </p>
 <p>如果'right'被指定为'auto'，其应用值为负的'left'值
 </p>
-<p>如果'left'和'right'都不是'auto'，position就被过度约束（over-constrained）了，它们（'left'和'right'）其中有一个会被忽略。如果包含块的'direction'属性是'ltr'，那么'left'有效，'right'变成-'left'（负的'left'）。如果包含块的'direction'属性是'rtl'，那么'right'有效，'left'被忽略
+<p>如果'left'和'right'都不是'auto'，位置就被过度约束（over-constrained）了，它们（'left'和'right'）其中有一个会被忽略。如果包含块的'direction'属性是'ltr'，那么'left'有效，'right'变成-'left'（负的'left'）。如果包含块的'direction'属性是'rtl'，那么'right'有效，'left'被忽略
 </p>
 <div class="example"><P style="display:none">示例：</P>
 <p><strong>示例</strong> 下列3条规则是等价的：
@@ -657,40 +657,40 @@ div.a8 { position: relative; direction: ltr; left: -1em; right: 5em }
 </code></pre>
 </div>
 
-<p>'top'和'bottom'属性会上下移动相对定位的元素，不会改变其大小。'top'把盒向下移，'bottom'向上移。因为盒没有被分割或者拉伸，所以'top'或'bottom'的应用值总是（保持）：top = -bottom。如果都是'auto'，它们的应用值就都是'0'。如果其中一个是'auto'，它会变成另一个的相反数。如果都不是'auto'，就忽略'bottom'（即'bottom'的应用值将是负的'top'值）
+<p>'top'和'bottom'属性会上下移动相对定位的元素，不会改变其大小。'top'把盒向下移，'bottom'向上移。因为盒没有被分割或者拉伸，所以'top'或'bottom'的应用值总是（满足）：top = -bottom。如果都是'auto'，它们的应用值就都是'0'。如果其中一个是'auto'，它会变成另一个的相反数。如果都不是'auto'，就忽略'bottom'（即'bottom'的应用值将是负的'top'值）
 </p>
 
 <p class="note">
 注意
-脚本环境中，相对定位盒的动态移动能产生动画效果（另见<a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>属性）。尽管相对定位可能被用于上标和下标的形式，但自动调整行高时并不会考虑其定位。更多信息请查看<a href="visudet.html#line-height">行高的计算</a>中的描述
+脚本环境中，相对定位盒的动态移动能产生动画效果（另见<a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>属性）。尽管相对定位可以用作上标和下标的形式，但行高不会因为其定位而自动调整。更多信息请查看<a href="visudet.html#line-height">行高的计算</a>中的说明
 </p>
 <p><a href="#comparison">比较常规流，浮动与绝对定位</a>小节提供了相对定位的示例
 </p>
 <h2>9.5 <a name="floats">浮动</a></h2>
 
-<p>float（盒）就是一个在当前行向左或向右移动的盒。float（或者"floated"或者"floating"盒）最有意思的特性是其它内容会沿着它的一侧排列（可以通过<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性禁止这种行为）。其它内容会沿着left-floated盒的右侧，right-floated盒的左侧排列。下面是浮动定位和其它内容排列（flow）的介绍，控制浮动行为的准确<a href="#float-rules">规则</a>见<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>属性中的描述
+<p>浮动（盒）就是一个在当前行向左或向右移动的盒。浮动盒最有意思的特性是其它内容会沿着它的一侧排列（可以通过<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性禁止这种行为）。其它内容会沿着左浮动盒的右侧，右浮动盒的左侧排列。下面是浮动定位及其内容流（flow）的介绍，控制浮动行为的准确<a href="#float-rules">规则</a>见<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>属性中的说明
 </p>
 <p>
-一个浮动盒会向左或向右移动，直到其外边（outer edge）挨到包含块边或者另一个浮动盒的外边。如果存在行盒，浮动盒的外top（边）会与当前行盒的top（边）对齐
+一个浮动盒会向左或向右移动，直到其外边界挨到包含块边界或者另一个浮动盒的外边界。如果存在行框，浮动盒的上外（边界）会与当前行框的上（边界）对齐
 </p>
 <p>
-如果没有足够的水平空间来浮动，它会向下移动，直到空间合适或者不会再出现其它浮动了
+如果没有足够的水平空间来浮动，它会向下移动，直到空间合适或者再没出现其它浮动
 </p>
-<p>因为浮动（盒）不在流内，在浮动盒之前或者之后创建的未定位的（non-positioned）块盒会竖直排列，就像浮动不存在一样。然而，接着（next to）浮动（盒）创建的当前及后续行盒会进行必要的缩短，为了给浮动（盒）的margin box让出空间
+<p>因为浮动（盒）不在（常规）流内，在浮动盒之前或者之后创建的非定位（non-positioned）块盒会垂直排列，就像浮动不存在一样。然而，会根据需要缩短挨着（next to）浮动（盒）创建的当前（行）及后续行框，以便给浮动（盒）的外边距框让出空间
 
-<p>如果存在一个完全满足4个条件的的竖直位置：(a)在行盒top或者top以下，(b)在行盒bottom或者bottom以上，(c)在浮动（盒）的top margin边以下，并且(d)在浮动（盒）的bottom margin边以上，那么就说该行盒接着（next to）浮动（盒）
+<p>行框挨着（next to）浮动盒的条件是存在一个垂直位置，同时满足这4个条件：(a)位于行框的顶端或顶端下方，(b)位于行框底端或底端上方，(c)在浮动（盒）上外边距边界下方并且(d)在浮动（盒）下外边距边界上方
 
-<p class=note>注意：意思是0外高度（outer height）或者负外高度（的盒）的浮动不会缩短行盒
+<p class=note>注意：也就是说0外高度（outer height）或者负外高度（盒）的浮动不会缩短行框
 
-<p>如果一个缩短的行盒小到无法容纳任何内容了，那么该行盒会向下移动（并重新计算其宽度）直到有些内容能适应（它的空间）或者不会再出现其它浮动了。位于浮动（盒）之前的当前行盒里的任何内容都会在浮动（盒）的另一侧的相同行重新排列（reflowed）。换句话说，如果遇到了被放在一个向左浮动（的盒）之前的行盒里的行内级盒，它适应剩余的行盒空间，则该向左浮动（的盒）会被放在该行，与行盒的top对齐，然后该行里的行内级盒会被移动到浮动（的盒）的右边，对于rtl和向右浮动则正好相反
+<p>如果一个缩短的行框小到无法容纳任何内容了，那么该行框会向下移动（并重新计算其宽度）直到有些内容能适应（它的空间）或者再没出现其它浮动了。当前行里浮动盒之前的所有内容都会在浮动方向另一侧的相同行重新排列（reflow）。换句话说，如果行内级盒被放在同一行中的左浮动元素之前，并且适应剩余的行框空间，左浮动（盒）就放在该行，与行框的顶端对齐，然后，相应地，该行中已经放好的这个内联级盒会被移动到浮动盒右边（右边是左浮动的另一侧），对于rtl和右浮动，反之亦然
 </p>
 
 <p id="bfc-next-to-float">
-一个表格，块级可替换元素或者常规流中建立了新的<a href="visuren.html#block-formatting">块格式化上下文</a>的元素（例如一个'overflow'不为'visible'的元素）不能和与元素自身处于同一块格式化上下文中的任何浮动（盒）的margin box重叠。如果必要的话，实现应该通过把它放在所有之前出现的浮动（盒）下方来清除（clear）该元素，如果空间充足的话，可以放得与浮动（盒）相邻。它们甚至会让该元素的border box比<a href="visudet.html#blockwidth">10.3.3小节</a>中定义的更窄。CSS2没有定义UA可以把该元素接着浮动（盒）放或者该元素可以变得多窄
+表格，块级替换元素或常规流中建立了新的<a href="visuren.html#block-formatting">块格式化上下文</a>的元素（例如一个'overflow'不为'visible'的元素）不能和与元素自身处于同一块格式化上下文中的任何浮动（盒）的外边距框重叠。如果必要的话，实现应该把它放在所有之前出现的浮动（盒）下方，以清除（clear）该元素（受到的浮动影响），如果空间充足的话，可以放得与浮动（盒）相邻。它们甚至会让该元素的边框框比<a href="visudet.html#blockwidth">10.3.3小节</a>中定义的更窄。CSS2没有定义UA什么情况下可以把该元素挨着浮动（盒）放以及该元素可以变得多窄
 </p>
 <div class="example"><P style="display:none">示例：</P>
 <p><strong>示例</strong> 
-下面这段文档中，包含块窄到无法容纳与浮动（盒）接着的内容了，所以内容被移动到了浮动（盒）下方，在行盒中按照text-align属性对齐（的位置）
+下面这段文档中，包含块窄到无法容纳与浮动（盒）挨着的内容了，所以内容被移动到了浮动（盒）下方，在行框中按照text-align属性对齐的位置
 </p>
 <pre><code class="css">
 p { width: 10em; border: solid aqua; }
@@ -718,7 +718,7 @@ span { float: left; width: 5em; height: 5em; border: solid blue; }
 <p>几个浮动（盒）可能相邻，并且该模型也适用于同一行里的相邻浮动（盒）
 </p>
 <div class="example"><P style="display:none">示例：</P><p>
-下列规则让所有<samp>class="icon"</samp>的IMG盒向左浮动（并设置了left margin为0）：</p>
+下列规则让所有<samp>class="icon"</samp>的IMG盒向左浮动（并设置了左外边距为0）：</p>
 
 <pre><code class="css">
 img.icon { 
@@ -749,7 +749,7 @@ img.icon {
 &lt;/HTML&gt;
 </code></pre>
 
-<p>IMG盒向左浮动，后面跟着的内容被格式化到浮动（盒）的右边，从浮动（盒）的同一行开始。浮动（盒）右边的行盒因为浮动出现而被缩短了，但恢复了浮动（盒）后面的（盒的）“常规”宽度（P元素建立的包含块的宽度）。该文档可能会被格式化成：</p>
+<p>IMG盒向左浮动，后面跟着的内容被格式化到浮动（盒）的右边，从浮动（盒）的同一行开始。浮动（盒）右边的行框因为浮动出现而被缩短了，但恢复了浮动（盒）后面的（盒的）“正常”宽度（P元素建立的包含块的宽度）。该文档可能会被格式化成：</p>
 
 <div class="figure">
 <p><img src="./images/floateg.png"
@@ -767,16 +767,16 @@ margins."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-floateg" href="imag
 &lt;/BODY&gt;
 </code></pre>
 
-<p>因为浮动（盒）左边的内容被浮动（盒）替代了，所以（内容）会沿着其右侧重新排列（reflowed）
+<p>因为浮动（盒）左边的内容被浮动（盒）取代了，所以（内容）会沿着浮动盒右侧重新排列（reflow）
 </p></div>
 
-<p>如<a href="box.html#collapsing-margins">8.3.1小节</a>所述, 浮动盒的margin不会与相邻盒的margin<a href="box.html#collapsing-margins">合并</a>。因此，之前的示例中，P盒与浮动的IMG盒之间的竖直margin不会<a href="box.html#collapsing-margins">合并</a>
+<p>如<a href="box.html#collapsing-margins">8.3.1小节</a>所述, 浮动盒的外边距不会与相邻盒的外边距<a href="box.html#collapsing-margins">合并</a>。因此，之前的示例中，P盒与浮动的IMG盒之间的垂直外边距不会<a href="box.html#collapsing-margins">合并</a>
 </p>
 <p>
-浮动（盒）的内容会堆叠起来，就像浮动（盒）生成了新的层叠上下文（stacking contexts）一样，除了所有定位的元素和实际创建了新的层叠上下文并参与了浮动（盒）的父级堆叠上下文的元素。一个浮动（盒）可以与常规流中的其它盒重叠（例如，当一个常规流盒接着一个有负margin的浮动（盒）时），出现这种情况时，浮动（盒）会被渲染在未定位的（non-positioned）流内块之前，流内行内（盒）之后
+浮动（盒）的内容会堆叠起来，就像浮动（盒）生成了新的堆叠上下文（stacking contexts）一样，除了所有定位的元素和实际创建了新的堆叠上下文并参与了浮动（盒）的父级堆叠上下文的元素。浮动（盒）可以与常规流中的其它盒重叠（例如，当常规流盒挨着具有负外边距的浮动（盒）时），出现这种情况时，浮动（盒）会被渲染在非定位（non-positioned）流内块之前，流内行内（盒）之后
 </p>
 <div class="example"><P style="display:none">示例：</P>
-<p>另一幅图展示了当一个浮动（盒）与常规流中元素的border的重叠
+<p>另一幅图展示了当一个浮动（盒）与常规流中元素的边框重叠时的情况
 </p>
 <div class="figure">
 <p><img src="images/float2p.png" alt="Image showing a floating image
@@ -789,7 +789,7 @@ interrupted by the image."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-fl
 </div>
 </div>
 
-<p>下例描述了用<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性来阻止内容接着浮动（盒）排列
+<p>下例描述了用<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性来阻止内容挨着浮动（盒）排列
 </p>
 <div class="example"><P style="display:none">示例：</P>
 <p>假设一条这样的规则：
@@ -805,7 +805,7 @@ p { clear: left }
 image and the effect of 'clear: left' on the two paragraphs."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-floatclear" href="images/longdesc/floatclear-desc.html" title="Long description of how floats overlap with boxes in normal
       flow">[D]</A></SPAN>
 </p>
-<p class="caption">（两个）段落都被设置了'clear: left'，让第二个段落被“推下去”到了浮动（盒）下方的位置&mdash;为了完成这种效果（见<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性），在它的top margin上面插入了“空隙（clearance）” 
+<p class="caption">（两个）段落都被设置了'clear: left'，让第二个段落被“推下去”到了浮动（盒）下方的位置&mdash;为了完成这种效果（见<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性），在它的上外边距上面插入了“空隙（clearance）” 
 </p>
 </div>
 </div>
@@ -835,11 +835,11 @@ image and the effect of 'clear: left' on the two paragraphs."><SPAN class="dlink
 <dl>
 <dt><strong>left</strong></dt>
 
-<dd>元素会生成一个向左浮动的<a href="#block-boxes">块</a>盒。其它内容排列在盒的右侧，从top开始（见<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性）
+<dd>元素会生成一个向左浮动的<a href="#block-boxes">块</a>盒。其它内容排列在盒的右侧，从顶部开始（受限于<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性）
 </dd>
 <dt><strong>right</strong></dt>
 
-<dd>与'left'类似，但盒向右浮动，并且其它内容排列在盒的左侧，从top开始</dd>
+<dd>与'left'类似，但盒向右浮动，而其它内容排列在盒的左侧，从顶部开始</dd>
 
 <dt><strong>none</strong></dt>
 
@@ -855,29 +855,29 @@ image and the effect of 'clear: left' on the two paragraphs."><SPAN class="dlink
 name="float-rules">有几条准确的规则</a>，用来控制浮动的行为：</p>
 
 <ol>
-<li>一个左浮动盒的left<a href="box.html#outer-edge">外边（outer edge）</a>不能位于其<a href="#containing-block">包含块</a>的left边的左边。向右浮动的元素也有类似的规则
+<li>左浮动盒的左<a href="box.html#outer-edge">外边界</a>不能位于其<a href="#containing-block">包含块</a>的左边界的左边。向右浮动的元素也有类似的规则
 </li>
-<li>如果当前盒是向左浮动的，并且在这之前源文档中还有元素生成了左浮动盒，那么对于每一个之前的盒，要么当前盒的left<a href="box.html#outer-edge">外边</a>在之前的盒的right<a href="box.html#outer-edge">外边</a>的右边，要么它的top要比之前的盒的bottom低。右浮动盒也有类似的规则
+<li>如果当前盒是向左浮动的，并且在这之前源文档中还有元素生成了左浮动盒，那么对于每一个之前的盒，要么当前盒的左<a href="box.html#outer-edge">外边界</a>在之前的盒的右<a href="box.html#outer-edge">外边界</a>的右边，要么其顶部要低于之前盒的底部。右浮动盒也有类似的规则
 </li>
-<li>一个左浮动盒的right<a href="box.html#outer-edge">外边</a>不能位于接着它的任意右浮动盒的left<a
-href="box.html#outer-edge">外边</a>的右边。右浮动盒也有类似的规则
+<li>左浮动盒的right<a href="box.html#outer-edge">外边</a>不能位于挨着它的任意右浮动盒的左<a
+href="box.html#outer-edge">外边界</a>的右边。右浮动盒也有类似的规则
 </li>
-<li>一个浮动盒的<a href="box.html#outer-edge">外top（outer top）</a>不能高于其<a href="#containing-block">包含块</a>的top。当浮动（盒）出现在两个合并的margin之间时，浮动（盒）的定位就像它有一个空的<a href="#anonymous-block-level">匿名块父级</a>存在于（当前）流一样。这个父级的位置通过margin合并章节中的<a
+<li>浮动盒的<a href="box.html#outer-edge">外顶端（outer top）</a>不能高于其<a href="#containing-block">包含块</a>的顶部。当浮动（盒）出现在两个折叠外边距（collapsing margins）之间时，浮动（盒）的定位就像它有个空的<a href="#anonymous-block-level">匿名块父级</a>存在于（当前）流一样。这个父级的位置通过外边距合并章节中的<a
 href="box.html#collapsed-through">规则</a>来定义
 </li>
-<li>一个浮动盒的<a href="box.html#outer-edge">外top</a>不能高于源文档中任何在此之前的元素生成的<a href="#block-boxes">块盒</a>或者<a href="#floats">浮动盒</a>的外top
+<li>浮动盒的<a href="box.html#outer-edge">外顶端</a>不能高于源文档中任何在该元素之前的元素生成的<a href="#block-boxes">块盒</a>或者<a href="#floats">浮动盒</a>的外顶端
 </li>
-<li>一个元素的浮动盒的<a href="box.html#outer-edge">外top</a>不能高于任何含有源文档中在此之前的元素生成的盒的行盒的top
+<li>元素的浮动盒的<a href="box.html#outer-edge">外顶端</a>不能高于任何含有源文档中在该元素之前的元素生成的盒的行框的顶端
 </li>
-<li>左边存在另一个左浮动盒的左浮动盒的right外边不能位于其包含块的right边的右边（不严谨的：一个左浮动盒不能超出right边，除非它已经尽量向左（紧挨着包含块的left边）了）。右浮动元素也有类似的规则
+<li>左边存在另一个左浮动盒的左浮动盒的right外边不能位于其包含块的右边界的右边（不严谨的：左浮动盒不能超出右边界，除非它已经尽量向左（紧挨着包含块的左边界）了）。右浮动元素也有类似的规则
 </li>
-<li>浮动盒必须尽量高往高放（A floating box must be placed as high as possible）
+<li>浮动盒必须尽量往高处放
 </li>
 <li>左浮动盒必须尽量往左放，右浮动盒尽量往右放。更高的位置要比更左/右的位置优先
 </li>
 </ol>
 
-<p>但在CSS&nbsp;2.1中，如果块格式化上下文里有一个流内负竖直margin，导致浮动（盒）的位置在原位置（假设该负margin被设置为0）的上方，浮动（盒）的位置是未定义的
+<p>但在CSS&nbsp;2.1中，如果块格式化上下文里有一个流内负垂直外边距，导致浮动（盒）的位置在原位置（假设该负外边距被设置为0）的上方，浮动（盒）的位置是未定义的
 
 <p>这些规则里涉及的其它元素仅仅是指与浮动（盒）处于同一个<a href="#block-formatting">块格式化上下文</a>的其它元素
 </p>
@@ -915,7 +915,7 @@ alt="An a at the left side of a box and a b at the right side">
 </div>
 
 
-<p>该属性说明了一个元素的盒的哪一边<em>不能</em>与之前的浮动盒相邻。'clear'属性不考虑元素自身的或者其它<a href="visuren.html#block-formatting">块格式化上下文</a>中的浮动</a>
+<p>该属性说明了元素盒的哪一边<em>不能</em>与之前的浮动盒相邻。'clear'属性不考虑元素自身的或者其它<a href="visuren.html#block-formatting">块格式化上下文</a>中的浮动</a>
 </p>
 
 <p>应用于非浮动块级盒时，属性值含义如下：</p>
@@ -923,17 +923,17 @@ alt="An a at the left side of a box and a b at the right side">
 <dl>
 <dt><strong>left</strong></dt>
 
-<dd>要求该盒的top border边位于源文档中在此之前的元素形成的所有左浮动盒的bottom外边下方
+<dd>要求该盒的上边框边界位于源文档中在此之前的元素形成的所有左浮动盒的下外边界下方
 </dd>
 
 <dt><strong>right</strong></dt>
 
-<dd>要求该盒的top border边位于源文档中在此之前的元素形成的所有右浮动盒的bottom外边下方
+<dd>要求该盒的上边框边界位于源文档中在此之前的元素形成的所有右浮动盒的下外边界下方
 </dd>
 
 <dt><strong>both</strong></dt>
 
-<dd>要求该盒的top border边位于源文档中再次之前的元素形成的所有左浮动盒和右浮动盒的bottom外边下方
+<dd>要求该盒的上边框边界位于源文档中在该元素之前的元素形成的所有左浮动盒和右浮动盒的下外边界下方
 </dd>
 
 <dt><strong>none</strong></dt>
@@ -941,21 +941,21 @@ alt="An a at the left side of a box and a b at the right side">
 <dd>对该盒相对于浮动（盒）的位置没有约束</dd>
 </dl>
 
-<p>值不为'none'就隐含了要引入<dfn><span class="index-def"><a name="clearance">空隙（clearance）</a></span></dfn>。空隙会阻止margin合并，并作为元素margin-top上方的空间。用来在竖直方向上推着元素越过浮动（It is used to push the element vertically past the float）
+<p>值不为'none'就隐含了要引入<dfn><span class="index-def"><a name="clearance">空隙（clearance）</a></span></dfn>。空隙会阻止外边距合并，并作为元素margin-top上方的空间。用来在垂直方向上把元素推离浮动（元素）（It is used to push the element vertically past the float）
 
-<p>计算一个设置了'clear'的元素的空隙，先要确定该元素的top border边的假定位置。该位置是当元素的'clear'属性为'none'时其top border边实际所在的位置
+<p>计算设置了'clear'的元素的空隙，先要确定该元素的上边框边界的假定位置。该位置是当元素的'clear'属性为'none'时其上边框边界实际所在的位置
 
-<p>如果该元素的top border边的假定位置没有越过（past）相关的浮动（盒），那么就得引入空隙，并根据8.3.1中的规则合并margin
+<p>如果该元素的上边框边界的假定位置没有越过（past）相关的浮动（盒），那么就得引入空隙，并根据8.3.1中的规则合并外边距
 
 <p>然后，空隙的高度（amount）被设置为下面两者的较大值：
 
 <ol>
-  <li>把块的border边放在最低的将被clear的浮动（盒）的bottom外边（outer edge），所必需的高度
+  <li>把块的边框边界放在最低的将被clear的浮动（盒）的下外边界，所必需的高度
  
-  <li>把块的top border边放在其假定位置（clear为'none'时的位置），所必需的高度
+  <li>把块的上边框边界放在其假定位置（clear为'none'时的位置），所必需的高度
 </ol>
 
-<p>或者，空隙被精确地设置为把块的border边放在最低的将被clear的浮动（盒）的bottom外边，所必需的高度
+<p>或者，空隙被精确地设置为把块的border边放在最低的将被clear的浮动（盒）的下外边界，所必需的高度
 
 <p class="note"><em><strong>注意：</strong>两种行为都允许用现有的Web内容评估其兼容性，将来的CSS规范将规定其一</em>
 
@@ -963,22 +963,22 @@ alt="An a at the left side of a box and a b at the right side">
 注意：空隙可以为负或者为0
 
 <div class=example><P style="display:none">示例：</P>
-<p>例1 假设（简单起见），我们有3个盒，顺序为：块B1的bottom margin为M1（B1没有子级也没有padding和border），浮动块F的高度为H，块B2的top margin为M2（没有padding和border也没有子级），B2的'clear'为'both'。我们同样假设B2非空
+<p>例1 假设（简单起见），我们有3个盒，顺序为：块B1的下外边距为M1（B1没有子级也没有内边距和边框），浮动块F的高度为H，块B2的上外边距为M2（没有内边距和边框也没有子级），B2的'clear'为'both'。我们同样假设B2非空
 
-<p>不考虑B2的'clear'属性，情况如下图所示，B1和B2的margin合并了。B1的bottom border边在y = 0处，F的top在y = M1处，B2的top border边在y = max(M1,M2)处，F的bottom在y = M1 + H处
+<p>不考虑B2的'clear'属性，情况如下图所示，B1和B2的外边距合并了。B1的下边框边界在y = 0处，F的顶端在y = M1处，B2的上边框边界在y = max(M1,M2)处，F的底端在y = M1 + H处
 
 <div class="figure">
 <p><img src="./images/clearance.png"
      alt="Float F extends into the margin above M2."></p>
 </div>
 
-<p>我们再假设B2不在F下方（竖直方向），即规范描述的那种需要添加空隙的情况，意味着：
+<p>我们再假设B2不在F下方（垂直方向），即规范描述的那种需要添加空隙的情况，意味着：
 
 <blockquote>
 <p>max(M1,M2) &lt; M1 + H
 </blockquote>
 
-<p>我们需要计算两次空隙C，C1和C2，取较大值：C = max(C1,C2)。第一种方法是让B2的top紧接着F的bottom，即在y = M1 + H处。意味着，因为存在空隙，它们之间margin不再合并：
+<p>我们需要计算两次空隙C，C1和C2，取较大值：C = max(C1,C2)。第一种方法是让B2的顶端紧接着F的底端，即在y = M1 + H处。意味着，因为存在空隙，它们之间margin不再合并：
 
 <blockquote class=math>
 <p> <span>bottom of F</span> <span>= top border edge of B2</span> <span>&#8660;</span>
@@ -1028,35 +1028,35 @@ alt="An a at the left side of a box and a b at the right side">
   Last paragraph.
 </pre>
 
-<p>解释：没有'clear'的话，第一个和最后一个段落的margin将会合并，并且最后一个段落的top border边将紧接着浮动段落的top。但'clear'要求top border边处于浮动（元素）<em>下方</em>。即，再低2em，这意味着必须引入空隙。因此，margin不再合并，空隙的高度被设置为clearance + margin-top = 2em，即clearance = 2em - margin-top = 2em - 3em = -1em
+<p>解释：没有'clear'的话，第一个和最后一个段落的margin将会合并，并且最后一个段落的上边框边界将紧接着浮动段落的顶端。但'clear'要求上边框边界处于浮动（元素）<em>下方</em>。即，再低2em，这意味着必须引入空隙。因此，margin不再合并，空隙的高度被设置为clearance + margin-top = 2em，即clearance = 2em - margin-top = 2em - 3em = -1em
 </div>
 
 <p>当该属性被设置在浮动元素上时，会改变浮动定位的<a href="#float-rules">规则</a>。需要加上额外的约束(#10)：
 </p>
 
 <ul>
-<li>浮动（盒）的top <a href="box.html#outer-edge">外边（outer edge）</a>必须处于所有在此之前的左浮动盒（'clear: left'），或者所有在此之前的右浮动盒（'clear: right'）的bottom外边下方，或者两者都要满足（'clear: both'）</li>
+<li>浮动（盒）的上 <a href="box.html#outer-edge">外边界</a>必须处于所有在此之前的左浮动盒（'clear: left'的情况），或者所有在此之前的右浮动盒（'clear: right'的情况）的下外边界下方，或者两者都要满足（'clear: both'的情况）</li>
 </ul>
 
 <div class="note"><p>
 <em><strong>注意</strong>
-该属性<a href="http://www.w3.org/TR/REC-CSS1#clear">适用于CSS1中的所有元素</a>，实现可能因此已经支持该属性用在所有元素上了。CSS2和CSS 2.1中，'clear'属性只适用于块级元素。因此，编写者应该只把该属性用在块级元素上。如果一个实现支持行内元素上的clear，而不像上面解释的那样设置一个空隙，该实现应该强制打断（break）并有效地插入一个或多个空行盒（或者把新的行盒按<a href="#floats">9.5节</a>中描述的那样向下移动），来把cleared的行内元素的行盒的top移到对应的浮动盒下方
+该属性<a href="http://www.w3.org/TR/REC-CSS1#clear">适用于CSS1中的所有元素</a>，实现可能因此已经支持该属性用在所有元素上了。CSS2和CSS 2.1中，'clear'属性只适用于块级元素。因此，编写者应该只把该属性用在块级元素上。如果一个实现支持行内元素上的clear，而不像上面解释的那样设置一个空隙，该实现应该强制打断（break）并有效地插入一个或多个空行框（或者把新的行框按<a href="#floats">9.5节</a>中描述的那样向下移动），来把带clear的行内元素的行框的顶端移到对应的浮动盒下方
 </em>
 </p>
 </div>
 
 <h2>9.6 <a name="absolute-positioning">绝对定位</a></h2>
 
-<p>绝对定位模型中，一个盒会有相对于其包含块的明确偏移，它会从常规流中全部移除（不会影响后面的兄弟）。一个绝对定位的盒会为常规流中的子级和绝对（不是fixed）定位的后代建立一个新的包含块。然而一个绝对定位的元素的内容不会沿着任何其它盒排列。它们可能会遮住其它盒的内容（或者它们自身被遮住），取决于重叠盒的<a href="#stack-level">堆叠层级（stack levels）</a>
+<p>绝对定位模型中，盒相对其包含块明确偏移，它会从常规流中全部移除（不会影响后面的兄弟）。绝对定位的盒会为常规流中的子级和绝对（不包括fixed）定位的后代建立一个新的包含块。然而绝对定位的元素的内容不会沿着任何其它盒排列。它们可能会遮住其它盒的内容（或者它们自身被遮住），取决于重叠盒的<a href="#stack-level">堆叠层级（stack levels）</a>
 </p>
 <p>本规范中出现的<span class="index-def" title="absolutely positioned element"><a name="absolutely-positioned"><dfn>绝对定位元素</dfn></a></span>（或者它的盒）表示元素的<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>属性值为'absolute'或者'fixed'
 </p>
 <h3>9.6.1 <a name="fixed-positioning">Fixed定位</a></h3>
 
-<p>fixed定位是绝对定位的子类（subcategory）。fixed定位的盒唯一的区别是，包含块是由<a href="#viewport">视口</a>建立的。对于<a href="media.html#continuous-media-group">连续媒体</a>，当文档滚动时，fixed盒不会移动。在这一点上，它们和<a href="colors.html#background-properties">fixed背景图片</a>类似。对于<a href="page.html">分页媒体</a>，fixed定位的盒会在每一页上重复。这在排版（placing）方面很有用，例如，每一页的底部都有一个签名。fixed定位的盒比页区域大的部分会被裁剪。fixed定位盒在初始包含块中不可见的部分将不会被打印
+<p>fixed定位是绝对定位的子类（subcategory）。fixed定位的盒唯一的区别是，包含块由<a href="#viewport">视口</a>建立。对于<a href="media.html#continuous-media-group">连续媒体</a>，当文档滚动时，fixed盒不会移动。在这一点上，它们和<a href="colors.html#background-properties">fixed背景图像</a>类似。对于<a href="page.html">分页媒体</a>，fixed定位的盒会在每一页上重复（出现）。这在排版（placing）方面很有用，例如，每一页的底部都有一个签名。fixed定位的盒比页区（page area）大的部分会被裁剪。fixed定位盒在初始包含块中不可见的部分将不会被打印
 </p>
 <div class="html-example">
-<p>编写者可以用fixed定位来创建类框架的（frame-like）展现，考虑下面的框架布局：</p>
+<p>编写者可以用fixed定位来创建帧式（frame-like）展现，考虑下面的帧布局：</p>
 
 <div class="figure">
 <p><img src="./images/frame.png"
@@ -1127,7 +1127,7 @@ alt="An a at the left side of a box and a b at the right side">
 <ol>
 <li>如果<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>值为'none'，那么<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>和<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>不会生效。此时，元素不生成盒</li>
 
-<li>否则，如果<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>值为'absolute'或者'fixed'，盒是绝对定位的，并且<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>的计算值为'none'。那么display就根据下表来设置，盒的位置将由<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>，<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>属性和盒的包含块决定
+<li>否则，如果<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>值为'absolute'或者'fixed'，盒就是绝对定位的。<a href="visuren.html#propdef-float" class="noxref"><span class="propinst-float">'float'</span></a>的计算值置为'none'。并且display根据下表来设置。盒的位置将由<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>，<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>，<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>属性以及盒的包含块决定
 </li>
 
 <li>否则，如果'float'值不为'none'，那么盒是浮动的，'display'根据下表来设置
@@ -1180,7 +1180,7 @@ span { display: inline }
 <p><em>outer</em>和<em>inner</em>生成的盒的最终位置在每个示例中都不一样。每幅插图中，插图左边的数字表明了<a href="#normal-flow">常规流</a>中双倍行距的（清晰起见）行的位置</p>
 
 <p class="note">
-注意，本节的图都是说明性的（illustrative）并且没有缩放。用来强调CSS 2.1中各种定位模式之间的区别，而不是推荐参考示例的渲染效果
+注意，本节的图都是说明性的（illustrative）并且没按比例（绘制）。用来强调CSS 2.1中各种定位方案之间的差异，而不是为了给出示例供参考的呈现效果
 </p>
 
 <h3>9.8.1 <a name="comp-normal-flow">常规流</a></h3>
@@ -1192,7 +1192,7 @@ span { display: inline }
 #inner { color: blue }
 </code></pre>
 
-<p>P元素包含所有行内内容：<a href="#anonymous">匿名行内文本</a>和两个SPAN元素。因此，所有内容都将被放在一个行内格式化上下文中P元素建立的包含块里面，产生的结果就像这样：</p>
+<p>P元素包含所有行内内容：<a href="#anonymous">匿名行内文本</a>以及两个SPAN元素。因此，所有内容都将被放在一个行内格式化上下文中P元素建立的包含块里面，产生的结果就像这样：</p>
 
 <div class="figure">
 <p><img src="./images/flow-generic.png"
@@ -1201,7 +1201,7 @@ span { display: inline }
 
 <h3>9.8.2 <a name="comp-relpos">相对定位</a></h3>
 
-<p>为了看<a href="#relative-positioning">相对定位</a>的效果，我们指定：</p>
+<p>为了看到<a href="#relative-positioning">相对定位</a>的效果，我们指定：</p>
 
 <pre class="example"><code class="css">
 #outer { position: relative; top: -12px; color: red }
@@ -1211,7 +1211,7 @@ span { display: inline }
 <p>文本常规排列，直到<em>outer</em>元素。<em>outer</em>文本保持其常规流位置和尺寸，位于在第1行末尾。然后，含有文本（分布在3行里）的行内盒被整体（as a unit）移动了'-12px'（向上）
 </p>
 
-<p><em>inner</em>的内容，作为<em>outer</em>的一个子级，常规地将紧跟着单词"of outer contents"排列（在1.5行）。然而，<em>inner</em>内容自身相对于<em>outer</em>内容偏移了'12px'（向下），回到它们原来在第2行的位置
+<p><em>inner</em>的内容，作为<em>outer</em>的子元素，常规地将紧跟着单词"of outer contents"排列（在1.5行）。然而，<em>inner</em>内容自身相对于<em>outer</em>内容偏移了'12px'（向下），回到它们在第2行的原位置
 </p>
 
 <p>注意，<em>outer</em>后面跟着的内容没有受到<em>outer</em>相对定位的影响</p>
@@ -1234,7 +1234,7 @@ box's content."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-flow-relative
 #inner { float: right; width: 130px; color: blue }
 </code></pre>
 
-<p>文本常规排列，直到<em>inner</em>盒，脱离了流，并浮动到right margin（它的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>已经显式赋值了），浮动（盒）左边的行盒被缩短了，文档的剩余文本都排列在它们里面</p>
+<p>文本常规排列，直到<em>inner</em>盒，从常规流脱离，并浮动到右边缘（它的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>已经显式赋值了），浮动（盒）左边的行框被缩短了，文档的剩余文本排列在它们里面</p>
 
 <div class="figure">
 <p><img src="./images/flow-float.png"
@@ -1278,7 +1278,7 @@ box."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-flow-clear" href="image
 without clear">[D]</A></SPAN></p>
 </div>
 
-<p>然而，如果<em>sibling</em>元素上的<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性被设置为'right'（即，生成的<em>sibling</em>盒将不会接受一个右边接着浮动盒的位置），<em>sibling</em>（元素的）内容从浮动（盒）下面开始排列：
+<p>然而，如果<em>sibling</em>元素上的<a href="visuren.html#propdef-clear" class="noxref"><span class="propinst-clear">'clear'</span></a>属性被设置为'right'（即，生成的<em>sibling</em>盒将不会接受一个右侧挨着浮动盒的位置），<em>sibling</em>（元素的）内容从浮动（盒）下面开始排列：
 </p>
 <pre class="example"><code class="css">
 #inner { float: right; width: 130px; color: blue }
@@ -1305,14 +1305,14 @@ with clear">[D]</A></SPAN></p>
 #inner { color: blue }
 </code></pre>
 
-<p>会让<em>outer</em>盒的top相对于其包含块定位。定位的（positioned）盒的包含块由最近的定位的祖先（或者，如果不存在，就用<a href="visudet.html#containing-block-details">初始包含块</a>，正如我们的示例）。<em>outer</em>盒的top在包含块top的下方'200px'处，并且left离（包含块的）left为'200px'。<em>outer</em>的子级盒相对于其父级常规排列：</p>
+<p>会让<em>outer</em>盒的顶端相对于其包含块定位。定位元素（positioned）盒的包含块由最近的定位的祖先（或者，如果不存在，就用<a href="visudet.html#containing-block-details">初始包含块</a>，正如我们的示例）。<em>outer</em>盒的顶端在包含块顶端的下方'200px'处，并且左边离（包含块的）左边为'200px'。<em>outer</em>的子级盒相对于其父级常规排列：</p>
 
 <div class="figure">
 <p><img src="./images/flow-absolute.png"
    alt="Image illustrating the effects of absolutely positioning a box."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-flow-absolute" href="images/longdesc/flow-absolute-desc.html" title="Long description for example illustrating absolute positioning">[D]</A></SPAN></p>
 </div>
 
-<p>下例展示了一个作为相对定位盒的子级的绝对定位的盒。尽管父级<em>outer</em>盒并没有实际偏移，设置其<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>属性为'relative'，表示它的盒可以为定位的后代提供包含块。因为<em>outer</em>盒是一个行内盒，被跨行分割了，第一个行内盒的top和left边（下图中用粗虚线描绘的）作为<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>偏移的参照
+<p>下例展示了一个作为相对定位盒的子级的绝对定位的盒。尽管父级<em>outer</em>盒并没有实际偏移，设置其<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>属性为'relative'，表示其（生成）盒可以为定位的后代提供包含块。因为<em>outer</em>盒是一个行内盒，所以被跨行分割了，第一个行内盒的上边界和左边界（下图中用粗虚线描绘的）作为<a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>和<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>偏移的参照
 </p>
 <pre class="example"><code class="css">
 #outer { 
@@ -1358,7 +1358,7 @@ with respect to the initial containing block">[D]</A></SPAN></p>
 </div>
 
 <div class="html-example"><p>
-相对和绝对定位可能被用来实现change bar（变更条？），如下例所示。下面的片段：
+相对和绝对定位可能被用来实现变更指示符（change bar），如下例所示。下面的片段：
 </p>
 <pre><code class="html">
 &lt;P style=&quot;position: relative; margin-right: 10px; left: 10px;&quot;&gt;
@@ -1375,7 +1375,7 @@ word.&lt;/P&gt;
      alt="Image illustrating the use of floats to create a changebar effect."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-changebar" href="images/longdesc/changebar-desc.html" title="Long description for change bar example">[D]</A></SPAN></p>
 </div>
 
-<p>首先，段落（包含块的边展示在图中的那个）常规排列。然后从包含块（因此，'10px'的right margin已经被保留为预期偏移了）的left边偏移了'10px'。两个作为change bar的连字符被从流中拿了出来，并定位在当前行（由于'top: auto'），距其包含块（由P在其最终位置建立）的left边'-1em'。产生的结果是change bar看起来就像“浮动”到了当前行的左端</p>
+<p>首先，段落（包含块边界展示在图中的那个）常规排列。然后从包含块（因此，'10px'的right margin已经被保留为预期偏移了）的左边界偏移了'10px'。两个作为变更指示符的连字符被从流中拿了出来，并定位在当前行（由于'top: auto'），距其包含块（由P在其最终位置建立）的左边界'-1em'。产生的结果是变更指示符看起来就像“浮动”到了当前行的左端</p>
 </div>
 
 <h2>9.9 <a name="layers">分层展示</a></h2>
@@ -1389,7 +1389,7 @@ word.&lt;/P&gt;
 <table class="propinfo" cellspacing=0 cellpadding=0>
 <tr valign=baseline><td><em>Value:</em>&nbsp;&nbsp;<td>auto | <a href="syndata.html#value-def-integer" class="noxref"><span class="value-inst-integer">&lt;integer&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
 <tr valign=baseline><td><em>Initial:</em>&nbsp;&nbsp;<td>auto
-<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>定位的（positioned）元素
+<tr valign=baseline><td><em>Applies to:</em>&nbsp;&nbsp;<td>定位（positioned）元素
 <tr valign=baseline><td><em>Inherited:</em>&nbsp;&nbsp;<td>no
 <tr valign=baseline><td><em>Percentages:</em>&nbsp;&nbsp;<td>N/A
 <tr valign=baseline><td><em>Media:</em>&nbsp;&nbsp;<td><a href="media.html#visual-media-group" class="noxref">visual</a>
@@ -1399,10 +1399,10 @@ word.&lt;/P&gt;
 </div>
 
 
-<p>对于一个定位的盒，<a href="visuren.html#propdef-z-index" class="noxref"><span class="propinst-z-index">'z-index'</span></a>属性指定了：
+<p>对于定位的盒，<a href="visuren.html#propdef-z-index" class="noxref"><span class="propinst-z-index">'z-index'</span></a>属性指定了：
 
 <ol>
-  <li>当前堆叠（stacking context）上下文中，该盒的堆叠层级（stack level）
+  <li>当前堆叠上下文（stacking context）中，该盒的堆叠层级（stack level）
 
   <li>该盒是否（应该）建立一个堆叠上下文
 </ol>
@@ -1417,21 +1417,21 @@ word.&lt;/P&gt;
 
   <dt><strong>auto</strong>
 
-  <dd>当前堆叠上下文中生成盒的堆叠层级为0。该盒不会建立新的堆叠上下文，除非它是根元素
+  <dd>生成盒在当前堆叠上下文中的堆叠层级为0。该盒不会建立新的堆叠上下文，除非它是根元素
 </dl>
 
 <p><em>本节中，“在...前面”表示当用户面对屏幕时，离用户更近</em></p>
 
-<p>CSS&nbsp;2.1中，每个盒都具有一个用3个维度表示的位置。除了它们的水平和竖直位置，盒还会沿着“Z轴”排列，被格式化成一个叠在另一个上面。当盒在视觉上重叠时，Z轴位置尤为重要。本节讨论了盒可能会怎样沿着Z轴定位
+<p>CSS&nbsp;2.1中，每个盒都具有一个用3个维度表示的位置。除了它们的水平和垂直位置，盒还会沿着“Z轴”排列，被格式化成一个叠在另一个上面。当盒在视觉上重叠时，Z轴位置尤为重要。本节讨论了盒可能会怎样沿着Z轴定位
 </p>
 <p>
-渲染树绘制到画布上的顺序是根据堆叠上下文来定的，堆叠上下文可以包含堆叠上下文。从其父级堆叠上下文的角度来看，堆叠上下文是不可再分的（atomic），其它堆叠上下文中的盒不可能出现在它的任意盒里
+渲染树绘制到画布上的顺序是根据堆叠上下文来定的，堆叠上下文可以包含堆叠上下文。从其父级堆叠上下文的角度来看，堆叠上下文是原子的（atomic），其它堆叠上下文中的盒不可能出现在它的任意盒里
 </p>
-<p>每个盒都属于一个<a name="x43"><span class="index-def" title="stacking context"><dfn>堆叠上下文</dfn></span></a>。给定堆叠上下文中每个定位的（positioned）盒都有一个整型<span class="index-def" title="stack level"><a name="stack-level"><dfn>堆叠层级</dfn></a></span>，表示它在同一堆叠上下文中相对于其它堆叠层级的Z轴上的位置。堆叠层级更大的总被格式化在堆叠层级低的前面，盒可以有负的堆叠层级。同一个堆叠上下文中堆叠层级相同的盒按照文档树顺序从后向前堆叠
+<p>每个盒都属于一个<a name="x43"><span class="index-def" title="stacking context"><dfn>堆叠上下文</dfn></span></a>。给定堆叠上下文中每个定位（positioned）盒都有一个整型<span class="index-def" title="stack level"><a name="stack-level"><dfn>堆叠层级</dfn></a></span>，表示它在同一堆叠上下文中相对于其它堆叠层级的Z轴上的位置。堆叠层级更大的总被格式化在堆叠层级低的前面，盒可以有负的堆叠层级。同一个堆叠上下文中堆叠层级相同的盒按照文档树顺序从后向前堆叠
 </p>
 
 <p>
-根元素形成根堆叠上下文。其它堆叠上下文由任意'z-index'的计算值不为'auto'的定位的（positioned）元素（包括相对定位元素）生成，堆叠上下文不一定与包含块有关。在将来的CSS版本中，其它属性可能会引入堆叠上下文，例如，'<a href="http://www.w3.org/TR/css3-color/#transparency">opacity</a>' <a href="refs.html#ref-CSS3COLOR" rel="biblioentry" class="noxref"><span class="informref">[CSS3COLOR]</span></a>.
+根元素形成根堆叠上下文。其它堆叠上下文由任意'z-index'的计算值不为'auto'的定位（positioned）元素（包括相对定位元素）生成，堆叠上下文不一定与包含块有关。在将来的CSS版本中，其它属性可能会引入堆叠上下文，例如，'<a href="http://www.w3.org/TR/css3-color/#transparency">opacity</a>' <a href="refs.html#ref-CSS3COLOR" rel="biblioentry" class="noxref"><span class="informref">[CSS3COLOR]</span></a>.
 </p>
 
 <p>在每个堆叠上下文中，下列层按从后向前的顺序绘制：
@@ -1441,18 +1441,18 @@ word.&lt;/P&gt;
 
   <li>堆叠层级为负数的子级堆叠上下文（最负的优先）
 
-  <li>流内的，非行内级，未定位的（non-positioned ）后代
+  <li>流内的，非行内级，非定位（non-positioned ）后代
 
-  <li>未定位的浮动（元素）
+  <li>非定位浮动（元素）
 
-  <li>流内的，行内级，未定位的后代，包括inline table和inline block
+  <li>流内的，行内级，非定位后代，包括inline table和inline block
 
   <li>堆叠层级为0的子级堆叠上下文，以及堆叠层级为0的定位的后代
 
   <li>堆叠层级为正数的子级堆叠上下文（最小的优先）
 </ol>
 
-<p>每个堆叠上下文中，都会绘制堆叠层级为0的定位的元素（在第6层），未定位的浮动（元素）（在第4层），inline block（在第5层）和inline table（在第5层），就像这些元素自身生成了新的堆叠上下文一样，除了它们的定位的后代和将要（would-be）加入当前堆叠上下文的子级堆叠上下文
+<p>每个堆叠上下文中，都会绘制堆叠层级为0的定位的元素（在第6层），非定位浮动（元素）（在第4层），inline block（在第5层）和inline table（在第5层），就像这些元素自身生成了新的堆叠上下文一样，除了它们的定位的后代和将要（would-be）加入当前堆叠上下文的子级堆叠上下文
 
 <p>该绘制顺序被递归应用于每个堆叠上下文，这里对堆叠上下文绘制顺序的描述是对<a href="zindex.html">附录&nbsp;E</a>中详细规范定义的概述
 
@@ -1499,20 +1499,20 @@ word.&lt;/P&gt;
 </div>
 
 
-<p>本例演示了<em>透明度</em>的概念，background的默认行为是允许它后面的盒可见。本例中，每个盒都透明地覆盖在它下面的盒上。这种行为可以通过现有的<a href="colors.html#background-properties">background属性</a>来重写
+<p>本例演示了<em>透明度</em>的概念，background的默认行为是允许它后面的盒可见。本例中，每个盒都透明地覆盖在它下面的盒上。这种行为可以通过使用现有的<a href="colors.html#background-properties">background属性</a>之一来覆盖
 </p>
 
 <h2>9.10 <a name="direction">文本方向：</a><a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>和<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性
 </h2>
 
-<p>（与CSS规范）<a href="conform.html#conformance">一致的</a>不支持双向文本的用户代理可以忽略本节描述的<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>和<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性。这种例外包括简单地渲染从右向左的字符的UA，因为系统上的一种字体包含它们，但不支持从右向左的文本方向的概念
+<p>（与CSS规范）<a href="conform.html#conformance">一致的</a>不支持双向文本的用户代理可以忽略本节描述的<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>和<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性。这种例外包括那些简单呈现从右向左字符的UA，因为系统字体可能含有这种情况（从右向左排列的字符），但不支持从右向左文本方向的概念
 
 <p>某些文字（scripts）中的字符是从右向左书写的。有些文档里，尤其是那些用阿拉伯（Arabic）或者希伯来（Hebrew）文字写的，并且在一些混合语言的（mixed-language）上下文中，单一（直观显示的）块中的文本可能以混合的方向出现。这种现象叫做<a name="x45"><span class="index-def" title="bidirectionality (bidi)"><dfn>双向性（bidirectionality）</dfn></span></a>，或者简称"bidi"
 </p>
-<p>Unicode标准（<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>，<a href="refs.html#ref-UAX9" rel="biblioentry" class="noxref"><span class="normref">[UAX9]</span></a>）定义了一个复杂的算法来确定适当的文本方向。该算法包括基于字符属性的隐式部分和对嵌入和重写的显式控制。CSS&nbsp;2.1依赖该算法来实现适当的双向渲染。<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>和<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性允许编写者指定元素和文档语言属性如何映射到该算法
+<p>Unicode标准（<a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>，<a href="refs.html#ref-UAX9" rel="biblioentry" class="noxref"><span class="normref">[UAX9]</span></a>）定义了一个复杂的算法来确定适当的文本方向。该算法包括基于字符属性的隐式部分和对嵌入与重写的显式控制。CSS&nbsp;2.1依赖该算法来实现适当的双向渲染。<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>和<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性允许编写者指定元素和文档语言属性如何映射到该算法
 </p>
 <p>支持双向文本的用户代理必须对每个行内级盒中没有被强制（<a href="http://www.unicode.org/reports/tr9/#Bidirectional_Character_Types">bidi class&nbsp;B</a>）结束符或者块界（block boundary）隔断的（文本）序列应用Unicode双向算法，这种序列会在双向算法中形成“段落”单元。段落嵌入级别是根据包含块的<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>属性的值来设置的，而不是由Unicode算法中步骤P2和P3中给出的启发式（信息）决定</p>
-<p>因为文本的方向性取决于文档语言的结构和语义，这些属性大多数情况下应该只由文档类型说明（DTDs）的设计者或者特殊文档的编写者使用。如果一个默认样式表指定了这些属性，编写者和用户不应该指定规则来覆盖它们
+<p>因为文本的方向性取决于文档语言的结构和语义，这些属性大多数情况下应该只由文档类型说明（DTDs）的设计者或者特殊文档的编写者使用。如果一个默认样式表指定了这些属性，编写者和用户不应该指定规则去覆盖它们
 </p>
 <p>HTML 4规范（[HTML4] 8.2节）定义了HTML元素的双向性行为。<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>中能能实现bidi行为的样式表规则在<a href="sample.html#bidi">样例样式表</a>中给出了。HTML 4规范还含有关于双向性问题的更多信息
 </p>
@@ -1550,7 +1550,7 @@ word.&lt;/P&gt;
 </p>
 <div class="note"><p>
 <em><strong>注意</strong> 
-<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>属性，给表格列元素指定时，不会被列中的单元格继承，因为在文档树中，列不是单元格的祖先。因此，CSS无法轻松获知<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>的11.3.2.1节中"dir"属性的继承规则
+<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>属性，给表格列元素指定时，不会被列中的单元格继承，因为在文档树中，列不是单元格的祖先。因此，CSS无法轻易获知<a href="refs.html#ref-HTML4" rel="biblioentry" class="noxref"><span class="normref">[HTML4]</span></a>的11.3.2.1节中"dir"属性的继承规则
 </em></p></div>
 
 <div class="propdef">
@@ -1583,11 +1583,11 @@ word.&lt;/P&gt;
 <dt><strong>bidi-override</strong></dt>
 
 <dd>
-对于行内元素，会创建一个override。对于块容器元素，会为不在另一个块容器元素的行内级后代创建一个override。意味着在该元素内部，重新排序是严格按照<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>属性进行的，双向算法的隐式部分会被忽略。这相当于在元素开始位置或者每个匿名子级块盒的开始位置（如果有的话）添加一个LRO（U+202D;对于'direction: ltr'）或者RLO（U+202E;对于'direction: rtl'），在元素的结束位置添加一个PDF（U+202C）
+对于行内元素，会创建一个覆盖（override）。对于块容器元素，会为不在另一个块容器元素的行内级后代创建一个覆盖。意味着在该元素内部，重新排序是严格按照<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>属性进行的，双向算法的隐式部分会被忽略。这相当于在元素开始位置或者每个匿名子级块盒的开始位置（如果有的话）添加一个LRO（U+202D;对于'direction: ltr'）或者RLO（U+202E;对于'direction: rtl'），在元素的结束位置添加一个PDF（U+202C）
 </dd>
 </dl>
 
-<p>如果已经添加了bidi控制代码，标记已经被分离，产生的字符序列已经被传递给一个纯文本Unicode双向算法的实现，并产生了与样式化后的文本相同的换行的话，每个块容器中字符的最终顺序与上述（顺序）相同。这个过程中，'display: inline'的可替换元素被当作中性字符（neutral characters），除非它们的<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性值不为'normal'，此时，它们会被当作粗体字符（strong characters），用为该元素指定的<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>。所有其它原子行内级盒都总被当作中性字符
+<p>如果已经添加了上述的bidi控制代码，标记已经被剥离出去，产生的字符序列已经被传递给一个纯文本Unicode双向算法的实现，并产生了与样式化后的文本相同的换行的话，每个块容器中的最终字符顺序应该都一样。这个过程中，'display: inline'的替换元素被当作中性字符（neutral characters 译注：指的是没有上下文无法确定其方向性的字符，比如段落分隔符，见<a href="https://en.wikipedia.org/wiki/Bi-directional_text#neutral_characters">neutral characters</a>），除非它们的<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>属性值不为'normal'，此时，它们会被当作强字符（strong characters 译注：指的是那些具有明确方向性的字符，比如字母字符，见<a href="https://en.wikipedia.org/wiki/Bi-directional_text#strong_characters">strong characters</a>），用为该元素指定的<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>。所有其它原子行内级盒都总被当作中性字符
 
 
 
@@ -1595,12 +1595,12 @@ word.&lt;/P&gt;
 </p>
 <p>注意，为了能够在一个统一方向（要么全部从左向右，要么全部从右向左）的环境中排列行内盒，可能不得不创建更多行内盒（包括匿名行内盒），一些行内盒必须在排列之前被分割开来并重新排序
 </p>
-<p>因为Unicode算法有对嵌入<em title="According to unicode 3.0, chapter 3, section 12, definition BD2. Specifically, page 58 here: http://www.unicode.org/unicode/uni2book/ch03.pdf" >61层</em>的限制，应该注意不要使用值不为'normal'的<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>，除非适当（unless appropriate）。特别的，使用'inherit'值应该格外小心。然而，对于那些一般要显示为块的元素，更应该设置'unicode-bidi: embed'，这样在display会变为inline（见下例），元素仍然（挨）在一起
+<p>因为Unicode算法有<em title="According to unicode 3.0, chapter 3, section 12, definition BD2. Specifically, page 58 here: http://www.unicode.org/unicode/uni2book/ch03.pdf" >61层</em>嵌入的的限制，应该注意不要滥用值不为'normal'的<a href="visuren.html#propdef-unicode-bidi" class="noxref"><span class="propinst-unicode-bidi">'unicode-bidi'</span></a>，除非必要（unless appropriate）。特别的，使用'inherit'值应该格外小心。然而，对于那些一般要显示为块的元素，如果将display更改为inline（见下例），则优先使用'unicode-bidi: embed'设置来保持元素（挨）在一起
 </p>
-<p>下例展示了一个含有双向文本的XML文档，描述了一个重要的设计原则：<a name="x48"><span class="index-inst" title="DTD">DTD</span></a>设计者在考虑语言适宜（元素和属性）和所有附带的样式表时，应该考虑bidi。样式表应该设计得让bidi规则和其它样式规则分离开来。bidi规则不应该被其它样式表重写，以保留文档语言的或者DTD的bidi行为
+<p>下例演示具有双向文本的XML文档，说明了重要的设计原则：<a name="x48"><span class="index-inst" title="DTD">DTD</span></a>设计者在考虑适当的语言（元素和属性）以及所有附带的样式表时，都应该考虑bidi。样式表应该设计得让bidi规则和其它样式规则分离开来。bidi规则不应该被其它样式表重写，以保留文档语言的或者DTD的bidi行为
 </p>
 <div class="example"><P style="display:none">示例：</P><p>
-本例中，小写字母代表本来（inherently）从左向右的字符，大小字母表示本来从右向左的字符：
+本例中，小写字母代表本来（inherently）从左向右的字符，大写字母表示本来从右向左的字符：
 </p>
 <pre class="xml-example"><code class="xml">
 &lt;HEBREW&gt;
@@ -1614,7 +1614,7 @@ word.&lt;/P&gt;
 &lt;/ENGLISH&gt;
 </code></pre>
 
-<p>因为是XML，样式表负责设置书写方向，样式表为：</p>
+<p>因为是XML，由样式表负责设置书写方向，样式表为：</p>
 
 <pre class="example">
 /* Rules for bidi */

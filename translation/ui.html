@@ -108,7 +108,7 @@ sw-resize, s-resize, w-resize</dt>
 </dd>
 <dt><span class="index-inst" title="&lt;uri&gt;"><a name="x1" href="syndata.html#value-def-uri" class="noxref"><span
 class="value-inst-uri">&lt;uri&gt;</span></a></span></dt>
-<dd>用户代理从URI指定的资源中获取光标。如果用户代理无法处理光标列表中的第一个光标，它应该尝试处理第二个，等等。如果用户代理无法处理所有用户定义的（user-defined）光标，它必须使用列表末尾的通用光标。除了用一个UA定义的矩形来代替为'background-image'属性建立了坐标系的矩形外，光标的内在尺寸的计算与<a href="colors.html#background-properties">背景图片</a>类似。UA定义的矩形应该根据UA的操作系统上典型光标的尺寸来定。如果产生的光标尺寸无法适应该矩形，UA可以按比例缩小产生的光标，直到它能适应该矩形</dd> </dl>
+<dd>用户代理从URI指定的资源中获取光标。如果用户代理无法处理光标列表中的第一个光标，它应该尝试处理第二个，等等。如果用户代理无法处理所有用户定义的（user-defined）光标，它必须使用列表末尾的通用光标。除了用一个UA定义的矩形来代替为'background-image'属性建立了坐标系的矩形外，光标的固有尺寸的计算与<a href="colors.html#background-properties">背景图片</a>类似。UA定义的矩形应该根据UA的操作系统上典型光标的尺寸来定。如果产生的光标尺寸无法适应该矩形，UA可以按比例缩小产生的光标，直到它能适应该矩形</dd> </dl>
 
 <div class="example"><P style="display:none">示例：</P>
 <pre><code class="css">
@@ -286,7 +286,7 @@ p { color: WindowText; background-color: Window }
 </p>
 <p>轮廓会从<a href="box.html#border-edge">border边</a>外面开始绘制
 </p>
-<p>轮廓可以不是矩形的。例如，如果元素被拆分到了多行，轮廓是能把元素的所有盒包住的最小轮廓。与<a href="box.html#border-properties">border</a>相比，轮廓在行盒的开始处或者结束处不是断开的，而是总会尽量完全连接起来
+<p>轮廓可以不是矩形的。例如，如果元素被拆分到了多行，轮廓是能把元素的所有盒包住的最小轮廓。与<a href="box.html#border-properties">border</a>相比，轮廓在行框的开始处或者结束处不是断开的，而是总会尽量完全连接起来
 </p>
 <p><a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">'outline-width'</span></a>属性与<a href="box.html#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a>接受相同的值
 </p>

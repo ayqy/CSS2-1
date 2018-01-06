@@ -97,18 +97,18 @@ name="element">元素</a></span></strong>
 <dd>（一个SGML术语，见<a href="refs.html#ref-ISO8879" rel="biblioentry" class="noxref"><span class="normref">[ISO8879]</span></a>）文档语言的基本语法结构，大多数CSS样式表规则都通过元素名（例如，HTML中的P，TABLE和OL）来指定该元素应该怎样渲染
 
 <dt><strong><span class="index-def" title="replaced element">
-<a name="replaced-element">可替换（Replaced）元素</a></span></strong>
+<a name="replaced-element">替换（Replaced）元素</a></span></strong>
 
-<dd><p>内容超出CSS格式化模型的元素，例如图片，内嵌的文档，或者applet。例如，HTML中IMG元素的内容通常被其"src"属性指定的图片替换。可替换元素通常拥有内在尺寸（intrinsic dimensions）：内在宽度，内在高度和内在比例（intrinsic ratio）。例如，位图图片有绝对单位指定的内在宽度，内在高度（显然可以确定内在比例）。另一方面，其它文档就没有内在尺寸（例如，空白的HTML文档）
+<dd><p>内容超出CSS格式化模型的元素，例如图片，内嵌的文档，或者applet。例如，HTML中IMG元素的内容通常被其"src"属性指定的图片替换。替换元素通常拥有固有尺寸（intrinsic dimensions）：固有宽度，固有高度和固有比例（intrinsic ratio）。例如，位图图片有绝对单位指定的固有宽度，固有高度（显然可以确定固有比例）。另一方面，其它文档就没有固有尺寸（例如，空白的HTML文档）
 
-<p>用户代理可以认为一个可替换元素没有任何内在尺寸，如果觉得这些尺寸可能会泄漏敏感信息给第三方的话。例如，如果一份HTML文档是根据用户的银行余额改变内在尺寸的，那么UA可能需要假装这个资源没有内在尺寸
+<p>用户代理可以认为一个替换元素没有任何固有尺寸，如果觉得这些尺寸可能会泄漏敏感信息给第三方的话。例如，如果一份HTML文档是根据用户的银行余额改变固有尺寸的，那么UA可能需要假装这个资源没有固有尺寸
 
-<p>CSS的渲染模型不考虑可替换元素的内容
+<p>CSS的渲染模型不考虑替换元素的内容
 
 <dt><strong><span class="index-def" title="intrinsic
-dimensions"><a name="intrinsic">内在尺寸（Intrinsic dimensions）</a></span></strong>
+dimensions"><a name="intrinsic">固有尺寸（Intrinsic dimensions）</a></span></strong>
 
-<dd>由元素自身定义的宽度和高度，不受环境影响。CSS不定义如何拿到这些内在尺寸。CSS&nbsp;2.1中，只有可替换元素有内在尺寸。因为光栅图像没有可靠的分辨率信息，假设1&nbsp;px对应源图像中的1像素
+<dd>由元素自身定义的宽度和高度，不受环境影响。CSS不定义如何拿到这些固有尺寸。CSS&nbsp;2.1中，只有替换元素有固有尺寸。因为光栅图像没有可靠的分辨率信息，假设1&nbsp;px对应源图像中的1像素
 
 <dt><strong><span class="index-def" title="attribute"><a
 name="attribute">属性</a></span></strong>
@@ -131,7 +131,7 @@ title="ignore"><a name="ignore">忽略</a></span></strong>
 <dt><strong><span class="index-def" title="rendered
 content|content::rendered"><a name="rendered-content">呈现（Rendered）内容</a></span></strong>
 
-<dd>根据相关样式表对元素进行渲染后元素的内容。关于可替换元素的内容怎样渲染不由本规范定义。呈现内容可能是元素的备选文本（例如，XHTML的"alt"属性），还可能包含通过样式表隐式或显式插入的项，例如黑点（bullets），数字等等
+<dd>根据相关样式表对元素进行渲染后元素的内容。关于替换元素的内容怎样渲染不由本规范定义。呈现内容可能是元素的备选文本（例如，XHTML的"alt"属性），还可能包含通过样式表隐式或显式插入的项，例如黑点（bullets），数字等等
 
 <dt><strong><span class="index-def" title="document tree">
 <a name="doctree">文档树</a></span></strong>

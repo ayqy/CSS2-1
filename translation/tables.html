@@ -35,7 +35,7 @@
       <li class="tocline3"><a href="tables.html#anonymous-boxes" class="tocxref">17.2.1 匿名表格对象</a>
     </ul>
     <li class="tocline2"><a href="tables.html#columns" class="tocxref">17.3 列</a>
-    <li class="tocline2"><a href="tables.html#model" class="tocxref">17.4 可视化格式模型中的表格</a>
+    <li class="tocline2"><a href="tables.html#model" class="tocxref">17.4 视觉格式化模型中的表格</a>
     <ul class="toc">
       <li class="tocline3"><a href="tables.html#caption-position" class="tocxref">17.4.1 标题定位与对齐</a>
     </ul>
@@ -75,7 +75,7 @@
 
 <p>在可视化媒体中，CSS表格也可以用来实现特定的布局。这种情况下，编写者不应该在文档语言中使用表格相关的元素，而应该给相关结构元素应用CSS来实现需要的布局
 
-<p>编写者可以把表格当作一个矩形单元网格来指定其可视化格式 。单元格的行和列会被组织进行组（row group）和列组（column group）。在行，列，行组，列组和单元格的周围可以绘制边框（CSS&nbsp;2.1中有两种边框模型）。编写者可以把单元格中的数据竖直或者水平对齐，以及对齐一行或一列里的所有单元格中的数据
+<p>编写者可以把表格当作一个矩形单元网格来指定其可视化格式 。单元格的行和列会被组织进行组（row group）和列组（column group）。在行，列，行组，列组和单元格的周围可以绘制边框（CSS&nbsp;2.1中有两种边框模型）。编写者可以把单元格中的数据垂直或者水平对齐，以及对齐一行或一列里的所有单元格中的数据
 
 <div class="example"><P style="display:none">示例：</P><p>
 用HTML 4描述的一个简单的3行，3列表格：
@@ -100,7 +100,7 @@
 th { text-align: center; font-weight: bold }
 </pre>
 
-<p>下面的规则让表头单元格中的文本相对其基线对齐，并让每个数据单元格中的文本竖直居中：
+<p>下面的规则让表头单元格中的文本相对其基线对齐，并让每个数据单元格中的文本垂直居中：
 
 <pre>
 th { vertical-align: baseline }
@@ -173,7 +173,7 @@ BAR { display : table-caption }
   <dt><strong><span class="index-def" title="table-caption"><a class="value-def" name="value-def-table-caption">table-caption</a></span></strong> (HTML中的CAPTION) <dd>为表格指定一个标题。所有具有'display: table-caption'的元素都必须渲染，如<a href="#model">17.4节</a>所述
 </dl>
 
-<p>具有这些<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>值的可替换元素会被当作布局期间给定的display类型。例如，一个设置了'display: table-cell'的图片将填满可用的单元格空间，并且它的尺寸会像普通单元格一样被用于表格尺寸算法
+<p>具有这些<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>值的替换元素会被当作布局期间给定的display类型。例如，一个设置了'display: table-cell'的图片将填满可用的单元格空间，并且它的尺寸会像普通单元格一样被用于表格尺寸算法
 
 <p><a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>被设置为'table-column'或者'table-column-group'的元素不会被渲染（就像它们具有'display: none'一样），但它们有用，因为它们可能具有能为其代表的列引入样式的属性
 
@@ -274,7 +274,7 @@ VBOX { display: table-cell }
 </div>
 
 <div class="example"><P style="display:none">示例：</P>
-<p>本例中，ROW中的3个'table-cell'元素被认为含有文本。注意文本被进一步包进了匿名行内盒中，如<a href="visuren.html#anonymous">可视化格式模型</a>中的解释：
+<p>本例中，ROW中的3个'table-cell'元素被认为含有文本。注意文本被进一步包进了匿名行内盒中，如<a href="visuren.html#anonymous">视觉格式化模型</a>中的解释：
 
 <pre class="xml-example">
 &lt;STACK&gt;
@@ -329,13 +329,13 @@ col.totals { width: 5em }
 </pre>
 </div>
 
-<h2>17.4 <a name="model">可视化格式模型中的表格</a></h2>
+<h2>17.4 <a name="model">视觉格式化模型中的表格</a></h2>
 
-<p>根据可视化格式模型，一个表格可以表现得像一个<a href="visuren.html#block-level">块级</a>（对于'display: table'）或者<a href="visuren.html#inline-level">行内级</a>（对于'display: inline-table'）元素
+<p>根据视觉格式化模型，一个表格可以表现得像一个<a href="visuren.html#block-level">块级</a>（对于'display: table'）或者<a href="visuren.html#inline-level">行内级</a>（对于'display: inline-table'）元素
 
 <p>这两种情况下，表格都会生成一个叫做<dfn>表格容器盒（table wrapper box）</dfn> 的主块盒，它包含表格盒本身以及所有标题盒（按文档顺序）。<dfn>表格盒</dfn>是一个含有该表格内部表格盒的块级盒。标题盒是保留其原本的content，padding，margin和border区的块级盒，会被当作表格容器盒中的常规块盒来渲染。标题盒放在表格盒前面还是后面由'caption-side'属性决定，如下所述
 
-<p>如果表格是块级的，表格容器盒是一个'block'盒，而如果表格是行内级的，（表格容器盒）就是'inline-block'盒。表格容器盒建立了一个块格式化上下文。表格盒（非表格容器盒）用来对一个'inline-table'进行基线竖直对齐。表格容器盒的的宽度是它里面的表格盒的border边宽度（border-edge width），如17.5.2节所述。表格上'width'和'height'的百分比是相对于表格容器盒的包含块的，而不是表格容器盒本身
+<p>如果表格是块级的，表格容器盒是一个'block'盒，而如果表格是行内级的，（表格容器盒）就是'inline-block'盒。表格容器盒建立了一个块格式化上下文。表格盒（非表格容器盒）用来对一个'inline-table'进行基线垂直对齐。表格容器盒的的宽度是它里面的表格盒的border边宽度（border-edge width），如17.5.2节所述。表格上'width'和'height'的百分比是相对于表格容器盒的包含块的，而不是表格容器盒本身
 
 <p>表格元素上'position'，'float'，'margin-*'，'top'，'right'，'bottom'和'left'属性的计算值被应用在表格容器盒上，而不是表格盒。所有其它不可继承的属性值应用在表格盒上，而不是表格容器盒（对于表格元素上没有应用于表格和表格容器盒的值，就改用初始值）
 
@@ -396,7 +396,7 @@ caption { caption-side: bottom;
 <p>这些盒的可视化布局由不规则行列组成的矩形网格控制。每个盒占据整数个单元格，由下列规则来定。这些规则不适用于HTML 4及更早的HTML版本，HTML对行和列跨度（row and column spans）规定了它自己的限制
 
 <ol>
-  <li>每个行盒占据一行单元格。所有行盒从顶部到底部能够铺满表格，按照它们出现在源文档中的顺序排列（即，表格占据的网格行数恰好和row元素数量一样）
+  <li>每个行框占据一行单元格。所有行框从顶部到底部能够铺满表格，按照它们出现在源文档中的顺序排列（即，表格占据的网格行数恰好和row元素数量一样）
 
   <li>一个行组与它所包含的行占据的网格单元相同
 
@@ -624,7 +624,7 @@ table { table-layout: fixed;
 
 <p class=note><em><strong>注意</strong> CSS将来的更新可能会进一步详细说明这个问题</em>
 
-<p>一旦用户代理有了该行中所有可用单元格，'table-row'元素的盒的高度就能计算了：为该行<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，行中每个单元格<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，以及单元格所需要的最小高度(MIN)三者之间的最大值。'table-row'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>值为'auto'表示用于布局的行高度为MIN。MIN取决于单元格盒的高度和单元格盒的对齐（很像<a href="visudet.html#line-height">行盒</a>的计算）。CSS&nbsp;2.1没有定义表格单元和表格行的高度怎样计算，  当其高度被指定为百分比值时。CSS&nbsp;2.1没有定义行组上<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的含义
+<p>一旦用户代理有了该行中所有可用单元格，'table-row'元素的盒的高度就能计算了：为该行<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，行中每个单元格<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，以及单元格所需要的最小高度(MIN)三者之间的最大值。'table-row'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>值为'auto'表示用于布局的行高度为MIN。MIN取决于单元格盒的高度和单元格盒的对齐（很像<a href="visudet.html#line-height">行框</a>的计算）。CSS&nbsp;2.1没有定义表格单元和表格行的高度怎样计算，  当其高度被指定为百分比值时。CSS&nbsp;2.1没有定义行组上<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的含义
 
 <p>CSS&nbsp;2.1中，一个单元盒的高度是内容所需要的最小高度。表格单元的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性会影响行的高度（见上文），但不会增加该单元格的高度
 
@@ -655,7 +655,7 @@ table { table-layout: fixed;
     <dd>这些值不适用于单元格，单元格会相对基线对齐
 </dl>
 
-<p>一个单元格的基线是该单元格中第一个流内<a href="visuren.html#line-box">行盒</a>，或者该单元格中第一个流内table-row的基线，看哪个先出现。如果没有这样的行盒或者table-row，基线就是该单元格盒的content边的底部。为了找出基线，具有滚动机制（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性）的流内盒必须被当作被滚动到其初始位置了。注意，一个单元格的基线可以伸出其底部边框，见下面的<a href="#baseline-below">示例</a>
+<p>一个单元格的基线是该单元格中第一个流内<a href="visuren.html#line-box">行框</a>，或者该单元格中第一个流内table-row的基线，看哪个先出现。如果没有这样的行框或者table-row，基线就是该单元格盒的content边的底部。为了找出基线，具有滚动机制（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性）的流内盒必须被当作被滚动到其初始位置了。注意，一个单元格的基线可以伸出其底部边框，见下面的<a href="#baseline-below">示例</a>
 
 <p>单元格盒的顶部到所有具有'vertical-align: baseline'的单元格的基线之间的最远距离用来设置行的基线，有个示例：
 
@@ -756,7 +756,7 @@ div { height: 0; overflow: hidden; }
 
 <p class="note">*) 注意：用户代理也可以给'frameset'元素应用'border-spacing'属性。哪些元素是'frameset'元素不由本规范定义，由文档语言来定。例如，HTML4定义了一个&lt;FRAMESET>元素，而XHTML 1.0定义了一个&lt;frameset>元素。因此，一个'frameset'元素上的'border-spacing'属性可以用作非标准的'framespacing'属性的一个合法的替代品
 
-<p>该长度指定了相邻单元格边框之间的距离。如果指定了1个长度，就把它作为水平和竖直间隔。如果指定了2个，第一个是水平间隔，第二个是竖直间隔。长度不能为负
+<p>该长度指定了相邻单元格边框之间的距离。如果指定了1个长度，就把它作为水平和垂直间隔。如果指定了2个，第一个是水平间隔，第二个是垂直间隔。长度不能为负
 
 <p>表格边框与表格边上的单元格边框之间的距离为表格在该边的padding加上相关边框间隔距离。例如，在右手边，该距离为<var>padding-right</var> + <var>水平border-spacing</var>
 
@@ -816,7 +816,7 @@ borders model">[D]</A></SPAN>
 
 <p>当该属性值为'show'时，边框和背景会被绘制在空单元格的周围/后面（像常规单元格一样）
 
-<p>'hide'值表示不会在空单元格周围/后面渲染边框和背景（见<a href="#table-layers">17.5.1</a>的第6点）。而且，如果行中的所有单元格都具有'hide'值，并且没有可见内容，那么该行为0高度，并且该行只有一边存在竖直border-spacing
+<p>'hide'值表示不会在空单元格周围/后面渲染边框和背景（见<a href="#table-layers">17.5.1</a>的第6点）。而且，如果行中的所有单元格都具有'hide'值，并且没有可见内容，那么该行为0高度，并且该行只有一边存在垂直border-spacing
 
 <div class="example"><P style="display:none">示例：</P>
 <p>如下规则会在所有单元格周围绘制边框和背景：

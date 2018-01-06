@@ -33,8 +33,8 @@
     <li class="tocline2"><a href="page.html#page-intro" class="tocxref">13.1 分页媒体简介</a>
     <li class="tocline2"><a href="page.html#page-box" class="tocxref">13.2 页盒：@page规则</a>
     <ul class="toc">
-      <li class="tocline3"><a href="page.html#page-margins" class="tocxref">13.2.1 页margin</a>
-      <li class="tocline3"><a href="page.html#page-selectors" class="tocxref">13.2.2 页选择器：选择左面，右面和第一页</a>
+      <li class="tocline3"><a href="page.html#page-margins" class="tocxref">13.2.1 页外边距</a>
+      <li class="tocline3"><a href="page.html#page-selectors" class="tocxref">13.2.2 页选择器：选择左页，右页和第一页</a>
       <li class="tocline3"><a href="page.html#outside-page-box" class="tocxref">13.2.3 页盒外的内容</a>
     </ul>
     <li class="tocline2"><a href="page.html#page-breaks" class="tocxref">13.3 分页符</a>
@@ -51,7 +51,7 @@
 
 <h2>13.1 <a name="page-intro">分页媒体简介</a></h2>
 
-<p>分页媒体（例如，纸，幻灯片，在计算机屏幕上显示的页面等等）与<a href="./media.html#continuous-media-group">连续媒体</a>的区别是文档的内容分布在一个或者多个不连续的页里。为了处理页面，CSS&nbsp;2.1描述了怎样给<a href="#page-box">页盒</a>设置页margin，以及怎样声明<a href="#page-breaks">分页符</a>
+<p>分页媒体（例如，纸，幻灯片，在计算机屏幕上显示的页面等等）与<a href="./media.html#continuous-media-group">连续媒体</a>的区别是文档的内容分布在一个或者多个不连续的页里。为了处理页面，CSS&nbsp;2.1描述了怎样给<a href="#page-box">页盒</a>设置页外边距，以及怎样声明<a href="#page-breaks">分页符</a>
 
 <p>用户代理负责把一个文档的页盒转换到最终渲染文档的真实<a name="x0"><span class="index-def" title="sheet"><dfn>页（sheet）</dfn></span></a>（纸，幻灯片，屏幕等等）上。通常页盒与页之间都有一对一的关系，但并不总是这样。可能的转换情况包括：</P>
 
@@ -60,8 +60,8 @@
 <li>把两个页盒转换到同一页的两面（例如，双面打印）
 <li>把N个（较小的）页盒转换到一个页（叫“分栏（n-up）”）
 <li>把一个（较大的）页盒转换到N x M个页（叫“拼图（tiling）”）
-<li>创建签名。签名是在一页上打印一组页面，像书一样折叠裁剪，然后以其适当的顺序显示出来
-<li>把一份文档打印到多个出纸盘（output tray）
+<li>创建签名。签名是在一页上打印一组页面，折叠裁剪时像本书一样，以其适当的顺序出现
+<li>把一份文档打印到多个出纸盒（output tray）
 <li>输出到一个文件中
 </ul>
 
@@ -72,25 +72,25 @@
 
 <ul>
 
-<li><span class="index-def" title="page area"><a name="page-area"><dfn>页区（page area）</dfn></a></span>，页区包括摆放在该页上的盒。第一个页区的边建立的矩形是文档的初始<a href="visudet.html#containing-block-details">包含块</a>。画布背景会绘制在页区内，并且覆盖整个页区
+<li><span class="index-def" title="page area"><a name="page-area"><dfn>页区（page area）</dfn></a></span>，页区包括摆放在该页上的盒。第一个页区的边界形成的矩形是文档的初始<a href="visudet.html#containing-block-details">包含块</a>。画布背景会绘制在页区内，并且覆盖整个页区
 
 
-<li>margin区，环绕着页区。页面的margin区是透明的
+<li>外边距区，环绕着页区。页面的外边距区是透明的
 </ul>
 
 <p>在CSS 2.1中无法指定页盒的大小
 
-<P>编写者可以在<a name="x3"><span class="index-def" title="@page">@page</span></a>规则中指定页盒的margin。一条@page规则包含关键字"@page"，后面跟着一个可选的页选择器，再后面是一个块包含声明和@规则。在@page关键字和页选择器之间，页选择器和块之间允许有可选的注释和空白字符。@page规则中的声明处于<span class="index-def" title="page-context"><a name="page-context"><dfn>页上下文</dfn></a></span>中</p>
+<P>编写者可以在<a name="x3"><span class="index-def" title="@page">@page</span></a>规则中指定页盒的外边距。一条@page规则包含关键字"@page"，后面跟着一个可选的页选择器，再后面是一个块包含声明和@规则。在@page关键字和页选择器之间，页选择器和块之间允许有可选的注释和空白字符。@page规则中的声明处于<span class="index-def" title="page-context"><a name="page-context"><dfn>页上下文</dfn></a></span>中</p>
 
 <p class=note>注意：CSS&nbsp;2没有可以出现在@page里的@规则，但这种@规则预期在CSS&nbsp;3中定义
 
 <P><a name="x5"><span class="index-def" title="page selector"><dfn>页选择器</dfn></span></a>指定了要应用声明的页面。CSS&nbsp;2.1中，页选择器可以指定第一页，所有左面的页，或者所有右面的页</p>
 
-<P>对格式错误的声明，格式错误的语句和@page中非法的@规则的处理规则定义在<a href="syndata.html#parsing-errors">4.2节</a>，还有下列额外规则：当UA预期一个声明或者@规则的开始（即，一个IDENT或者ATKEYWORD token），但发现了一个其它token时，该token就被认为是格式错误的声明的第一个token。即这种情况下，用格式错误的声明的规则来决定要忽略的token，而不用格式错误的语句的规则
+<P>对格式错误的声明，格式错误的语句和@page中非法的@规则的处理规则定义在<a href="syndata.html#parsing-errors">4.2节</a>，还有下列额外规则：当UA预期一个声明或者@规则的开始（即，一个IDENT或者ATKEYWORD token），但发现了一个非预期token时，该token就被认为是格式错误的声明的第一个token。即这种情况下，用格式错误的声明的规则来决定要忽略的token，而不用格式错误的语句的规则
 
-<h3>13.2.1 <a name="page-margins">页margin</a></h3>
+<h3>13.2.1 <a name="page-margins">页外边距</a></h3>
 
-<P>CSS&nbsp;2.1中，只有<a href="box.html#margin-properties">margin属性</a>（<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>，<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>，<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>，<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>和<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>）适用于<a href="#page-context">页上下文</a>。下图展示了页，页盒和页margin之间的关系：</P>
+<P>CSS&nbsp;2.1中，只有<a href="box.html#margin-properties">外边距属性</a>（<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>，<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>，<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>，<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>和<a href="box.html#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a>）适用于<a href="#page-context">页上下文</a>。下图展示了页，页盒和页外边距之间的关系：</P>
 
 <div class="figure">
 <P><img src="./images/page-info.png" alt="Illustration of sheet, page
@@ -99,7 +99,7 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 </div>
 
 <div class="example"><P style="display:none">示例：</P><P>
-有个给所有页设置页margin的简单例子：
+有个给所有页设置页外边距的简单例子：
 
 <pre>
 @page {
@@ -108,16 +108,16 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 </pre>
 </div>
 
-<p><a href="#page-context">页上下文</a>没有字体的概念，所以不允许'em'和'ex'单位。margin属性的百分比值是相对于<a href="#page-box">页盒</a>尺寸的。对于left和right margin，参照页盒的宽度，而对于top和bottom margin，就参照页盒的高度。各个CSS&nbsp;2.1属性相关的所有其它单位都是合法的
+<p><a href="#page-context">页上下文</a>没有字体的概念，所以不允许'em'和'ex'单位。margin属性的百分比值是相对于<a href="#page-box">页盒</a>尺寸的。对于左右外边距，参照页盒的宽度，而对于上下外边距，就参照页盒的高度。各个CSS&nbsp;2.1属性相关的所有其它单位都是合法的
 
-<P>由于负margin值（在页盒上或者元素上）或者<a href="visuren.html#absolute-positioning">绝对定位</a>，内容可能跑到页盒外，但这部分内容会被“切掉”&mdash;被用户代理，打印机或者是最后的切纸机
+<P>由于（可能存在）负margin值（在页盒上或者元素上）或者<a href="visuren.html#absolute-positioning">绝对定位</a>，内容可能跑到页盒外，但这部分内容会被“切掉”&mdash;被用户代理，打印机或者是最后的切纸机
 
 
-<h3>13.2.2 <a name="page-selectors">页选择器：选择左面，右面和第一页</a></H3>
+<h3>13.2.2 <a name="page-selectors">页选择器：选择左页，右页和第一页</a></H3>
 
 <P>在打印双面文档时，位于左面和右面的<a href="#page-box">页盒</a>可能有差异。这可以通过两个用于页选择器的CSS伪类来表达
 
-<P>所有页都会被用户代理自动分类为<a name="x6"><span class="index-def" title=":left|pseudo-class:::left">:left</span></a>或者<a name="x8"><span class="index-def" title=":right|pseudo-class:::right">:right</span></a>伪类。文档的第一页是:left还是:right取决于根元素的主要书写方向。例如，一份主要书写方向为从左向右的文档的第一页将是一个:right页，而一份主要书写方向为从右向左的文档的第一页将是一个:left页。为了显式地强制让一份文档从左面页还是右面页开始打印，编写者可以在第一个生成盒之前<a href="#page-break-props">插入一个分页符</a>
+<P>所有页都会被用户代理自动分类为<a name="x6"><span class="index-def" title=":left|pseudo-class:::left">:left</span></a>或者<a name="x8"><span class="index-def" title=":right|pseudo-class:::right">:right</span></a>伪类。文档的第一页是:left还是:right取决于根元素的主书写方向。例如，一份主书写方向为从左向右的文档的第一页将是:right页，而一份主书写方向为从右向左的文档的第一页将是:left页。为了显式地强制让一份文档从左面页还是右面页开始打印，编写者可以在第一个生成盒之前<a href="#page-break-props">插入一个分页符</a>
 
 <div class="example"><P style="display:none">示例：</P><P>
 <PRE>
@@ -133,7 +133,7 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 </PRE>
 </div>
 
-<p>如果已经给左面和右面页给定了不同的声明，用户代理必须尊重这些声明，即使用户代理不把这些页盒转换到左页和右页上（例如，一个只能单面打印的打印机）
+<p>如果已经给左页和右页指定了不同的声明，用户代理必须遵守这些声明，即使用户代理不把这些页盒转换到左页和右页上（例如，一个只支持单面打印的打印机）
 
 <P>编写者也可以用<a name="x10"><span class="index-def" title=":first|pseudo-class:::first">:first</span></a>伪类给一份文档的第一页指定样式：
 
@@ -149,31 +149,31 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 
 <P>（上面的）在:left或者:right @page规则中指定的属性重写了那些不带伪类的@page规则中指定的属性。在:first @page规则中指定的属性重写了那些:left或者:right @page规则中指定的属性
 
-<p>如果一个<a href="#forced">强制结束符</a>出现在第一个生成盒之前，':first'是否适用于该结束符之前的空白页或者该页之后的页，这在CSS&nbsp;2.1中是未定义的
+<p>如果一个<a href="#forced">强制结束符</a>出现在第一个生成盒之前，':first'是否适用于该结束符之前的空白页还是该页之后的页，这在CSS&nbsp;2.1中是未定义的
 
-<P>左面，右面和第一页上的margin声明会导致不同的<a href="#page-area">页区</a>宽度。为了简化实现，用户代理可以对左面，右面和第一页应用单一页区宽度，此时，应该应用第一页的页区宽度
+<P>左页，右页和第一页上的margin声明可能会导致不同的<a href="#page-area">页区</a>宽度。为了简化实现，用户代理可以对左页，右页和第一页应用单页区宽度，此时，应该应用第一页的页区宽度
 
 
 <h3>13.2.3  <a name="outside-page-box">页盒外的内容</a></h3>
 
-<P>在格式化页模型里的内容时，有些内容可能会跑到当前页盒外。例如，一个<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性值为'pre'的元素可能会生成一个比页盒宽的盒。另一个示例，当盒为绝对定位或者相对定位时，它们可能会跑到“不方便”的位置。例如，图片可能被放在页盒的边上或者页盒下方100,000米的位置
+<P>在格式化页模型里的内容时，有些内容可能会跑到当前页盒外。例如，一个<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性值为'pre'的元素可能会生成一个比页盒宽的盒。再比如，当盒为绝对定位或者相对定位时，它们可能会跑到“不便”（访问）的位置。例如，图片可能被放在页盒的边缘或者页盒下方100,000米的位置
 
-<P>对这种元素的精确格式化超出的本规范的范围。然而，我们推荐编写者和用户代理遵守下列关于页盒外内容的一般性原则：</p>
+<P>对这种元素的精确格式化超出了本规范的范围。然而，我们推荐编写者和用户代理遵守下列关于页盒外内容的一般性原则：</p>
 
 <ul>
 
-<li>为了让页面“散开（bleed）” ，允许内容稍微超出页盒
+<li>为了让页面“出血（bleed 译注：印刷术语，见<a href="https://en.wikipedia.org/wiki/Bleed_(printing)">Bleed (printing)</a>）” ，允许内容稍微超出页盒
 
-<li>用户代理应该避免为了尊重元素的定位而生成大量的空页盒（例如，你不想打印100个空白页）
+<li>用户代理应该避免为了遵守元素的定位而生成大量的空页盒（例如，你不想打印100个空白页）
 
-<li>编写者不应该为了不渲染元素而把它们定位到不方便的位置
+<li>编写者不应该为了不渲染元素而把它们定位到不便（访问）的位置
 
-<li>用户代理可以以几种方式处理定位在页盒外的盒，包括丢弃它们或者为其在文档末尾创建页盒
+<li>用户代理可以用多种方式处理定位在页盒外的盒，包括丢弃它们或者为其在文档末尾创建页盒
 </ul>
 
 <H2>13.3 <a name="page-breaks">分页符</a></H2>
 
-<P>本节描述了CSS&nbsp;2.1中的分页符。五个属性指定了用户代理可以或者应该在哪里分页，以及应该恢复哪些页（左面还是右面）的后续内容。每次分页都会结束当前<a href="#page-box">页盒</a>里的布局，还会让<a href="conform.html#doctree">文档树</a>的其余部分被放置在新页盒里
+<P>本节描述了CSS&nbsp;2.1中的分页符。五个属性指定了用户代理可以或者应该在哪里分页，以及在哪个页面（左页还是右页）后续内容应继续（resume）。每次分页都会结束当前<a href="#page-box">页盒</a>里的布局，还会让<a href="conform.html#doctree">文档树</a>的其余部分被放置在新页盒里
 
 <h3>13.3.1 <a name="page-break-props">分页符属性</a>：<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>，<a href="page.html#propdef-page-break-after" class="noxref"><span class="propinst-page-break-after">'page-break-after'</span></a>，<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>
 </h3>
@@ -240,19 +240,19 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 <dd>避免生成盒之前（之后，内部）的分页符
 <dt><strong>left</strong></dt>
 <dd>
-强制生成盒之前（之后）有一个或者两个分页符，以便下一页被格式化为一个左面的页面</dd>
+强制生成盒之前（之后）有一个或者两个分页符，以便下一页被格式化为左页</dd>
 <dt><strong>right</strong></dt>
 <dd>
-强制生成盒之前（之后）有一个或者两个分页符，以便下一页被格式化为一个右面的页面</dd>
+强制生成盒之前（之后）有一个或者两个分页符，以便下一页被格式化为右页</dd>
 </dl>
 
-<p>（与CSS规范）一致的用户代理可能会把'left'和'right'值解释成'always'
+<p>（与CSS规范）一致的用户代理可以把'left'和'right'值解释成'always'
 
 <p>典型的，一个潜在的分页符位置受父元素的<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>属性，前面元素的<a href="page.html#propdef-page-break-after" class="noxref"><span class="propinst-page-break-after">'page-break-after'</span></a>属性以及后面元素的<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性的影响。当这些属性值不为'auto'时，'always'，'left'和'right'值优先于'avoid'
 
 <p>用户代理必须把这些属性应用给根元素的常规流中的块级元素。用户代理还可能会把这些属性应用到其它元素上，例如，'table-row'元素
 
-<p>当一个分页符分割了一个盒时，该盒的margin，border和padding在分割出现的地方没有可视化效果
+<p>当一个分页符分割了一个盒时，该盒的外边距，边框和内边距在分割出现的地方没有可视化效果
 
 
 <h3>13.3.2 <a name="break-inside">元素内的分页符</a>：<a href="page.html#propdef-orphans" class="noxref"><span class="propinst-orphans">'orphans'</span></a>，<a href="page.html#propdef-widows" class="noxref"><span class="propinst-widows">'widows'</span></a></h3>
@@ -291,11 +291,11 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 </div>
 
 
-<P><a href="page.html#propdef-orphans" class="noxref"><span class="propinst-orphans">'orphans'</span></a>属性指定了必须要留在页面底部的块容器里的最小行数。<a href="page.html#propdef-widows" class="noxref"><span class="propinst-widows">'widows'</span></a>属性指定了必须要留在页面顶部的块容器的最小行数。下面给出如何用它们来控制分页符的示例
+<P><a href="page.html#propdef-orphans" class="noxref"><span class="propinst-orphans">'orphans'</span></a>属性指定了必须要在页面底部的块容器里保留的最小行数。<a href="page.html#propdef-widows" class="noxref"><span class="propinst-widows">'widows'</span></a>属性指定了必须要在页面顶部的块容器里保留的最小行数。下面给出如何用它们来控制分页符的示例
 
 <p>只允许正值
 
-<P>关于段落格式化的信息，请查看<a href="visuren.html#line-box">行盒</a>章节
+<P>关于段落格式化的信息，请查看<a href="visuren.html#line-box">行框</a>章节
 
 <h3>13.3.3 <a name="allowed-page-breaks">合法的（Allowed）分页符</a></h3>
 
@@ -303,49 +303,49 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 
 <ol>
 <li>
-在块级盒之间的竖直margin中。当一个非强制的分页符出现在这里时，相关的<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>和<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>属性的<a href="cascade.html#used-value">应用值</a>被置为'0'。当一个强制的分页符出现在这里时，相关的<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>属性的应用值被置为'0'，相关的<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>的应用值可能会被置为'0'或者保留原值
+在块级盒之间的垂直外边距中。当非强制的分页符出现在这里时，相关的<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>和<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>属性的<a href="cascade.html#used-value">应用值</a>被置为'0'。当强制的分页符出现在这里时，相关的<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>属性的应用值被置为'0'，相关的<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>的应用值可能会被置为'0'或者保留原值
 
-<li>在一个<a href="visuren.html#block-boxes">块容器</a>盒里的<a href="visuren.html#line-box">行盒</a>之间
+<li>在一个<a href="visuren.html#block-boxes">块容器</a>盒里的<a href="visuren.html#line-box">行框</a>之间
 
-<li>在一个块容器盒的content边和其子级内容的外边（块级子级的margin边或者行内级子级的行盒边）之间，如果它们之间存在一个（非零）间隔的话
+<li>在块容器盒的content边与其子级内容的外边（块级子级的外边距边或行内级子级的行框边）之间，如果它们之间存在（非零）间隔的话
 </ol>
 
-<p class=note>注意：预期CSS3将会指定在一个强制分页符后面应用相关的'margin-top'（即，不再置为'0'）
+<p class=note>注意：预期CSS3将会指定（怎样）在一个强制分页符后面应用相关的'margin-top'（即，不再置为'0'）
 
 <p>这些结束符受以下规则的限制：
 
 <ul>
-<li><strong>Rule A：</strong>只有所有满足这个margin的元素生成盒的<a href="page.html#propdef-page-break-after" class="noxref"><span class="propinst-page-break-after">'page-break-after'</span></a>和<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性允许时，也就是当它们中至少有一个值为'always'、'left'或者'right'，或者当它们全都是'auto'时，才可以在(1)处（见上面的123）分页<br>（本段原文：Breaking at (1) is allowed only if the 'page-break-after' and 'page-break-before' properties of all the elements generating boxes that meet at this margin allow it, which is when at least one of them has the value 'always', 'left', or 'right', or when all of them are 'auto'.）
+<li><strong>规则A：</strong>只有该处（meet at this margin）所有元素生成盒（译注：其实就2个，前一个盒与后一个盒）的<a href="page.html#propdef-page-break-after" class="noxref"><span class="propinst-page-break-after">'page-break-after'</span></a>和<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性允许时，才可以在(1)处（译注：见上面的123）分页，也就是当其中至少一个值为'always'，'left'或'right'，或者它们都是'auto'
 
-<li><strong>Rule B：</strong>然而，如果它们全部都是'auto'并且它们的一个公共祖先具有值为'avoid'的<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>，那么不允许在这里分页
+<li><strong>规则B：</strong>然而，如果它们全部都是'auto'并且它们的一个公共祖先具有值为'avoid'的<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>，那么不允许在此处分页
 
 <li>
-<strong>Rule C：</strong>只有结束符与周围的块盒（enclosing block box）之间的<a href="visuren.html#line-box">行盒</a>的数量大于等于<a href="page.html#propdef-orphans" class="noxref"><span class="propinst-orphans">'orphans'</span></a>的值，并且结束符与该盒结束处之间的行盒的数量大于等于<a href="page.html#propdef-widows" class="noxref"><span class="propinst-widows">'widows'</span></a>的值时，才可以在(2)处分页
+<strong>规则C：</strong>只有结束符与其所在的块盒（enclosing block box）开始处之间的<a href="visuren.html#line-box">行框</a>的数量大于等于<a href="page.html#propdef-orphans" class="noxref"><span class="propinst-orphans">'orphans'</span></a>的值，并且结束符与该盒结束处之间的行框的数量大于等于<a href="page.html#propdef-widows" class="noxref"><span class="propinst-widows">'widows'</span></a>的值时，才可以在(2)处分页
 
-<li><strong>Rule D：</strong>此外，只有当该元素及其所有祖先的<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>属性都是'auto'时，才可以在(2)或者(3)处分页
+<li><strong>规则D：</strong>另外，只有当该元素及其所有祖先的<a href="page.html#propdef-page-break-inside" class="noxref"><span class="propinst-page-break-inside">'page-break-inside'</span></a>属性都是'auto'时，才可以在(2)或(3)处分页
 </ul>
 
-<p>如果上面的规则无法提供足够的分页点来阻止内容从页盒溢出，那么就删掉规则A，B和D，以寻找额外的分页点
+<p>如果上面的规则无法提供足够的分页位置（breakpoint）来阻止内容从页盒溢出，那么就删掉规则A，B和D，以寻找额外的分页位置
 
-<p>如果分页点还不够，就把规则C也删掉，以寻找更多的分页点
+<p>如果分页位置还不够，就把规则C也删掉，以寻找更多的分页位置
 
 
 <h3>13.3.4 <a name="forced">强制分页符</a></h3>
 
-<p>如果一个分页符<em>必须</em>出现在(1)处，在所有满足这个margin的元素生成盒的<a href="page.html#propdef-page-break-after" class="noxref"><span class="propinst-page-break-after">'page-break-after'</span></a>和<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性中，至少要有一个值为'always'，'left'或者'right'<br>（本段原文：A page break must occur at (1) if, among the 'page-break-after' and 'page-break-before' properties of all the elements generating boxes that meet at this margin, there is at least one with the value 'always', 'left', or 'right'.）
+<p>如果该处所有元素生成盒的<a href="page.html#propdef-page-break-after" class="noxref"><span class="propinst-page-break-after">'page-break-after'</span></a>和<a href="page.html#propdef-page-break-before" class="noxref"><span class="propinst-page-break-before">'page-break-before'</span></a>属性中，至少有一个值为'always'，'left'或'right'的话，<em>必须</em>都在(1)处放置分页符（不论其它元素值是什么，即便是avoid）
 
 <h3>13.3.5 <a name="best-page-breaks">"最佳"分页符</a></h3>
 
-<p>CSS&nbsp;2.1<em>没有</em>定义一堆必须使用的合法分页符，CSS&nbsp;2.1没有禁止用户代理在任何可能的分页点分页，或者完全不分页。但CSS&nbsp;2.1推荐用户代理遵守下列启发式方法（虽然承认它们有时很矛盾）：</p>
+<p>CSS&nbsp;2.1<em>没有</em>定义必须使用哪一组合法的分页符，CSS&nbsp;2.1没有禁止用户代理在任何可能的分页点分页，或者完全不分页。但CSS&nbsp;2.1推荐用户代理遵守下列启发式方法（虽然承认它们有时很矛盾）：</p>
 
 <ul>
 <li>尽量少分页
 <li>让所有不以强制分页结束的页面看起来高度大致相等
-<li>避免在一个可替换元素内部分页
+<li>避免在替换元素内部分页
 </ul>
 
 <div class="example"><P style="display:none">示例：</P><P> 
-例如，假设样式表含有'orphans: 4'，'widows: 2'，并且当前页面的底部有20行（<a href="visuren.html#line-box">行盒</a>）可用：</p>
+例如，假设样式表含有'orphans: 4'，'widows: 2'，并且当前页面的底部有20行（<a href="visuren.html#line-box">行框</a>）可用：</p>
 
 <ul>
 
@@ -384,7 +384,7 @@ box, margin, and page area."><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-
 }
 </PRE>
 
-<P>由于伪类选择器<a href="cascade.html#cascading-order">更高的特殊性</a>，左面页面的left margin将是'4cm'，而所有其它页面（即，右面页面）将具有一个'3cm'的left margin
+<P>由于伪类选择器<a href="cascade.html#cascading-order">更高的特殊性</a>，左页的左外边距将是'4cm'，而所有其它页面（即，右页）将具有'3cm'的左外边距
 </div>
 <hr class="navbar">
 

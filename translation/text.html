@@ -85,7 +85,7 @@ body>del,body>ins {display:block}
 </div>
 
 
-<p>该属性指定了块容器中第一行文本的缩进。更精确的，它指定了排列在该块内第一个<a href="visuren.html#line-box">行盒</a>里的第一个盒的缩进。该盒相对行盒的left（或者right，对于从右向左布局）边缩进。用户代理要把这种缩进当作空白字符来渲染
+<p>该属性指定了块容器中第一行文本的缩进。更精确的，它指定了排列在该块内第一个<a href="visuren.html#line-box">行框</a>里的第一个盒的缩进。该盒相对行框的left（或者right，对于从右向左布局）边缩进。用户代理要把这种缩进当作空白字符来渲染
 </p>
 
 <p>'text-indent'只影响元素的<a href="selector.html#first-line-pseudo">第一个格式化行</a>。例如，匿名块盒的第一行会受到影响，如果它是父元素（指匿名块盒）的第一个子级的话
@@ -144,7 +144,7 @@ p { text-indent: 3em }
 <dd>分别为左对齐，右对齐，居中和两端对齐文本，如<a href="visuren.html#inline-formatting">行内格式化章节</a>所述</dd>
 </dl>
 
-<p>文本块是<a href="visuren.html#line-box">行盒</a>的堆叠。对于'left'，'right'和'center'，该属性指定了每个行盒中的行内级盒相对于行盒的左边和右边怎样对齐，对齐不是相对于<a href="visuren.html#viewport">视口</a>的。对于'justify'，该属性指定了如果可以的话，通过扩宽或者缩紧行盒的内容，让行内级盒与行盒的两边都对齐，否则就按照其初始值来对齐（另见<a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>和<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>）
+<p>文本块是<a href="visuren.html#line-box">行框</a>的堆叠。对于'left'，'right'和'center'，该属性指定了每个行框中的行内级盒相对于行框的左边和右边怎样对齐，对齐不是相对于<a href="visuren.html#viewport">视口</a>的。对于'justify'，该属性指定了如果可以的话，通过扩宽或者缩紧行框的内容，让行内级盒与行框的两边都对齐，否则就按照其初始值来对齐（另见<a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>和<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>）
 </p>
 <p>
 如果元素'white-space'的计算值为'pre'或者'pre-wrap'，那么该元素文本内容的字形和它的空白字符都不会因为两端对齐（justification）而发生变化
@@ -423,15 +423,15 @@ h1 { text-transform: uppercase }
 
 <dl>
 <dt>normal</dt>
-<dd>该值指导用户代理把合并空白字符和换行序列作为填充行盒的必要操作</dd>
+<dd>该值指导用户代理把合并空白字符和换行序列作为填充行框的必要操作</dd>
 <dt>pre</dt>
 <dd>该值阻止用户代理合并空白字符序列。只在保留换行符处换行</dd>
 <dt>nowrap</dt>
 <dd>该值和'normal'一样会合并空白字符，但会抑制文本中的换行</dd>
 <dt>pre-wrap</dt>
-<dd>该值阻止用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行盒（Lines are broken at preserved newline characters, and as necessary to fill line boxes.）</dd>
+<dd>该值阻止用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行框（Lines are broken at preserved newline characters, and as necessary to fill line boxes.）</dd>
 <dt>pre-line</dt>
-<dd>该值指导用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行盒</dd>
+<dd>该值指导用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行框</dd>
 </dl>
 <p>
 源码中的换行可以用回车换行(U+000D)，换行(U+000A)或者它们两个(U+000D U+000A)或者某些其它标识文档片段开始和结束的机制（例如，SGML RECORD-START和RECORD-END token）来表示。CSS 'white-space'处理模型假设所有换行已经被标准化为换行符了。承认其它换行表示的UA必须应用空白字符处理规则，就像已经标准化过了一样。如果没有为文档语言指定换行规则，文档文本中的每个回车换行(U+000D)和CRLF序列(U+000D U+000A)都会被当作单个换行字符。默认标准化规则也适用于生成的内容
