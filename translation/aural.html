@@ -50,7 +50,7 @@
       <li class="tocline3"><a href="aural.html#speak-headers" class="tocxref">A.11.1 读表头：<span class="propinst-speak-header">'speak-header'</span>属性</a>
     </ul>
     <li class="tocline2"><a href="aural.html#sample" class="tocxref">A.12 HTML的样例样式表</a>
-    <li class="tocline2"><a href="aural.html#Emacspeak" class="tocxref">A.13 Emacspeak（某读屏软件）</a>
+    <li class="tocline2"><a href="aural.html#Emacspeak" class="tocxref">A.13 Emacspeak（译注：某读屏软件）</a>
   </ul>
 </div>
 
@@ -58,9 +58,9 @@
 
 <h2>A.1 <a name="aural-media-group">媒体类型'aural'与'speech'</a></h2>
 
-<p>我们预期将来的CSS版本会有为语音输出定义的新属性和值。因此，CSS&nbsp;2.1保留了'speech'媒体类型（见<a href="media.html">第7章，“媒体类型”</a>），但尚未定义哪些属性适用于或者不适用于它
+<p>我们预期将来的CSS版本会有为语音输出定义的新属性和值。因此，CSS&nbsp;2.1保留了'speech'媒体类型（见<a href="media.html">第7章，“媒体类型”</a>），但尚未定义哪些属性适用于或者不适用于该媒体类型
 
-<p>本附录中的属性适用于CSS2中引入的媒体类型'aural'。'aural'类型现在已经过时了
+<p>本附录中的属性适用于CSS2中引入的媒体类型'aural'。但'aural'类型现在已经过时了（译注：CSS 2引入了'aural'媒体类型描述声音样式，但CSS 2.1废弃了'aural'及其所有相关属性）
 
 <div class=note>
 <p>这意味着这样一个样式表
@@ -85,12 +85,12 @@
 
 <H2>A.2 <a name="aural-intro">听觉样式表简介</a></H2>
 
-<p>文档的听觉渲染常用于盲人和阅读能力受损（print-impaired，含义类似于<a href="https://en.wikipedia.org/wiki/Print_disability">print disability</a>）的群体，结合语音合成和<a name="x0"><span class="index-def" title="auditory icon">“听标（auditory icons）”</span></a>。通常这种听觉表现通过把文档转换为纯文本并提供给<a name="x1"><span class="index-def" title="screen
-reader"><dfn>屏幕阅读器</dfn></span></a>--简单地读出屏幕上所有字符的软件或者硬件来进行。这导致（转换为纯文本后的）表现效率低于保持文档结构的情况。听觉表现的样式表属性可以与视觉属性一起用（混合媒体）或者作为视觉表现的一种听觉备选项
+<p>文档的听觉渲染常用于盲人和阅读能力受损（print-impaired，含义类似于<a href="https://en.wikipedia.org/wiki/Print_disability">print disability</a>）的群体，结合语音合成与<a name="x0"><span class="index-def" title="auditory icon">“听标（auditory icons）”</span></a>。通常这种听觉表现通过把文档转换为纯文本并提供给<a name="x1"><span class="index-def" title="screen
+reader"><dfn>屏幕阅读器</dfn></span></a>--简单地读出屏幕上所有字符的软件或者硬件来进行。如果保留文档结构，则会导致表现效果较差。听觉表现的样式表属性可以与视觉属性一起用（混合媒体）或者作为视觉表现的一种听觉替代品
 
-<p>除了明显的可访问性优势，还有其它关于收听信息的大市场，包括车载使用（in-car use），工业和医疗记录系统（内网），家庭环境和帮助用户学习阅读或者帮助那些有阅读障碍的人
+<p>除了明显的可访问性优势，还有其它关于收听信息的大型市场，包括车载使用（in-car use），工业和医疗记录系统（内网），家庭娱乐和帮助用户学习阅读或者帮助那些有阅读障碍的人
 
-<p>在使用听觉属性时，<a name="x2"><span class="index-inst" title="canvas">画布</span></a>包含一个三维物理空间（环绕声）和一个时间空间（可以指定声音在其它声音之前，期间和之后）。CSS属性还允许编写者改变合成语音的质量（声音类型，频率，变音（inflection）等等）
+<p>在使用听觉属性时，<a name="x2"><span class="index-inst" title="canvas">画布</span></a>由三维物理空间（环绕声）和时间空间组成（可以在其他声音之前、期间和之后指定声音）。CSS属性还允许编写者改变合成语音的质量（声音类型，频率，音调（inflection）等等）
 
 <div class="example"><P style="display:none">示例：</P><p>
 <pre>
@@ -105,7 +105,7 @@ p.peter { azimuth: right }
 p.goat  { volume: x-soft }
 </pre>
 
-<p>这将指导语音合成器用一种叫"paul"的声音（一种“音频字体”）读标题，语气平缓但很浑厚。在读标题之前，会根据给定的URL播放一段声音样例。具有"heidi"类的段落听起来好像来自左前方（如果音频系统支持空间音频的话），而具有"peter"类的段落听起来来自右边。具有"goat"来的段落听起来会很柔和
+<p>这将引导语音合成器用一种叫"paul"的声音（一种“音频字体”）读标题，语气平缓但很浑厚。在读标题之前，会根据给定的URL播放一段声音样例。具有"heidi"类的段落听起来好像来自左前方（如果音频系统支持空间音频的话），而具有"peter"类的段落听起来来自右边。具有"goat"来的段落听起来会很柔和
 </div>
 
 
@@ -178,7 +178,7 @@ x-loud | <a href="cascade.html#value-def-inherit" class="noxref"><span class="va
 </div>
 
 
-<P><a name="x10"><span class="index-def" title="volume">Volume</span></a>表示波形的音量中值（median volume of the waveform）。换句话说，音量为50的高音声音将远高于（波形的音量）（原文：a highly inflected voice at a volume of 50 might peak well above that）。整体值可能是满足人类舒适调节范围的。例如，通过物理的音量控制（将按比例增加0到100的值），该属性的作用是调节动态范围
+<P><a name="x10"><span class="index-def" title="volume">Volume</span></a>表示波形的中值音量（median volume of the waveform）。换句话说，音量为50的高音音量峰值可能远远高于该值（原文：a highly inflected voice at a volume of 50 might peak well above that）。整体值可能是满足人类舒适调节范围的。例如，通过物理的音量控制（将按比例增加0到100的值），该属性的作用是调节动态范围
 
 
 <P>值含义如下：</p>
@@ -187,7 +187,7 @@ x-loud | <a href="cascade.html#value-def-inherit" class="noxref"><span class="va
 <dt><span class="index-inst" title="&lt;number&gt;"><a name="x11" href="syndata.html#value-def-number" class="noxref"><span
 		class="value-inst-number"><strong>&lt;number&gt;</strong>
 </span></a></span>
-<dd>介于'0'到'100'的任意数值。'0'表示<em>最小可听</em>音量级，而100对应<em>最大舒适</em>级
+<dd>介于'0'到'100'的任意数值。'0'表示<em>可听到的最小</em>音量，而100对应<em>可接受的最大</em>音量
 <dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x12" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a></span>
 <dd>百分比值根据继承的值来计算，然后裁剪到'0'到'100'的范围
 <dt><strong>silent</strong>
@@ -204,17 +204,17 @@ x-loud | <a href="cascade.html#value-def-inherit" class="noxref"><span class="va
 <dd>与'100'相同
 </dl>
 
-<p>用户代理应该允许收听者设置对应于'0'和'100'的值。没有一种设置是普遍适用的，合适的值取决于使用的设备（音箱，耳机），环境（车里，家庭影院里，图书馆里）和个人偏好。一些示例：</p>
+<p>用户代理应该允许收听者设置'0'和'100'对应的值（译注：比如用户认为可听到的最小音量为34dB，可接受的最大音量为84dB，那么分别对应0和100，之间有50dB的调节范围，此时数值1代表0.5dB）。没有一种设置是普遍适用的，合适的值取决于使用的设备（音箱，耳机），环境（车里，家庭影院里，图书馆里）和个人偏好。一些示例：</p>
 
 <ul>
-<li>车载使用的浏览器在有很多噪音时候可以设置，'0'会映射到一个比较高的音量级，而'100'会映射到一个很高的音量级。语音很容易盖过道路噪音，但整体动态范围缩小了。隔音效果更好的车可能允许更大的动态范围
+<li>车载使用的浏览器在有很多噪音时候可以设置，'0'会映射到一个比较高的音量级，而'100'会映射到一个很高的音量级。声音很容易盖过道路噪音，但整体动态（调节）范围缩小了。隔音效果更好的车可能允许更大的动态（调节）范围
 
-<li>另一个语音浏览器用于深夜公寓，或者共用研究室。'0'被设置为一个非常安静的音量级，而'100'也被设置为一个比较安静的音量级。正如第一个示例，这是一个低斜坡，动态范围也减小了。只是这里的实际音量低，而第一个示例中（实际音量）高
+<li>另一个语音浏览器用于深夜公寓，或者公共自习室。'0'被设置为一个非常安静的音量级，而'100'也被设置为一个比较安静的音量级。正如第一个示例，这是一个低斜坡，动态（调节）范围也减小了。只是这里的实际音量低，而第一个示例中（实际音量）高
 
-<li>在一个安静而与世隔绝的房子里，装上一种昂贵的hi-fi家庭影院。'0'被设置的比较低而'100'很高。动态范围很大
+<li>在一个安静而与世隔绝的房子里，装上一种昂贵的hi-fi家庭影院。'0'被设置的比较低而'100'很高。动态（调节）范围很大
 </ul>
 
-<p>相同的样式表可以用于所有情况，因为把'0'和'100'映射到了客户端合适的音量级
+<p>相同的样式表可以用于所有情况，只需在客户端把'0'和'100'映射到合适的音量
 
 <H2>A.4 <a name="speaking-props">发声（Speaking）属性</a>：<a href="aural.html#propdef-speak" class="noxref"><span class="propinst-speak">'speak'</span></a></H2>
 
@@ -239,16 +239,16 @@ x-loud | <a href="cascade.html#value-def-inherit" class="noxref"><span class="va
 
 <dl>
 <dt><strong>none</strong></dt>
-<dd>抑制听觉渲染，以致于该元素不需要渲染时间。然而，注意，后代可以重写该值而且将被读出来（要确保抑制一个元素及其后代的渲染的话，用<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性）
+<dd>取消听觉渲染, 使元素无需时间渲染。然而，注意，后代可以重写该值而且将被读出来（要确保取消元素及其后代的渲染的话，用<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性）
 
 <dt><strong>normal</strong></dt>
-<dd>渲染元素及其子级时，用依赖语言的发音规则
+<dd>用与语言相关的发音规则来呈现元素及其子级
 
 <dt><strong>spell-out</strong></dt>
 <dd>逐字母地拼写文本（用于缩写和缩略语）
 </dl>
 
-<p>注意，一个<a href="aural.html#propdef-volume" class="noxref"><span class="propinst-volume">'volume'</span></a>属性值为'silent'的元素和一个<a href="aural.html#propdef-speak" class="noxref"><span class="propinst-speak">'speak'</span></a>属性值为'none'的元素之间的区别。前者会占用把它读出来的情况需要的时间，包括该元素前后的所有停顿，但不会产生声音。后者不占时间，而且不会被渲染（尽管其后代可能会被渲染）
+<p>注意，<a href="aural.html#propdef-volume" class="noxref"><span class="propinst-volume">'volume'</span></a>属性值为'silent'的元素和<a href="aural.html#propdef-speak" class="noxref"><span class="propinst-speak">'speak'</span></a>属性值为'none'的元素之间的区别。前者占用的时间与把它读出来所需的时间相同，包括该元素前后的所有停顿，但不会产生声音。后者不占时间，而且不会被渲染（尽管其后代可能会被渲染）
 
 <H2>A.5 <a name="pause-props">停顿属性</a>：<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>，<a href="aural.html#propdef-pause-after" class="noxref"><span class="propinst-pause-after">'pause-after'</span></a>和<a href="aural.html#propdef-pause" class="noxref"><span class="propinst-pause">'pause'</span></a></H2>
 
@@ -295,13 +295,13 @@ x-loud | <a href="cascade.html#value-def-inherit" class="noxref"><span class="va
 <dt><span class="index-inst" title="&lt;time&gt;"><a name="x16" href="aural.html#value-def-time" class="noxref"><span class="value-inst-time"><strong>&lt;time&gt;</strong></span></a></span>
 <dd>用绝对时间单位表达停顿（秒和毫秒）
 <dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x17" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a></span>
-<dd>参照<a href="aural.html#propdef-speech-rate" class="noxref"><span class="propinst-speech-rate">'speech-rate'</span></a>属性值的倒数。例如，如果speech-rate为120词每分钟（即，，每个单词占半秒或者500ms），那么一个值为100%的<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>表示500 ms的停顿，而一个值为20%的<a href="aural.html#propdef-pause-before" class="noxref"><span
+<dd>参照<a href="aural.html#propdef-speech-rate" class="noxref"><span class="propinst-speech-rate">'speech-rate'</span></a>属性值的倒数。例如，speech-rate为120词每分钟（即，每个单词占半秒或500ms）的话，那么值为100%的<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>表示500 ms的停顿，而一个值为20%的<a href="aural.html#propdef-pause-before" class="noxref"><span
 class="propinst-pause-before">'pause-before'</span></a>表示100ms
 </dl>
 
 <p>停顿被插在该元素的内容和所有<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>或者<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>内容之间
 
-<p>编写者在应该用相对单位来创建更健壮的样式表，以应对speech-rate的大幅变化</p>
+<p>编写者应该用相对单位来创建更健壮的样式表，以应对speech-rate的大幅变化</p>
 
 <div class="propdef">
 <dl><dt>
@@ -366,14 +366,14 @@ h3 { pause-after: 10ms } /* pause-before unspecified; pause-after: 10ms */
 </div>
 
 
-<P>听标（auditory icons）是区分语义元素的另一种方式。可以在元素之前和/或之后播放声音来限定它。值含义如下：</p>
+<P>听标（auditory icons）是区分语义元素的另一种方式。可以在元素之前和/或之后播放声音来对其进行分隔（译注：就像声音领域的边框）。值含义如下：</p>
 
 <dl>
 <dt><span class="index-inst" title="&lt;uri&gt;"><a name="x21" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri"><strong>&lt;uri&gt;</strong></span></a></span>
 <dd>URI必须指定一个听标资源。如果URI解析得到的不是一个音频文件，例如，一张图片，资源应该被忽略，并且当作该属性的值为'none'
 
 <dt><strong>none</strong>
-<dd>没有指定听标
+<dd>不指定听标
 </dl>
 
 <div class="example"><P style="display:none">示例：</P><P>
@@ -410,7 +410,7 @@ h1 {cue: url("pop.au") }
 </pre>
 </div>
 
-<P>如果用户代理无法渲染听标（例如，用户环境不允许），我们推荐生成一个替代的提示
+<P>如果用户代理无法渲染听标（例如，用户环境不允许），我们建议生成一个可选的提示
 
 <P>关于其它内容生成技术的信息，请查看<a href="generate.html#before-after-content">:before和:after伪元素</a>章节。'Cue-before'声音和'pause-before'停顿会被插在来自':before'伪元素的内容之前。类似的，'pause-after'停顿和'cue-after'声音会被插在来自':after'伪元素的内容之后
 
@@ -445,7 +445,7 @@ h1 {cue: url("pop.au") }
 <dt><strong>auto</strong>
 <dd>父元素的声音会继续播放（而不是重新开始，这与该属性是继承得来的情况一样）
 <dt><strong>none</strong>
-<dd>该关键字表示无声状态（silence）。父元素的声音（如果有的话），在当前元素元素播放期间是无声的，在当前元素播放完毕之后继续
+<dd>该关键字表示静音（silence）。父元素的声音（如果有的话），在当前元素元素播放期间是无声的，在当前元素播放完毕之后继续
 </dl>
 
 <div class="example"><P style="display:none">示例：</P><P>
@@ -459,7 +459,7 @@ span.quiet     { play-during: none }
 <H2>A.8 <a name="spatial-props">空间属性</a>：<a href="aural.html#propdef-azimuth" class="noxref"><span class="propinst-azimuth">'azimuth'</span></a>和<a href="aural.html#propdef-elevation" class="noxref"><span class="propinst-elevation">'elevation'</span></a>
 </H2>
 
-<p>空间音频对听觉表现来说是一种重要的表现性属性（stylistic property）。它提供了一种自然的方式来区分几种声音，正如现实生活中一样（人们很少会站在房间里的同一个位置）。立体声音箱能产生一种横向声场（a lateral sound stage）。立体声耳机或者逐渐流行的5音箱家庭影院设备能生成全环绕音效，并且多音箱设备能营造一种真正的三维声场。VRML 2.0（指虚拟现实建模语言）也包含空间音频，这意味着很快相对廉价的（consumer-priced）空间音频硬件就会更为普及</p>
+<p>空间音频对听觉表现来说是一种重要的表现型属性（stylistic property）。它提供了一种自然的方式来区分几种声音，正如现实生活中一样（人们很少会站在房间里的同一个位置）。立体声扬声器能产生一种横向声场（a lateral sound stage）。立体声耳机或者逐渐流行的5音箱家庭影院设备能生成全环绕音效，并且多音箱设备能营造一种真正的三维声场。VRML 2.0（指虚拟现实建模语言）也包含空间音频，这意味着很快相对廉价的（consumer-priced）空间音频硬件就会更为普及</p>
 
 <div class="propdef">
 <dl><dt>
@@ -504,12 +504,12 @@ leftwards | rightwards | <a href="cascade.html#value-def-inherit" class="noxref"
 <dt><strong>right-side</strong>
 <dd>等于'90deg'，与'behind'连用时为'90deg'
 <dt><strong>leftwards</strong>
-<dd>把声音相对当前角度左移。更精确的，是减去20度。算术运算以360度为模。注意，更准确的说'leftwards'应该是“逆时针”，因为它<em>总是</em>减20度，即使继承来的azimuth已经位于收听者背后了（此时，声音听起来实际上是右移）
+<dd>把声音相对当前角度左移。更精确的，是减去20度。算术运算相对360度取模。注意，更准确的说'leftwards'应该是“逆时针”，因为它<em>总是</em>减20度，即使继承来的azimuth已经位于收听者背后了（此时，声音听起来实际上是右移）
 <dt><strong>rightwards</strong>
 <dd>把声音相对当前角度右移。更精确的，是加20度。关于算术运算请查看'leftwards'
 </dl>
 
-<p>该属性很可能是通过在不同声道中以不同音量混合同一个信号来实现的。也可以通过相移（phase shifting），数字延迟以及其它技术来提供声场错觉。实现该效果的准确方法以及使用的音箱数量依赖客户端，该属性只是指明了想要的最终效果
+<p>该属性很可能是通过在不同声道中以不同音量混合同一个信号来实现的。也可以通过相移（phase shifting），数字延迟以及其它技术来提供声场错觉。实现该效果的准确方法以及使用的音箱数量取决于用户代理，该属性只是指明了想要的最终效果
 
 <div class="example"><P style="display:none">示例：</P><P>
 <PRE>
@@ -592,12 +592,12 @@ tr.c { elevation: level }
 </div>
 
 
-<P>该属性指定了发音速率。注意，绝对和相对关键字值都可以接受（类比<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>）。值含义如下：</p>
+<P>该属性指定了语速。注意，绝对和相对关键字值都可以接受（类比<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>）。值含义如下：</p>
 
 <dl>
 <dt><span class="index-inst" title="&lt;number&gt;"><a name="x32" href="syndata.html#value-def-number" class="noxref"><span
 class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
-<dd>指定了发音速率，单位为单词/分钟，值随语言变化，但尽管如此，都被语音合成器广泛支持
+<dd>指定了语速，单位为单词/分钟，值随语言变化，但尽管如此，都被语音合成器广泛支持
 <dt><strong>x-slow</strong>
 <dd>等于80词/分钟
 <dt><strong>slow</strong>
@@ -609,9 +609,9 @@ class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
 <dt><strong>x-fast</strong>
 <dd>等于500词/分钟
 <dt><strong>faster</strong>
-<dd>给当前发音速率加上40词/分钟
+<dd>将当前语速提升40词/分钟
 <dt><strong>slower</strong>
-<dd>给当前发音速率减去40词/分钟
+<dd>将当前语速降低40词/分钟
 </dl>
 
 <div class="propdef">
@@ -652,7 +652,7 @@ p.part.juliet { voice-family: juliet, female }
 </pre>
 </div>
 
-<p>具体声音名可能是用引号包裹起来的，实际上，如果名字中的任意一个单词不符合<a href="syndata.html#tokenization">标识符</a>语法规则的话，必须用引号包裹起来。也推荐把名字多于一个单词的具体语音用引号包裹起来。如果省略引号的话，语音族名前后的所有<a href="syndata.html#whitespace">空白字符</a>都会被忽略，并且语音族名中的所有空白字符序列都会被转换为一个单一空格
+<p>具体声音名可能是用引号包裹起来的，实际上，如果名字中的任意一个单词不符合<a href="syndata.html#tokenization">标识符</a>语法规则的话，必须用引号包裹起来。也推荐把名字多于一个单词的具体语音用引号包裹起来。如果省略引号的话，语音族名前后的所有<a href="syndata.html#whitespace">空白字符</a>都会被忽略，并且语音族名中的所有空白字符序列都会被转换为单个空格
 
 <div class="propdef">
 <dl><dt>
@@ -701,7 +701,7 @@ p.part.juliet { voice-family: juliet, female }
 </div>
 
 
-<p>指定了平均音高的变化范围。人语音的感知音高（perceived pitch）由基准频率决定，典型的，女音值为120Hz而男音为210Hz。人类语言读出来带有变化的音调和音高，这些变化传递了额外的含义和强调。因此，一种非常活泼的语音，即，一种富含变化的语音，会呈现出很高的音高范围。该属性指定了这些变化的范围，即，基准频率可以偏离平均音高多少
+<p>指定了平均音高的变化范围。人语音的感知音高（perceived pitch）由基准频率决定，典型的，女音值为120Hz而男音为210Hz。人类语言有不同的音调和音高，这些变化传递了额外的含义和重点。因此，一种非常富有变化的语音，即，一种富含变化的语音，会呈现出很高的音高范围。该属性指定了这些变化的范围，即，基准频率可以偏离平均音高多少
 
 <P>值含义如下：</p>
 
@@ -754,19 +754,19 @@ p.part.juliet { voice-family: juliet, female }
 </div>
 
 
-<P>指定了发声语音的洪亮程度（richness），或者响亮程度（brightness）。洪亮的语音能“传达到（carry）”一片大空间，平缓的语音的就不行（术语“平缓”指的是画出的波形的样子）
+<P>指定了发声语音的丰富度（richness），或者明亮（brightness）。丰富的语音能“携带（carry）”一片大空间（译注：指的是音色丰富的声音“含义”更丰富），平缓的语音的就不行（术语“平缓”指的是画出的波形的外观）
 
 <P>值含义如下：</p>
 
 <dl>
 <dt><span class="index-inst" title="&lt;number&gt;"><a name="x43" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;number&gt;</strong></span></a></span>
-<dd>一个介于'0'到'100'之间的值。值越高，语音能传达的范围越大。较低的值会产生一种柔和的，甜蜜的语音
+<dd>一个介于'0'到'100'之间的值。值越高，语音携带的“含义”越丰富。较低的值会产生一种柔和的，甜蜜的语音
 </dl>
 
 <H2>A.10 <a name="speech-props">发音（Speech）属性</a>：<a href="aural.html#propdef-speak-punctuation" class="noxref"><span class="propinst-speak-punctuation">'speak-punctuation'</span></a>和<a href="aural.html#propdef-speak-numeral" class="noxref"><span class="propinst-speak-numeral">'speak-numeral'</span></a>
 </h2>
 
-<p>一种额外的发音属性，<a href="aural.html#propdef-speak-header" class="noxref"><span class="propinst-speak-header">'speak-header'</span></a>如下所述
+<p>一种额外的发音属性，<a href="aural.html#propdef-speak-header" class="noxref"><span class="propinst-speak-header">'speak-header'</span></a>见下文描述
 
 <div class="propdef">
 <dl><dt>
@@ -817,7 +817,7 @@ p.part.juliet { voice-family: juliet, female }
 <dt><strong>digits</strong>
 <dd>按单独的数字来读出数值。因此"237"读作“二三七”
 <dt><strong>continuous</strong>
-<dd>把数值当作完整的数读出来。因此，"237"读作“二百三十七”。读的时候用的单词（字）依赖语言
+<dd>把数值当作完整的数读出来。因此，"237"读作“二百三十七”。读的时候用的单词（字）取决于
 </dl>
 
 <h2>A.11 <a name="aural-tables">表格的音频渲染</a></h2>
@@ -931,7 +931,7 @@ travel expenses">[D]</A></SPAN><p class="caption">带有表头单元格（"San J
 &lt;/TABLE&gt;
 </pre>
 
-<p>通过用这种方式来提供数据模型，编写者让支持语音的浏览器能以多种方式探索该表格。例如，每个单元格可以读作一个列表，在某个数据单元格之前重复对应的表头：</p>
+<p>通过用这种方式来提供数据模型，编写者让支持语音的浏览器能以多种方式浏览该表格。例如，每个单元格可以读作一个列表，在某个数据单元格之前重复对应的表头：</p>
 
 <pre>
   San Jose, 25-Aug-97, Meals:  37.74
@@ -988,10 +988,10 @@ a:active      { voice-family: betty, female; pitch-range: 80; pitch: x-high }
 
 <ul>
 <li>voice-family
-<li>stress (but with a different range of values)
-<li>richness (but with a different range of values)
-<li>pitch (but with differently named values)
-<li>pitch-range (but with a different range of values)
+<li>stress（但取值范围不同）
+<li>richness（但取值范围不同）
+<li>pitch（但值的命名不同）
+<li>pitch-range（但取值范围不同）
 </ul>
 
 <p>（关于听觉属性的实现状态的信息，我们要感谢T. V. Raman）
