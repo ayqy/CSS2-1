@@ -92,7 +92,7 @@ class="propinst-cursor">'cursor'</span></a>属性</h2>
 <dt>e-resize, ne-resize, nw-resize, n-resize, se-resize,
 sw-resize, s-resize, w-resize</dt>
 
-<dd>暗示某些边可以被移动。例如，'se-resize'光标用于移动从盒的东南角开始时
+<dd>暗示某些边可以被移动。例如，'se-resize'光标用于从盒的东南角开始移动时
 </dd>
 <dt>text</dt>
 <dd>暗示可以被选中的文本。通常渲染成一个I型标（I-beam）
@@ -282,11 +282,11 @@ p { color: WindowText; background-color: Window }
 </div>
 
 
-<p>用outline属性创建的轮廓被绘制在盒“上面”，即，轮廓总是位于上面，并且不会影响该盒或其它盒的位置和尺寸。因此，显示或者抑制轮廓不会导致重排（reflow）或者溢出
+<p>用outline属性创建的轮廓被绘制在盒“上面”，即，轮廓总是位于上面，并且不会影响该盒或其它盒的位置与尺寸。因此，显示或者抑制轮廓不会导致重排（reflow）或者溢出
 </p>
-<p>轮廓会从<a href="box.html#border-edge">border边</a>外面开始绘制
+<p>轮廓会从<a href="box.html#border-edge">边框边界</a>外面开始绘制
 </p>
-<p>轮廓可以不是矩形的。例如，如果元素被拆分到了多行，轮廓是能把元素的所有盒包住的最小轮廓。与<a href="box.html#border-properties">border</a>相比，轮廓在行框的开始处或者结束处不是断开的，而是总会尽量完全连接起来
+<p>轮廓可以不是矩形的。例如，如果元素被拆分到了多行，轮廓是能把元素的所有盒包住的最小轮廓。与<a href="box.html#border-properties">边框</a>相比，轮廓在行框的开始处或者结束处不是断开的，而是总会尽量完全连接起来
 </p>
 <p><a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">'outline-width'</span></a>属性与<a href="box.html#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a>接受相同的值
 </p>
@@ -338,7 +338,7 @@ button { outline : thick solid}
 
 <h2>18.5 <a name="magnification">放大</a></h2>
 
-<p>CSS工作组考虑对一份文档的放大或者部分放大不应该通过样式表来指定。用户代理可以用不同的方式来支持这种放大（例如，更大的图片，更大的声音，等等）
+<p>CSS工作组认为对文档的放大或者部分放大不应该通过样式表来指定。用户代理可以用不同的方式来支持这种放大（例如，更大的图片，更大的声音，等等）
 </p>
 
 <p>在放大一个页面时，UA应该保持定位的（positioned）元素之间的关系。例如，一个漫画可能由图片和覆盖在上面的文本元素组成。在放大该页面时，用户代理应该保持文本位于漫画对话框（balloon）中
