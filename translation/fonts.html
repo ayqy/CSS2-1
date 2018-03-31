@@ -56,7 +56,7 @@ body>del,body>ins {display:block}
     </ul>
     <li class="tocline2"><a href="fonts.html#font-styling" class="tocxref">15.4 字体样式：<span class="propinst-font-style">'font-style'</span>属性</a>
     <li class="tocline2"><a href="fonts.html#small-caps" class="tocxref">15.5 小型大写字母：<span class="propinst-font-variant">'font-variant'</span>属性</a>
-    <li class="tocline2"><a href="fonts.html#font-boldness" class="tocxref">15.6 字体粗细：<span class="propinst-font-weight">'font-weight'</span>属性</a>
+    <li class="tocline2"><a href="fonts.html#font-boldness" class="tocxref">15.6 字重：<span class="propinst-font-weight">'font-weight'</span>属性</a>
     <li class="tocline2"><a href="fonts.html#font-size-props" class="tocxref">15.7 字体大小：<span class="propinst-font-size">'font-size'</span>属性</a>
     <li class="tocline2"><a href="fonts.html#font-shorthand" class="tocxref">15.8 简写的字体属性：<span class="propinst-font">'font'</span>属性</a>
   </ul>
@@ -64,25 +64,25 @@ body>del,body>ins {display:block}
 
 <h2>15.1 <a name="fonts-intro">简介</a></h2>
 
-<p>设置字体属性是样式表最常见的用法之一。不幸的是，没有明确的（well-defined）可以用来分类字体的通用分类，而且术语可能适用于一个字体族而不适合其它的。例如，'italic'通常用来标记倾斜的字体，但倾斜字体也可能被标记为<em>Oblique, Slanted, Incline, Cursive</em>或者<em>Kursiv</em>。因此这不是一个简单的把典型字体选择属性映射到特定字体的问题
+<p>设置字体属性是样式表最常见的用法之一。不幸的是，对于字体归类，没有明确的（well-defined），被普遍接受的分类方法，而且而适用于一个字体族的术语可能不适用于其它（字体族）。例如，'italic'通常用来标记倾斜的字体，但倾斜字体也可能被标记为<em>Oblique, Slanted, Incline, Cursive</em>或<em>Kursiv</em>。因此，把典型的字体选择属性映射到特定字体不是个简单的问题
 </p>
 
 <h2>15.2 <a name="algorithm">字体匹配策略</a></h2>
 
-<p>因为字体属性不存在可接受的，通用的分类，匹配字体属性时必须谨慎。为了确保匹配处理的结果尽可能跨UA一致（假设它们提出了相同的字体库），属性按照明确的顺序进行匹配
+<p>因为字体属性不存被普遍接受的分类，匹配字体属性时必须谨慎。这些属性以确定的顺序进行匹配，以确保匹配处理的结果尽可能跨UA一致（假定给它们提供了相同的字体库）
 </p>
 
 <ol>
 
-<li>用户代理创建（或者访问）一个含有所有支持的字体的相关CSS&nbsp;2.1属性的数据库。如果存在两个完全相同的属性，用户代理就选择其中一个
+<li>用户代理创建（或访问）一个含有相关CSS&nbsp;2.1属性的数据库，里面存着UA支持的全部字体及其相关属性。如果有2种字体各属性完全一致，用户代理将选择其中一个
 </li>
-<li>对于一个给定的元素和该元素中的每个字符，UA给该元素装配可用的字体属性。使用完整的属性集，UA用'font-family'属性来选择一种暂定的字体族。其余属性根据每个属性的匹配标准来尝试。如果能够匹配剩余的所有属性，那么这就是给定元素或字符的匹配字体
+<li>对于给定元素和该元素中的每个字符，UA都会装配适用于该元素的字体属性。使用完整的属性集，UA根据'font-family'属性来选择一种暂定的字体族。其余属性根据每个属性的匹配标准进行尝试。如果能够匹配剩余的所有属性，那么该暂定字体族就是给定元素或字符的匹配字体
 </li>
 <li>如果经过第2步处理后，该'font-family'里没有匹配的字体，如果字体集里存在下一个可选的'font-family'，那么就对下一个可选'font-family'重复步骤2
 </li>
 <li>如果存在一种匹配字体，但它不包含当前字符的字形，如果字体集里存在下一个可选的'font-family'，那么就对下一个可选的'font-family'重复步骤2
 </li>
-<li>如果第2步中没有选出字体，那么就用依赖UA的默认'font-family'并重复第2步，使用默认字体中的最佳匹配。如果一个特殊字符无法用这种字体显示，那么UA可以用其它方式来为该字符确定一个合适的的字体。UA应该把每个不含特殊字体的字符映射到一个由UA选择的可见符号
+<li>如果第2步中没有选出字体，那么就用依赖于UA的默认'font-family'并重复第2步，使用默认字体中的最佳匹配。如果一个特殊字符无法用这种字体显示，那么UA可以用其它方式来为该字符确定一个合适的的字体。UA应该把其中每个没有合适字体的字符映射到由UA选择的可见符号，最好是可供UA使用的字体中的一个“缺失字符”（missing character）字形
 </li>
 </ol>
 
@@ -92,13 +92,13 @@ body>del,body>ins {display:block}
 </p>
 <ol>
 
-<li>最先尝试<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>。如果UA的字体数据库中存在一种被标记为CSS关键字'italic'（优先）或'oblique'的字体。否则该值要么必须完全匹配，要么font-style匹配失败
+<li>最先尝试<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>。如果UA的字体数据库中存在一种被标记为CSS关键字'italic'（优先）或'oblique'的字体，那么就满足'Italic'（值）。否则该值要么必须完全匹配，要么font-style匹配失败
 </li>
-<li>接下来尝试<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>。“小型大写字母”会匹配(1)一个被标记为'small-caps'的字体，(2)一个形成了小型大写字母的字体，或者(3)一个所有小写字母都被替换为大写字母的字体。一个小型大写字母字体可以通过对一个常规字体的大写字母进行电子缩放来形成。'normal'匹配一个字体的常规（非小型大写字母）变体。一个字体一定具有一种常规变体。一个只有小型大写字母可用的字体应该既可以作为'normal'字体，也可以作为'small-caps'来选择
+<li>接下来尝试<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>。'small-caps'（值）会匹配(1)一个被标记为'small-caps'的字体，(2)一个合成了小型大写字母的字体，或者(3)一个所有小写字母都被替换为大写字母的字体。一个小型大写字母字体可以通过电子方式从普通字体中缩放大写字母来合成。'normal'匹配一个字体的常规（非小型大写字母）变体。字体不能没有常规变体。仅可作为小型大写字母的字体应该既可以作为'normal'字体，也可以作为'small-caps'来选择
 </li>
-<li>接下来匹配<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>，一定不会失败（见下面的'font-weight'）
+<li>接下来匹配<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>，不可能失败（见下面的'font-weight'）
 </li>
-<li><a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>必须在一个依赖UA的容忍范围内进行匹配（典型的，可缩放字体的尺寸会被四舍五入为最相近的整数像素，而对位图字体的容忍度可能是20%）。基于'font-size'的计算值，做进一步的计算，例如，根据其它属性的'em'值
+<li><a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>必须在一个依赖于UA的公差界限（margin of tolerance）内进行匹配（典型的，可缩放字体的尺寸会被四舍五入为最相近的整数像素，而对位图字体的公差（tolerance）可能高达20%）。进一步的计算是基于'font-size'的计算值的，例如，其它属性中的'em'值
 </li>
 
 </ol>
@@ -122,13 +122,13 @@ body>del,body>ins {display:block}
 </div>
 
 
-<p>该属性值是一列按优先级排列的字体族名和/或<a href="#generic-font-families">通用字体族名</a>。与其它大多数CSS属性不同，分量值由逗号分隔表示它们是可选的：
+<p>该属性值是一列按优先级排列的字体族名和/或<a href="#generic-font-families">一般字体族名</a>。与其它大多数CSS属性不同，分量值由逗号分隔表示它们是备选项：
 </p>
 <pre>
 body { font-family: Gill, Helvetica, sans-serif }
 </pre>
 
-<p>尽管很多字体提供了“缺失字符”字形，典型的，一个打开的盒子，虽然它的名字暗示它不应该被认为是对字体中无法找到的字符的匹配（然而，它应该被认为是对U+FFFD，“缺失字符”字符码位值（code point）的匹配）
+<p>尽管很多字体提供了“缺失字符”字形（一般是个打开的盒子），因为它的名字暗示不应该将其视为对字体中无法找到的字符的匹配（然而，应该将其视为对U+FFFD，“缺失字符”字符码位值（code point）的匹配）
 </p>
 <p>有两种类型的字体族名：
 </p>
@@ -140,7 +140,7 @@ body { font-family: Gill, Helvetica, sans-serif }
 </dd>
 <dt><a name="value-def-generic-family">&lt;generic-family&gt;</a>
 </dt>
-<dd>上例中，最后一个值是一个一般字体族名。定义了下列一般字体族名：
+<dd>上例中，最后一个值是个一般字体族名。定义了下列一般字体族名：
 
 <ul>
 
@@ -156,12 +156,12 @@ body { font-family: Gill, Helvetica, sans-serif }
 
 </ul>
 
-<p>鼓励样式表设计者提供一个一般字体族作为最后一个可选项。一般字体族名是关键字，不要用引号包起来
+<p>鼓励样式表设计者提供一个一般字体族作为最后一个备选项。一般字体族名是关键字，不要用引号包起来
 </p>
 </dd>
 </dl>
 
-<p>字体族名要么必须用引号包起来作为<a href="syndata.html#strings">字符串</a>，要么不用引号包起来作为一系列一个或多个<a href="syndata.html#value-def-identifier">标识符</a>。这意味着每个token开头的大多数标点符号和数字必须被转义为不含引号的字体族名
+<p>字体族名要么必须用引号包起来作为<a href="syndata.html#strings">字符串</a>，要么不用引号包起来作为一系列一个或多个<a href="syndata.html#value-def-identifier">标识符</a>。这意味着每个token开头的大多数标点符号和数字必须在未用引号包裹的字体系列名称中转义
 
 <p>例如，下列声明是非法的：
 
@@ -176,7 +176,7 @@ font-family: Hawaii 5-0, sans-serif;
 
 <p>如果给定了一系列标识符作为字体族名，计算值为把该名字转换为通过用空格拼接所有标识符形成的字符串序列
 
-<p>为了避免转义期间的错误，推荐用引号把含有除连字符外的空白字符，数字或者标点符号字符的字体族名包起来
+<p>为了避免转义期间的错误，建议用引号把含有除连字符外的空白字符，数字或者标点符号字符的字体族名包起来
 
 <pre>
 body { font-family: "New Century Schoolbook", serif }
@@ -190,16 +190,16 @@ body { font-family: "New Century Schoolbook", serif }
 
 <h3>15.3.1 <a name="generic-font-families">一般字体族</a></h3>
 
-<p>一般字体族是一种fallback机制，在最坏的情况下，指定的字体都没有被选择出来时，（这是）一种用来保留一些样式表编写者意图的方法。为了最佳的排版控制，应该在样式表中使用特定命名的字体
+<p>一般字体族是一种fallback机制，在最坏的情况下，指定的所有字体都不可用时，（这是）能通过这种方式保留样式表编写者的一些意图。为了最佳的排版控制，应该在样式表中使用特定命名的字体
 
 
 <p><a name="defined-to-exist">5个一般字体族的定义全都存在于</a>所有CSS实现中（它们不一定要映射到5个不同的实际字体）。用户代理应该为一般字体族提供合理的默认选项，表达每个族的特征和可能存在的底层技术的限制
 
-<p>鼓励用户代理允许用户为一般字体族选择可选的选项
+<p>鼓励用户代理允许用户为一般字体族选择可选的替代项
 
 <h4>15.3.1.1 <span class="index-def" title="serif, definition of"><a name="serif-def"><dfn>serif</dfn></a></span></h4>
 
-<p>serif（衬线）字体的字形，作为用于CSS的术语，往往会具有修饰过的笔画，向外展开的或者尖细的末端，或者是带有实际衬线的末端（包括粗衬线字体）。serif字体是典型的间隔成比例的（proportionately-spaced）。它们通常显示一个比'sans-serif'一般字体族的字体更大的介于粗和细笔画之间的变体。CSS术语'serif'适用于任何文字（script）的字体，尽管其它名字可能对于特定文字来说更熟悉一些，例如，Mincho（日文），Sung或者Song（中文），Totum或者Kodig（韩文）。这样描述的任何字体都可以代表一般'serif'字体族
+<p>serif（衬线）字体的字形，作为用于CSS的术语，往往会具有修饰过的笔画，向外展开的或尖细的末端，或者是带有实际衬线的末端（包括粗衬线字体）。serif字体是典型的间隔成比例的（proportionately-spaced）。它们通常显示一个比'sans-serif'一般字体族的字体更大的介于粗和细笔画之间的变体。CSS术语'serif'适用于任何文字（script）的字体，尽管其它名字可能对于特定文字来说更熟悉一些，例如，Mincho（日文），Sung或者Song（中文），Totum或者Kodig（韩文）。这样描述的任何字体都可以代表一般'serif'字体族
 
 <p>适合该描述的字体示例包括：</p>
 
@@ -248,7 +248,7 @@ Futura, ITC Stone Sans, Gill Sans, Akzidenz Grotesk, Helvetica
 <h4>15.3.1.3 <span class="index-def" title="cursive, definition of">
 <a name="cursive-def"><dfn>cursive</dfn></a></span></h4>
 
-<p>cursive（手写体）字体的字形，作为用于CSS的术语，一般具有连笔（joining strokes）或者其它除斜体字体外的手写特征。字形部分或整个连在一起，结果看起来更向手写笔或者毛笔书写的，而不是打印的字母（printed letterwork）。对于某些文字而言，例如阿拉伯（Arabic），字体差不多总是cursive。CSS术语'cursive'适用于任何文字（script），尽管其它名字，例如Chancery，Brush，Swing和Script也用于字体名
+<p>cursive（手写体）字体的字形，作为用于CSS的术语，一般具有连笔（joining strokes）或者其它除斜体字体外的手写特征。字形部分或整个连在一起，结果看起来更像手写笔或者毛笔书写的，而不是打印的字母（printed letterwork）。对于某些文字而言，例如阿拉伯（Arabic），字体差不多总是cursive。CSS术语'cursive'适用于任何文字（script），尽管其它名字，例如Chancery，Brush，Swing和Script也用于字体名
 
 <p>适合该描述的字体示例包括：</p>
 
@@ -280,7 +280,7 @@ Zapf-Chancery
 <a name="monospace-def"><dfn>monospace</dfn></a></span></h4>
 
 
-<p>一个monospace的唯一标准是所有字形都具有相等的固定宽度（这会让一些文字，例如，阿拉伯文（Arabic），看起来很古怪）。效果与手动打字机类似，通常用来设置计算机代码的样例
+<p>monospace的唯一标准是所有字形都具有相等的固定宽度（这会让一些文字，例如，阿拉伯文（Arabic），看起来很古怪）。效果与手动打字机类似，通常用来设置计算机代码的样例
 
 <p>适合该描述的字体示例包括：
 
@@ -317,11 +317,11 @@ Zapf-Chancery
 </div>
 
 
-<p>'font-style'属性可以选择一个字体族中的normal（有时被认为是"roman"或者"upright"），italic和oblique字体
+<p>'font-style'属性可以选择一个字体族中的常规（normal（有时称为"roman"或者"upright"）），斜体（italic）和倾斜（oblique）字体
 </p>
 <p>'normal'值会在UA的字体数据库中选择一个被分类为'normal'的字体，而'oblique'会选择一个被标记为'oblique'的字体。'italic'值会选择一个被标记为'italic'的字体，或者如果（italic）不可用，就选择被标记为'oblique'的字体
 </p>
-<p>UA的字体数据库中被标记为'oblique'的字体可能实际上已经通过电子倾斜normal字体生成了
+<p>UA的字体数据库中被标记为'oblique'的字体可能实际上已经通过电子方式倾斜常规字体生成了
 </p>
 <p>典型的，名字中含有Oblique，Slanted或者Incline的字体在UA的字体数据库中会被标记为'oblique'。名字中含有<em>Italic，Cursive</em>或者<em>Kursiv</em>的字体会被标记为'italic'
 </p>
@@ -330,7 +330,7 @@ h1, h2, h3 { font-style: italic }
 h1 em { font-style: normal }
 </pre>
 
-<p>上例中，'H1'中被强调的文本将以normal字体呈现
+<p>上例中，'H1'中被强调的文本将以常规字体呈现
 </p>
 <h2>15.5 <a name="small-caps">小型大写字母</a>：<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>属性</h2>
 
@@ -353,9 +353,9 @@ h1 em { font-style: normal }
 
 <p>字体族中的另一种变体类型是小型大写字母（small-caps）。在小型大写字母字体中，小写字母看起来和大写字母很相似，但尺寸更小，而且比例稍有差异。可以用'font-variant'属性选择这种字体
 </p>
-<p>'normal'值会选择一个非小型大写字母字体，'small-caps'会选择一个小型大写字母字体。如果小型大写字母字体是通过把normal字体中的小写字母替换为缩放的大写字符创建的，在CSS&nbsp;2.1中也可以接受（但不是必须的）。万不得已时，大写字母将被用作小型大写字母字体的替代品
+<p>'normal'值会选择一个非小型大写字母字体，'small-caps'会选择一个小型大写字母字体。如果小型大写字母字体是通过把常规字体中的小写字母替换为缩放的大写字符创建的，在CSS&nbsp;2.1中也可以接受（但不是必须的）。万不得已时，大写字母将被用作小型大写字母字体的替代品
 </p>
-<p>下例会让'H3'元素为小型大写字母，所有被强调的单词都是oblique，'H3'中所有被强调的单词为oblique小型大写字母：
+<p>下例会让'H3'元素为小型大写字母，所有被强调的单词都是倾斜，'H3'中所有被强调的单词为倾斜小型大写字母：
 </p>
 <pre>
 h3 { font-variant: small-caps }
@@ -366,7 +366,7 @@ em { font-style: oblique }
 </p>
 <p><em>注意：</em>就该属性会让文本被转换为大写形式而言，也可以考虑应用<a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a>
 </p>
-<h2>15.6 <a name="font-boldness">字体粗细</a>：<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>属性</h2>
+<h2>15.6 <a name="font-boldness">字重</a>：<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>属性</h2>
 
 <div class="propdef">
 <dl><dt>
@@ -399,15 +399,15 @@ h1 { font-weight: 700 }     /* bold */
 strong { font-weight: bolder }
 </pre>
 
-<p>典型的，字体（字体数据）具有一个或者多个值为"weight"字体描述性名字的属性。这些粗细程度名没有可接受的，通用含义。它们的主要作用是区分单一字体族中不同的粗细程度（darkness）。用法在各个字体族之间差异很大，例如，一个bold字体可能被描述为<em>Regular，Roman，Book，Medium，Semi-</em>或者<em>DemiBold，Bold</em>或者<em>Black</em>，取决于设计中"normal"字体有多粗（black）。因为没有标准的名字用法，weight属性值在CSS&nbsp;2.1中是以数字分级给出的，值'400'（或者'normal'）对应该字体族的"normal"文本字体。典型的，与该字体相关的weight名为<em>Book，Regular，Roman，Normal</em>或者<em>Medium</em>
+<p>典型的，字体（字体数据）通常具有一个或多个属性，其值是描述字体“粗细”的名称。这些粗细程度名没有公认的，通用含义。它们的主要作用是区分单一字体族中不同的粗细程度（darkness）。用法在各个字体族之间差异很大，例如，一个bold字体可能被描述为<em>Regular，Roman，Book，Medium，Semi-</em>或者<em>DemiBold，Bold</em>或者<em>Black</em>，取决于设计中"normal"字体有多粗（black）。因为没有标准的名字用法，weight属性值在CSS&nbsp;2.1中是以数字分级给出的，值'400'（或者'normal'）对应该字体族的"normal"文本字体。典型的，与该字体相关的weight名为<em>Book，Regular，Roman，Normal</em>或者<em>Medium</em>
 </p>
 
 <p>字体族中其它weight与数字weight值的关联只是想要保留字体族中粗细程度的顺序。然而，如下启发式方法描述了这种情况下如何完成分配：
 
 <ul>
-<li>如果字体族已经用了9值数字分级（比如，<em>OpenType</em>就是这样），应该直接映射字体粗细程度
+<li>如果字体族已经用了9值数字分级（比如，<em>OpenType</em>就是这样），应该直接映射到字重
 
-<li>如果一个存在一个被标记为<em>Medium</em>的和一个被标记为<em>Book，Regular，Roman</em>或者<em>Normal</em>的字体，那么<em>Medium</em>一般被分配为'500'
+<li>如果存在一个被标记为<em>Medium</em>的和一个被标记为<em>Book，Regular，Roman</em>或者<em>Normal</em>的字体，那么<em>Medium</em>一般被分配为'500'
 
 <li>被标记为"Bold"的字体通常对应weight值'700'
 </ul>
@@ -481,7 +481,7 @@ table.">
 
 <p>上表相当于给出一个含有normal和bold字体以及thin和heavy字体的字体族，从中选择下一个相对更粗或者更细的字体。想要更好地控制给定元素的精确weight值的编写者应该使用数字分级而不是相对粗细程度
 
-<p>无法保证每个'font-weight'值都存在一个更粗的字体。例如，有些字体可能只有normal和bold字体，而其它的可能具有8种字体粗细程度。无法保证UA会怎样把字体族中的字体映射到weight值。唯一能保证的是给定值的字体不会比lighter值对应的字体更细
+<p>无法保证每个'font-weight'值都存在一个更粗的字体。例如，有些字体可能只有normal和bold字体，而其它的可能具有8种字重。无法保证UA会怎样把字体族中的字体映射到weight值。唯一能保证的是给定值的字体不会比lighter值对应的字体更细
 </p>
 
 
@@ -563,7 +563,7 @@ table.">
 </p>
 <p>在所有其它属性上，'em'和'ex'长度值参照当前元素字体大小的计算值。在'font-size'属性上，这些长度单位参照其父元素的字体大小的计算值
 </p>
-<p>注意，一个应用程序可能会重新解释一个显式的大小，这取决于上下文。例如，在VR场景中，因为透视畸变（perspective distortion），字体可能有不同的大小
+<p>注意，一个应用程序可能会重新解释一个显式的大小，这取决于上下文。例如，在VR场景中，因为透视失真（perspective distortion），字体可能有不同的大小
 </p>
 <p>示例：
 </p>
@@ -632,9 +632,9 @@ p { font: normal small-caps 120%/120% fantasy }
 <dd>用于窗口状态栏的字体</dd>
 </dl>
 
-<p>系统字体可能只能作为整体来设置，也就是说，会同时设置字体族，大小，粗细程度，样式等等。如果需要的话，随后可以单独改变这些值。如果给定平台上不存在具有指定的特征的字体，用户代理应该智能的替换（例如，'caption'字体更小的版本可以用作'small-caption'字体），或者替换为用户代理默认字体。至于常规（regular）字体，对于一个系统字体，如果所有单独属性都不是操作系统的可用用户偏好的一部分，这些属性应该被设置为其初始值
+<p>系统字体只能作为整体来设置，也就是说，会同时设置字体族，大小，粗细程度，样式等等。如果需要的话，随后可以单独改变这些值。如果给定平台上不存在具有指定的特征的字体，用户代理应该智能的替换（例如，'caption'字体更小的版本可以用作'small-caption'字体），或者替换为用户代理默认字体。至于常规（regular）字体，对于一个系统字体，如果所有单独属性都不是操作系统的可用用户偏好的一部分，这些属性应该被设置为其初始值
 </p>
-<p id="almost">这就是为什么该属性“几乎”是一个简写属性：系统字体只能用该属性来指定，而不是用<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>自身，所以<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>让编写者能做的要比子属性加起来要多。然而，单独的属性，例如<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>给定取自系统字体的值后，仍然可以单独改变</p>
+<p id="almost">这就是为什么该属性“几乎”是一个简写属性：系统字体只能用该属性来指定，而不是用<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>自身，所以<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>让编写者能做的要比子属性加起来还要多。然而，单独的属性，例如<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>给定取自系统字体的值后，仍然可以单独改变</p>
 
 <div class="example"><P style="display:none">示例：</P>
 <pre>
