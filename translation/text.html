@@ -63,7 +63,7 @@ body>del,body>ins {display:block}
   </ul>
 </div>
 
-<p>定义在下列小节的属性能够影响字符、空格、单词和段落的可视化表现
+<p>定义在下列小节的属性能够影响字符、空格、单词和段落的视觉表现
 </p>
 
 <h2>16.1 <a name="indentation-prop">简介</a>：<a href="text.html#propdef-text-indent" class="noxref"><span class="propinst-text-indent">'text-indent'</span></a>属性</h2>
@@ -85,10 +85,10 @@ body>del,body>ins {display:block}
 </div>
 
 
-<p>该属性指定了块容器中第一行文本的缩进。更精确的，它指定了排列在该块内第一个<a href="visuren.html#line-box">行框</a>里的第一个盒的缩进。该盒相对行框的left（或者right，对于从右向左布局）边缩进。用户代理要把这种缩进当作空白字符来渲染
+<p>该属性指定了块容器中第一行文本的缩进。更精确的，它指定了排列在该块内第一个<a href="visuren.html#line-box">行框</a>里的第一个盒的缩进。该盒相对行框的左边（或右边，对于从右向左布局）缩进。用户代理要把这种缩进当作空白字符来渲染
 </p>
 
-<p>'text-indent'只影响元素的<a href="selector.html#first-line-pseudo">第一个格式化行</a>。例如，匿名块盒的第一行会受到影响，如果它是父元素（指匿名块盒）的第一个子级的话
+<p>'text-indent'只影响元素的<a href="selector.html#first-line-pseudo">第一个格式化行</a>。例如，匿名块盒的第一行会受到影响，如果它是父元素（指匿名块盒）的第一个孩子的话
 
 <p>值含义如下：</p>
 
@@ -137,7 +137,7 @@ p { text-indent: 3em }
 </div>
 
 
-<p>该属性描述了快容器的行内级内容怎样对齐。值含义如下：</p>
+<p>该属性描述了块容器的行内级内容怎样对齐。值含义如下：</p>
 
 <dl>
 <dt>left, right, center, justify</dt>
@@ -147,7 +147,7 @@ p { text-indent: 3em }
 <p>文本块是<a href="visuren.html#line-box">行框</a>的堆叠。对于'left'，'right'和'center'，该属性指定了每个行框中的行内级盒相对于行框的左边和右边怎样对齐，对齐不是相对于<a href="visuren.html#viewport">视口</a>的。对于'justify'，该属性指定了如果可以的话，通过扩宽或者缩紧行框的内容，让行内级盒与行框的两边都对齐，否则就按照其初始值来对齐（另见<a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>和<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>）
 </p>
 <p>
-如果元素'white-space'的计算值为'pre'或者'pre-wrap'，那么该元素文本内容的字形和它的空白字符都不会因为两端对齐（justification）而发生变化
+如果元素'white-space'的计算值为'pre'或者'pre-wrap'，那么该元素文本内容的字形及其空白字符都不会因为两端对齐（justification）而发生变化
 </p>
 
 <p class=note>注意：CSS将来可能会新增一种让'white-space: pre-wrap'文本两端对齐的方法
@@ -193,7 +193,7 @@ div.important { text-align: center }
 <p>
 该属性描述了可以给元素文本添加的修饰，（修饰）会应用元素的颜色。在指定或者传播给一个行内元素时，它会影响该元素生成的所有盒，还会进一步传播给分割该行内元素的所有流内块级盒（见<a href="visuren.html#anonymous-block-level">9.2.1.1节</a>）。但在CSS&nbsp;2.1中，修饰是否会传入块级表格是未定义的。对于建立了一个<a href="visuren.html#inline-formatting">行内上下文</a>的块容器，修饰会传播给一个包住了该块容器的所有流内行内级子级的匿名行内元素。对于所有其它元素，会传播给所有流内子级。注意，文本修饰不会传播给浮动和绝对定位的后代，也不会传播给原子行内级（atomic inline-level）后代的内容，例如，行内块和行内表格
 <p>
-underline（下划线），overline（上划线）和line-through（中划线）只适用于文本（包括空白字符，字母间隔和单词间隔）：margin，border和padding会被跳过。用户代理不要渲染非文本内容上的这些文本修饰。例如，图片和行内块不能有下划线
+underline（下划线），overline（上划线）和line-through（中划线）只适用于文本（包括空白字符，字母间隔和单词间隔）：外边距，边框和内边距会被跳过。用户代理不能再非文本内容上呈现这些文本修饰。例如，不能对图像和行内块加下划线
 
 <div class=note>
 <p><em><strong>注意</strong> 如果一个元素E既有'visibility: hidden'也有'text-decoration: underline'，下划线是不可见的（尽管E的父级的所有修饰都<strong>是</strong>可见的）。然而，CSS&nbsp;2.1没有指定E的子级中的下划线是可见的还是不可见的：</em>
@@ -204,7 +204,7 @@ underline（下划线），overline（上划线）和line-through（中划线）
  &lt;/span&gt;
 &lt;/span&gt;
 </pre>
-<p><em>预期在CSS3中指定这种情况</em>
+<p><em>这种情况将在CSS3中指定（如何处理）</em>
 </div>
 
 <p>
@@ -223,13 +223,13 @@ underline（下划线），overline（上划线）和line-through（中划线）
 <dt>line-through</dt>
 <dd>每行文本都有一条线从中间穿过</dd>
 <dt>blink</dt>
-<dd>文本闪烁（可见和不可见交替变化）。（与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>可以简单的不闪烁文本。注意，不闪烁文本是一项满足<a href="http://www.w3.org/TR/UAAG/guidelines.html#tech-on-off-blinking-text">WAI-UAAG的checkpoint 3.3</a>（WAI-UAAG指Web可访问性倡议-用户代理可用性指南）的技术</dd>
+<dd>文本闪烁（可见和不可见交替变化）。（与CSS规范）<a href="conform.html#conformance">一致的用户代理</a>可以简单的不闪烁文本。注意，不闪烁文本是一项满足<a href="http://www.w3.org/TR/UAAG/guidelines.html#tech-on-off-blinking-text">WAI-UAAG的checkpoint 3.3</a>（译注：WAI-UAAG是指Web可访问性倡议-用户代理可用性指南）的技术</dd>
 </dl>
 <p>
 文本修饰需要的颜色必须来自'text-decoration'所在的元素的<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>属性值。修饰的颜色必须保持相同，即使后代元素具有不同的<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>值
 </p>
 <p>
-某些用户代理已经通过把修饰传播给后代元素实现了text-decoration，而没有保留上面描述的不变的粗细程度和行位置。这在CSS2宽松的描述中可以说是允许的。SVG1，CSS1-only和CSS2-only的用户代理可以实现旧模式，并仍然声称与CSS&nbsp;2.1这部分一致（这不适用于在本规范发布后开发的UA）
+某些用户代理已经通过把修饰传播给后代元素实现了text-decoration，而没有保留上面描述的不变的粗细程度和行位置。这在CSS2宽松措辞中可以说是允许的。SVG1，CSS1-only和CSS2-only的用户代理可以实现旧模式，并仍然声称与CSS&nbsp;2.1这部分一致（这不适用于在本规范发布后开发的UA）
 </p>
 
 <div class="example"><P style="display:none">示例：</P><p>
@@ -265,7 +265,7 @@ a:visited,a:link { text-decoration: underline }
 <p><img src="images/underline-example.png" alt="Sample rendering of the above underline example">
 </p>
 <p>
-此图展示了上例中的涉及的盒。圆角水绿色线代表包裹着段落元素的行内内容的匿名行内元素，圆角蓝色线代表span元素，橘黄色线代表块
+此图展示了上例中所涉及的盒。圆角水绿色线代表包裹着段落元素的行内内容的匿名行内元素，圆角蓝色线代表span元素，橘黄色线代表块
 </p>
 </div>
 
@@ -314,7 +314,7 @@ blockquote { letter-spacing: 0cm }   /* Same as '0' */
 </code></pre>
 </div>
 
-<p>当两个字符间产生的间隔与默认间隔不同时，用户代理不应该使用<a name="x8"><span class="index-inst" title="ligatures">连字（ligature）</span></a>
+<p>当两个字符间产生的间隔与默认间隔不同时，用户代理不应该使用<a name="x8"><span class="index-inst" title="ligatures">连体字母（ligature）</span></a>
 </p>
 
 <div class="propdef">
@@ -344,7 +344,7 @@ class="value-inst-length">&lt;length&gt;</span></a></span></dt>
 <dd>该值表示<em>除</em>默认单词间隔外的单词间间隔。值可以为负，但可能存在具体实现限制</dd>
 </dl>
 
-<p>单词间隔算法是依赖用户代理的。单词间隔也受两端对齐的影响（见<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性）。单词间隔会影响每个空格(U+0020)和非间断空格（non-breaking space）(U+00A0)，留在空白字符处理规则应用之后的文本中。该属性对其它单词分隔符字符的效果是未定义的。然而，一般标点符号，0步进宽度（advance width）字符（例如，0步进宽度空格U+200B）和固定宽度空格（例如，U+3000和U+2000到U+200A）都不受影响
+<p>单词间隔算法是依赖用户代理的。单词间隔也受两端对齐的影响（见<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性）。单词间隔会影响每个空格(U+0020)和非间断空格（non-breaking space）(U+00A0)，留在空白字符处理规则应用之后的文本中。该属性对其它单词分隔符字符的效果是未定义的。然而，一般标点符号，0预宽（advance width）字符（例如，0预宽空格U+200B）和固定宽度空格（例如，U+3000和U+2000到U+200A）都不受影响
 
 <div class="example"><P style="display:none">示例：</P><p>
 本例中，H1元素中每个单词间的单词间隔增大了'1em'
@@ -386,9 +386,9 @@ h1 { word-spacing: 1em }
   <dd>没有大写效果</dd>
 </dl>
 
-<p>每种情况下的实际转换依赖书写语言。确定一个元素的语言的方法见BCP&nbsp;47（<a href="refs.html#ref-BCP47" rel="biblioentry" class="noxref"><span class="informref">[BCP47]</span></a>）（BCP指最佳当前实践）
+<p>每种情况下的实际转换依赖书写语言。确定一个元素的语言的方法见BCP&nbsp;47（<a href="refs.html#ref-BCP47" rel="biblioentry" class="noxref"><span class="informref">[BCP47]</span></a>）（译注：BCP指最佳当前实践）
 </p>
-<p>只有属于"bicameral scripts" <a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>的字符会受到影响
+<p>只有属于"bicameral scripts" <a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>（译注：bicameral scripts是指具有大小写差异的文字）的字符会受到影响
 </p>
 <div class="example"><P style="display:none">示例：</P><p>
 本例中，H1元素中的所有文本都会被转换为大写文本
@@ -423,7 +423,7 @@ h1 { text-transform: uppercase }
 
 <dl>
 <dt>normal</dt>
-<dd>该值指导用户代理把合并空白字符和换行序列作为填充行框的必要操作</dd>
+<dd>该值引导用户代理把合并空白字符和换行序列作为填充行框的必要操作</dd>
 <dt>pre</dt>
 <dd>该值阻止用户代理合并空白字符序列。只在保留换行符处换行</dd>
 <dt>nowrap</dt>
@@ -431,12 +431,12 @@ h1 { text-transform: uppercase }
 <dt>pre-wrap</dt>
 <dd>该值阻止用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行框（Lines are broken at preserved newline characters, and as necessary to fill line boxes.）</dd>
 <dt>pre-line</dt>
-<dd>该值指导用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行框</dd>
+<dd>该值引导用户代理合并空白字符序列。在保留换行符处换行，根据需要填充行框</dd>
 </dl>
 <p>
-源码中的换行可以用回车换行(U+000D)，换行(U+000A)或者它们两个(U+000D U+000A)或者某些其它标识文档片段开始和结束的机制（例如，SGML RECORD-START和RECORD-END token）来表示。CSS 'white-space'处理模型假设所有换行已经被标准化为换行符了。承认其它换行表示的UA必须应用空白字符处理规则，就像已经标准化过了一样。如果没有为文档语言指定换行规则，文档文本中的每个回车换行(U+000D)和CRLF序列(U+000D U+000A)都会被当作单个换行字符。默认标准化规则也适用于生成的内容
+源码中的换行可以用回车换行(U+000D)，换行(U+000A)或者它们两个(U+000D U+000A)或者某些其它标识文档片段开始和结束的机制（例如，SGML RECORD-START和RECORD-END token）来表示。CSS 'white-space'处理模型假设所有换行已经被标准化为换行符了。识别其它换行表示的UA必须应用空白字符处理规则，就像已经标准化过了一样。如果没有为文档语言指定换行规则，文档文本中的每个回车换行(U+000D)和CRLF序列(U+000D U+000A)都会被当作单个换行字符。默认标准化规则也适用于生成的内容
 
-<p>UA必须承认换行(U+000A)是换行符。此外，UA也可以把其它强制结束符当作UAX14（指Unicode Standard Annex，Unicode标准附件14）换行符
+<p>UA必须识别换行(U+000A)是换行符。此外，UA也可以把其它强制中断符当作UAX14（译注：指Unicode Standard Annex，Unicode标准附件14）换行符
 
 <div class="example"><P style="display:none">示例：</P><p>下例展示了HTML中PRE和P元素和"nowrap"属性预期的<a href="syndata.html#whitespace">空白字符</a>行为
 <pre><code class="css">
@@ -453,7 +453,7 @@ pre[wrap]  { white-space: pre-wrap }
 
 <h3>16.6.1 <a name="white-space-model">'white-space'处理模型</a></h3>
 <p>
-对于每个行内元素（包括匿名行内元素），执行下列步骤，对于bidi格式化字符，就当它们不存在：
+对于每个行内元素（包括匿名行内元素），执行下列步骤，对于双向（bidi）格式化字符，就当它们不存在：
 </p>
 <ol>
 <li>
@@ -465,12 +465,12 @@ pre[wrap]  { white-space: pre-wrap }
      </li>
 <li>如果'white-space'被设置为'normal'，'nowrap'或者'pre-line'
  <ol><li>每个制表符(U+0009)会被转换为一个空格(U+0020)</li>
-     <li>所有跟着另一个空格(U+0020)&mdash;甚至一个位于行内（盒）前的空格，如果该空格的'white-space'被设置为'normal'，'nowrap'或者'pre-line'的话&mdash;的空格(U+0020)会被移除</li>
+     <li>所有跟着另一个空格(U+0020)&mdash;甚至一个位于行内（盒）前的空格，如果该空格的'white-space'被设置为'normal'，'nowrap'或者'pre-line'的话&mdash;则移除</li>
  </ol>
  </li>
 </ol>
 <p>
-然后，放置块容器的行内（盒）。放置行内（盒）时，要考虑bidi重新排序，并且按照'white-space'属性指定的方式来换行。换行时，换行位置根据上面的空白字符合并步骤之前的文本来定
+然后，放置块容器的行内（盒）。放置行内（盒）时，要考虑双向（bidi）重新排序，并按照'white-space'属性指定的方式来换行。换行时，换行位置根据上面的空白字符合并步骤之前的文本来定
 </p>
 <p>
 当每行都摆放好后，
@@ -478,11 +478,11 @@ pre[wrap]  { white-space: pre-wrap }
 <ol>
 <li>如果'white-space'被设置为'normal'，'nowrap'或者'pre-line'的行开始处有一个空格(U+0020)，它会被移除
      </li>
-<li>所有制表符(U+0009)会被渲染为一个水平位移，到该行下一个制表位的下一个字形的开始边。制表位出现在从该块的开始content边起，8倍渲染在该块的字体中的空格(U+0020)宽度的倍数位置（原文：Tab stops occur at points that are multiples of 8 times the width of a space (U+0020) rendered in the block's font from the block's starting content edge.）
+<li>所有制表符(U+0009)会被渲染为一个水平位移，到该行下一个制表位的下一个字形的开始边。制表位出现在从该块的开始内容边界起，该块的字体中呈现的空格(U+0020)宽度的8倍的位置（原文：Tab stops occur at points that are multiples of 8 times the width of a space (U+0020) rendered in the block's font from the block's starting content edge.）
      </li>
 <li>如果'white-space'被设置为'normal'，'nowrap'或者'pre-line'的行结束处有一个空格(U+0020)，它会被移除
      </li>
-<li>如果'white-space'被设置为'pre-wrap'的行结束处有一个空格(U+0020)或者制表符(U+0009)，UA可以可视化地把它们合并起来
+<li>如果'white-space'被设置为'pre-wrap'的行结束处有一个空格(U+0020)或者制表符(U+0009)，UA可以视觉上（visually）把它们合并起来
 </ol>
 
 <p>浮动的和绝对定位的元素不会引入换行机会
@@ -517,14 +517,14 @@ CSS 2.1没有完整定义换行机会出现的位置</em>
 
 </pre>
 <p>
-注意，A和B之间有两个空格，而B和C之间没有。有时可以通过使用字符的自然双向性而不是显式嵌入层级来避免。还有，最好避免紧跟在开始和结束标签里的空格（spaces immediately inside start and end tags），因为在处理空白字符合并时，这往往会引发奇怪的事情
+注意，A和B之间有两个空格，而B和C之间没有。有时可以通过使用字符的自然双向性而不是显式嵌入层级来避免。还有，最好避免紧跟在开始标签后和结束标签前的空格（spaces immediately inside start and end tags），因为在处理空白字符合并时，这往往会引发奇怪的事情
 </p>
 
 <h3>16.6.3 <a name="ctrlchars">控制与合并字符的细节</a></h3>
 
 <p>除U+0009（tab），U+000A（换行），U+0020（空格）和U+202x（bidi格式化字符）外的控制字符会被当作任意常规字符，以相同方式渲染</p>
 
-<p>组合字符（Combining character）应该被当作那些应该被组合的字符的一部分。例如，如果具有类似于"<code>o&lt;span&gt;&amp;#x308;&lt;/span&gt;</code>"的内容的话，:first-letter会样式化整个字形，而不会只匹配基本字符（base character）</p>
+<p>组合字符（Combining character）应该被当作那些将被组合的字符的一部分。例如，如果具有类似于"<code>o&lt;span&gt;&amp;#x308;&lt;/span&gt;</code>"的内容的话，:first-letter会样式化整个字形，而不会只匹配基本字符（base character）</p>
 
 <hr class="navbar">
 

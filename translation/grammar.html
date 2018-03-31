@@ -31,7 +31,7 @@
   <ul class="toc">
     <li class="tocline2"><a href="grammar.html#grammar" class="tocxref">G.1 语法</a>
     <li class="tocline2"><a href="grammar.html#scanner" class="tocxref">G.2 词法分析器</a>
-    <li class="tocline2"><a href="grammar.html#tokenizer-diffs" class="tocxref">G.3 CSS&nbsp;2.1与CSS1的符号化对比</a>
+    <li class="tocline2"><a href="grammar.html#tokenizer-diffs" class="tocxref">G.3 CSS&nbsp;2.1与CSS1的标记解析（tokenization）对比</a>
     <li class="tocline2"><a href="grammar.html#q4" class="tocxref">G.4 实现提示</a>
   </ul>
 </div>
@@ -42,7 +42,7 @@
 
 <h2>G.1 <a name="grammar">语法</a></h2>
 
-<P>下面的语法是<a name="x0"><span class="index-inst" title="LALR(1)">LALR(1)</span></a>（但注意，大多数UA不应该直接用它，因为它没有表达<a href="syndata.html#parsing-errors">解析约定</a>，只表达了CSS&nbsp;2.1语法）。产生式的格式已经为了让人方便看（for human consumption）而优化过了，而且用了一些超出了Yacc（见<a href="refs.html#ref-YACC" rel="biblioentry" class="noxref"><span class="normref">[YACC]</span></a>）（Yacc指编译器代码生成器）的简写表示法：</P>
+<P>下面的语法是<a name="x0"><span class="index-inst" title="LALR(1)">LALR(1)</span></a>（但注意，大多数UA不应该直接用它，因为它没有表达<a href="syndata.html#parsing-errors">解析约定</a>，只表达了CSS&nbsp;2.1语法）。产生式的格式已经为了可读性（for human consumption）而优化过了，并且用了一些超出了Yacc（见<a href="refs.html#ref-YACC" rel="biblioentry" class="noxref"><span class="normref">[YACC]</span></a>）（译注：Yacc指编译器代码生成器）的简写表示法：</P>
 
 <ul>
 <li><strong>*</strong>: 0 or more
@@ -147,7 +147,7 @@ hexcolor
 
 <h2>G.2 <a name="scanner">词法分析器</a></h2>
 
-<p>下面是<a name="x3"><span class="index-def" title="tokenizer">标记生成器（tokenizer）</span></a>，用Flex（见<a href="refs.html#ref-FLEX" rel="biblioentry" class="noxref"><span class="normref">[FLEX]</span></a>）（FLEX指词法分析器生成器）表示法写的。标记生成器是大小写不敏感的
+<p>下面是<a name="x3"><span class="index-def" title="tokenizer">标记解析器（tokenizer）</span></a>，用Flex（见<a href="refs.html#ref-FLEX" rel="biblioentry" class="noxref"><span class="normref">[FLEX]</span></a>）（译注：FLEX指词法分析器生成器）表示法写的。标记解析器是大小写不敏感的
 
 <p>"\377"代表当前Flex版本可处理的最高字符序号（十进制255）。它应该读作"\4177777"（十进制1114111），是<a name="x4"><span class="index-inst" title="unicode">Unicode</span></a>/<a name="x5"><span class="index-inst" title="iso-10646">ISO-10646</span></a>中最高的可能码位值（code point）
 
@@ -257,12 +257,12 @@ Z		z|\\0{0,4}(5a|7a)(\r\n|[ \t\r\n\f])?|\\z
 .			{return *yytext;}
 </pre>
 
-<h2>G.3 <a name="tokenizer-diffs">CSS&nbsp;2.1与CSS1的符号化对比</a></h2>
+<h2>G.3 <a name="tokenizer-diffs">CSS&nbsp;2.1与CSS1的标记解析（tokenization）对比</a></h2>
 
-<p>上面的语法与CSS1规范（<a href="refs.html#ref-CSS1" rel="biblioentry" class="noxref"><span class="informref">[CSS1]</span></a>）中指定的有一些区别。多半是因为CSS2中有CSS1中不存在的的新token。其它情况是因为为了更好的可读性，语法已经被重写了。然而，存在一些不兼容的改动，在CSS1语法中会被当作错误。解释如下
+<p>上面的语法与CSS1规范（<a href="refs.html#ref-CSS1" rel="biblioentry" class="noxref"><span class="informref">[CSS1]</span></a>）中指定的有一些区别。多数是因为CSS2中有CSS1中不存在的的新token。其它情况是为了更好的可读性，语法已经被重写了。然而，存在一些不兼容的改动，在CSS1语法中会被当作错误。下面将对它们进行解释
 
 <ul>
-<li>CSS1样式表只能用每字符1字节的编码，例如，ASCII和ISO-8859-1。CSS&nbsp;2.1没有这样的限制。实际上，推断CSS1符号化几乎没什么困难，并且有些UA已经接受了2字节编码
+<li>CSS1样式表只能用每字符1字节的编码，例如，ASCII和ISO-8859-1。CSS&nbsp;2.1没有这样的限制。实际上，在推断CSS1标记解析器（tokenizer）方面几乎没什么困难，并且有些UA已经接受了2字节编码
 
 <li>CSS1只允许斜线(\)后面有4个十六进制数字，来表示Unicode字符，CSS2<a href="syndata.html#escaped-characters">允许6个</a>。而且，CSS2允许用一个空白字符来分隔转义序列。例如，按照CSS1，字符串"\abcdef"有三个字母（\abcd，e和f），按照CSS2的话，它只有一个字母（\abcdef）
 
@@ -270,14 +270,14 @@ Z		z|\\0{0,4}(5a|7a)(\r\n|[ \t\r\n\f])?|\\z
 
 <li>同样的，CSS1中，换行（<a href="syndata.html#strings">用斜线转义</a>）也不允许出现在字符串中
 
-<li>CSS2会把后面紧跟着一个标识符的数字解析为一个DIMENSION token（即，一个未知单位），CSS1把它解析为一个数字和一个标识符。这意味着在CSS1中，声明'font: 10pt/1.2serif'是正确的，和'font: 10pt/12pt serif'一样，在CSS2中，"serif"前面需要一个空格（有些UA接受第一种示例，但不接受第二种）
+<li>CSS2会把后面紧跟着一个标识符的数字解析为一个DIMENSION token（即，未知单位），CSS1把它解析为一个数字和一个标识符。这意味着在CSS1中，声明'font: 10pt/1.2serif'是正确的，和'font: 10pt/12pt serif'一样，在CSS2中，"serif"前面需要一个空格（有些UA接受第一种示例，但不接受第二种）
 
 <li>在CSS1中，一个类名可以以数字开头（".55ft"），除非它是一个尺寸（".55in"）。在CSS2中，这样的类会被解析为未知尺寸（为了允许将来添加新单位）。要让".55ft"变成一个合法的类，CSS2需要转义第一个数字（".\35 5ft"）
 </ul>
 
 <h2><a name="q4">G.4 实现提示</a></h2>
 
-<p><a href="syndata.html#tokenization">4.1.1节</a>中CSS核心语法的词法分析器可以用一个无需回溯的词法分析器来实现。用Lex表示法，需要加上下列模式（不会改变返回的token，只改变分析器的效率）：
+<p><a href="syndata.html#tokenization">4.1.1节</a>中CSS核心语法的词法分析器可以用一个无需回溯的词法分析器来实现。用Lex表示法，需要加上下列模式（不会改变返回的token，只影响分析器的效率）：
 
 <pre>
 {ident}/\\          return IDENT;
