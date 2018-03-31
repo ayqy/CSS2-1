@@ -69,13 +69,13 @@
 
 <p>本章定义了CSS中表格的处理模型。布局是该处理模型的一部分。对于布局，本章介绍了两种算法。第一种是固定表格布局算法，是明确定义的，而第二种，自动表格布局算法，本规范并没有完整定义它
 
-<p>对于自动表格布局算法，有些应用广泛的实现已经达到了相当接近的互用性（relatively close interoperability）
+<p>对于自动表格布局算法，有些应用广泛的实现已经达到了相当接近的可交互性（relatively close interoperability）
 
-<p><a name="x0"><span class="index-def" title="tables">表格</span></a>布局可以用来表示数据间的表关系。编写者在<a href="conform.html#doclanguage">文档语言</a>中指定这些关系，用CSS&nbsp;2.1指定它们的<em>表现</em>
+<p><a name="x0"><span class="index-def" title="tables">表格</span></a>布局可以用来表示数据间的表关系。编写者在<a href="conform.html#doclanguage">文档语言</a>中指定这些关系，用CSS&nbsp;2.1指定其<em>表现</em>
 
 <p>在可视化媒体中，CSS表格也可以用来实现特定的布局。这种情况下，编写者不应该在文档语言中使用表格相关的元素，而应该给相关结构元素应用CSS来实现需要的布局
 
-<p>编写者可以把表格当作一个矩形单元网格来指定其可视化格式 。单元格的行和列会被组织进行组（row group）和列组（column group）。在行，列，行组，列组和单元格的周围可以绘制边框（CSS&nbsp;2.1中有两种边框模型）。编写者可以把单元格中的数据垂直或者水平对齐，以及对齐一行或一列里的所有单元格中的数据
+<p>编写者可以把表格当作一个矩形单元网格来指定其视觉格式 。单元格的行和列会被组织进行组（row group）和列组（column group）。在行，列，行组，列组和单元格的周围可以绘制边框（CSS&nbsp;2.1中有两种边框模型）。编写者可以把单元格中的数据垂直或者水平对齐，以及对齐一行或一列里的所有单元格中的数据
 
 <div class="example"><P style="display:none">示例：</P><p>
 用HTML 4描述的一个简单的3行，3列表格：
@@ -107,7 +107,7 @@ th { vertical-align: baseline }
 td { vertical-align: middle }
 </pre>
 
-<p>下面的规则制定了第一行具有3px的蓝色实线边框，让其它行具有1px的黑色实线边框：
+<p>下面的规则指定了第一行具有3px的蓝色实线边框，让其它行具有1px的黑色实线边框：
 
 <pre>
 table   { border-collapse: collapse }
@@ -126,14 +126,14 @@ caption { caption-side: top }
 
 </div>
 
-<p>之前的示例展示了CSS怎样配合HTML 4元素，HTML 4中，各种表格元素（TABLE，CAPTION，THEAD，TBODY，TFOOT，COL，COLGROUP，TH和TD）的语义都被明确定义好了。在其它文档语言（例如，XML应用程序）中，可能不存在预定义的表格元素。因此CSS&nbsp;2.1允许编写者通过<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性把文档语言元素<a name="x1"><span class="index-inst" title="mapping elements to table parts">“映射”</span></a>到表格元素。例如，下列规则让FOO元素表现得像HTML TABLE元素一样，让BAR元素表现得像CAPTION元素一样：</p>
+<p>之前的示例展示了CSS怎样配合HTML 4元素，HTML 4中，各种表格元素（TABLE，CAPTION，THEAD，TBODY，TFOOT，COL，COLGROUP，TH和TD）的语义都被明确定义了。在其它文档语言（例如，XML应用程序）中，可能不存在预定义的表格元素。因此CSS&nbsp;2.1允许编写者通过<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>属性把文档语言元素<a name="x1"><span class="index-inst" title="mapping elements to table parts">“映射”</span></a>到表格元素。例如，下列规则让FOO元素表现得像HTML TABLE元素一样，让BAR元素表现得像CAPTION元素一样：</p>
 
 <PRE class="example">
 FOO { display : table }
 BAR { display : table-caption }
 </pre>
 
-<p><a name="internal"></a>我们在接下来的小节中讨论各种表格元素。本规范中，术语<a name="x2"><span class="index-def" title="table element"><dfn>表格元素</dfn></span></a>指的是表格创建中涉及的任意元素。<a name="x3"><span class="index-def" title="internal table element|table element::internal"><dfn id="internal-table-element">内部表格元素</dfn></span></a>是指产生一个行，行组，列，列组或者单元格的元素
+<p><a name="internal"></a>我们在接下来的小节中讨论各种表格元素。本规范中，术语<a name="x2"><span class="index-def" title="table element"><dfn>表格元素</dfn></span></a>指的是表格创建中涉及的任意元素。<a name="x3"><span class="index-def" title="internal table element|table element::internal"><dfn id="internal-table-element">内部表格元素</dfn></span></a>是指生成行，行组，列，列组或者单元格的元素
 
 <h2>17.2 <a name="table-display">CSS表格模型</a></h2>
 
@@ -175,7 +175,7 @@ BAR { display : table-caption }
 
 <p>具有这些<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>值的替换元素会被当作布局期间给定的display类型。例如，一个设置了'display: table-cell'的图片将填满可用的单元格空间，并且它的尺寸会像普通单元格一样被用于表格尺寸算法
 
-<p><a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>被设置为'table-column'或者'table-column-group'的元素不会被渲染（就像它们具有'display: none'一样），但它们有用，因为它们可能具有能为其代表的列引入样式的属性
+<p><a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>被设置为'table-column'或者'table-column-group'的元素不会被渲染（就像它们具有'display: none'一样），但它们有用，因为它们可以具有能为其代表的列引入样式的属性
 
 <p>附录中<a href="sample.html">HTML 4的默认样式表</a>描述了HTML4中这些值的应用：
 
@@ -195,24 +195,24 @@ caption  { display: table-caption }
 
 <h3>17.2.1 <a name="anonymous-boxes">匿名表格对象</a></h3> 
 
-<p>除HTML外的文档语言可能不包含CSS&nbsp;2.1表格模型中的所有元素。这种情况下，“缺失的”元素必须要指定（assumed）出来，以配合表格模型。所有表格元素将在它周围自动生成必要的匿名表格对象，至少包括3个嵌套的对象，分别对应'table'/'inline-table'元素，'table-row'元素和'table-cell'元素。缺失的元素根据下列规则生成<a href="visuren.html#anonymous">匿名</a>对象（例如，可视化表格布局中的匿名盒）：
+<p>除HTML外的文档语言可能不包含CSS&nbsp;2.1表格模型中的所有元素。这种情况下，“缺失的”元素必须要假定（assumed）出来，以配合表格模型。所有表格元素将在它周围自动生成必要的匿名表格对象，至少包括3个嵌套的对象，分别对应'table'/'inline-table'元素，'table-row'元素和'table-cell'元素。缺失的元素根据下列规则生成<a href="visuren.html#anonymous">匿名</a>对象（例如，可视化表格布局中的匿名盒）：
 
 <p>在这些规则中，定义了下列术语：
 <dl>
   <dt><a name="x16"><span class="index-def">行组盒（row group box）</span></a>
-    <dd>一个'table-row-group'，'table-header-group'或者'table-footer-group'
+    <dd>'table-row-group'，'table-header-group'或者'table-footer-group'
 
   <dt><a name="x17"><span class="index-def">适当的表格子级（proper table child）</span></a>
-    <dd>一个'table-row'盒，行组盒，'table-column'盒，'table-column-group'盒或者'table-caption'盒
+    <dd>'table-row'盒，行组盒，'table-column'盒，'table-column-group'盒或者'table-caption'盒
 
   <dt><a name="x18"><span class="index-def">适当的表格行父级（proper table row parent）</span></a>
-    <dd>一个'table'或者'inline-table'盒或者行组盒
+    <dd>'table'或者'inline-table'盒或者行组盒
 
   <dt><a name="x19"><span class="index-def">内部表格盒（internal table box）</span></a>
-    <dd>一个'table-cell'盒，'table-row'盒，行组盒，'table-column'盒或者'table-column-group'盒
+    <dd>'table-cell'盒，'table-row'盒，行组盒，'table-column'盒或者'table-column-group'盒
 
   <dt id="tabular-container"><a name="x20"><span class="index-def">表容器（tabular container）</span></a>
-    <dd>一个'table-row'盒或者适当的表格行父级
+    <dd>'table-row'盒或者适当的表格行父级
 
   <dt><a name="x21"><span class="index-def">连续的（consecutive）</span></a>
     <dd>如果两个兄弟盒没有除只含空白字符的匿名行内盒外的中间兄弟，它们就是连续的。如果一系列兄弟盒中每个盒都与（该序列中）它前面的那个是连续的，那么这些兄弟盒是连续的
@@ -255,7 +255,7 @@ caption  { display: table-caption }
 </ol>
 
 <div class="example"><P style="display:none">示例：</P>
-<p>在这个XML示例中，'table'元素被认为包含HBOX元素：
+<p>在这个XML示例中，假定'table'元素包含HBOX元素：
 
 <pre class="xml-example">
 &lt;HBOX&gt;
@@ -265,7 +265,7 @@ caption  { display: table-caption }
 &lt;/HBOX&gt;
 </pre>
 
-<p>因为相关的样式表是：
+<p>因为关联的样式表是：
 
 <pre class="example">
 HBOX { display: table-row }
@@ -274,7 +274,7 @@ VBOX { display: table-cell }
 </div>
 
 <div class="example"><P style="display:none">示例：</P>
-<p>本例中，ROW中的3个'table-cell'元素被认为含有文本。注意文本被进一步包进了匿名行内盒中，如<a href="visuren.html#anonymous">视觉格式化模型</a>中的解释：
+<p>本例中，假定3个'table-cell'元素包含行中的文本。注意文本被进一步包进了匿名行内盒中，如<a href="visuren.html#anonymous">视觉格式化模型</a>中所述：
 
 <pre class="xml-example">
 &lt;STACK&gt;
@@ -302,11 +302,11 @@ D     { display: inline; font-weight: bolder }
 <dl>
   <dt><a href="box.html#propdef-border" class="noxref"><span class="propinst-border">'border'</span></a>
 
-    <dd>只有在表格元素的<a href="tables.html#propdef-border-collapse" class="noxref"><span class="propinst-border-collapse">'border-collapse'</span></a>被设置为'collapse'时，各种border属性才适用于列。这种情况下，设置在列和列组上border被输入<a href="#border-conflict-resolution">冲突处理算法</a>，选择每个单元格边的边框样式
+    <dd>只有在表格元素的<a href="tables.html#propdef-border-collapse" class="noxref"><span class="propinst-border-collapse">'border-collapse'</span></a>被设置为'collapse'时，各种border属性才适用于列。这种情况下，在列和列组上设置的边框将输入到<a href="#border-conflict-resolution">冲突处理算法</a>中，以选择每个单元格边界的边框样式
 
   <dt><a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
 
-    <dd>但只在单元格和行背景透明时，才可以用background属性设置列中单元格的背景。见<a href="#table-layers">“表格层与透明性”</a>
+    <dd>只有在单元格和行背景透明时，才可以通过background属性设置列中单元格的背景。见<a href="#table-layers">“表格层与透明性”</a>
 
   <dt><a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
 
@@ -314,11 +314,11 @@ D     { display: inline; font-weight: bolder }
 
   <dt><a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>
 
-    <dd>如果一列的'visibility'被设置为'collapse'，该列中的元素都不会被渲染，并且跨越到其它列的单元格会被裁剪。此外，表格宽度会减掉该列所占的宽度。见下面的<a href="#dynamic-effects">“动态效果”</a>。'visibility'的其它值不影响（列）
+    <dd>如果一列的'visibility'被设置为'collapse'，该列中的元素都不会被渲染，并且跨越到其它列的单元格会被裁剪。此外，表格宽度会减掉该列所占的宽度。见下面的<a href="#dynamic-effects">“动态效果”</a>。'visibility'的其它值不影响（列中元素）
 </dl>
 
 <div class="example"><P style="display:none">示例：</P>
-<p>下面是一些给列设置属性的样式规则的示例。前两条规则共同实现了HTML 4值为"cols"的"rules"属性。第3条规则让"totals"列变为蓝色，最后2条规则展示了怎样让一列固定大小，通过使用<a href="#fixed-table-layout">固定布局算法</a>
+<p>下面是一些给列设置属性的样式规则示例。前两条规则共同实现了HTML 4值为"cols"的"rules"属性。第3条规则让"totals"列变为蓝色，最后2条规则展示了怎样通过<a href="#fixed-table-layout">固定布局算法</a>让一列（具有）固定大小
 
 <pre>
 col { border-style: none solid }
@@ -331,13 +331,13 @@ col.totals { width: 5em }
 
 <h2>17.4 <a name="model">视觉格式化模型中的表格</a></h2>
 
-<p>根据视觉格式化模型，一个表格可以表现得像一个<a href="visuren.html#block-level">块级</a>（对于'display: table'）或者<a href="visuren.html#inline-level">行内级</a>（对于'display: inline-table'）元素
+<p>根据视觉格式化模型，一个表格可以表现得像个<a href="visuren.html#block-level">块级</a>（对于'display: table'）或者<a href="visuren.html#inline-level">行内级</a>（对于'display: inline-table'）元素
 
-<p>这两种情况下，表格都会生成一个叫做<dfn>表格容器盒（table wrapper box）</dfn> 的主块盒，它包含表格盒本身以及所有标题盒（按文档顺序）。<dfn>表格盒</dfn>是一个含有该表格内部表格盒的块级盒。标题盒是保留其原本的content，padding，margin和border区的块级盒，会被当作表格容器盒中的常规块盒来渲染。标题盒放在表格盒前面还是后面由'caption-side'属性决定，如下所述
+<p>这两种情况下，表格都会生成一个叫做<dfn>表格容器盒（table wrapper box）</dfn> 的主块盒，它包含表格盒本身以及所有标题盒（按文档顺序）。<dfn>表格盒</dfn>是一个含有该表格内部表格盒的块级盒。标题盒是保留其原本的内容，内边距，外边距和边框区的块级盒，会被当作表格容器盒中的常规块盒来渲染。标题盒放在表格盒前面还是后面由'caption-side'属性决定，如下所述
 
-<p>如果表格是块级的，表格容器盒是一个'block'盒，而如果表格是行内级的，（表格容器盒）就是'inline-block'盒。表格容器盒建立了一个块格式化上下文。表格盒（非表格容器盒）用来对一个'inline-table'进行基线垂直对齐。表格容器盒的的宽度是它里面的表格盒的border边宽度（border-edge width），如17.5.2节所述。表格上'width'和'height'的百分比是相对于表格容器盒的包含块的，而不是表格容器盒本身
+<p>如果表格是块级的，表格容器盒是一个'block'盒，而如果表格是行内级的，（表格容器盒）就是'inline-block'盒。表格容器盒建立了一个块格式化上下文。表格盒（非表格容器盒）用来对一个'inline-table'进行基线垂直对齐。表格容器盒的的宽度是它里面的表格盒的边框边界宽度（border-edge width），如17.5.2节所述。表格上'width'和'height'的百分比是相对于表格容器盒的包含块的，而不是表格容器盒本身
 
-<p>表格元素上'position'，'float'，'margin-*'，'top'，'right'，'bottom'和'left'属性的计算值被应用在表格容器盒上，而不是表格盒。所有其它不可继承的属性值应用在表格盒上，而不是表格容器盒（对于表格元素上没有应用于表格和表格容器盒的值，就改用初始值）
+<p>表格元素上'position'，'float'，'margin-*'，'top'，'right'，'bottom'和'left'属性的计算值被应用在表格容器盒上，而不是表格盒。所有其它不可继承的属性值应用在表格盒上，而不是表格容器盒（如果表元素的值未在表格和表格容器盒中使用，就用初始值代替）
 
 <div class="figure">
 <p><img src="images/table_container.png" alt="A table with a caption above
@@ -374,13 +374,13 @@ it">
 </dl>
 
 <div class=note>
-<p><em><strong>注意：</strong>CSS2描述了一种不同的宽度和水平对齐行为。这种行为将在CSS3中通过该属性的'top-outside'和'bottom-outside'值引入</em>
+<p><em><strong>注意：</strong>CSS2描述了一种不同的宽度（计算）和水平对齐行为。这种行为将在CSS3中通过该属性的'top-outside'和'bottom-outside'值引入</em>
 </div>
 
 <p>为了在标题盒里水平对齐标题内容，可以使用<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>属性
 
 <div class="example"><P style="display:none">示例：</P>
-<p>本例中，<a href="tables.html#propdef-caption-side" class="noxref"><span class="propinst-caption-side">'caption-side'</span></a>属性把标题放在了表格下方。标题将和表格的父级一样宽，而且标题文本将会左对齐
+<p>本例中，（通过）<a href="tables.html#propdef-caption-side" class="noxref"><span class="propinst-caption-side">'caption-side'</span></a>属性把标题放在了表格下方。标题将和表格的父级一样宽，并且标题文本将会左对齐
 
 <pre>
 caption { caption-side: bottom; 
@@ -391,12 +391,12 @@ caption { caption-side: bottom;
 
 <h2>17.5 <a name="table-layout">表格内容的可视化布局</a></h2>
 
-<p>内部表格元素生成带有内容和边框的矩形<a href="box.html#box-dimensions">盒</a>，单元格也有padding。内部表格元素没有margin
+<p>内部表格元素生成带有内容和边框的矩形<a href="box.html#box-dimensions">盒</a>，单元格也有内边距。内部表格元素没有外边距
 
-<p>这些盒的可视化布局由不规则行列组成的矩形网格控制。每个盒占据整数个单元格，由下列规则来定。这些规则不适用于HTML 4及更早的HTML版本，HTML对行和列跨度（row and column spans）规定了它自己的限制
+<p>这些盒的可视化布局由不规则行列组成的矩形网格控制。每个盒占据整数个单元格，由下列规则来定。这些规则不适用于HTML 4及更早的HTML版本，HTML对行和列跨度（row and column spans）施加了自己的限制
 
 <ol>
-  <li>每个行框占据一行单元格。所有行框从顶部到底部能够铺满表格，按照它们出现在源文档中的顺序排列（即，表格占据的网格行数恰好和row元素数量一样）
+  <li>每个行框占据一行网格单元。行框一起按照源文档中出现的顺序从上到下铺满表格（即，表占用的网格行与行元素的数量完全相同）
 
   <li>一个行组与它所包含的行占据的网格单元相同
 
@@ -404,15 +404,15 @@ caption { caption-side: bottom;
 
   <li>一个列组盒与它所包含的列占据的网格单元相同
 
-  <li>单元格可以跨越多个行或者列（尽管CSS&nbsp;2.1没有定义怎样确定跨越的行或者列的数量，用户代理可能有关于源文档的特殊信息，CSS将来的更新可能会提供一种用CSS语法来表达这些信息的方式）。因此，每个单元格都是一个矩形盒，宽高为一个或者多个网格单元。该矩形的顶行位于由单元格的父级指定的行中。该矩形必须尽量向左，但该单元格在第一列中占据的部分不能与任何其它单元格盒重叠（即，一个从之前行开始的跨行单元格），而且该单元格必须位于同一行中所有在源文档中更早出现的单元格的右边。如果这个位置会让一个跨列单元格与一个来自之前行的跨行单元格重叠的话，CSS没有定义结果：实现可以重叠单元格（正如许多HTML实现的做法）或者把后一个单元格移动到右边，以避免这种重叠（如果表格的'direction'属性是'ltr'的话，该约束成立。如果'direction'是'rtl'，交换前两句话中的“左边”和“右边”）
+  <li>单元格可以跨越多个行或者列（尽管CSS&nbsp;2.1没有定义怎样确定跨越的行或者列的数量，但用户代理可能有关于源文档的特殊信息，CSS将来的更新可能会提供一种用CSS语法来表达这些信息的方式）。因此，每个单元格都是一个矩形框，宽高为一个或者多个网格单元。该矩形的顶行位于由单元格的父级指定的行中。该矩形必须尽量向左，但该单元格在第一列中占据的部分不能与任何其它单元格盒重叠（即，一个从之前行开始的跨行单元格），而且该单元格必须位于同一行中所有在源文档中更早出现的单元格的右边。如果这个位置会让一个跨列单元格与一个来自之前行的跨行单元格重叠的话，CSS没有定义结果：实现可以重叠单元格（正如许多HTML实现的做法）或者把后一个单元格移动到右边，以避免这种重叠（如果表格的'direction'属性是'ltr'的话，该约束成立。如果'direction'是'rtl'，交换前两句话中的“左边”和“右边”）
 
   <li>一个单元格盒不能超出表格的最后一行或者行组，用户代理必须缩短它直到能适应
 </ol>
 
-<p><a href="#collapsing-borders">合并边框模型</a>中，行，列，行组合列组的边与居中的单元格边框上的假想网格线完全一致（因此，该模型中，所有行恰好铺满表格，不会留下空白，列也是这样）。在<a href="#separated-borders">独立边框模型</a>中，边与单元格的<a href="box.html#border-edge">border边</a>完全一致（因此，该模型中，行，列，行组或者列组之间可能存在空白，对应<a href="tables.html#propdef-border-spacing" class="noxref"><span class="propinst-border-spacing">'border-spacing'</span></a>属性）
+<p><a href="#collapsing-borders">合并边框模型</a>中，行，列，行组和列组的边缘与单元格边框所在的假想网格线一致（因此，该模型中，所有行恰好铺满表格，不会留下空白，列也是这样）。在<a href="#separated-borders">独立边框模型</a>中，边与单元格的<a href="box.html#border-edge">border边</a>完全一致（因此，该模型中，行，列，行组或者列组之间可能存在空白，对应<a href="tables.html#propdef-border-spacing" class="noxref"><span class="propinst-border-spacing">'border-spacing'</span></a>属性）
 
 <div class="note">
-<p><em><strong>注意</strong> 表格单元的定位和浮动会让它们不再是表格单元，根据<a href="visuren.html#dis-pos-flo">9.7节</a>中的规则。当应用浮动时，<a>匿名表格对象上的规则</a>还会创建一个匿名单元格对象</em>
+<p><em><strong>注意</strong> 表格单元的定位和浮动会让它们不再是表格单元，根据<a href="visuren.html#dis-pos-flo">9.7节</a>中的规则。当应用浮动时，<a>匿名表格对象上的规则</a>也可能导致创建匿名单元格对象</em>
 </div>
 
 <div class="html-example">
@@ -425,7 +425,7 @@ caption { caption-side: bottom;
 &lt;/table&gt;
 </pre>
 
-<p>用户代理可以自由可视化地重叠单元格，如左图。或者移动单元格来避免可视化重叠，如右图
+<p>用户代理可以自由视觉上重叠单元格，如左图。或者移动单元格来避免视觉重叠，如右图
 
 <div class="figure">
 <p><img src="images/table-overlap.png" alt="One table with overlapping
@@ -436,7 +436,7 @@ overlapping cells are rendered">[D]</A></SPAN> <p class="caption">一个错误HT
 
 <h3>17.5.1 <a name="table-layers">表格层与透明性</a></h3>
 
-<p>鉴于找出每个表格单元背景的目的，不同的表格元素可以被看作位于6个叠加的层上。其中某一层中设置在某个元素上的背景只有当它上方的层都具有透明背景时，才可见
+<p>为了找出每个表格单元背景，不同的表格元素可以被看作位于6个叠加的层上。其中某一层中设置在某个元素上的背景只有当它上方的层都具有透明背景时，才可见
 
 <div class="figure">
 <p><img src="images/tbl-layers.png" alt="schema of table layers"><SPAN class="dlink">&nbsp;&nbsp;&nbsp;<A name="img-tbl-layers" href="images/longdesc/tbl-layers-desc.html" title="Long description of example of cell background calculation">[D]</A></SPAN>
@@ -447,15 +447,15 @@ overlapping cells are rendered">[D]</A></SPAN> <p class="caption">一个错误HT
 <ol>
   <li>最底层是个单一平面，表示表格盒本身。和所有盒一样，它可以是透明的
 
-  <li>下一层包含列组。每个列组从顶行的单元格的顶部延伸到底行单元格的底部，从它最左端的列的left边到它最右端的列的right边。背景恰好完全覆盖列组中所有的单元格区域，即使它们跨越到了列组外，但这种区域上的差异不会影响背景图片定位
+  <li>下一层包含列组。每个列组从顶行单元格的顶部延伸到底行单元格的底部，从它最左端的列的左边界到它最右端的列的右边界。背景恰好完全覆盖列组中所有的单元格区域，即使它们跨越到了列组外，但这种区域上的差异不会影响背景图片定位
 
-  <li>列组上面是表示列盒的区域。每列的宽度和列组相同，高度和列中的常规（单列跨度）单元格相同。背景恰好完全覆盖列中所有单元格的区域，即使它们跨越到了列外，但这种区域上的差异不会影响背景图片定位
+  <li>列组上面是表示列盒的区域。每列的宽度与列组相同，高度和列中的常规（单列跨度）单元格相同。背景恰好完全覆盖列中所有单元格区域，即使它们跨越到了列外，但这种区域上的差异不会影响背景图片定位
 
   <li>下一层包含行组，每个行组从它第一列顶部单元格的左上角延伸到最后一列底部单元格的右下角
 
-  <li>倒数第二层包含行。每行的宽度和行组一样，高度和行中的常规（单行跨度）单元格一样。与列类似，背景恰好完全覆盖行中所有的单元格区域，即使它们跨越到了行外，但这种区域上的差异不会影响背景图片定位
+  <li>倒数第二层包含行。每行的宽度与行组相同，高度和行中的常规（单行跨度）单元格相同。与列类似，背景恰好完全覆盖行中所有的单元格区域，即使它们跨越到了行外，但这种区域上的差异不会影响背景图片定位
 
-  <li>最顶层包含单元格自身。如图所示，虽然所有行都含有相同数目的单元格，但不是每个单元格都有具体内容。在<a href="#separated-borders">独立边框模型</a>（<a href="tables.html#propdef-border-collapse" class="noxref"><span class="propinst-border-collapse">'border-collapse'</span></a>为'separate'）中，如果它们的<a href="tables.html#propdef-empty-cells" class="noxref"><span class="propinst-empty-cells">'empty-cells'</span></a>属性值为'hide'，这些“空”单元格的单元格，行，行组，列和列组的背景都是透明的，会让表格背景显示出来
+  <li>最顶层包含单元格自身。如图所示，虽然所有行都含有相同数目的单元格，但并非每个单元格都有具体内容。在<a href="#separated-borders">独立边框模型</a>（<a href="tables.html#propdef-border-collapse" class="noxref"><span class="propinst-border-collapse">'border-collapse'</span></a>为'separate'）中，如果它们的<a href="tables.html#propdef-empty-cells" class="noxref"><span class="propinst-empty-cells">'empty-cells'</span></a>属性值为'hide'，这些“空”单元格的单元格，行，行组，列和列组的背景都将是透明的，会让表格背景显示出来
 </ol>
 
 <p>一个“缺失单元格（missing cell）”是一个没有被元素或伪元素占据的行/列网格中的单元格。缺失单元格会被当作一个占据该网格位置的匿名table-cell盒
@@ -507,7 +507,7 @@ overlapping cells are rendered">[D]</A></SPAN> <p class="caption">一个错误HT
 
 <p>CSS没有为表格定义一种“最佳”布局，因为在很多场景下，最佳的定义是个品味问题（a matter of taste）。CSS只定义了用户代理在布局表格时必须遵守的一些约束。用户代理可以用任何它们想用的算法来实现，并且可以自由选择偏重渲染速度还是精确程度，设定了“固定布局算法”时除外
 
-<p>注意，本节重写了<a href="visudet.html#Computing_widths_and_margins">10.3节</a>描述的用于计算宽度的规则。特殊的，如果一个表格的margin被设置为'0'，width被设置为'auto'，表格将不会自动改变大小填满其包含块。然而，一旦表格'width'的计算值确定了（用下面给出的算法，或者在适当的时候使用某些依赖UA的其它算法），就应用10.3节的其它部分。因此，例如，left和right margin为'auto'<em>能</em>让一个表格居中
+<p>注意，本节重写了<a href="visudet.html#Computing_widths_and_margins">10.3节</a>描述的用于计算宽度的规则。特殊的，如果一个表格的外边距被设置为'0'，宽度被设置为'auto'，表格将不会自动改变大小填满其包含块。然而，一旦表格'width'的计算值确定了（用下面给出的算法，或者在适当的时候使用某些依赖UA的其它算法），就应用10.3节的其它部分。因此，例如，左右外边距为'auto'<em>能</em>让表格居中
 
 <p>CSS将来的更新可能会引入让表格自动适应其包含块的方法
 
@@ -543,7 +543,7 @@ overlapping cells are rendered">[D]</A></SPAN> <p class="caption">一个错误HT
 
 <p>用这种（快速）算法，表格的水平布局不依赖单元格的内容，它只取决于表格宽度，列宽和边框或者单元格间距
 
-<p>表格的宽度可以通过<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性显式指定。'auto'值（对于'display: table'和'display: inline-table'都适用）表示用<a href="#auto-table-layout">自动表格布局</a>算法。然而，如果表格是一个常规流中的块级表格（'display: table'），UA可以（但不是必须）用<a href="visudet.html#blockwidth">10.3.3</a>的算法来计算一个宽度并应用固定表格布局，即使指定的宽度是'auto'
+<p>表格的宽度可以通过<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性显式指定。'auto'值（对于'display: table'和'display: inline-table'都适用）表示用<a href="#auto-table-layout">自动表格布局</a>算法。然而，如果表格是一个常规流中的块级表格（'display: table'），UA可以（但不是必须）用<a href="visudet.html#blockwidth">10.3.3</a>的算法来计算宽度并应用固定表格布局，即使指定的宽度是'auto'
 
 <div class="example"><P style="display:none">示例：</P>
 <p>'width'为'auto'时，如果UA支持固定表格布局，下列（规则）将会创建一个比其包含块窄4em的表格：
@@ -558,14 +558,14 @@ table { table-layout: fixed;
 <p>在固定表格布局算法中，每列的宽度由下述规则决定：
 
 <ol>
-  <li>一个<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性值不为'auto'的列元素所在的列宽度就设置为该宽度值
+  <li><a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性值不为'auto'的列元素所在的列宽度就设置为该宽度值
 
-  <li>否则，由第一行中<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性值不为'auto'的单元格确定该列的宽度。如果单元格跨越了多列，就把宽度分到这些列中（the width is divided over the columns）
+  <li>否则，由第一行中<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性值不为'auto'的单元格确定该列的宽度。如果单元格跨越了多列，就给宽度除以列数
 
   <li>所有剩余列均分剩余的水平表格空间（减去边框或单元格间距）
 </ol>
 
-<p>表格的宽度为表格元素的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>值与列宽之和（加上单元格间距或者边框）两者之间的较大值。如果表格width比列宽之和还宽，额外的空间应该分布在各列中
+<p>表格的宽度为表格元素的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>值与列宽之和（加上单元格间距或者边框）两者之间的较大值。如果表格宽度比列宽之和还宽，额外的空间应该分布在各列中
 
 <p>如果一个后续行具有的列数目大于由table-column元素确定的数值与由第一行确定的数值两者之间的较大值，那么就不渲染额外的列。CSS&nbsp;2.1没有定义<em>已</em>渲染的列和表格的宽度，在使用'table-layout: fixed'时，编写者不应该省掉（omit）第一行中的列
 
@@ -588,49 +588,49 @@ table { table-layout: fixed;
 <p>列宽由下列步骤决定：
 
 <ol>
-  <li><p>计算每个单元格的最小内容宽度(MCW)：格式化的内容可以跨越任意多行，但不能从单元格溢出。如果单元格指定的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>(W)大于MCW，W就是最小单元格宽度。'auto'值表示MCW是最小单元格宽度
+  <li><p>计算每个单元格的最小内容宽度(MCW)：格式化内容可以跨越任意多行，但不能从单元格溢出。如果单元格指定的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>(W)大于MCW，W就是最小单元格宽度。'auto'值表示MCW是最小单元格宽度
 
   <p>然后，计算每个单元格的“最大”宽度：格式化内容，不考虑除显式换行外的换行
 
-  <li><p>对于每一列，从只跨越该列的单元格中确定一个最大和最小列宽。最小列宽是最小单元格宽度中最大的那个所需要的最小列宽（或者列<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>，看哪个更大）。最大列宽是最大单元格宽度中最大的那个所需要的最大列宽（或者列<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>，看哪个更大）
+  <li><p>对于每一列，从只跨越该列的单元格中确定一个最大和最小列宽。最小值是单元格所需的最小单元格宽度（或列<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>，以较大的值为准）。最大值是单元格所需的最大单元格宽度（或者列<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>，以较大的值为准）
 
-  <li><p>对于每个跨越多列的单元格，增加它跨越的列的最小宽度，让它们至少与单元格一样宽。对于最大宽度也这样处理。如果可能的话，把跨越的所有列再扩宽差不多相同宽度
+  <li><p>对于每个跨越多列的单元格，增加其所跨列的最小宽度，让它们至少与单元格一样宽。对于最大宽度也这样处理。如果可能的话，把跨越的所有列再扩宽差不多相同的宽度
 
-  <li><p>对于每个'width'不为'auto'的列组元素，增加它跨越的列的最小宽度，让它们至少与列组的'width'一样宽
+  <li><p>对于每个'width'不为'auto'的列组元素，增加其所跨列的最小宽度，让它们至少与列组的'width'一样宽
 
 </ol>
 
 <p>这样每一列都有了一个最大和最小宽度
 
-<p>标题最小宽度(CAPMIN)可以通过把每个标题的最小标题外宽度（outer width）计算为含有被格式化为"display: block"的标题的假想表格单元的MCW来确定。最小标题外宽度（outer width）中的最大值就是CAPMIN
+<p>标题最小宽度（CAPMIN）是通过计算每个标题的最小标题外宽（outer width），作为含有被格式化为"display: block"的标题的假想表格单元的MCW。最小标题外宽中的最大值是CAPMIN
 
 <p>列和标题宽度对最终表格宽度的影响如下：
 
 <ol>
-  <li>如果'table'或者'inline-table'元素的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性的计算值(W)不为'auto'，宽度的应用值就是W，CAPMIN，以及所有列加上单元格间距或者边框(MIN)所需要的最小宽度三者之间的最大值，如果宽度的应用值大于MIN，额外的宽度应该分布在各列中
+  <li>如果'table'或者'inline-table'元素的<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>属性的计算值(W)不为'auto'，宽度的应用值就是W，CAPMIN，以及所有列加上单元格间距和边框(MIN)所需要的最小宽度三者之间的最大值，如果宽度的应用值大于MIN，额外的宽度应该分布在各列中
 
-  <li>如果'table'或者'inline-table'元素具有'width: auto'，宽度的应用值为表格包含块的宽度，CAPMIN和MIN三者之间的最大值。然而，如果CAPMIN或者列加上单元格间距或者边框(MAX)所需要的最大宽度都小于包含块宽度的话，就用max(MAX, CAPMIN)
+  <li>如果'table'或者具有'width: auto'的'inline-table'元素，宽度的应用值为表格包含块的宽度，CAPMIN和MIN三者之间的最大值。然而，如果CAPMIN或者列加上单元格间距和边框(MAX)所需要的最大宽度都小于包含块宽度的话，就用max(MAX, CAPMIN)
 </ol>
 
-<p>百分比值的列宽是相对于表格宽度的。如果表格具有'width: auto'，百分比表示对列宽的约束，UA应该尝试满足它（显然，不是所有时候都有满足的可能：如果列宽是'110%'的话，该约束无法满足）
+<p>百分比值的列宽是相对于表格宽度的。如果表格具有'width: auto'，百分比表示对列宽的约束，UA应该尝试满足它（显然，这并不总是可能的：如果列宽是'110%'的话，该约束无法满足）
 
 <div class="note">
-<p><em><strong>注意</strong> 该算法中，行（和行组）和列（和列组）都受其所含的单元格尺寸的约束。给一列设置宽度可以间接影响一行的高度，反之亦然</em>
+<p><em><strong>注意</strong> 该算法中，行（和行组）和列（和列组）都受其所含的单元格尺寸的约束。设置列的宽度可能会间接影响行的高度，反之亦然</em>
 </div>
 
 <h3>17.5.3 <a name="height-layout">表格高度算法</a></h3>
 
-<p>表格的高度由'table'或者'inline-table'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性给定。'auto'值表示高度为行高度之和加上所有单元格间距或者边框。所有其它值都会被当作最小高度。当'height'属性导致表格比其它情况更高时，CSS 2.1没有定义额外空间如何分布
+<p>表格的高度由'table'或者'inline-table'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性给定。'auto'值表示高度为行高度之和加上所有单元格间距和边框。所有其它值都会被当作最小高度。当'height'属性导致表格比其它情况更高时，CSS 2.1没有定义额外空间如何分布
 
 <p class=note><em><strong>注意</strong> CSS将来的更新可能会进一步详细说明这个问题</em>
 
-<p>一旦用户代理有了该行中所有可用单元格，'table-row'元素的盒的高度就能计算了：为该行<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，行中每个单元格<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，以及单元格所需要的最小高度(MIN)三者之间的最大值。'table-row'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>值为'auto'表示用于布局的行高度为MIN。MIN取决于单元格盒的高度和单元格盒的对齐（很像<a href="visudet.html#line-height">行框</a>的计算）。CSS&nbsp;2.1没有定义表格单元和表格行的高度怎样计算，  当其高度被指定为百分比值时。CSS&nbsp;2.1没有定义行组上<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的含义
+<p>一旦用户代理有了该行中所有可用单元格，'table-row'元素的盒的高度就能计算了：为该行<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，行中每个单元格<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的计算值，以及单元格所需要的最小高度(MIN)三者之间的最大值。'table-row'的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>值为'auto'表示用于布局的行高度为MIN。MIN取决于单元格盒的高度和单元格盒的对齐方式（与<a href="visudet.html#line-height">行框</a>高度的计算非常类似）。表格单元和表格行的高度被指定为百分比值时，CSS&nbsp;2.1没有定义如何计算其高度。CSS&nbsp;2.1没有定义行组上<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>的含义
 
-<p>CSS&nbsp;2.1中，一个单元盒的高度是内容所需要的最小高度。表格单元的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性会影响行的高度（见上文），但不会增加该单元格的高度
+<p>CSS&nbsp;2.1中，一个单元格盒的高度是内容所需的最小高度。表格单元的<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>属性会影响行的高度（见上文），但不会增加该单元格的高度
 
 <p>CSS&nbsp;2.1没有指定跨越多行的单元格怎样影响行高度的计算，但涉及的行高度之和必须大到能够包住跨行的单元格
 
-<p>每个表格单元的<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定了它的在行中的对齐方式。每个单元格的内容都有一个基线，顶部，中部和底部，如同行自身一样。在表格上下文中，<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>的值含义如下：
+<p>每个表格单元的<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>属性决定了它在行中的对齐方式。每个单元格的内容都具有基线，顶部，中部和底部，如同行自身一样。在表格上下文中，<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>的值含义如下：
 
 <dl>
   <dt><strong>baseline</strong>
@@ -655,9 +655,9 @@ table { table-layout: fixed;
     <dd>这些值不适用于单元格，单元格会相对基线对齐
 </dl>
 
-<p>一个单元格的基线是该单元格中第一个流内<a href="visuren.html#line-box">行框</a>，或者该单元格中第一个流内table-row的基线，看哪个先出现。如果没有这样的行框或者table-row，基线就是该单元格盒的content边的底部。为了找出基线，具有滚动机制（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性）的流内盒必须被当作被滚动到其初始位置了。注意，一个单元格的基线可以伸出其底部边框，见下面的<a href="#baseline-below">示例</a>
+<p>一个单元格的基线是该单元格中第一个流内<a href="visuren.html#line-box">行框</a>，或者该单元格中第一个流内table-row的基线，以先出现的为准。如果没有这样的行框或者table-row，基线就是该单元格盒的内容边界的底部。为了找出基线，具有滚动机制（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>属性）的流内盒必须被当作滚动到其初始位置了。注意，单元格的基线可能低于于其下边框，见下面的<a href="#baseline-below">示例</a>
 
-<p>单元格盒的顶部到所有具有'vertical-align: baseline'的单元格的基线之间的最远距离用来设置行的基线，有个示例：
+<p>单元格盒的顶部到所有具有'vertical-align: baseline'的单元格的基线之间的最远距离用于设置行的基线，下面是个示例：
 
 <div class="figure">
   <p><img src="images/cell-align.png" alt="Example of vertically
@@ -669,24 +669,24 @@ calculations and vertical cell alignment">[D]</A></SPAN>
 
 <p>单元格盒1和2相对各自基线对齐。单元格盒2基线上方的高度最大，以致于决定了行的基线
 
-<p>如果一行没有相对其基线对齐的单元格盒，该行的基线就是该行中最低的单元格的content边的底部
+<p>如果一行没有相对其基线对齐的单元格盒，该行的基线就是该行中最低的单元格的内容边界的底部
 
 <p>为了避免歧义，单元格的对齐按如下顺序进行：
 
 <ol>
   <li>首先，定位那些相对于各自基线对齐的单元格，这将建立行基线。然后，定位具有'vertical-align: top'的单元格
 
-  <li>现在行具有顶部，可能有基线，还有个暂定高度，（暂定高度）为从顶部到目前已定位的单元格中最低的底部（见下面单元格padding的情况）
+  <li>现在行具有顶部，可能有基线，还有个暂定高度，（暂定高度）为从顶部到目前已定位的单元格中最低的底部（见下面单元格内边距的（添加）条件）
 
   <li>如果任意剩余的与底部或者中部对齐的单元格具有大于该行当前高度的高度，通过降低底部，将该行的高度增加至这些单元格高度的最大值
 
   <li>最后定位其余单元格
 </ol>
 
-<p>小于行高度的单元格盒会被添上额外的top或者bottom padding
+<p>小于行高度的单元格盒会被添上额外的上下内边距
 
 <div class=example id=baseline-below>
-<p>本例中单元格的基线位于其bottom border下方：
+<p>本例中单元格的基线低于其下边框下方：
 
 <pre>
 div { height: 0; overflow: hidden; }
@@ -754,22 +754,22 @@ div { height: 0; overflow: hidden; }
 </div>
 
 
-<p class="note">*) 注意：用户代理也可以给'frameset'元素应用'border-spacing'属性。哪些元素是'frameset'元素不由本规范定义，由文档语言来定。例如，HTML4定义了一个&lt;FRAMESET>元素，而XHTML 1.0定义了一个&lt;frameset>元素。因此，一个'frameset'元素上的'border-spacing'属性可以用作非标准的'framespacing'属性的一个合法的替代品
+<p class="note">*) 注意：用户代理也可以给'frameset'元素应用'border-spacing'属性。哪些元素是'frameset'元素不由本规范定义，由文档语言来定。例如，HTML4定义了一个&lt;FRAMESET>元素，而XHTML 1.0定义了一个&lt;frameset>元素。因此，一个'frameset'元素上的'border-spacing'属性可以用作非标准的'framespacing'属性的合法替代品
 
 <p>该长度指定了相邻单元格边框之间的距离。如果指定了1个长度，就把它作为水平和垂直间隔。如果指定了2个，第一个是水平间隔，第二个是垂直间隔。长度不能为负
 
-<p>表格边框与表格边上的单元格边框之间的距离为表格在该边的padding加上相关边框间隔距离。例如，在右手边，该距离为<var>padding-right</var> + <var>水平border-spacing</var>
+<p>表格边框与表格边缘上的单元格边框之间的距离为表格在该边的内边距加上相关边框间隔距离。例如，在右手边，该距离为<var>右内边距</var> + <var>水平水平边框间隔</var>
 
-<p>表格的宽度是从左内padding边到右边内padding边的距离（包括边框间隔但不包括padding和border）
+<p>表格的宽度是从左内边距内边界到右内边距内边界的距离（包括边框间隔但不包括内边距和边框）
 
-<p>然而，在HTML和XHTML1中，&lt;table&gt;元素的宽度是从左border边到右border边的距离
+<p>然而，在HTML和XHTML1中，&lt;table&gt;元素的宽度是从左边框边界到右边框边界的距离
 
 <p class=note><strong>注意：</strong> 在CSS3中，这种特殊的需求将由UA样式表和'box-sizing'属性来定义
 
 <p>该模型中，每个单元格都有各自的边框。<a href="tables.html#propdef-border-spacing" class="noxref"><span class="propinst-border-spacing">'border-spacing'</span></a>属性指定了相邻单元格的边框之间的距离。这段间隔中，行，列，行组和列组的背景是不可见的，会让表格背景透出来。行，列，行组和列组没有边框（即，用户代理必须<span class="index-inst" title="ignore"><a name="x27" href="syndata.html#ignore">忽略</a></span>这些元素的border属性）
 
 <div class="example"><P style="display:none">示例：</P>
-<p>下图中的表格可能是这样一个样式表产生的结果：
+<p>下图中的表格可能是下面样式表产生的结果：
 
 <pre>
 table      { border: outset 10pt; 
@@ -808,15 +808,15 @@ borders model">[D]</A></SPAN>
 </div>
 
 
-<p>在独立边框模型中，该属性控制不含可见内容的单元格周围的边框和背景的渲染。空单元格和<a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>属性被设置为'hidden'的单元格被认为不含可见内容。单元格为空，除非它们含有一个或者多个下列：
+<p>在独立边框模型中，该属性控制不含可见内容的单元格周围的边框和背景的渲染。空单元格和<a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>属性被设置为'hidden'的单元格被认为不含可见内容。单元格为空，除非它们包含下列一项或多项内容：
 <ul>
 <li>浮动内容（包括空元素），
-<li>除已经通过<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性的处理被合并起来的空白字符外的流内内容（包括空元素）
+<li>在流内容（包括空元素）之外的空白，已被<a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>属性处理所合并
 </ul>
 
 <p>当该属性值为'show'时，边框和背景会被绘制在空单元格的周围/后面（像常规单元格一样）
 
-<p>'hide'值表示不会在空单元格周围/后面渲染边框和背景（见<a href="#table-layers">17.5.1</a>的第6点）。而且，如果行中的所有单元格都具有'hide'值，并且没有可见内容，那么该行为0高度，并且该行只有一边存在垂直border-spacing
+<p>'hide'值表示不会在空单元格周围/后面渲染边框和背景（见<a href="#table-layers">17.5.1</a>的第6点）。而且，如果行中的所有单元格都具有'hide'值，并且没有可见内容，那么该行为0高度，并且该行只有一边存在垂直边框间隔
 
 <div class="example"><P style="display:none">示例：</P>
 <p>如下规则会在所有单元格周围绘制边框和背景：
@@ -832,7 +832,7 @@ table { empty-cells: show }
 
 <p>边框在单元格之间的网格线上居中。用户代理必须找出一个对奇数离散单位（屏幕像素，打印机点）的舍入约束规则
 
-<p>下图展示了表格宽度，边框宽度，padding和单元格宽度之间的相互影响。它们的关系由下列等式给定，对表格的每一行都成立：
+<p>下图展示了表格宽度，边框宽度，内边距和单元格宽度之间的相互影响。它们的关系由下列等式给定，对表格的每一行都成立：
 
 <blockquote>
 <p><var>row-width</var> = (0.5 * <var>border-width</var><sub>0</sub>)
@@ -844,13 +844,13 @@ table { empty-cells: show }
 <var>border-width</var><sub><var>n</var></sub>)
 </blockquote>
 
-<p>其中<var>n</var>是该行中单元格的数量，<var>padding-left</var><sub><var>i</var></sub>和<var>padding-right</var><sub><var>i</var></sub>引用单元格<var>i</var>的left (right) padding，<var>border-width</var><sub><var>i</var></sub>引用单元格<var>i</var>和<var>i</var> + 1之间的边框
+<p>其中<var>n</var>是该行中单元格的数量，<var>padding-left</var><sub><var>i</var></sub>和<var>padding-right</var><sub><var>i</var></sub>表示单元格<var>i</var>的left (right) padding，<var>border-width</var><sub><var>i</var></sub>表示单元格<var>i</var>和<var>i</var> + 1之间的边框
 
-<p>UA必须通过验证表格第一行中的第一个和最后一个单元格，为表格计算一个初始的左右边框宽度。表格的左边框宽度是第一个单元格的合并后左边框的一半，而表格的右边框宽度是最后一个单元格的合并后右边框的一半。如果后续行具有更大的合并后左右边框，那么所有超出的部分会涌进（spill into）表格的margin区
+<p>UA必须通过检查表格第一行中的第一个和最后一个单元格，为表格计算一个初始的左右边框宽度。表格的左边框宽度是第一个单元格的合并后左边框的一半，而表格的右边框宽度是最后一个单元格的合并后右边框的一半。如果后续行具有更大的合并后左右边框，那么所有超出的部分会涌进（spill into）表格的外边距区
 
-<p>表格的顶部边框宽度通过验证所有顶部边框与表格的顶部边框合并了的单元格来计算，表格的顶部边框宽度等于最大合并顶部边框的一半。底部边框宽度通过验证所有底部边框与表格的底部合并了的单元格来计算，底部边框宽度等于最大合并底部边框的一半
+<p>表格的顶部边框宽度通过检查所有顶部边框与表格的顶部边框合并了的单元格来计算，表格的顶部边框宽度等于最大合并顶部边框的一半。底部边框宽度通过检查所有底部边框与表格的底部合并了的单元格来计算，底部边框宽度等于最大合并底部边框的一半
 
-<p>在确定表格是否从某些祖先溢出（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>）时，需要考虑所有涌进margin的边框</p>
+<p>在确定表格是否从某些祖先溢出（见<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>）时，需要考虑所有涌进外边距的边框</p>
 
 <div class="figure">
   <p><img src="images/tbl-width.png" alt="Schema showing the widths of
@@ -860,18 +860,18 @@ borders model">[D]</A></SPAN>
   <p class="caption">此图展示了单元格的宽度和单元格的边框及padding
 </div>
 
-<p>注意，在该模型中，表格的宽度包括一半的表格边框。而且，在该模型中，表格没有padding（但有margin）
+<p>注意，在该模型中，表格的宽度包括一半的表格边框。而且，在该模型中，表格没有内边距（但有外边距）
 
-<p>CSS&nbsp;2.1没有定义表格元素的背景边缘的位置
+<p>CSS&nbsp;2.1没有定义表格元素的背景边界的位置
 
 <h4>17.6.2.1 <a name="border-conflict-resolution">边框冲突处理</a></h4>
 
-<p>在合并边框模型中，每个元素的每条边上的边框可以通过各种与该边相关的元素（单元格，行，行组，列，列组和表格自身）上的border属性来指定，而且这些边框宽度，样式和颜色可能不同。经验法则是选择每边上最“醒目”的边框样式，除了任意'hidden'样式的出现会无条件切断（turn off）边框
+<p>在合并边框模型中，每个元素的每条边上的边框可以通过各种与该边相关的元素（单元格，行，行组，列，列组和表格自身）上的border属性来指定，而且这些边框宽度，样式和颜色可能不同。经验法则是选择每边上最“醒目”的边框样式，除了所有'hidden'样式的出现会无条件切断（turn off）边框
 
-<p>下列规则决定发生冲突的情况下哪种边框样式会“胜出”：
+<p>下列规则决定发生冲突时哪种边框样式会“胜出”：
 
 <ol>
-  <li><a href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a>为'hidden'的边框优先于所有其它冲突边框。具有该值的任意边框会抑制此位置的所有边框
+  <li><a href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a>为'hidden'的边框优先于所有其它冲突边框。具有该值的所有边框会抑制此位置的所有边框
 
   <li>具有'none'样式的边框优先级最低。只有在与该边相关的所有元素的border属性为'none'时，border才会被忽略（但注意，'none'是border style的默认值）
 
@@ -961,7 +961,7 @@ borders">[D]</A></SPAN>
 
 <h3>17.6.3 <a name="table-border-styles">边框样式</a></h3>
 
-<p><span class="index-inst" title="&lt;border-style&gt;"><a name="x29" href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a></span>的某些值在表格上和在其它元素上的含义不同。它们在如下列表中用星号标记出来了
+<p><span class="index-inst" title="&lt;border-style&gt;"><a name="x29" href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a></span>的某些值在表格上和在其它元素上的含义不同。在以下列表中用星号标记出来了
 
 <dl>
   <dt><a href="box.html#value-def-bo-none" class="noxref"><span class="value-inst-bo-none"><strong>none</strong></span></a>
